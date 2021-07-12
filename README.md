@@ -1,10 +1,10 @@
-# GodChat-client: A Discord-like Chat tool
+# Oshavery-Front: A Discord-like Chat tool
 
-## What is GodChat?
-`GodChat-client` is Discord/Slack-like chat tool written by Vue.js.
-`GodChat-server` is writen by Go.
-`GodChat-client` は,Vue.jsで書かれたDiscord/Slackライクなチャットツールです. 
-`GodChat-server` はGoで書かれています
+## What is Oshavery?
+`Oshavery-Front` is Discord/Slack-like chat tool written in Vue.js.
+`Oshavery-server` is writen in Go.
+`Oshavery-Front` は,Vue.jsで書かれたDiscord/Slackライクなチャットツールのクライアントです. 
+`Oshavery-server` はGoで書かれています
 ## Demo
 [WIP] URL of Demo server  
 ここにデモサーバーのリンクとかを貼る
@@ -34,7 +34,7 @@
 ## Licence
 [WIP]
 
-# god-chat-front
+# oshavery-front ビルド手順
 
 ## Project setup
 ```
