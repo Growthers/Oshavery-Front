@@ -34,7 +34,7 @@
 ## Licence
 [WIP]
 
-# oshavery-front ビルド手順
+# Oshavery-front ビルド手順
 
 ## Project setup
 ```
