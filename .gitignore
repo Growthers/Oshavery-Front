@@ -26,6 +26,8 @@
 # Icon must end with two \r
 Icon
 
+# Vim session file
+Session.vim
 
 # Thumbnails
 ._*
