@@ -1,43 +1,39 @@
 .accordion_one {
-  max-width: 320px;
+  width: 320px;
   margin: 5px 0;
+}
 
-  .accordion_header {
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    background-color: #FFBBFF;
-    height: 48px;
+.accordion_header {
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  background-color: #FFBBFF;
+  height: 48px;
 
-    color: #747474;
-    font-weight: bold;
-    font-size: 16px;
+  color: #747474;
+  font-weight: bold;
+  font-size: 16px;
 
-    position: relative;
-    z-index: +1;
-    transition-duration: 0.2s;
+  position: relative;
+  z-index: +1;
+  transition-duration: 0.2s;
 
-    &.open {
-      border-radius: 5px 5px 0 0;
-    }
-
-    .i_box {
-      position: relative;
-      cursor: pointer;
-      align-items: center;
-      box-sizing: border-box;
-      width: 30px;
-      height: 30px;
-      margin: 0 10px;
-
-
-
-    }
+  &.open {
+    border-radius: 5px 5px 0 0;
   }
 }
 
+.i_box {
+  position: relative;
+  cursor: pointer;
+  align-items: center;
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  margin: 0 10px;
+}
 
-.accordion_one .accordion_header .i_box .one {
+.one {
   position: absolute;
   width: 19px;
   height: 3px;
@@ -48,7 +44,7 @@
   border-radius: 3px;
 }
 
-.accordion_one .accordion_header .i_box .two {
+.two {
   position: absolute;
   width: 19px;
   height: 3px;
@@ -59,7 +55,7 @@
   border-radius: 3px;
 }
 
-.accordion_one .accordion_header .i_box .three {
+.three {
   position: absolute;
   width: 27.89px;
   height: 3px;
@@ -71,7 +67,7 @@
   transform: rotate(-75.47deg);
 }
 
-.accordion_one .accordion_header .i_box .four {
+.four {
   position: absolute;
   width: 27.89px;
   height: 3px;
@@ -84,19 +80,19 @@
 }
 
 
-.accordion_one .accordion_inner {
+.accordion_inner {
   border-radius: 0 0 5px 5px;
 
   background-color: #FFBBFF;
   color: #747474;
   box-sizing: border-box;
   overflow: hidden;
+}
 
-  .box_one {
-    padding: 30px;
-  }
+.box_one {
+  padding: 30px;
+}
 
-  .txt_a_ac {
-    margin: 0;
-  }
+.txt_a_ac {
+  margin: 0;
 }
