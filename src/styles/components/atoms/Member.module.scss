@@ -1,6 +1,7 @@
 .member {
     display: flex;
     width: 240px;
+    padding: 5px;
 
     .avatar {
         width: 45px;
@@ -23,7 +24,7 @@
     }
 
     .bot {
-        margin: auto 3px auto 5px;
+        margin: auto 0 auto 5px;
         font-size: 70%;
         color: #ffffff;
         background-color: navy;
