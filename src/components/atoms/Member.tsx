@@ -13,10 +13,9 @@ const Member: FC<Props> = props => {
   return (
     <div className={style.member}>
       <img className={style.avatar} src={props.avatar_url}></img>
-      <span className={style.name}>
-        {props.name}
-        {props.bot && (<span className={style.bot}>BOT</span>)}
-      </span>
+      {!props.bot && (<span className={style.name}>{props.name}</span>)}
+      {props.bot && (<span className={style.bot_name}>{props.name}</span>)}
+      {props.bot && (<span className={style.bot}>BOT</span>)}
     </div>
   )
 };

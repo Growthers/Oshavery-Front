@@ -1,5 +1,6 @@
 .member {
     display: flex;
+    width: 240px;
 
     .avatar {
         width: 45px;
@@ -8,15 +9,25 @@
     }
 
     .name {
-        margin: auto 0 auto 10px;
+        margin: auto 3px auto 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
-        .bot {
-            margin: auto 0 auto 5px;
-            font-size: 70%;
-            color: #ffffff;
-            background-color: navy;
-            padding: 3px 5px;
-            border-radius: 10px;
-        }
+    .bot_name {
+        margin: auto 0 auto 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .bot {
+        margin: auto 3px auto 5px;
+        font-size: 70%;
+        color: #ffffff;
+        background-color: navy;
+        padding: 3px 5px;
+        border-radius: 3px;
     }
 }
