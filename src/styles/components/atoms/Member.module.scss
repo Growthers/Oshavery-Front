@@ -1,0 +1,22 @@
+.member {
+    display: flex;
+
+    .avatar {
+        width: 45px;
+        height: 45px;
+        border-radius: 25px;
+    }
+
+    .name {
+        margin: auto 0 auto 10px;
+
+        .bot {
+            margin: auto 0 auto 5px;
+            font-size: 70%;
+            color: #ffffff;
+            background-color: navy;
+            padding: 3px 5px;
+            border-radius: 10px;
+        }
+    }
+}
