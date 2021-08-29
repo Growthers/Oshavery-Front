@@ -1,12 +1,11 @@
 import type { FC } from "react";
-
 import style from "../../styles/components/atoms/sendButton.module.scss";
 
-// default color #FFDCA8
 type Props = {
-  onClick : any;
+  onClick : VoidFunction;
 }
-const sendButton: FC<Props> = (props) => {
+
+const SendButton: FC<Props> = (props) => {
   return (
     <button className={style.messageSendButton} onClick={props.onClick}>
       <svg>
@@ -17,4 +16,4 @@ const sendButton: FC<Props> = (props) => {
   );
 };
 
-export default sendButton;
+export default SendButton;
