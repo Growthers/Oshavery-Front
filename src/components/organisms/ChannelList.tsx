@@ -13,6 +13,8 @@ export type channelsData = {
   parent?: string//カテゴリのUUID
 };
 
+
+/*サンプルデータ
 const apiChannel: channelsData[] = [
   {
     id: "114514",
@@ -44,6 +46,7 @@ const apiChannel: channelsData[] = [
     permissions: ["1"],
   }
 ];
+*/
 
 const ChannelList: FC = () => {
 
