@@ -20,32 +20,32 @@ const apiChannel: channelsData[] = [
   /*
   サンプルデータ
   {
-    id: "114514",
+    id: "5tsz8s",
     channel_name: "aaa",
     channel_topics: "aaa is aaa",
     channel_type: "category",
     channel_position: 1,
-    creator_id: "810",
+    creator_id: "mrbytw",
     permissions: ["1"],
     parent: "1"
   },
   {
-    id: "4",
+    id: "ea6mjx",
     channel_name: "aaa",
     channel_topics: "aaa is aaa",
     channel_type: "text",
     channel_position: 1,
-    creator_id: "810",
+    creator_id: "mrbytw",
     permissions: ["1"],
     parent: "1"
   },
   {
-    id: "1919810",
+    id: "pxjmbr",
     channel_name: "aaa",
     channel_topics: "aaa is aaa",
     channel_type: "text",
     channel_position: 1,
-    creator_id: "810",
+    creator_id: "mrbytw",
     permissions: ["1"],
   }
   */
