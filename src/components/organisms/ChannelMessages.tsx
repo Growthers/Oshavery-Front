@@ -1,4 +1,4 @@
-import React from 'react'
+import { FC, useState } from 'react'
 
 import Message from '../molecules/ChannelMessage'
 import InfiniteScroll from 'react-infinite-scroller'
@@ -22,8 +22,8 @@ interface State {
   messages: JSX.Element[];
 };
 
-const Messages: React.FC = (props) => {
-  const [state, setState] = React.useState<State>({messages: []})
+const Messages: FC = (props) => {
+  const [state, setState] = useState<State>({messages: []})
 
     const loadMore = (p: number) => {
       const response: Response = {
