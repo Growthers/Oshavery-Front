@@ -18,42 +18,38 @@ interface Response {
   channel_id: string;
 };
 
-interface State {
-  messages: JSX.Element[];
-};
-
 const ChannelMessages: FC = () => {
-  const [state, setState] = useState<State>({messages: []})
+  const [messages, setMessages] = useState<JSX.Element[]>([])
 
-    const loadMore = (p: number) => {
-      const response: Response = {
-        id: "test_id" + p.toString(),
-        timestamp: "test_timestamp",
-        author: {
-          id: "test_author_id",
-          name: "test_author_name",
-          avator: "test_author_name",
-          bot: "test_author_bot",
-          state: "test_author_state",
-        },
-        content: "test_content",
-        guild_id: "test_guild_id",
-        channel_id: "test_channnel_id",
-      };
-      setState({messages: [...state.messages, <ChannelMessage response={response}></ChannelMessage>]});
-    }
+  const loadMore = (p: number) => {
+    const response: Response = {
+      id: "test_id" + p.toString(),
+      timestamp: "test_timestamp",
+      author: {
+        id: "test_author_id",
+        name: "test_author_name",
+        avator: "test_author_name",
+        bot: "test_author_bot",
+        state: "test_author_state",
+      },
+      content: "test_content",
+      guild_id: "test_guild_id",
+      channel_id: "test_channnel_id",
+    };
+    setMessages([...messages, <ChannelMessage response={response}></ChannelMessage>]);
+  }
 
-    return (
-      <>
-        <InfiniteScroll
-          loadMore={loadMore}
-          hasMore={true}
-          loader={<div className="loader" key={0}>Loading ...</div>}
-        >
-          {state.messages.map((i, j) => (<div key={j.toString()}>{i}</div>))}
-        </InfiniteScroll>
-      </>
-    )
+  return (
+    <>
+      <InfiniteScroll
+        loadMore={loadMore}
+        hasMore={true}
+        loader={<div className="loader" key={0}>Loading ...</div>}
+      >
+        {messages.map((i, j) => (<div key={j.toString()}>{i}</div>))}
+      </InfiniteScroll>
+    </>
+  )
 
 }
 
