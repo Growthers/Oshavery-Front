@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 import Member from "../atoms/Member";
 
@@ -18,7 +18,7 @@ const MemberList: FC = () => {
   const [isShow, setIsShow] = useState(false);
 
   // メンバーカードのクリア
-  const clear_membercard = () => {
+  const clear_membercard = useCallback(() => {
     if (process.browser) {
       const elements: HTMLCollectionOf<Element> = document.getElementsByClassName(member_style.membercard);
 
@@ -28,10 +28,10 @@ const MemberList: FC = () => {
 
       setIsShow(false);
     };
-  };
+  }, []);
 
   // 引数のIDのクラスを変更（メンバーカード表示）
-  const show_membercard = (target_id: string) => {
+  const show_membercard = useCallback((target_id: string) => {
     clear_membercard();
     if (process.browser) {
       const target: HTMLElement | null = document.getElementById(target_id);
@@ -43,7 +43,7 @@ const MemberList: FC = () => {
       target.className = `${member_style.membercard} ${member_style.show}`;
       setIsShow(true);
     };
-  };
+  }, []);
 
   // クリックイベント
   const check_click = (e: any) => {
@@ -90,6 +90,7 @@ const MemberList: FC = () => {
         members_data.map((value, index) => {
           return (
             <Member
+              key="{value}"
               id = {value.id}
               // element_id={element_id_array[index]}
               name={value.name}
