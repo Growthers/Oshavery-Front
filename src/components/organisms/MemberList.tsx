@@ -1,3 +1,4 @@
+import React from "react";
 import type { FC } from "react";
 import { useState, useCallback } from "react";
 
@@ -14,7 +15,7 @@ export type MembersData = {
 
 const members_data: MembersData[] = []
 
-const MemberList: FC = () => {
+const MemberList: FC = React.memo(() => {
   const [isShow, setIsShow] = useState(false);
 
   // メンバーカードのクリア
@@ -109,6 +110,6 @@ const MemberList: FC = () => {
       }
     </div>
   )
-}
+});
 
 export default MemberList;
