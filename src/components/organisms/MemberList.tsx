@@ -32,12 +32,18 @@ const MemberList: FC = () => {
 
   // 引数のIDのクラスを変更（メンバーカード表示）
   const show_membercard = useCallback((target_id: string) => {
-    clear_membercard();
     if (process.browser) {
       const target: HTMLElement | null = document.getElementById(target_id);
 
       if (target == null) {
         return;
+      };
+
+      if (target.className.indexOf(member_style.show) !== -1) {
+        clear_membercard();
+        return;
+      } else {
+        clear_membercard();
       };
 
       target.className = `${member_style.membercard} ${member_style.show}`;
@@ -90,8 +96,8 @@ const MemberList: FC = () => {
         members_data.map((value, index) => {
           return (
             <Member
-              key="{value}"
-              id = {value.id}
+              key={value.id}
+              id={value.id}
               // element_id={element_id_array[index]}
               name={value.name}
               avatar_url={value.avatar_url}
