@@ -22,7 +22,7 @@ interface State {
   messages: JSX.Element[];
 };
 
-const ChannelMessages: FC = (props) => {
+const ChannelMessages: FC = () => {
   const [state, setState] = useState<State>({messages: []})
 
     const loadMore = (p: number) => {
