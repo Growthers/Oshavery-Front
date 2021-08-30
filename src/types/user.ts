@@ -46,7 +46,7 @@ export type getUsersInfoRes = user[]
 
 //:::::::::::::::::::::::::::::::::::
 
-export type getMyInfoRes = user & guild[]
+export type getMyInfoRes = user & {"guild": guild[]};
 
 //::::::::::::::::::::::::::::::::::
 
