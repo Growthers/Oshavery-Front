@@ -1,5 +1,4 @@
 import { user } from "./user";
-import {channel} from "./channel";
 
 export type guild = {
   "id": string,
@@ -8,7 +7,14 @@ export type guild = {
   "icon": string,
   "owner_id": string,
   "users": user[],
-  "channels": channel[]
+  "channels": {
+    "id": string,
+    "channel_name": string,
+    "channel_topics": string,
+    "channel_type": string,
+    "channel_position": number,
+    "creator_id": string
+  }[]
 }
 
 export type role = {
