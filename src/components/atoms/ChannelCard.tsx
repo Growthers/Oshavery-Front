@@ -1,18 +1,19 @@
+import React from "react";
 import type { FC } from "react";
 
 import { channelsData } from "../organisms/ChannelList";
 
-import style from '../../styles/components/atoms/ChannelCard.module.scss';
+import style from "../../styles/components/atoms/ChannelCard.module.scss";
 
 type Props = Pick<channelsData,
-  'channel_name'|
-  'channel_topics'|
-  'channel_type'|
-  'parent'
+  "channel_name"|
+  "channel_topics"|
+  "channel_type"|
+  "parent"
   >
 
 
-const ChannelCard: FC<Props> = props => {
+const ChannelCard: FC<Props> = React.memo(props => {
 
   if (props.channel_type === "category") {
     return (
@@ -21,8 +22,6 @@ const ChannelCard: FC<Props> = props => {
       </div>
     );
   } else {
-
-
     return (
       <div className={style.channel}>
           <div className={style.sharp}>
@@ -34,7 +33,7 @@ const ChannelCard: FC<Props> = props => {
           {props.channel_name}
       </div>
     );
-  }
-}
+  };
+});
 
 export default ChannelCard;

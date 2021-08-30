@@ -1,6 +1,7 @@
+import React from "react";
 import type { FC } from "react";
-import ChannelCard from "../atoms/ChannelCard";
 
+import ChannelCard from "../atoms/ChannelCard";
 
 export type channelsData = {
   id: string,
@@ -9,13 +10,15 @@ export type channelsData = {
   channel_type: string,
   channel_position: number,
   creator_id: string,
-  permissions: string[],//許されるロール
-  parent?: string//カテゴリのUUID
+  permissions: string[], //許されるロール
+  parent?: string //カテゴリのUUID
 };
 
 
-/*サンプルデータ
+
 const apiChannel: channelsData[] = [
+  /*
+  サンプルデータ
   {
     id: "114514",
     channel_name: "aaa",
@@ -45,11 +48,10 @@ const apiChannel: channelsData[] = [
     creator_id: "810",
     permissions: ["1"],
   }
+  */
 ];
-*/
 
-const ChannelList: FC = () => {
-
+const ChannelList: FC = React.memo(() => {
 
   return (
     <>
@@ -69,6 +71,6 @@ const ChannelList: FC = () => {
     </>
 
   );
-}
+});
 
 export default ChannelList;
