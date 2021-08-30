@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Message from '../molecules/message'
+import Message from '../molecules/ChannelMessage'
 import InfiniteScroll from 'react-infinite-scroller'
 
 interface Response {
