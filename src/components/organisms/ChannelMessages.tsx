@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
 
-import Message from '../molecules/ChannelMessage'
+import ChannelMessage from '../molecules/ChannelMessage'
 import InfiniteScroll from 'react-infinite-scroller'
 
 interface Response {
@@ -22,7 +22,7 @@ interface State {
   messages: JSX.Element[];
 };
 
-const Messages: FC = (props) => {
+const ChannelMessages: FC = (props) => {
   const [state, setState] = useState<State>({messages: []})
 
     const loadMore = (p: number) => {
@@ -40,7 +40,7 @@ const Messages: FC = (props) => {
         guild_id: "test_guild_id",
         channel_id: "test_channnel_id",
       };
-      setState({messages: [...state.messages, <Message response={response}></Message>]});
+      setState({messages: [...state.messages, <ChannelMessage response={response}></ChannelMessage>]});
     }
 
     return (
@@ -57,4 +57,4 @@ const Messages: FC = (props) => {
 
 }
 
-export default Messages
+export default ChannelMessages

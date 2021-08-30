@@ -19,7 +19,7 @@ interface Props {
   response: Response;
 };
 
-const Message: FC<Props> = (props) => {
+const ChannelMessage: FC<Props> = (props) => {
   const r: Response = props.response
   const author_avator: string = r.author.avator
   const author_name = r.author.name
@@ -36,4 +36,4 @@ const Message: FC<Props> = (props) => {
   )
 }
 
-export default Message
+export default ChannelMessage
