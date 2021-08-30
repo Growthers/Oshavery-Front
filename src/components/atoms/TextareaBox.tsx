@@ -1,11 +1,16 @@
-import type { FC } from "react";
-import style from "../../styles/components/atoms/inputMessageBox.module.scss";
+import { FC, useRef } from "react";
+import style from "../../styles/components/atoms/TextareaBox.module.scss";
+import { channeData } from "../molecules/MessageBox";
 
-type Props = {
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder: string;
-  autoFocus: boolean;
+type Props = Pick<channeData, "channel_name"> & {
+  //onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  //any型になってしまっているので要修正
+  onChange: (event: string) => void;
+  //今後追加
+  onkeypress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   disabled: boolean;
+  cols: number;
+  rows: number;
 };
 
 type defaultTextareaSettingsType = {
@@ -24,36 +29,26 @@ const defaultTextareaSettings: defaultTextareaSettingsType = {
   wrap: "soft",
 };
 
-const TextareaBox: FC<Props> = (props, defaultTextareaSettings) => {
+const TextareaBox: FC<Props> = (props) => {
+  const textareaElement = useRef(null);
+
   return (
     <textarea
-      onChange={props.onChange}
-      placeholder={props.placeholder}
-      autoFocus={props.autoFocus}
+      placeholder={props.channel_name}
       disabled={props.disabled}
-
+      cols={props.cols}
+      rows={props.rows}
+      minLength={defaultTextareaSettings.minlength}
+      maxLength={defaultTextareaSettings.maxlength}
+      autoComplete={defaultTextareaSettings.autocomplete}
+      spellCheck={defaultTextareaSettings.spellcheck}
+      wrap={defaultTextareaSettings.wrap}
+      onChange={(e) => {
+        props.onChange(e.target.value);
+      }}
+      ref={textareaElement}
+      className={style.TextareaBox}
     ></textarea>
   );
 };
 export default TextareaBox;
-
-/*
-textarea attribute
-autocapitalize = none // iOS only
-autocomplete = off
-autofocus = autofocus
-
-cols // default 20
-rows
-
-
-
-
-
-
-
-
-
-
-
- */
