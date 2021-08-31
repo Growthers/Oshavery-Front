@@ -1,8 +1,8 @@
-import { FC } from "react";
-import style from '../../styles/components/molecules/MessageBox.module.scss';
+import { FC, useRef } from "react";
+import style from "../../styles/components/molecules/MessageBox.module.scss";
 import SendButton from "../atoms/SendButton";
 import TextareaBox from "../atoms/TextareaBox";
-import {  useState } from "react";
+import { useState } from "react";
 
 export type channeData = {
   id: string;
@@ -22,13 +22,12 @@ export type setTextarea = {
   rows: number;
 };
 
-
 const MessageBox: FC = () => {
   // API待ち
   const [disabled, setDisabled] = useState<boolean>(true);
   const [cols, setCols] = useState<number>(100);
   const [rows, setRows] = useState<number>(50);
-
+  const HTMLTextAreaElement = useRef<HTMLTextAreaElement>(null);
   let inputedMessage = "";
   const channel_name = "無法地帯";
   return (
@@ -39,11 +38,15 @@ const MessageBox: FC = () => {
         rows={rows}
         onChange={(mesage: string) => (inputedMessage = mesage)}
         placeholder={channel_name}
+        ref={HTMLTextAreaElement}
       />
 
       <SendButton
         onClick={() => {
+          //API待ち
           console.log(inputedMessage);
+          //割と不味いと思われる
+          HTMLTextAreaElement.current.value = "";
         }}
       />
     </div>
