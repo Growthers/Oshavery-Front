@@ -92,5 +92,4 @@ export const TestGuildData: Context<guild[]> = createContext<guild[]>([
         creator_id: "0"
       }
     ]
-  },
-])
+  }])

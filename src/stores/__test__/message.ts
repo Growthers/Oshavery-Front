@@ -1,7 +1,7 @@
 import {message} from "../../types/message";
 import { Context, createContext } from "react";
 
-export const TestWatchingGuild: Context<message[]> = createContext<message[]>([
+export const TestMassagesData: Context<message[]> = createContext<message[]>([
   {
     id: "Keter",
     timestamp: "",

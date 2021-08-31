@@ -1,3 +1,3 @@
-import { Context, createContext } from "react";
+import {Context, createContext } from "react";
 
-export const TestWatchingGuild: Context<string> = createContext<string>("a")
+export const TestWatchingChannel: Context<string> = createContext<string>("a")
