@@ -9,14 +9,14 @@ interface Props {
 
 const ChannelMessage: FC<Props> = React.memo((props) => {
   const r: Response = props.response
-  const author_avator: string = r.author.avator
+  const author_avatar: string = r.author.avatar
   const author_name = r.author.name
   const timestamp = r.timestamp
   const content = r.content
 
   return (
     <div>
-      <img src={author_avator} alt={author_name + "'s avatar"}></img>
+      <img src={author_avatar} alt={author_name + "'s avatar"}></img>
       <div>{author_name}</div>
       <div>{timestamp}</div>
       <div>{content}</div>
