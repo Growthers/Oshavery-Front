@@ -1,5 +1,5 @@
 import { FC } from "react";
-//import style from "../../styles/components/molecules/MessageBox.scss";
+import style from '../../styles/components/molecules/MessageBox.module.scss';
 import SendButton from "../atoms/SendButton";
 import TextareaBox from "../atoms/TextareaBox";
 import {  useState } from "react";
@@ -32,7 +32,7 @@ const MessageBox: FC = () => {
   let inputedMessage = "";
   const channel_name = "無法地帯";
   return (
-    <div>
+    <div className={style.messageBox}>
       <TextareaBox
         disabled={disabled}
         cols={cols}
