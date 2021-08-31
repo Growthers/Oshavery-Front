@@ -1,15 +1,15 @@
-import { FC, useState } from 'react'
+import { FC, useState } from "react";
+import InfiniteScroll from "react-infinite-scroller";
 
-import ChannelMessage from '../molecules/ChannelMessage'
-import InfiniteScroll from 'react-infinite-scroller'
+import ChannelMessage from "../molecules/ChannelMessage";
 
-interface Response {
+export interface Response {
   id: string;
   timestamp: string;
   author: {
     id: string;
     name: string;
-    avator: string;
+    avatar: string;
     bot: string;
     state: string;
   };
@@ -19,7 +19,7 @@ interface Response {
 };
 
 const ChannelMessages: FC = () => {
-  const [messages, setMessages] = useState<JSX.Element[]>([])
+  const [messages, setMessages] = useState<Response[]>([])
 
   const loadMore = (p: number) => {
     const response: Response = {
@@ -28,7 +28,7 @@ const ChannelMessages: FC = () => {
       author: {
         id: "test_author_id",
         name: "test_author_name",
-        avator: "test_author_name",
+        avatar: "test_author_name",
         bot: "test_author_bot",
         state: "test_author_state",
       },
@@ -36,7 +36,7 @@ const ChannelMessages: FC = () => {
       guild_id: "test_guild_id",
       channel_id: "test_channnel_id",
     };
-    setMessages([...messages, <ChannelMessage response={response}></ChannelMessage>]);
+    setMessages([...messages, response]);
   }
 
   return (
@@ -46,11 +46,10 @@ const ChannelMessages: FC = () => {
         hasMore={true}
         loader={<div className="loader" key={0}>Loading ...</div>}
       >
-        {messages.map((i, j) => (<div key={j.toString()}>{i}</div>))}
+        {messages.map((value) => (<div key={value.id}><ChannelMessage response={value}></ChannelMessage></div>))}
       </InfiniteScroll>
     </>
   )
-
 }
 
 export default ChannelMessages

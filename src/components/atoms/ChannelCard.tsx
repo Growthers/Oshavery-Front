@@ -8,8 +8,7 @@ import style from "../../styles/components/atoms/ChannelCard.module.scss";
 type Props = Pick<channelsData,
   "channel_name"|
   "channel_topics"|
-  "channel_type"|
-  "parent"
+  "channel_type"
   >
 
 
@@ -33,7 +32,7 @@ const ChannelCard: FC<Props> = React.memo(props => {
           {props.channel_name}
       </div>
     );
-  };
+  }
 });
 
 export default ChannelCard;

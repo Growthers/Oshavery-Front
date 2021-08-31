@@ -1,3 +1,4 @@
+import React from "react";
 import type { FC } from "react";
 
 import { MembersData } from "../organisms/MemberList";
@@ -9,7 +10,7 @@ type Props = Pick<
   "name" | "avatar_url" | "bot"
 >;
 
-const MemberCard: FC<Props> = props => {
+const MemberCard: FC<Props> = React.memo((props) => {
   return (
     <div className={`${style.membercard} membercard_element`}>
       <div className={style.membercard_element}>
@@ -19,6 +20,6 @@ const MemberCard: FC<Props> = props => {
       {props.bot && (<span className={`${style.bot} membercard_element`}>BOT</span>)}
     </div>
   )
-};
+});
 
 export default MemberCard;

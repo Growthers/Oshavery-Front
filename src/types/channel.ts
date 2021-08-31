@@ -5,7 +5,7 @@ export type channel = {
   "channel_type": string,
   "channel_position": number,
   "creator_id": string,
-  "permissions": permission[]
+  "permissions"?: permission[]
 }
 
 type permission = {
