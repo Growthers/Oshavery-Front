@@ -18,7 +18,7 @@ export interface Response {
   channel_id: string;
 };
 
-const ChannelMessages: FC = () => {
+const MessageList: FC = () => {
   const [messages, setMessages] = useState<Response[]>([])
 
   const loadMore = (p: number) => {
@@ -52,4 +52,4 @@ const ChannelMessages: FC = () => {
   )
 }
 
-export default ChannelMessages
+export default MessageList

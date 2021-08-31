@@ -2,9 +2,9 @@ import React from "react";
 import type { FC } from "react";
 import { useState, useCallback } from "react";
 
-import Member from "../atoms/Member";
+import MemberCard from "../atoms/MemberCard";
 
-import member_style from "../../styles/components/atoms/Member.module.scss";
+import member_style from "../../styles/components/atoms/MemberPopup.module.scss";
 
 export type MembersData = {
   id: string,
@@ -96,7 +96,7 @@ const MemberList: FC = React.memo(() => {
       {
         members_data.map((value, index) => {
           return (
-            <Member
+            <MemberCard
               key={value.id}
               id={value.id}
               // element_id={element_id_array[index]}
