@@ -1,12 +1,5 @@
-import {
-  FC,
-  ForwardRefExoticComponent,
-  PropsWithRef,
-} from "react";
+import { forwardRef } from "react";
 import style from "../../styles/components/atoms/TextareaBox.module.scss";
-
-export type ElementFrec<T extends keyof JSX.IntrinsicElements> =
-  ForwardRefExoticComponent<PropsWithRef<JSX.IntrinsicElements[T]>>;
 
 type Props = {
   onChange: (event: string) => void;
@@ -34,23 +27,28 @@ const defaultTextareaSettings: defaultTextareaSettingsType = {
   wrap: "soft",
 };
 
-const TextareaBox: FC<Props> = (props) => {
-  return (
-    <textarea
-      placeholder={props.placeholder}
-      disabled={props.disabled}
-      cols={props.cols}
-      rows={props.rows}
-      minLength={defaultTextareaSettings.minlength}
-      maxLength={defaultTextareaSettings.maxlength}
-      autoComplete={defaultTextareaSettings.autocomplete}
-      spellCheck={defaultTextareaSettings.spellcheck}
-      wrap={defaultTextareaSettings.wrap}
-      className={style.TextareaBox}
-      onChange={(e) => {
-        props.onChange(e.target.value);
-      }}
-    ></textarea>
-  );
-};
+type Ref = HTMLTextAreaElement;
+//any型のため要修正
+const TextareaBox = forwardRef<Ref, Props>(function InputTextarea(
+  props,
+  ref
+): any {
+  <textarea
+    minLength={defaultTextareaSettings.minlength}
+    maxLength={defaultTextareaSettings.maxlength}
+    autoComplete={defaultTextareaSettings.autocomplete}
+    spellCheck={defaultTextareaSettings.spellcheck}
+    wrap={defaultTextareaSettings.wrap}
+    placeholder={props.placeholder}
+    disabled={props.disabled}
+    cols={props.cols}
+    rows={props.rows}
+    className={style.TextareaBox}
+    onChange={(e) => {
+      props.onChange(e.target.value);
+    }}
+    ref={ref}
+  />;
+});
+
 export default TextareaBox;
