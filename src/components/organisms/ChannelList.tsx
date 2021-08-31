@@ -1,7 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import type { FC } from "react";
 
 import ChannelCard from "../atoms/ChannelCard";
+
+import {channel} from "../../types/channel";
+
+import { TestGuildData, TestWatchingGuild} from "../../stores/__test__/guild";
+import {guild} from "../../types/guild";
+
 
 export type channelsData = {
   id: string,
@@ -15,43 +21,11 @@ export type channelsData = {
 };
 
 
-
-const apiChannel: channelsData[] = [
-  /*
-  サンプルデータ
-  {
-    id: "5tsz8s",
-    channel_name: "aaa",
-    channel_topics: "aaa is aaa",
-    channel_type: "category",
-    channel_position: 1,
-    creator_id: "mrbytw",
-    permissions: ["1"],
-    parent: "1"
-  },
-  {
-    id: "ea6mjx",
-    channel_name: "aaa",
-    channel_topics: "aaa is aaa",
-    channel_type: "text",
-    channel_position: 1,
-    creator_id: "mrbytw",
-    permissions: ["1"],
-    parent: "1"
-  },
-  {
-    id: "pxjmbr",
-    channel_name: "aaa",
-    channel_topics: "aaa is aaa",
-    channel_type: "text",
-    channel_position: 1,
-    creator_id: "mrbytw",
-    permissions: ["1"],
-  }
-  */
-];
-
 const ChannelList: FC = React.memo(() => {
+  const WatchingGuild: string = useContext(TestWatchingGuild)
+  const guilds: guild[] = useContext(TestGuildData)
+
+  const apiChannel: channel[] = guilds[guilds.findIndex(value => value.id === WatchingGuild)].channels
 
   return (
     <>
@@ -63,7 +37,6 @@ const ChannelList: FC = React.memo(() => {
               channel_name={value.channel_name}
               channel_topics={value.channel_topics}
               channel_type={value.channel_type}
-              parent={value.parent}
             />
           );
         }))
