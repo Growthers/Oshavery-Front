@@ -1,4 +1,5 @@
-import type { FC } from 'react';
+import React from "react";
+import type { FC } from "react";
 
 interface Response {
   id: string;
@@ -19,7 +20,7 @@ interface Props {
   response: Response;
 };
 
-const ChannelMessage: FC<Props> = (props) => {
+const ChannelMessage: FC<Props> = React.memo((props) => {
   const r: Response = props.response
   const author_avator: string = r.author.avator
   const author_name = r.author.name
@@ -34,6 +35,6 @@ const ChannelMessage: FC<Props> = (props) => {
       <div>{content}</div>
     </div>
   )
-}
+})
 
 export default ChannelMessage
