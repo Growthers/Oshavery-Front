@@ -9,7 +9,7 @@ export interface Response {
   author: {
     id: string;
     name: string;
-    avator: string;
+    avatar: string;
     bot: string;
     state: string;
   };
@@ -28,7 +28,7 @@ const ChannelMessages: FC = () => {
       author: {
         id: "test_author_id",
         name: "test_author_name",
-        avator: "test_author_name",
+        avatar: "test_author_name",
         bot: "test_author_bot",
         state: "test_author_state",
       },
