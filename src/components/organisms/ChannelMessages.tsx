@@ -46,7 +46,7 @@ const ChannelMessages: FC = () => {
         hasMore={true}
         loader={<div className="loader" key={0}>Loading ...</div>}
       >
-        {messages.map((i, j) => (<div key={j.toString()}><ChannelMessage response={i}></ChannelMessage></div>))}
+        {messages.map((value) => (<div key={value.id}><ChannelMessage response={value}></ChannelMessage></div>))}
       </InfiniteScroll>
     </>
   )

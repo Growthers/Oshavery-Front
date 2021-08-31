@@ -15,12 +15,12 @@ const ChannelMessage: FC<Props> = React.memo((props) => {
   const content = r.content
 
   return (
-    <div>
+    <>
       <img src={author_avatar} alt={author_name + "'s avatar"}></img>
       <div>{author_name}</div>
       <div>{timestamp}</div>
       <div>{content}</div>
-    </div>
+    </>
   )
 })
 
