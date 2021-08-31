@@ -1,20 +1,7 @@
 import React from "react";
 import type { FC } from "react";
 
-interface Response {
-  id: string;
-  timestamp: string;
-  author: {
-    id: string;
-    name: string;
-    avator: string;
-    bot: string;
-    state: string;
-  };
-  content: string;
-  guild_id: string;
-  channel_id: string;
-};
+import { Response } from "../organisms/ChannelMessages";
 
 interface Props {
   response: Response;
