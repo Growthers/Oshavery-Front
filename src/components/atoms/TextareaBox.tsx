@@ -1,11 +1,16 @@
-import { FC, useRef } from "react";
+import {
+  FC,
+  ForwardRefExoticComponent,
+  PropsWithRef,
+} from "react";
 import style from "../../styles/components/atoms/TextareaBox.module.scss";
-import { channeData } from "../molecules/MessageBox";
 
-type Props = Pick<channeData, "channel_name"> & {
-  //onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  //any型になってしまっているので要修正
+export type ElementFrec<T extends keyof JSX.IntrinsicElements> =
+  ForwardRefExoticComponent<PropsWithRef<JSX.IntrinsicElements[T]>>;
+
+type Props = {
   onChange: (event: string) => void;
+  placeholder: string;
   //今後追加
   onkeypress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   disabled: boolean;
@@ -30,11 +35,9 @@ const defaultTextareaSettings: defaultTextareaSettingsType = {
 };
 
 const TextareaBox: FC<Props> = (props) => {
-  const textareaElement = useRef(null);
-
   return (
     <textarea
-      placeholder={props.channel_name}
+      placeholder={props.placeholder}
       disabled={props.disabled}
       cols={props.cols}
       rows={props.rows}
@@ -43,11 +46,10 @@ const TextareaBox: FC<Props> = (props) => {
       autoComplete={defaultTextareaSettings.autocomplete}
       spellCheck={defaultTextareaSettings.spellcheck}
       wrap={defaultTextareaSettings.wrap}
+      className={style.TextareaBox}
       onChange={(e) => {
         props.onChange(e.target.value);
       }}
-      ref={textareaElement}
-      className={style.TextareaBox}
     ></textarea>
   );
 };
