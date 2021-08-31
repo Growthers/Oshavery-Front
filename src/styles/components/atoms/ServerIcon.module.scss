@@ -1,0 +1,22 @@
+.icon {
+  height: 48px;
+  width: 48px;
+  border-radius: 24px;
+
+  &:hover {
+    border-radius: 12px;
+
+    +.name {
+      display: block;
+    }
+  }
+}
+
+.name {
+  position: absolute;
+  display: none;
+  padding: 8px;
+  border-radius: 10px;
+  background-color: lightslategrey;
+  color: #ffffff;
+}
