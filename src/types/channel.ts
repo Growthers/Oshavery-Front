@@ -36,11 +36,13 @@ export type postCreateChannelRes = {
 
 //::::::::::::::::::::::
 
-export type patchChannelPositionReq = {
+export type patchChannelReq = {
   "name": string,
   "position": number,
   "topic": string
 }
+
+export type patchChannelRes = channel
 
 //::::::::::::::::::::::::::
 

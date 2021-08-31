@@ -36,7 +36,7 @@ export type postUserInfoReq = {
 
 export type postUserInfoRes = {
   "id": string,
-  "bot": string,
+  "bot": boolean,
   "name": string
 }
 

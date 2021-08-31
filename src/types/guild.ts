@@ -37,14 +37,6 @@ export type getGuildInfoRes = guild
 
 //::::::::::::::::::::::::::::::::
 
-export type patchGuildInfoRes = {
-  "name": string,
-  "icon": string,
-  "owner_id": string
-}
-
-//:::::::::::::::::::::::::::::::
-
 export type patchGuildInfoReq = {
   "name": string,
   "icon": string,
@@ -57,25 +49,25 @@ export type getGuildRolesRes = role[]
 
 //:::::::::::::::::::::::::::::
 
-export type postCreateRoleReq = {
+export type postCreateGuildRoleReq = {
   "name": string,
   "permissions": string,
   "mentionable": boolean
 }
 
-export type postCreateRoleRes = role
+export type postGuildRoleRes = role
 
-//::::::::::::::::::::::::::
+//:::::::::::::::::::::::::::::
 
-export type patchRoleReq = role
+export type patchGuildRoleReq = role
 
-//:::::::::::::::::::::::::
+//:::::::::::::::::::::::::::::::
 
-export type getMembersRes = user[]
+export type getGuildMembersRes = user[]
 
-//::::::::::::::::::::::::::
+//::::::::::::::::::::::::::::::
 
-export type  getAMemberRes = {
+export type getGuildMembersInfoRes = {
   "id": string,
   "name": string,
   "nick": string,
@@ -83,13 +75,13 @@ export type  getAMemberRes = {
   "roles": role[]
 }
 
-//:::::::::::::::::::::::::
+//:::::::::::::::::::::::::::::
 
-export type putSetAMemberNickReq = {
+export type putGuildMemberInfoReq = {
   "nick": string
 }
 
-//:::::::::::::::::::::::::
+//::::::::::::::::::::::::::::::
 
 export type getInviteLinkListRes = inviteLink[]
 
@@ -110,3 +102,12 @@ export type putInviteLinkReq = {
 }
 
 export type putInviteLinkRes = inviteLink
+
+//::::::::::::::::::::::::::::::
+
+export type postCreateGuildReq = {
+  "guild_name": string,
+  "guild_topics": string
+}
+
+export type postCreateGuildRes = guild

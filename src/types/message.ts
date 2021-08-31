@@ -24,12 +24,9 @@ export type postMessageReq = {
 export type postMessageRes = {
   "id": string,
   "timestamp": string,
-  "author": {
-    "id": string,
-    "user_name": string
-  },
   "content": string,
   "guild_id": string,
+  "channel_id": string,
   "edited_timestamp": string
 }
 
