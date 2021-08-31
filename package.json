@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-infinite-scroller": "^1.2.2",
     "next": "11.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-infinite-scroller": "^1.2.4",
     "sass": "^1.38.1"
   },
   "devDependencies": {
