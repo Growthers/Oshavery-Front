@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import style from "../../styles/components/atoms/sendButton.module.scss";
+import style from "../../styles/components/atoms/SendButton.module.scss";
 
 type Props = {
   onClick : VoidFunction;
