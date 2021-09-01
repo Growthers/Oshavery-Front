@@ -22,7 +22,7 @@ export type setTextarea = {
   rows: number;
 };
 
-const MessageBox: FC = () => {
+const InputMessageBox: FC = () => {
   // API待ち
   const [disabled, setDisabled] = useState<boolean>(true);
   const [cols, setCols] = useState<number>(100);
@@ -53,4 +53,4 @@ const MessageBox: FC = () => {
   );
 };
 
-export default MessageBox;
+export default InputMessageBox;
