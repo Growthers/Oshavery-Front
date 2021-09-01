@@ -18,51 +18,54 @@ export interface Response {
   channel_id: string;
 };
 
-const response: Response = {
-  id: "test_id",
-  timestamp: "test_timestamp",
-  author: {
-    id: "test_author_id",
-    name: "test_author_name",
-    avatar: "test_author_name",
-    bot: "test_author_bot",
-    state: "test_author_state",
-  },
-  content: "test_content",
-  guild_id: "test_guild_id",
-  channel_id: "test_channnel_id",
-};
-
-
 const ChannelMessages: FC = () => {
   const [messages, setMessages] = useState<Response[]>([])
 
-  useEffect(() => { setMessages(Array.from({ length: 20 }, (i, _) => (response)))}, [])
+  useEffect(() => { setMessages(Array.from({ length: 20 }, (_, i) => (
+              {
+                id: "test_id",
+                timestamp: "test_timestamp",
+                author: {
+                  id: "test_author_id",
+                  name: "test_author_name" + i.toString(),
+                  avatar: "test_author_name",
+                  bot: "test_author_bot",
+                  state: "test_author_state",
+                },
+                content: "test_content",
+                guild_id: "test_guild_id",
+                channel_id: "test_channnel_id",
+              }
+            )))}, [])
 
   const fetchMoreData = () => {
     // 参照を置いているだけ
-    setMessages([...messages, response]);
+    setMessages([...messages,
+        {
+          id: "test_id",
+          timestamp: "test_timestamp",
+          author: {
+            id: "test_author_id",
+            name: "test_author_name" + (messages.length-1).toString(),
+            avatar: "test_author_name",
+            bot: "test_author_bot",
+            state: "test_author_state",
+          },
+          content: "test_content",
+          guild_id: "test_guild_id",
+          channel_id: "test_channnel_id",
+        }
+    ]);
   }
 
   return (
     <>
-      <div
-        id="scrollableDiv"
-        style={{
-          height: 400,
-          overflow: 'auto',
-          display: 'flex',
-          flexDirection: 'column-reverse',
-        }}
-      >
+      <div>
         <InfiniteScroll
           dataLength={messages.length}
           next={fetchMoreData}
           hasMore={true}
-          style={{ display: 'flex', flexDirection: 'column-reverse' }}
-          inverse={true}
           loader={<h4>Loading...</h4>}
-          scrollableTarget="scrollableDiv"
         >
           {messages.map((value, i) => (<div key={i}><ChannelMessage response={value}></ChannelMessage></div>))}
         </InfiniteScroll>
