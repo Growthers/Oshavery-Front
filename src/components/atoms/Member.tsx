@@ -1,3 +1,4 @@
+import React from "react";
 import type { FC } from "react";
 
 import MemberCard from "./MemberCard";
@@ -13,7 +14,7 @@ type Props = {
   func_show_membercard: (target_id: string) => void
 };
 
-const Member: FC<Props> = (props) => {
+const Member: FC<Props> = React.memo((props) => {
   return (
     <div className={style.member_box}>
       <div className={`${style.member} member_element`} onClick={() => props.func_show_membercard(props.id)}>
@@ -28,6 +29,6 @@ const Member: FC<Props> = (props) => {
       </div>
     </div>
   )
-};
+});
 
 export default Member;

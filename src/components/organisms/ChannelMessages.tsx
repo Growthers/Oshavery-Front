@@ -3,13 +3,13 @@ import { FC, useState, useEffect } from 'react'
 import ChannelMessage from '../molecules/ChannelMessage'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-interface Response {
+export interface Response {
   id: string;
   timestamp: string;
   author: {
     id: string;
     name: string;
-    avator: string;
+    avatar: string;
     bot: string;
     state: string;
   };
@@ -24,7 +24,7 @@ const response: Response = {
   author: {
     id: "test_author_id",
     name: "test_author_name",
-    avator: "test_author_name",
+    avatar: "test_author_name",
     bot: "test_author_bot",
     state: "test_author_state",
   },
@@ -35,16 +35,13 @@ const response: Response = {
 
 
 const ChannelMessages: FC = () => {
+  const [messages, setMessages] = useState<Response[]>([])
 
-  const [messages, setMessages] = useState<JSX.Element[]>([])
-
-  useEffect(() => {
-    setMessages(Array.from({ length: 20 }, (i, _) => (<ChannelMessage response={response}></ChannelMessage>)))
-  }, [])
+  useEffect(() => { setMessages(Array.from({ length: 20 }, (i, _) => (response)))}, [])
 
   const fetchMoreData = () => {
     // 参照を置いているだけ
-    setMessages([...messages, <ChannelMessage response={response}></ChannelMessage>])
+    setMessages([...messages, response]);
   }
 
   return (
@@ -67,12 +64,11 @@ const ChannelMessages: FC = () => {
           loader={<h4>Loading...</h4>}
           scrollableTarget="scrollableDiv"
         >
-          { messages.map((i, index) => (<div key={index}>{i}</div>)) }
+          {messages.map((value, i) => (<div key={i}><ChannelMessage response={value}></ChannelMessage></div>))}
         </InfiniteScroll>
       </div>
     </>
   )
-
 }
 
 export default ChannelMessages

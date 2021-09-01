@@ -1,5 +1,6 @@
+import React from "react";
 import type { FC } from "react";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 import Member from "../atoms/Member";
 
@@ -14,11 +15,11 @@ export type MembersData = {
 
 const members_data: MembersData[] = []
 
-const MemberList: FC = () => {
+const MemberList: FC = React.memo(() => {
   const [isShow, setIsShow] = useState(false);
 
   // メンバーカードのクリア
-  const clear_membercard = () => {
+  const clear_membercard = useCallback(() => {
     if (process.browser) {
       const elements: HTMLCollectionOf<Element> = document.getElementsByClassName(member_style.membercard);
 
@@ -28,11 +29,10 @@ const MemberList: FC = () => {
 
       setIsShow(false);
     };
-  };
+  }, []);
 
   // 引数のIDのクラスを変更（メンバーカード表示）
-  const show_membercard = (target_id: string) => {
-    clear_membercard();
+  const show_membercard = useCallback((target_id: string) => {
     if (process.browser) {
       const target: HTMLElement | null = document.getElementById(target_id);
 
@@ -40,10 +40,17 @@ const MemberList: FC = () => {
         return;
       };
 
+      if (target.className.indexOf(member_style.show) !== -1) {
+        clear_membercard();
+        return;
+      } else {
+        clear_membercard();
+      };
+
       target.className = `${member_style.membercard} ${member_style.show}`;
       setIsShow(true);
     };
-  };
+  }, []);
 
   // クリックイベント
   const check_click = (e: any) => {
@@ -90,7 +97,8 @@ const MemberList: FC = () => {
         members_data.map((value, index) => {
           return (
             <Member
-              id = {value.id}
+              key={value.id}
+              id={value.id}
               // element_id={element_id_array[index]}
               name={value.name}
               avatar_url={value.avatar_url}
@@ -102,6 +110,6 @@ const MemberList: FC = () => {
       }
     </div>
   )
-}
+});
 
 export default MemberList;
