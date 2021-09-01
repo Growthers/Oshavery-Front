@@ -28,27 +28,25 @@ const defaultTextareaSettings: defaultTextareaSettingsType = {
 };
 
 type Ref = HTMLTextAreaElement;
-//any型のため要修正
-const TextareaBox = forwardRef<Ref, Props>(function InputTextarea(
-  props,
-  ref
-): any {
-  <textarea
-    minLength={defaultTextareaSettings.minlength}
-    maxLength={defaultTextareaSettings.maxlength}
-    autoComplete={defaultTextareaSettings.autocomplete}
-    spellCheck={defaultTextareaSettings.spellcheck}
-    wrap={defaultTextareaSettings.wrap}
-    placeholder={props.placeholder}
-    disabled={props.disabled}
-    cols={props.cols}
-    rows={props.rows}
-    className={style.TextareaBox}
-    onChange={(e) => {
-      props.onChange(e.target.value);
-    }}
-    ref={ref}
-  />;
+const TextareaBox = forwardRef<Ref, Props>(function InputTextarea(props, ref) {
+  return (
+    <textarea
+      minLength={defaultTextareaSettings.minlength}
+      maxLength={defaultTextareaSettings.maxlength}
+      autoComplete={defaultTextareaSettings.autocomplete}
+      spellCheck={defaultTextareaSettings.spellcheck}
+      wrap={defaultTextareaSettings.wrap}
+      placeholder={props.placeholder}
+      disabled={props.disabled}
+      cols={props.cols}
+      rows={props.rows}
+      className={style.TextareaBox}
+      onChange={(e) => {
+        props.onChange(e.target.value);
+      }}
+      ref={ref}
+    />
+  );
 });
 
 export default TextareaBox;
