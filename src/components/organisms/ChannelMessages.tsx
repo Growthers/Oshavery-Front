@@ -1,7 +1,7 @@
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 
 import ChannelMessage from '../molecules/ChannelMessage'
-import InfiniteScroll from 'react-infinite-scroller'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 interface Response {
   id: string;
@@ -18,36 +18,58 @@ interface Response {
   channel_id: string;
 };
 
+const response: Response = {
+  id: "test_id",
+  timestamp: "test_timestamp",
+  author: {
+    id: "test_author_id",
+    name: "test_author_name",
+    avator: "test_author_name",
+    bot: "test_author_bot",
+    state: "test_author_state",
+  },
+  content: "test_content",
+  guild_id: "test_guild_id",
+  channel_id: "test_channnel_id",
+};
+
+
 const ChannelMessages: FC = () => {
+
   const [messages, setMessages] = useState<JSX.Element[]>([])
 
-  const loadMore = (p: number) => {
-    const response: Response = {
-      id: "test_id" + p.toString(),
-      timestamp: "test_timestamp",
-      author: {
-        id: "test_author_id",
-        name: "test_author_name",
-        avator: "test_author_name",
-        bot: "test_author_bot",
-        state: "test_author_state",
-      },
-      content: "test_content",
-      guild_id: "test_guild_id",
-      channel_id: "test_channnel_id",
-    };
-    setMessages([...messages, <ChannelMessage response={response}></ChannelMessage>]);
+  useEffect(() => {
+    setMessages(Array.from({ length: 20 }, (i, _) => (<ChannelMessage response={response}></ChannelMessage>)))
+  }, [])
+
+  const fetchMoreData = () => {
+    // 参照を置いているだけ
+    setMessages([...messages, <ChannelMessage response={response}></ChannelMessage>])
   }
 
   return (
     <>
-      <InfiniteScroll
-        loadMore={loadMore}
-        hasMore={true}
-        loader={<div className="loader" key={0}>Loading ...</div>}
+      <div
+        id="scrollableDiv"
+        style={{
+          height: 400,
+          overflow: 'auto',
+          display: 'flex',
+          flexDirection: 'column-reverse',
+        }}
       >
-        {messages.map((i, j) => (<div key={j.toString()}>{i}</div>))}
-      </InfiniteScroll>
+        <InfiniteScroll
+          dataLength={messages.length}
+          next={fetchMoreData}
+          hasMore={true}
+          style={{ display: 'flex', flexDirection: 'column-reverse' }}
+          inverse={true}
+          loader={<h4>Loading...</h4>}
+          scrollableTarget="scrollableDiv"
+        >
+          { messages.map((i, index) => (<div key={index}>{i}</div>)) }
+        </InfiniteScroll>
+      </div>
     </>
   )
 
