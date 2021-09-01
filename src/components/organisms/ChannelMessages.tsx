@@ -18,44 +18,39 @@ export interface Response {
   channel_id: string;
 };
 
+const mkTestResponse = (authN: string): Response => {
+  const ret: Response = {
+    id: "test_id",
+    timestamp: new Date().getTime().toString(),
+    author: {
+      id: "test_author_id",
+      name: "NAME: " + authN,
+      avatar: "test_author_name",
+      bot: "test_author_bot",
+      state: "test_author_state",
+    },
+    content: "test_content",
+    guild_id: "test_guild_id",
+    channel_id: "test_channnel_id",
+  }
+  const t = [
+    "**HELLO**",
+    "__UNKO__",
+    "# TEST",
+    ":+1: vote",
+  ]
+  ret.content = t[Math.floor(Math.random() * t.length)]
+  return ret
+}
+
 const ChannelMessages: FC = () => {
   const [messages, setMessages] = useState<Response[]>([])
 
-  useEffect(() => { setMessages(Array.from({ length: 20 }, (_, i) => (
-              {
-                id: "test_id",
-                timestamp: "test_timestamp",
-                author: {
-                  id: "test_author_id",
-                  name: "test_author_name" + i.toString(),
-                  avatar: "test_author_name",
-                  bot: "test_author_bot",
-                  state: "test_author_state",
-                },
-                content: "test_content",
-                guild_id: "test_guild_id",
-                channel_id: "test_channnel_id",
-              }
-            )))}, [])
+  useEffect(() => { setMessages(Array.from({ length: 20 }, (_, i) => (mkTestResponse(i.toString()))))}, [])
 
   const fetchMoreData = () => {
     // 参照を置いているだけ
-    setMessages([...messages,
-        {
-          id: "test_id",
-          timestamp: "test_timestamp",
-          author: {
-            id: "test_author_id",
-            name: "test_author_name" + (messages.length-1).toString(),
-            avatar: "test_author_name",
-            bot: "test_author_bot",
-            state: "test_author_state",
-          },
-          content: "test_content",
-          guild_id: "test_guild_id",
-          channel_id: "test_channnel_id",
-        }
-    ]);
+    setMessages([...messages, ...Array.from({ length: 20 }, (_, i) => (mkTestResponse((i+messages.length).toString())))]);
   }
 
   return (
