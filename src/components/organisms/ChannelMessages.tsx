@@ -43,6 +43,9 @@ const mkTestResponse = (authN: string): Response => {
     "# TEST",
     ":+1: vote",
     "$\\sqrt{3x-1}+(1+x)^2$",
+    "<h1>UNKOWORLD</h1>",
+    "';alert(String.fromCharCode(88,83,83))//';alert(String.fromCharCode(88,83,83))//\";\n alert(String.fromCharCode(88,83,83))//\";alert(String.fromCharCode(88,83,83))//--\n ></SCRIPT>\">'><SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT>",
+    "'';!--\"<XSS>=&{()}",
   ]
   ret.content = t[Math.floor(Math.random() * t.length)]
   return ret
@@ -62,7 +65,9 @@ const ChannelMessages: FC = () => {
     setMessages([...messages, ...Array.from({ length: 20 }, (_, i) => (mkTestResponse((i+messages.length).toString())))]);
   }
 
-  const md = new MarkdownIt
+  const md = new MarkdownIt({
+    html: false,
+  })
   md.use(MarkdownItKatex)
 
   return (
