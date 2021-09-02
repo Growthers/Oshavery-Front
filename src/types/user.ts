@@ -8,37 +8,7 @@ export type user = {
   "state": number
 }
 
-
-// API リクエストレスポンスの型
-
-export type getUserInfoRes = user
-
-//:::::::::::::::::::::::::::::::::::::::::
-
-export type patchUserInfoReq = {
-  "name": string
-}
-
-export type patchUserInfoRes = {
-  "user_id": string,
-  "user_name": string,
-  "user_avatar": string,
-  "bot": boolean
-}
-
-//:::::::::::::::::::::::::::::::::::::::
-
-export type postUserInfoReq = {
-  "name": string,
-  "password": string,
-  "bot": boolean
-}
-
-export type postUserInfoRes = {
-  "id": string,
-  "bot": boolean,
-  "name": string
-}
+/
 
 //::::::::::::::::::::::::::::::::::::
 
