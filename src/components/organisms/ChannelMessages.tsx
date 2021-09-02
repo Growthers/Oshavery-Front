@@ -1,7 +1,11 @@
 import { FC, useState, useEffect } from 'react'
 
 import ChannelMessage from '../molecules/ChannelMessage'
+
 import InfiniteScroll from 'react-infinite-scroll-component'
+
+import MarkdownIt from "markdown-it"
+import MarkdownItKatex from "markdown-it-katex"
 
 export interface Response {
   id: string;
@@ -38,6 +42,7 @@ const mkTestResponse = (authN: string): Response => {
     "__UNKO__",
     "# TEST",
     ":+1: vote",
+    "$\\sqrt{3x-1}+(1+x)^2$",
   ]
   ret.content = t[Math.floor(Math.random() * t.length)]
   return ret
@@ -46,12 +51,19 @@ const mkTestResponse = (authN: string): Response => {
 const ChannelMessages: FC = () => {
   const [messages, setMessages] = useState<Response[]>([])
 
-  useEffect(() => { setMessages(Array.from({ length: 20 }, (_, i) => (mkTestResponse(i.toString()))))}, [])
+  // 初期化処理
+  useEffect(() => {
+    // テストデータを20件追加
+    setMessages(Array.from({ length: 20 }, (_, i) => (mkTestResponse(i.toString()))))
+  }, [])
 
   const fetchMoreData = () => {
     // 参照を置いているだけ
     setMessages([...messages, ...Array.from({ length: 20 }, (_, i) => (mkTestResponse((i+messages.length).toString())))]);
   }
+
+  const md = new MarkdownIt
+  md.use(MarkdownItKatex)
 
   return (
     <>
@@ -62,7 +74,8 @@ const ChannelMessages: FC = () => {
           hasMore={true}
           loader={<h4>Loading...</h4>}
         >
-          {messages.map((value, i) => (<div key={i}><ChannelMessage response={value}></ChannelMessage></div>))}
+          {/* メッセージの一覧を表示 */}
+          {messages.map((value, i) => (<div key={i}><ChannelMessage response={value} renderer={md.render.bind(md)}></ChannelMessage></div>))}
         </InfiniteScroll>
       </div>
     </>
