@@ -1,5 +1,5 @@
 import { FC, useRef } from "react";
-import style from "../../styles/components/molecules/MessageBox.module.scss";
+import style from "../../styles/components/molecules/InputMessageBox.module.scss";
 import SendButton from "../atoms/SendButton";
 import TextareaBox from "../atoms/TextareaBox";
 import { useState } from "react";
@@ -22,7 +22,7 @@ export type setTextarea = {
   rows: number;
 };
 
-const MessageBox: FC = () => {
+const InputMessageBox: FC = () => {
   // API待ち
   const [disabled, setDisabled] = useState<boolean>(true);
   const [cols, setCols] = useState<number>(100);
@@ -53,4 +53,4 @@ const MessageBox: FC = () => {
   );
 };
 
-export default MessageBox;
+export default InputMessageBox;
