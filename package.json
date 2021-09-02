@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/react-infinite-scroller": "^1.2.2",
+    "es-to-primitive": "^1.2.1",
     "markdown-it": "^12.2.0",
     "markdown-it-katex": "^2.0.3",
     "next": "11.1.2",
