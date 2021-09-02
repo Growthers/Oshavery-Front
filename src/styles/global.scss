@@ -1,0 +1,22 @@
+@import url("https://cdn.jsdelivr.net/npm/yakuhanjp@3.3.1/dist/css/yakuhanjp.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap");
+
+html {
+  font-family:
+    YakuHanJP,
+    Roboto,
+    "Noto Sans JP",
+    sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+a {
+  text-decoration: none;
+}
