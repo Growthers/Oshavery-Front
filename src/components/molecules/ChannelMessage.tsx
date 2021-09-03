@@ -1,7 +1,7 @@
 import React from "react";
 import type { FC } from "react";
 
-import { Response } from "../organisms/ChannelMessages";
+import { Response } from "../organisms/MessageList";
 
 interface Props {
   response: Response;
