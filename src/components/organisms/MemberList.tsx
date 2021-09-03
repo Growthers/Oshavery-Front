@@ -2,9 +2,9 @@ import React from "react";
 import type { FC } from "react";
 import { useState, useCallback } from "react";
 
-import Member from "../atoms/Member";
+import MemberCard from "../atoms/MemberCard";
 
-import member_style from "../../styles/components/atoms/Member.module.scss";
+import member_style from "../../styles/components/atoms/MemberCard.module.scss";
 
 export type MembersData = {
   id: string,
@@ -18,21 +18,21 @@ const members_data: MembersData[] = []
 const MemberList: FC = React.memo(() => {
   const [isShow, setIsShow] = useState(false);
 
-  // メンバーカードのクリア
-  const clear_membercard = useCallback(() => {
+  // メンバーポップアップのクリア
+  const clear_memberpopup = useCallback(() => {
     if (process.browser) {
-      const elements: HTMLCollectionOf<Element> = document.getElementsByClassName(member_style.membercard);
+      const elements: HTMLCollectionOf<Element> = document.getElementsByClassName(member_style.memberpopup);
 
       for (let i = 0; i < elements.length; i++) {
-        elements[i].className = member_style.membercard;
+        elements[i].className = member_style.memberpopup;
       };
 
       setIsShow(false);
     };
   }, []);
 
-  // 引数のIDのクラスを変更（メンバーカード表示）
-  const show_membercard = useCallback((target_id: string) => {
+  // 引数のIDのクラスを変更（メンバーポップアップ表示）
+  const show_memberpopup = useCallback((target_id: string) => {
     if (process.browser) {
       const target: HTMLElement | null = document.getElementById(target_id);
 
@@ -41,13 +41,13 @@ const MemberList: FC = React.memo(() => {
       };
 
       if (target.className.indexOf(member_style.show) !== -1) {
-        clear_membercard();
+        clear_memberpopup();
         return;
       } else {
-        clear_membercard();
+        clear_memberpopup();
       };
 
-      target.className = `${member_style.membercard} ${member_style.show}`;
+      target.className = `${member_style.memberpopup} ${member_style.show}`;
       setIsShow(true);
     };
   }, []);
@@ -60,7 +60,7 @@ const MemberList: FC = React.memo(() => {
       return;
     };
 
-    if (class_name.indexOf("membercard_element") !== -1) {
+    if (class_name.indexOf("memberpopup_element") !== -1) {
       return;
     };
 
@@ -68,7 +68,7 @@ const MemberList: FC = React.memo(() => {
       return;
     };
 
-    clear_membercard();
+    clear_memberpopup();
   };
 
   if (process.browser) {
@@ -96,14 +96,14 @@ const MemberList: FC = React.memo(() => {
       {
         members_data.map((value, index) => {
           return (
-            <Member
+            <MemberCard
               key={value.id}
               id={value.id}
               // element_id={element_id_array[index]}
               name={value.name}
               avatar_url={value.avatar_url}
               bot={value.bot}
-              func_show_membercard={show_membercard}
+              func_show_memberpopup={show_memberpopup}
             />
           )
         })

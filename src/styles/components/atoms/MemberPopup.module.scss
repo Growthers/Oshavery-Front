@@ -1,0 +1,31 @@
+.memberpopup {
+  position: absolute;
+  z-index: 1;
+
+  width: 240px;
+  height: 300px;
+  margin: 10px;
+  padding: 10px;
+  background-color: lightslategrey;
+  border-radius: 5px;
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+  }
+
+  .name {
+    color: #ffffff;
+    font-weight: bold;
+  }
+
+  .bot {
+    margin: auto 0 auto 5px;
+    font-size: 70%;
+    color: #ffffff;
+    background-color: navy;
+    padding: 3px 5px;
+    border-radius: 3px;
+  }
+}
