@@ -1,16 +1,10 @@
-import axios, {AxiosInstance} from "axios";
+import axios, { AxiosInstance } from "axios";
 
-
-const clinet: AxiosInstance = axios.create({
-  baseURL: process.env.url
-  headers
+export const client: AxiosInstance = axios.create({
+  baseURL: "",
+  headers: {
+    'Content-Type': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest'
+  },
+  responseType: 'json'
 })
-
-
-
-export class Client{
-  private parseURL:(path: string) => string =
-    (path => `${baseURL}${path}`)
-
-
-}
