@@ -15,32 +15,27 @@ export type channeData = {
   parent?: string;
 };
 
-export type setTextarea = {
-  onChange: VoidFunction;
-  disabled: boolean;
-  cols: number;
-  rows: number;
-};
-
 const InputMessageBox: FC = () => {
   // API待ち
-  const [disabled, setDisabled] = useState<boolean>(true);
+  const [disabled, setDisabled] = useState<boolean>(false);
   const [cols, setCols] = useState<number>(100);
   const [rows, setRows] = useState<number>(50);
+  const [placeholder, setPlaceholder] = useState<string>("無法地帯");
+
   const HTMLTextAreaElement = useRef<HTMLTextAreaElement>(null);
   let inputedMessage = "";
-  const channel_name = "無法地帯";
+
+  const TextareaProps = {
+    disabled: disabled,
+    cols: cols,
+    rows: rows,
+    onChange: (message: string) => (inputedMessage = message),
+    placeholder: placeholder,
+  };
+
   return (
     <div className={style.messageBox}>
-      <TextareaBox
-        disabled={disabled}
-        cols={cols}
-        rows={rows}
-        onChange={(mesage: string) => (inputedMessage = mesage)}
-        placeholder={channel_name}
-        ref={HTMLTextAreaElement}
-      />
-
+      <TextareaBox {...TextareaProps} ref={HTMLTextAreaElement} />
       <SendButton
         onClick={() => {
           //API待ち
