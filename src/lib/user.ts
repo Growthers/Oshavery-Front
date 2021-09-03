@@ -10,7 +10,8 @@ type getUrl =
   "/bots"
 
 type getMyInfoRes = user & {"guild": guild[]};
-export type getBotListReq = {
+
+type getBotListReq = {
   "id": string,
   "botUserId": string,
   "description": string,
@@ -45,7 +46,7 @@ type postCreateAUserRes = {
   "name": string
 }
 
-export type postCreateBotReq = {
+type postCreateBotReq = {
   "description": string,
   "name": string
 }
