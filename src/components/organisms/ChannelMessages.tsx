@@ -5,7 +5,7 @@ import ChannelMessage from '../molecules/ChannelMessage'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import MarkdownIt from "markdown-it"
-import MarkdownItKatex from "markdown-it-katex"
+// import MarkdownItKatex from "markdown-it-katex"
 
 export interface Response {
   id: string;
@@ -68,7 +68,7 @@ const ChannelMessages: FC = () => {
   const md = new MarkdownIt({
     html: false,
   })
-  md.use(MarkdownItKatex)
+  // md.use(MarkdownItKatex)
 
   return (
     <>
