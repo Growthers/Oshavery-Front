@@ -10,7 +10,7 @@ type Props = Pick<
   "name" | "avatar_url" | "bot"
 >;
 
-const MemberPopup: FC<Props> = React.memo((props) => {
+const MemberPopup: FC<Props> = props => {
   return (
     <div className={`${style.memberpopup} memberpopup_element`}>
       <div className={`memberpopup_element`}>
@@ -20,6 +20,6 @@ const MemberPopup: FC<Props> = React.memo((props) => {
       {props.bot && (<span className={`${style.bot} memberpopup_element`}>BOT</span>)}
     </div>
   )
-});
+};
 
-export default MemberPopup;
+export default React.memo(MemberPopup);

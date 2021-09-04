@@ -1,18 +1,18 @@
 import React from "react";
 import type { FC } from "react";
 
-import { channelsData } from "../organisms/ChannelList";
+import { channel } from "../../types/channel";
 
 import style from "../../styles/components/atoms/ChannelCard.module.scss";
 
-type Props = Pick<channelsData,
+type Props = Pick<channel,
   "channel_name"|
   "channel_topics"|
   "channel_type"
   >
 
 
-const ChannelCard: FC<Props> = React.memo(props => {
+const ChannelCard: FC<Props> = props => {
 
   if (props.channel_type === "category") {
     return (
@@ -33,6 +33,6 @@ const ChannelCard: FC<Props> = React.memo(props => {
       </div>
     );
   }
-});
+};
 
-export default ChannelCard;
+export default React.memo(ChannelCard);
