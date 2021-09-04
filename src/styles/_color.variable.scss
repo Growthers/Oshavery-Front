@@ -1,0 +1,25 @@
+@use "sass:map";
+
+@mixin back($type) {
+  $back: (
+    messages: #ffebcc,
+    menubar: #ffc266,
+    sidebar: #ffad33
+  );
+
+  $hover-back: (
+    messages: #ffdca8,
+    menubar: #ffd299,
+    sidebar: #ffad33
+  );
+
+  background-color: map.get($back, $type);
+
+  &:hover {
+    background-color: map.get($hover-back, $type);
+  }
+
+  &.selected {
+    background-color: map.get($hover-back, $type);
+  }
+}

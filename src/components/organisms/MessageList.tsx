@@ -52,7 +52,7 @@ const mkTestResponse = (authN: string): Response => {
   return ret
 }
 
-const ChannelMessages: FC = () => {
+const MessageList: FC = () => {
   const [messages, setMessages] = useState<Response[]>([])
 
   // 初期化処理
@@ -89,4 +89,4 @@ const ChannelMessages: FC = () => {
   )
 }
 
-export default ChannelMessages
+export default MessageList
