@@ -1,11 +1,11 @@
 import React from "react";
 import type { FC } from "react";
 
-import { channelsData } from "../organisms/ChannelList";
+import { channel } from "../../types/channel";
 
 import style from "../../styles/components/atoms/ChannelCard.module.scss";
 
-type Props = Pick<channelsData,
+type Props = Pick<channel,
   "channel_name"|
   "channel_topics"|
   "channel_type"
