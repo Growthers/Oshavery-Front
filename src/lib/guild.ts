@@ -164,6 +164,15 @@ export class Guild {
           console.table(e)
         }
       }
+    } else if (this.isInGuildID(url)) {
+      try {
+        const res: AxiosResponse = await client.delete(url)
+        console.log(res.status, res.statusText)
+      } catch (e) {
+        if (this.isAxiosError(e)){
+          console.table(e)
+        }
+      }
     } else {
       console.error("no match endpoint [lib/guild.ts - delete]")
     }
