@@ -1,0 +1,43 @@
+@use "../color.variable";
+
+.oshavery {
+  display: flex;
+
+  .server_list {
+    /*@include color.background(sidebar);*/
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 100vh;
+    width: 4rem;
+
+    .icon {
+      margin: 0.5rem;
+      border-radius: 1.5rem;
+
+      height: 3rem;
+      width: 3rem;
+    }
+  }
+
+  .left_side {
+    /*@include color.background(menubar);*/
+    position: absolute;
+    top: 0;
+    left: 4rem;
+
+    height: 100vh;
+    width: 15rem;
+  }
+
+  .right_side {
+    /*@include color.background(menubar);*/
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    height: 100vh;
+    width: 15rem;
+  }
+}
