@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/emoji-mart": "^3.0.5",
     "@types/markdown-it": "^12.2.1",
     "@types/react-infinite-scroller": "^1.2.2",
+    "emoji-mart": "^3.0.1",
     "es-to-primitive": "^1.2.1",
     "markdown-it": "^12.2.0",
     "next": "11.1.2",
