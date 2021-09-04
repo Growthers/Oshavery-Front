@@ -12,7 +12,7 @@ const InputMessageBox: FC = () => {
   const [placeholder, setPlaceholder] = useState<string>("");
   const [message, setMessage] = useState<string>("");
 
-  const handleClick = () => {
+  const sendMessage = () => {
     console.log(message);
     setMessage("");
   };
@@ -26,8 +26,9 @@ const InputMessageBox: FC = () => {
         onChange={(value) => setMessage(value)}
         placeholder={placeholder}
         value={message}
+        onKeyDown={sendMessage}
       />
-      <SendButton onClick={handleClick} />
+      <SendButton onClick={sendMessage} />
     </div>
   );
 };

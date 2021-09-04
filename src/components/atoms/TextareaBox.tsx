@@ -9,7 +9,7 @@ type TextareaProps = {
   rows: number;
   value: string;
   //今後追加
-  onkeypress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  onKeyDown: () => void;
 };
 
 type defaultTextareaSettingsType = {
@@ -34,6 +34,12 @@ const TextareaBox: FC<TextareaProps> = (props) => {
       {...defaultTextareaSettings}
       {...props}
       onChange={(e) => props.onChange(e.target.value)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+          props.onKeyDown();
+          e.preventDefault();
+        }
+      }}
       className={style.TextareaBox}
     />
   );
