@@ -8,7 +8,7 @@ import style from "../../styles/components/atoms/ServerIcon.module.scss";
 
 type Props = ServerData;
 
-const ServerIcon: FC<Props> = React.memo((props) => {
+const ServerIcon: FC<Props> = props => {
   return (
     <div>
       <Link href={`/${props.id}/`}>
@@ -17,6 +17,6 @@ const ServerIcon: FC<Props> = React.memo((props) => {
       <p className={style.name}>{props.name}</p>
     </div>
   )
-});
+};
 
-export default ServerIcon;
+export default React.memo(ServerIcon);
