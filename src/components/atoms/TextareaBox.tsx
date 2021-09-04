@@ -1,12 +1,13 @@
-import { forwardRef } from "react";
+import { FC } from "react";
 import style from "../../styles/components/atoms/TextareaBox.module.scss";
 
-type Props = {
-  onChange: (event: string) => void;
+type TextareaProps = {
+  onChange: (value: string) => void;
   placeholder: string;
   disabled: boolean;
   cols: number;
   rows: number;
+  value: string;
   //今後追加
   onkeypress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 };
@@ -27,19 +28,15 @@ const defaultTextareaSettings: defaultTextareaSettingsType = {
   wrap: "soft",
 };
 
-type Ref = HTMLTextAreaElement;
-const TextareaBox = forwardRef<Ref, Props>(function InputTextarea(props, ref) {
+const TextareaBox: FC<TextareaProps> = (props) => {
   return (
     <textarea
       {...defaultTextareaSettings}
       {...props}
-      onChange={(e) => {
-        props.onChange(e.target.value);
-      }}
-      ref={ref}
+      onChange={(e) => props.onChange(e.target.value)}
       className={style.TextareaBox}
     />
   );
-});
+};
 
 export default TextareaBox;
