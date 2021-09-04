@@ -5,6 +5,7 @@ import ChannelMessage from '../molecules/ChannelMessage'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import MarkdownIt from "markdown-it"
+import MarkdownItEmoji from 'markdown-it-emoji'
 // import MarkdownItKatex from "markdown-it-katex"
 
 export interface Response {
@@ -68,6 +69,7 @@ const MessageList: FC = () => {
   const md = new MarkdownIt({
     html: false,
   })
+  md.use(MarkdownItEmoji)
   // md.use(MarkdownItKatex)
 
   return (
