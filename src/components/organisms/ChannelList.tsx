@@ -10,11 +10,11 @@ import { channel } from "../../types/channel";
 import { guild } from "../../types/guild";
 
 const ChannelList: FC = React.memo(() => {
-  const WatchingGuild: string = useContext(TestWatchingGuild)
-  const guilds: guild[] = useContext(TestGuildData)
+  const WatchingGuild: string = useContext(TestWatchingGuild);
+  const guilds: guild[] = useContext(TestGuildData);
 
-  const apiGuild: guild = guilds[guilds.findIndex(value => value.id === WatchingGuild)]
-  const apiChannel: channel[] = apiGuild.channels
+  const apiGuild: guild = guilds[guilds.findIndex(value => value.id === WatchingGuild)];
+  const apiChannel: channel[] = apiGuild.channels;
 
   return (
     <>
@@ -32,7 +32,6 @@ const ChannelList: FC = React.memo(() => {
         }))
       }
     </>
-
   );
 });
 
