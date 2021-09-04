@@ -13,33 +13,3 @@ export type message = {
   "channel_id": string,
   "edited_timestamp": string
 }
-
-
-// APIのリクエストレスポンスの型
-
-export type postMessageReq = {
-  "content": string
-}
-
-export type postMessageRes = {
-  "id": string,
-  "timestamp": string,
-  "content": string,
-  "guild_id": string,
-  "channel_id": string,
-  "edited_timestamp": string
-}
-
-//::::::::::::::::::::::::::::
-
-export type getMassagesRes = message[]
-
-//:::::::::::::::::::::::::::
-
-export type getAMassageRes = message
-
-//:::::::::::::::::::::::::::
-
-export type putMassageContentReq = {
-  "content": string
-}
