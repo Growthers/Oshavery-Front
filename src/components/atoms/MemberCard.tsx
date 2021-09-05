@@ -1,25 +1,34 @@
 import React from "react";
 import type { FC } from "react";
 
-import { MembersData } from "../organisms/MemberList";
+import MemberPopup from "./MemberPopup";
 
 import style from "../../styles/components/atoms/MemberCard.module.scss";
 
-type Props = Pick<
-  MembersData,
-  "name" | "avatar_url" | "bot"
->;
+type Props = {
+  id: string,
+  // element_id: string,
+  name: string,
+  avatar_url: string,
+  bot: boolean,
+  func_show_memberpopup: (target_id: string) => void
+};
 
-const MemberCard: FC<Props> = React.memo((props) => {
+const MemberCard: FC<Props> = props => {
   return (
-    <div className={`${style.membercard} membercard_element`}>
-      <div className={style.membercard_element}>
-        <img className={`${style.avatar} membercard_element`} src={props.avatar_url}></img>
+    <div className={style.member_box}>
+      <div className={`${style.member} member_element`} onClick={() => props.func_show_memberpopup(props.id)}>
+        <img className={`${style.avatar} member_element`} src={props.avatar_url}></img>
+        {!props.bot && (<span className={`${style.name} member_element`}>{props.name}</span>)}
+        {props.bot && (<span className={`${style.bot_name} member_element`}>{props.name}</span>)}
+        {props.bot && (<span className={`${style.bot} member_element`}>BOT</span>)}
       </div>
-      <span className={`${style.name} membercard_element`}>{props.name}</span>
-      {props.bot && (<span className={`${style.bot} membercard_element`}>BOT</span>)}
+
+      <div className={style.memberpopup} id={props.id}>
+        <MemberPopup name={props.name} avatar_url={props.avatar_url} bot={props.bot} />
+      </div>
     </div>
   )
-});
+};
 
-export default MemberCard;
+export default React.memo(MemberCard);

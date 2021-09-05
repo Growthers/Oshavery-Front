@@ -1,56 +1,48 @@
-import {
-  FC,
-  ForwardRefExoticComponent,
-  PropsWithRef,
-} from "react";
+import { FC } from "react";
 import style from "../../styles/components/atoms/TextareaBox.module.scss";
 
-export type ElementFrec<T extends keyof JSX.IntrinsicElements> =
-  ForwardRefExoticComponent<PropsWithRef<JSX.IntrinsicElements[T]>>;
-
-type Props = {
-  onChange: (event: string) => void;
+type TextareaProps = {
+  onChange: (value: string) => void;
   placeholder: string;
-  //今後追加
-  onkeypress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   disabled: boolean;
   cols: number;
   rows: number;
+  value: string;
+  //今後追加
+  onKeyDown: () => void;
 };
 
 type defaultTextareaSettingsType = {
-  minlength: number; // default 1
-  maxlength: number; //default 10,000
-  autocomplete: "off" | "on";
-  spellcheck: boolean;
+  minLength: number; // default 1
+  maxLength: number; //default 10,000
+  autoComplete: "off" | "on";
+  spellCheck: boolean;
   wrap: "soft"; //default
 };
 
 const defaultTextareaSettings: defaultTextareaSettingsType = {
-  minlength: 1,
-  maxlength: 10000,
-  autocomplete: "off",
-  spellcheck: false,
+  minLength: 1,
+  maxLength: 10000,
+  autoComplete: "off",
+  spellCheck: false,
   wrap: "soft",
 };
 
-const TextareaBox: FC<Props> = (props) => {
+const TextareaBox: FC<TextareaProps> = (props) => {
   return (
     <textarea
-      placeholder={props.placeholder}
-      disabled={props.disabled}
-      cols={props.cols}
-      rows={props.rows}
-      minLength={defaultTextareaSettings.minlength}
-      maxLength={defaultTextareaSettings.maxlength}
-      autoComplete={defaultTextareaSettings.autocomplete}
-      spellCheck={defaultTextareaSettings.spellcheck}
-      wrap={defaultTextareaSettings.wrap}
-      className={style.TextareaBox}
-      onChange={(e) => {
-        props.onChange(e.target.value);
+      {...defaultTextareaSettings}
+      {...props}
+      onChange={(e) => props.onChange(e.target.value)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+          props.onKeyDown();
+          e.preventDefault();
+        }
       }}
-    ></textarea>
+      className={style.TextareaBox}
+    />
   );
 };
+
 export default TextareaBox;

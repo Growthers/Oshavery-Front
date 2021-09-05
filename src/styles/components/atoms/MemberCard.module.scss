@@ -1,31 +1,47 @@
-.membercard {
-  position: absolute;
-  z-index: 1;
+.member_box {
+  .member {
+    display: flex;
+    width: 240px;
+    padding: 5px;
 
-  width: 240px;
-  height: 300px;
-  margin: 10px;
-  padding: 10px;
-  background-color: lightslategrey;
-  border-radius: 5px;
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 24px;
+    }
 
-  .avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 30px;
+    .name {
+      margin: auto 3px auto 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 20px;
+    }
+
+    .bot_name {
+      margin: auto 0 auto 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 20px;
+    }
+
+    .bot {
+      margin: auto 0 auto 5px;
+      font-size: 14px;
+      color: #ffffff;
+      background-color: navy;
+      padding: 3px 5px;
+      border-radius: 3px;
+    }
   }
 
-  .name {
-    color: #ffffff;
-    font-weight: bold;
-  }
+  .memberpopup {
+    transform: scale(0);
+    transition: transform 0.2s;
 
-  .bot {
-    margin: auto 0 auto 5px;
-    font-size: 70%;
-    color: #ffffff;
-    background-color: navy;
-    padding: 3px 5px;
-    border-radius: 3px;
+    &.show {
+      transform: translateX(-105%);
+    }
   }
 }
