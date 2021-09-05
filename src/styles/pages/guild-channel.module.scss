@@ -1,43 +1,60 @@
 @use "../color.variable";
 
+$server_list_width: 4rem;
+$left_side_width: 15rem;
+$right_side_width: 15rem;
+
 .oshavery {
   display: flex;
+  scrollbar-width: none;
 
-  .server_list {
-    /*@include color.background(sidebar);*/
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    height: 100vh;
-    width: 4rem;
-
-    .icon {
-      margin: 0.5rem;
-      border-radius: 1.5rem;
-
-      height: 3rem;
-      width: 3rem;
-    }
+  &::-webkit-scrollbar {
+    display: none;
   }
+}
 
-  .left_side {
-    /*@include color.background(menubar);*/
-    position: absolute;
-    top: 0;
-    left: 4rem;
+.server_list {
+  /*@include color.background(sidebar);*/
+  position: absolute;
+  top: 0;
+  left: 0;
 
-    height: 100vh;
-    width: 15rem;
+  height: 100vh;
+  width: $server_list_width;
+
+  .icon {
+    margin: 0.5rem;
+    border-radius: 1.5rem;
+
+    height: 3rem;
+    width: 3rem;
   }
+}
 
-  .right_side {
-    /*@include color.background(menubar);*/
-    position: absolute;
-    top: 0;
-    right: 0;
+.left_side {
+  /*@include color.background(menubar);*/
+  position: absolute;
+  top: 0;
+  left: 4rem;
 
-    height: 100vh;
-    width: 15rem;
-  }
+  height: 100vh;
+  width: $left_side_width;
+}
+
+.input {
+  position: absolute;
+  bottom: 0;
+  left: $server_list_width + $left_side_width;
+
+  width: calc(100vw - #{$server_list_width} - #{$left_side_width} - #{$right_side_width});
+}
+
+.right_side {
+  /*@include color.background(menubar);*/
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  height: 100vh;
+  width: $right_side_width;
 }
