@@ -9,7 +9,7 @@ import { TestGuildData, TestWatchingGuild } from "../../stores/__test__/guild";
 import { channel } from "../../types/channel";
 import { guild } from "../../types/guild";
 
-const ChannelList: FC = React.memo(() => {
+const ChannelList: FC = () => {
   const WatchingGuild: string = useContext(TestWatchingGuild);
   const guilds: guild[] = useContext(TestGuildData);
 
@@ -33,6 +33,6 @@ const ChannelList: FC = React.memo(() => {
       }
     </>
   );
-});
+};
 
-export default ChannelList;
+export default React.memo(ChannelList);

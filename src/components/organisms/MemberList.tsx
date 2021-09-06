@@ -15,7 +15,7 @@ export type MembersData = {
 
 const members_data: MembersData[] = []
 
-const MemberList: FC = React.memo(() => {
+const MemberList: FC = () => {
   const [isShow, setIsShow] = useState(false);
 
   // メンバーポップアップのクリア
@@ -110,6 +110,6 @@ const MemberList: FC = React.memo(() => {
       }
     </div>
   )
-});
+};
 
-export default MemberList;
+export default React.memo(MemberList);

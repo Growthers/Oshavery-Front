@@ -14,7 +14,7 @@ type Props = {
   func_show_memberpopup: (target_id: string) => void
 };
 
-const MemberCard: FC<Props> = React.memo((props) => {
+const MemberCard: FC<Props> = props => {
   return (
     <div className={style.member_box}>
       <div className={`${style.member} member_element`} onClick={() => props.func_show_memberpopup(props.id)}>
@@ -29,6 +29,6 @@ const MemberCard: FC<Props> = React.memo((props) => {
       </div>
     </div>
   )
-});
+};
 
-export default MemberCard;
+export default React.memo(MemberCard);
