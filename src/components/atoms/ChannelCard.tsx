@@ -12,7 +12,7 @@ type Props = Pick<channel,
   >
 
 
-const ChannelCard: FC<Props> = React.memo(props => {
+const ChannelCard: FC<Props> = props => {
 
   if (props.channel_type === "category") {
     return (
@@ -33,6 +33,6 @@ const ChannelCard: FC<Props> = React.memo(props => {
       </div>
     );
   }
-});
+};
 
-export default ChannelCard;
+export default React.memo(ChannelCard);
