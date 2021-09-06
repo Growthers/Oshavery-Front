@@ -1,8 +1,7 @@
-import { FC, useRef } from "react";
-import style from "../../styles/components/molecules/InputMessageBox.module.scss";
+import style from "../../styles/components/organisms/InputMessageBox.module.scss";
 import SendButton from "../atoms/SendButton";
 import TextareaBox from "../atoms/TextareaBox";
-import { useState } from "react";
+import { FC, useState } from "react";
 
 const InputMessageBox: FC = () => {
   // API待ち
