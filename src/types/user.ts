@@ -1,3 +1,5 @@
+import {guild} from "./guild";
+
 export type user = {
   "id": string,
   "name": string,
@@ -5,3 +7,5 @@ export type user = {
   "bot": boolean,
   "state": number
 }
+
+export type myInfo = user & {"guild": guild[]};
