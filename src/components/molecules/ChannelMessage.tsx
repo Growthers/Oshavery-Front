@@ -10,7 +10,7 @@ interface Props {
 
 
 
-const ChannelMessage: FC<Props> = React.memo((props) => {
+const ChannelMessage: FC<Props> = props => {
   const r: Response = props.response
   const author_avatar: string = r.author.avatar
   const author_name = r.author.name
@@ -26,6 +26,6 @@ const ChannelMessage: FC<Props> = React.memo((props) => {
       <div><span dangerouslySetInnerHTML={{__html: renderdContent}}></span></div>
     </div>
   )
-})
+}
 
-export default ChannelMessage
+export default React.memo(ChannelMessage)

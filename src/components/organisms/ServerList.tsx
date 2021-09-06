@@ -11,7 +11,7 @@ export type ServerData = {
 
 const servers_data: ServerData[] = []
 
-const ServerList: FC = React.memo(() => {
+const ServerList: FC = () => {
   return (
     <div>
       {
@@ -28,7 +28,7 @@ const ServerList: FC = React.memo(() => {
       }
     </div>
   )
-});
+};
 
-export default ServerList;
+export default React.memo(ServerList);
 
