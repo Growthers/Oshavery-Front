@@ -1,34 +1,26 @@
 import { FC } from "react";
 import "emoji-mart/css/emoji-mart.css";
-import { Picker } from "emoji-mart";
-type customEmoji = {
-  name: string;
-  short_name: string[];
-  text?: string;
-  emoticons: [];
-  keywords?: string[];
-};
-type emojiProps = {
-  set: string;
-  autoFocus: number;
+import { CustomEmoji, EmojiData, Picker } from "emoji-mart";
+
+type EmojiProps = {
+  custom: CustomEmoji[];
   color: string;
-  custom?: customEmoji[];
+  onSelect: (emoji: EmojiData) => void;
 };
 
-const EmojiPicker: FC = () => {
+const EmojiPicker: FC<EmojiProps> = (props) => {
   return (
-    <div>
-      <Picker
-        set="twitter"
-        onSelect={(emoji) => console.table(emoji)}
-        title="Pick your emoji…"
-        emoji="point_up"
-        color="#FFC266"
-        autoFocus={true}
-        emojiSize={33}
-        theme="auto"
-      />
-    </div>
+    <Picker
+      title="Pick your emoji…"
+      emoji="point_up"
+      autoFocus={true}
+      emojiSize={33}
+      theme="dark"
+      set="twitter"
+      custom={props.custom}
+      color={props.color}
+      onSelect={(emoji) => props.onSelect(emoji)}
+    />
   );
 };
 
