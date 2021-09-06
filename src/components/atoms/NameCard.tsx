@@ -5,12 +5,12 @@ type Props = {
   name: string
 };
 
-const NameCard: FC<Props> = React.memo((props) => {
+const NameCard: FC<Props> = props => {
   return (
     <>
       <span>{props.name}</span>
     </>
   )
-});
+};
 
-export default NameCard;
+export default React.memo(NameCard);
