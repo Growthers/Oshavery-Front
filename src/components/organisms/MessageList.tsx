@@ -10,7 +10,7 @@ import MarkdownItEmoji from 'markdown-it-emoji'
 // KaTeXレンダコンポーネント
 // XSSの脆弱性があるらしいが、markdown-itの力で消えている
 // @ts-ignore
-import MarkdownItKatex from 'markdown-it-katex'
+import MarkdownItKatex from '@iktakahiro/markdown-it-katex'
 // Emojiレンダリングコンポーネント
 // お願い！握りつぶさせて！
 // @ts-ignore
@@ -113,7 +113,7 @@ const MessageList: FC = () => {
   return (
     <>
       {/* お行儀悪い 正々堂々と読み込んで */}
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css"/>
       <div>
         <script id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
