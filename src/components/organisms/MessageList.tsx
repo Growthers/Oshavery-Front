@@ -9,6 +9,7 @@ import MarkdownIt from "markdown-it"
 import MarkdownItEmoji from 'markdown-it-emoji'
 // KaTeXレンダコンポーネント
 // XSSの脆弱性があるらしいが、markdown-itの力で消えている
+// => ライブラリを変更することで解決
 // @ts-ignore
 import MarkdownItKatex from '@iktakahiro/markdown-it-katex'
 // Emojiレンダリングコンポーネント
@@ -94,7 +95,7 @@ const MessageList: FC = () => {
     // markdown-it側である程度のサニタイズ処理は施されるようです
     html: false,
   })
-  // 数式の描画(インラインにできないのかな？
+  // 数式の描画
   md.use(MarkdownItKatex)
   // 絵文字の描画
   // emoji-martライブラリのカスタム絵文字を使うために面倒なことをしています
