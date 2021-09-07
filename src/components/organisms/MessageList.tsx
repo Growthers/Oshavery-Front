@@ -106,6 +106,7 @@ const MessageList: FC = () => {
       emoji: token[idx].markup,
       size: 16
     })
+    // @ts-ignore
     return ret as string;
   };
 
