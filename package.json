@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@iktakahiro/markdown-it-katex": "^4.0.1",
     "@types/emoji-mart": "^3.0.5",
     "@types/markdown-it": "^12.2.1",
     "@types/markdown-it-emoji": "^2.0.2",
