@@ -2,6 +2,9 @@ import style from "../../styles/components/organisms/InputMessageBox.module.scss
 import SendButton from "../atoms/SendButton";
 import TextareaBox from "../atoms/TextareaBox";
 import { FC, useState } from "react";
+import { client } from "../../lib/client";
+import { postMessageRes } from "../../types/message";
+import { useRouter } from "next/router";
 
 const InputMessageBox: FC = () => {
   // API待ち
@@ -11,9 +14,17 @@ const InputMessageBox: FC = () => {
   const [placeholder, setPlaceholder] = useState<string>("");
   const [message, setMessage] = useState<string>("");
 
+  const router = useRouter();
+  const {channelID} = router.query
+
   const sendMessage = () => {
-    console.log(message);
-    setMessage("");
+    client.post<postMessageRes>(`/channels/${channelID}/messages`)
+      .then(res => {
+        setMessage("")
+      })
+      .catch(error => {
+
+      })
   };
 
   return (
