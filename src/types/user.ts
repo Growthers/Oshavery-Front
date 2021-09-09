@@ -38,5 +38,5 @@ export type myInfo = {
       "channel_position": number,
       "creator_id": string
     }[]
-  }
+  }[]
 }
