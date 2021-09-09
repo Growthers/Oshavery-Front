@@ -1,15 +1,17 @@
 import React from "react";
 import type { FC } from "react";
+import Link from "next/link"
 
 import { channel } from "../../types/channel";
 
 import style from "../../styles/components/atoms/ChannelCard.module.scss";
 
-type Props = Pick<channel,
-  "channel_name"|
-  "channel_topics"|
-  "channel_type"
-  >
+type Props = {
+  channel_name: string
+  channel_type: string
+  channel_topics: string
+  link: string
+}
 
 
 const ChannelCard: FC<Props> = props => {
@@ -22,7 +24,8 @@ const ChannelCard: FC<Props> = props => {
     );
   } else {
     return (
-      <div className={style.channel}>
+      <Link href={"/[guildID]/[channelID]"} as={props.link}>
+        <a className={style.channel}>
           <div className={style.sharp}>
             <i className={`${style.one_i} ${style.one}`}/>
             <i className={`${style.one_i} ${style.two}`}/>
@@ -30,7 +33,9 @@ const ChannelCard: FC<Props> = props => {
             <i className={`${style.one_i} ${style.four}`}/>
           </div>
           {props.channel_name}
-      </div>
+        </a>
+      </Link>
+
     );
   }
 };
