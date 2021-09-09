@@ -16,7 +16,7 @@ export const testMyInfo: myInfo = {
   avatar: "",
   bot: false,
   state: 0,
-  "guild": [
+  "guilds": [
     {
       id: "server_one",
       name: "鯖1",
@@ -28,21 +28,21 @@ export const testMyInfo: myInfo = {
           id: "0",
           name: "ゼっちゃん",
           avatar: "",
-          bot: false,
+          bot: "false",
           state: 0
         },
         {
           id: "1",
           name: "弟子1号",
           avatar: "",
-          bot: false,
+          bot: "false",
           state: 0
         },
         {
           id: "2",
           name: "2号兄貴",
           avatar: "",
-          bot: false,
+          bot: "false",
           state: 0
         }
       ],
@@ -76,14 +76,14 @@ export const testMyInfo: myInfo = {
           id: "0",
           name: "ゼっちゃん",
           avatar: "",
-          bot: false,
+          bot: "false",
           state: 0
         },
         {
           id: "1",
           name: "弟子1号",
           avatar: "",
-          bot: false,
+          bot: "false",
           state: 0
         }
       ],
