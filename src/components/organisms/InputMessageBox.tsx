@@ -1,13 +1,16 @@
-import style from "../../styles/components/organisms/InputMessageBox.module.scss";
+import { FC, useState, ChangeEvent, useCallback } from "react";
+import { EmojiData, CustomEmoji } from "emoji-mart";
+import { useRouter } from "next/router";
+
+import EmojiPicker from "../molecules/EmojiPicker";
 import SendButton from "../atoms/SendButton";
 import TextareaBox from "../atoms/TextareaBox";
 import UploadButton from "../atoms/UploadButton";
-import { FC, useState, ChangeEvent, useCallback } from "react";
-import EmojiPicker from "../molecules/EmojiPicker";
-import { EmojiData, CustomEmoji } from "emoji-mart";
+
 import { client } from "../../lib/client";
 import { postMessageRes } from "../../types/message";
-import { useRouter } from "next/router";
+
+import style from "../../styles/components/organisms/InputMessageBox.module.scss";
 
 const InputMessageBox: FC = () => {
   // API待ち
@@ -30,6 +33,7 @@ const InputMessageBox: FC = () => {
 
       })
   };
+
   const sendFile = (e: ChangeEvent<HTMLInputElement>) => {
     console.table(e);
   };
@@ -37,43 +41,11 @@ const InputMessageBox: FC = () => {
     console.table(e);
   };
 
-  // Emoji Picker のクリア
-  const clear_emojipopup = useCallback(() => {
-    if (process.browser) {
-      const elements: HTMLCollectionOf<Element> =
-        document.getElementsByClassName();
-      for (let i = 0; i < elements.length; i++) {
-        elements[i].className =
-      }
-
-        setIsShow(false);
-    }
-  }, []);
-
-  //クリックイベント
-  const check_click = (e: any)=> {
-    const class_name = String(e.target.className);
-
-    if (class_name.indexOf("emoji_element") !== -1) {
-      return;
-    }else if (class_name.indexOf("emojipopup_element") !== -1) {
-      return;
-    }else if (!isShow) {
-      return;
-    }else {
-      clear_emojipopup();
-    }
-
-
-  };
-
-  if(process.browser){
-    document.body.onClick = check_click;
-  }
   //test Data
   const customEmojiData: CustomEmoji[] = [];
 
   const [uploadOnchange, setUploadOnchange] = useState<File>();
+
   return (
     <div className={style.messageBox}>
       <UploadButton onChange={sendFile} />
