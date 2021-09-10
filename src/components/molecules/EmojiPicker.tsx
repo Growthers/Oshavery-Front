@@ -1,7 +1,7 @@
 import { FC, useEffect, useRef, useState } from "react";
 import "emoji-mart/css/emoji-mart.css";
 import { CustomEmoji, EmojiData, Picker, Emoji } from "emoji-mart";
-import Popup from "../atoms/Popup";
+import style from "../../styles/components/molecules/EmojiPicker.module.scss";
 
 type EmojiProps = {
   custom: CustomEmoji[];
@@ -18,6 +18,7 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
 
   return (
     <div
+      className={style.emojipopup}
       onClick={() => {
         if (!isShow) setIsShow(true);
       }}
