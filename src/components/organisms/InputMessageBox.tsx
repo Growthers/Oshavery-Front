@@ -5,6 +5,9 @@ import UploadButton from "../atoms/UploadButton";
 import { FC, useState, ChangeEvent, useCallback } from "react";
 import EmojiPicker from "../molecules/EmojiPicker";
 import { EmojiData, CustomEmoji } from "emoji-mart";
+import { client } from "../../lib/client";
+import { postMessageRes } from "../../types/message";
+import { useRouter } from "next/router";
 
 const InputMessageBox: FC = () => {
   // API待ち
@@ -15,9 +18,17 @@ const InputMessageBox: FC = () => {
   const [message, setMessage] = useState<string>("");
   const [isShow, setIsShow] = useState(false);
 
+  const router = useRouter();
+  const {channelID} = router.query
+
   const sendMessage = () => {
-    console.log(message);
-    setMessage("");
+    client.post<postMessageRes>(`/channels/${channelID}/messages`)
+      .then(res => {
+        setMessage("")
+      })
+      .catch(error => {
+
+      })
   };
   const sendFile = (e: ChangeEvent<HTMLInputElement>) => {
     console.table(e);
