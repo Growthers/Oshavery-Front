@@ -16,6 +16,30 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
   const emojipopup_classname = "emojipopup_element";
   const emoji_open_classname = "emojiopen_element";
 
+  // フォーカスと内容変更
+  useEffect(() => {
+    if (process.browser) {
+      const parent_target = document.getElementsByClassName("emoji-mart-search")[0];
+      const count = parent_target.childElementCount;
+
+      let input_element_id = "";
+
+      for (let i = 0; i < count; i++) {
+        let id_name = parent_target.children[i].id;
+        let result = id_name.match(/^emoji-mart-search-[0-9]{1,}$/g);
+        if (result != null) {
+          input_element_id = String(result);
+          break;
+        };
+      };
+
+      const target = document.getElementById(input_element_id) as HTMLInputElement;
+      if (target == null) return;
+      if (isShow) target.focus();
+      else if (!isShow) target.value = "";
+    };
+  }, [isShow]);
+
   useEffect(() => {
     if (process.browser) {
       const elements: HTMLCollectionOf<Element> = document.getElementsByClassName(style.emojipopup);
