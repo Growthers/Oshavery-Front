@@ -1,8 +1,6 @@
 import React from "react";
-import type { FC } from "react";
+import type {FC} from "react";
 import Link from "next/link"
-
-import { channel } from "../../types/channel";
 
 import style from "../../styles/components/atoms/ChannelCard.module.scss";
 
@@ -24,7 +22,7 @@ const ChannelCard: FC<Props> = props => {
     );
   } else {
     return (
-      <Link href={"/[guildID]/[channelID]"} as={props.link}>
+      <Link href={"/guild/[guildID]/channel/[channelID]"} as={props.link}>
         <a className={style.channel}>
           <div className={style.sharp}>
             <i className={`${style.one_i} ${style.one}`}/>
