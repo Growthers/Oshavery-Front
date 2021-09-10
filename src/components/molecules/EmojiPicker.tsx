@@ -4,9 +4,9 @@ import { CustomEmoji, EmojiData, Picker, Emoji } from "emoji-mart";
 import Popup from "../atoms/Popup";
 
 type EmojiProps = {
-  //custom: CustomEmoji[];
-  //color: string;
-  // onSelect: (emoji: EmojiData) => void;
+  custom: CustomEmoji[];
+  color: string;
+  onSelect: (emoji: EmojiData) => void;
 };
 
 const EmojiPicker: FC<EmojiProps> = (props) => {
@@ -39,9 +39,9 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
           theme="dark"
           set="twitter"
           useButton={false}
-          /*custom={props.custom} */
-          /*         color={props.color}*/
-          /*          onSelect={(emoji) => props.onSelect(emoji)}*/
+          custom={props.custom}
+          color={props.color}
+          onSelect={(emoji) => props.onSelect(emoji)}
         />
       </div>
       <Emoji emoji={"grinning"} size={30} />
