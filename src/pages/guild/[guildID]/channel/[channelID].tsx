@@ -1,13 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 
-import ServerList from "../../components/organisms/ServerList";
-import ChannelList from "../../components/organisms/ChannelList";
-import MessageList from "../../components/organisms/MessageList";
-import InputMessageBox from "../../components/organisms/InputMessageBox";
-import MemberList from "../../components/organisms/MemberList";
+import ServerList from "../../../../components/organisms/ServerList";
+import ChannelList from "../../../../components/organisms/ChannelList";
+import MessageList from "../../../../components/organisms/MessageList";
+import InputMessageBox from "../../../../components/organisms/InputMessageBox";
+import MemberList from "../../../../components/organisms/MemberList";
 
-import style from "../../styles/pages/guild-channel.module.scss";
+import style from "../../../../styles/pages/guild-channel.module.scss";
 
 const Oshavery: NextPage = () => {
   return (

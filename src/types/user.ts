@@ -1,4 +1,3 @@
-import {guild} from "./guild";
 
 export type user = {
   "id": string,
@@ -27,7 +26,7 @@ export type myInfo = {
       "id": string,
       "name": string,
       "avatar": string,
-      "bot": string, //<-miss
+      "bot": boolean, //<-miss
       "state": number
     }[],
     "channels": {

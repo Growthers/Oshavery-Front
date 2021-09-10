@@ -1,5 +1,5 @@
 import {myInfo, user} from "../../types/user";
-import { Context, createContext } from "react";
+import {Context, createContext} from "react";
 
 export const TestUserData: Context<user> = createContext<user>({
     id: "0",
@@ -28,21 +28,21 @@ export const testMyInfo: myInfo = {
           id: "0",
           name: "ゼっちゃん",
           avatar: "",
-          bot: "false",
+          bot: false,
           state: 0
         },
         {
           id: "1",
           name: "弟子1号",
           avatar: "",
-          bot: "false",
+          bot: false,
           state: 0
         },
         {
           id: "2",
           name: "2号兄貴",
           avatar: "",
-          bot: "false",
+          bot: false,
           state: 0
         }
       ],
@@ -76,14 +76,14 @@ export const testMyInfo: myInfo = {
           id: "0",
           name: "ゼっちゃん",
           avatar: "",
-          bot: "false",
+          bot: false,
           state: 0
         },
         {
           id: "1",
           name: "弟子1号",
           avatar: "",
-          bot: "false",
+          bot: false,
           state: 0
         }
       ],
