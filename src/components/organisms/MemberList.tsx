@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useEffect} from "react";
 import type { FC } from "react";
 import { useState, useCallback } from "react";
 
 import MemberCard from "../atoms/MemberCard";
 
 import member_style from "../../styles/components/atoms/MemberCard.module.scss";
+import {useRouter} from "next/router";
+import {user} from "../../types/user";
 
 export type MembersData = {
   id: string;
@@ -17,6 +19,10 @@ const members_data: MembersData[] = [];
 
 const MemberList: FC = () => {
   const [isShow, setIsShow] = useState(false);
+
+  const router = useRouter()
+  const {guildID, channelID} = router.query
+  const [members, setMembers] = useState<user[]>({} as user[])
 
   // メンバーポップアップのクリア
   const clear_memberpopup = useCallback(() => {
@@ -75,6 +81,11 @@ const MemberList: FC = () => {
   if (process.browser) {
     document.body.onclick = check_click;
   }
+
+
+  useEffect(() => {
+
+  },[])
 
   /*
   UserId代用のHTML要素ID
