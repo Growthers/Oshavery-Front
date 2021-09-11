@@ -1,12 +1,14 @@
-@use "../../color.variable";
-
 .outer {
-  /*@include color.background(messages);*/
-  padding: 2rem;
+  padding: 1rem 1.5rem;
 }
 
 .messageBox {
   display: flex;
   background-color: #ffffff;
   border-radius: 1rem;
+}
+
+.textarea {
+  padding: 0.7rem 0.5rem;
+  width: 100%;
 }

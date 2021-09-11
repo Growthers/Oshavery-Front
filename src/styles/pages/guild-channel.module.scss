@@ -43,20 +43,30 @@ $right_side_width: 15rem;
   width: $left_side_width;
 }
 
-.messages {
-  position: absolute;
-
-  left: $server_list_width + $left_side_width;
-
-  width: calc(100vw - #{$server_list_width} - #{$left_side_width} - #{$right_side_width});
-}
-
-.input {
+.center {
+  @include color.background(messages);
   position: absolute;
   bottom: 0;
   left: $server_list_width + $left_side_width;
 
+  height: 100vh;
   width: calc(100vw - #{$server_list_width} - #{$left_side_width} - #{$right_side_width});
+}
+
+.messages {
+  @include color.background(messages);
+  position: relative;
+
+  height: 100vh;
+  width: 100%;
+}
+
+.input {
+  @include color.background(messages);
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
 }
 
 .right_side {

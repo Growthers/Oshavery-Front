@@ -12,7 +12,11 @@ import { postMessageRes } from "../../types/message";
 
 import style from "../../styles/components/organisms/InputMessageBox.module.scss";
 
-const InputMessageBox: FC = () => {
+type Props = {
+  textarea_change_event: () => void;
+};
+
+const InputMessageBox: FC<Props> = props => {
   // API待ち
   const [disabled, setDisabled] = useState<boolean>(false);
   const [rows, setRows] = useState<number>(1);
@@ -50,10 +54,17 @@ const InputMessageBox: FC = () => {
 
     // 折り返しに対応
     if (process.browser) {
-      const target = document.getElementById("input_your_message");
+      const target = document.getElementById("input_your_message") as HTMLInputElement;
       if (target == null) return;
+
       target.style.height = "auto";
-      target.style.height = `${target.scrollHeight - 20}px`;
+      if (value == "") {
+        target.style.height = "0";
+      } else {
+        target.style.height = `${target.scrollHeight}px`;
+      };
+
+      props.textarea_change_event();
     };
   };
 
@@ -66,14 +77,16 @@ const InputMessageBox: FC = () => {
     <div className={style.outer}>
       <div className={style.messageBox}>
         <UploadButton onChange={sendFile} />
-        <TextareaBox
-          disabled={disabled}
-          rows={rows}
-          onChange={onchange_event}
-          placeholder={placeholder}
-          value={message}
-          onKeyDown={sendMessage}
-        />
+        <div className={style.textarea}>
+          <TextareaBox
+            disabled={disabled}
+            rows={rows}
+            onChange={onchange_event}
+            placeholder={placeholder}
+            value={message}
+            onKeyDown={sendMessage}
+          />
+        </div>
         <SendButton onClick={sendMessage} />
         <EmojiPicker
           onSelect={selectEmoji}
