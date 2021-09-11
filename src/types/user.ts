@@ -1,4 +1,3 @@
-import { guild } from "./guild";
 
 export type user = {
   "id": string,
@@ -8,73 +7,35 @@ export type user = {
   "state": number
 }
 
+//export type myInfo = user & {"guilds": guild[]};
 
-// API リクエストレスポンスの型
 
-export type getUserInfoRes = user
-
-//:::::::::::::::::::::::::::::::::::::::::
-
-export type patchUserInfoReq = {
-  "name": string
-}
-
-export type patchUserInfoRes = {
-  "user_id": string,
-  "user_name": string,
-  "user_avatar": string,
-  "bot": boolean
-}
-
-//:::::::::::::::::::::::::::::::::::::::
-
-export type postUserInfoReq = {
+export type myInfo = {
+  "id": string,
   "name": string,
-  "password": string,
-  "bot": boolean
-}
-
-export type postUserInfoRes = {
-  "id": string,
-  "bot": string,
-  "name": string
-}
-
-//::::::::::::::::::::::::::::::::::::
-
-export type getUsersInfoRes = user[]
-
-//:::::::::::::::::::::::::::::::::::
-
-export type getMyInfoRes = user & {"guild": guild[]};
-
-//::::::::::::::::::::::::::::::::::
-
-export type patchMyInfoReq = {
-  "name": string
-}
-
-//::::::::::::::::::::::::::::::::
-
-export type postCreateBotReq = {
-  "description": string,
-  "name": string
-}
-
-//:::::::::::::::::::::::::::::::
-
-export type getBotListReq = {
-  "id": string,
-  "botUserId": string,
-  "description": string,
-  "owner": {
+  "avatar": string,
+  "bot": boolean,
+  "state": number
+  "guilds": {
     "id": string,
     "name": string,
-    "avatar": string,
-    "bot": boolean,
-    "state": number
-  },
-  "state": number,
-  "created_at": string,
-  "updated_at": string
-}[]
+    "topic": string,
+    "icon": string,
+    "owner_id": string,
+    "users": {
+      "id": string,
+      "name": string,
+      "avatar": string,
+      "bot": boolean, //<-miss
+      "state": number
+    }[],
+    "channels": {
+      "id": string,
+      "channel_name": string,
+      "channel_topics": string,
+      "channel_type": string,
+      "channel_position": number,
+      "creator_id": string
+    }[]
+  }[]
+}

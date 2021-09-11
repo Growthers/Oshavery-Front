@@ -11,7 +11,7 @@ type Props = ServerData;
 const ServerIcon: FC<Props> = props => {
   return (
     <div>
-      <Link href={`/${props.id}/`}>
+      <Link href={"/guild/[guildID]"} as={`/guild/${props.id}`}>
         <img className={style.icon} src={props.icon_url}></img>
       </Link>
       <p className={style.name}>{props.name}</p>

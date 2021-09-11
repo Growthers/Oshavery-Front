@@ -1,38 +1,49 @@
-import React, { useContext } from "react";
-import type { FC } from "react";
+import React, {useContext, useEffect, useState} from "react";
+import type {FC} from "react";
 
 import ChannelCard from "../atoms/ChannelCard";
 import NameCard from "../atoms/NameCard";
 
-import { TestGuildData, TestWatchingGuild } from "../../stores/__test__/guild";
-
-import { channel } from "../../types/channel";
-import { guild } from "../../types/guild";
+import {guild} from "../../types/guild";
+import {userContext} from "../../stores/user";
+import {useRouter} from "next/router";
 
 const ChannelList: FC = () => {
-  const WatchingGuild: string = useContext(TestWatchingGuild);
-  const guilds: guild[] = useContext(TestGuildData);
 
-  const apiGuild: guild = guilds[guilds.findIndex(value => value.id === WatchingGuild)];
-  const apiChannel: channel[] = apiGuild.channels;
+  const {userState} = useContext(userContext)
+
+  const router = useRouter();
+  const {guildID} = router.query
+
+  const [nowGuild, setNowGuild] = useState<guild>()
+
+  useEffect(() => {
+    setNowGuild(userState.user.guilds[userState.user.guilds.findIndex(item => item.id === guildID)])
+  }, [userState, guildID])
+
+  if (nowGuild == undefined)
+    return <></>
 
   return (
     <>
-      <NameCard name={apiGuild.name} />
+      <NameCard name={nowGuild.name}/>
       {
-        apiChannel.map((value => {
+        nowGuild.channels.map((value => {
           return (
             <ChannelCard
               key={value.id}
               channel_name={value.channel_name}
               channel_topics={value.channel_topics}
               channel_type={value.channel_type}
+              // @ts-ignore
+              link={`/guild/${guildID}/channel/${value.id}`}
             />
           );
         }))
       }
     </>
-  );
-};
+  )
+
+}
 
 export default React.memo(ChannelList);
