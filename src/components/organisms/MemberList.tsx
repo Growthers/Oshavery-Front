@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useContext, useEffect} from "react";
 import type { FC } from "react";
 import { useState, useCallback } from "react";
 
@@ -7,22 +7,15 @@ import MemberCard from "../atoms/MemberCard";
 import member_style from "../../styles/components/atoms/MemberCard.module.scss";
 import {useRouter} from "next/router";
 import {user} from "../../types/user";
-
-export type MembersData = {
-  id: string;
-  name: string;
-  avatar_url: string;
-  bot: boolean;
-};
-
-const members_data: MembersData[] = [];
+import {userContext} from "../../stores/user";
 
 const MemberList: FC = () => {
   const [isShow, setIsShow] = useState(false);
 
   const router = useRouter()
-  const {guildID, channelID} = router.query
-  const [members, setMembers] = useState<user[]>({} as user[])
+  const {guildID} = router.query
+  const [members, setMembers] = useState<user[]>()
+  const {userState} = useContext(userContext)
 
   // メンバーポップアップのクリア
   const clear_memberpopup = useCallback(() => {
@@ -84,8 +77,10 @@ const MemberList: FC = () => {
 
 
   useEffect(() => {
-
-  },[])
+    if (guildID != undefined){
+      setMembers(userState.user.guilds[userState.user.guilds.findIndex(item => item.id === guildID)].users)
+    }
+  },[userState, guildID])
 
   /*
   UserId代用のHTML要素ID
@@ -103,21 +98,22 @@ const MemberList: FC = () => {
   };
   */
 
+  if (members == undefined)
+    return <></>
+
   return (
     <div>
-      {members_data.map((value, index) => {
-        return (
+      {members.map(value =>
           <MemberCard
             key={value.id}
             id={value.id}
             // element_id={element_id_array[index]}
             name={value.name}
-            avatar_url={value.avatar_url}
+            avatar_url={value.avatar}
             bot={value.bot}
             func_show_memberpopup={show_memberpopup}
           />
-        );
-      })}
+      )}
     </div>
   );
 };
