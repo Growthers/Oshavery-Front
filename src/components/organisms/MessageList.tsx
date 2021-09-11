@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react'
+import {FC, useState, useEffect, useContext} from 'react'
 
 import ChannelMessage from '../molecules/ChannelMessage'
 
@@ -15,12 +15,16 @@ import MarkdownItKatex from '@iktakahiro/markdown-it-katex'
 // Emojiレンダリングコンポーネント
 // お願い！握りつぶさせて！
 // @ts-ignore
-import { Emoji } from 'emoji-mart'
+import {Emoji} from 'emoji-mart'
+import {messagesContext} from "../../stores/message";
+import {message} from "../../types/message";
+import {client} from "../../lib/client";
+import {useRouter} from "next/router";
 // ここまでMarkdown
 
 // サーバからのレスポンス
 // props経由で渡されてる
-export interface Response {
+/*export interface Response {
   id: string;
   timestamp: string;
   author: {
@@ -33,24 +37,25 @@ export interface Response {
   content: string;
   guild_id: string;
   channel_id: string;
-};
+};*/
 
 // APIが無いからテスト用にResponseを返す
 // XSSのテスト用文字列もあるよ
-const mkTestResponse = (authN: string): Response => {
-  const ret: Response = {
-    id: "test_id",
+const mkTestResponse = (authN: string): message => {
+  const ret: message = {
+    id: Math.random().toString(32).substring(2),
     timestamp: new Date().getTime().toString(),
     author: {
       id: "test_author_id",
-      name: "NAME: " + authN,
+      user_name: "NAME: " + authN,
       avatar: "test_author_name",
-      bot: "test_author_bot",
-      state: "test_author_state",
+      bot: false,
+      state: 0,
     },
     content: "test_content",
     guild_id: "test_guild_id",
-    channel_id: "test_channnel_id",
+    channel_id: "test_channel_id",
+    edited_timestamp: new Date().getTime().toString()
   }
   const t = [
     "**HELLO**",
@@ -71,20 +76,35 @@ const mkTestResponse = (authN: string): Response => {
 // コンポーネント本体
 // Markdownレンダリングのライブラリのインスタンスもここで持っている
 const MessageList: FC = () => {
-  // Response型の配列
-  const [messages, setMessages] = useState<Response[]>([])
+
+  const {messagesState, messagesDispatch} = useContext(messagesContext)
+
+  const router = useRouter()
+  const {channelID} = router.query
+  const [endPoint, setEndPoint] = useState<string>()
 
   // 初期化処理
   useEffect(() => {
+
+    setEndPoint(`/channels/${channelID}/messages`)
+
     // テストデータを20件追加
     // 初めに出てくるデータはここで作られている
-    setMessages(Array.from({ length: 20 }, (_, i) => (mkTestResponse(i.toString()))))
+    messagesDispatch({
+      type: "set",
+      newData: Array.from({length: 20}, (_, i) => (mkTestResponse(i.toString())))
+    })
+
   }, [])
 
   // 新規スクロールがあった時に呼ばれる
   // 複数件のメッセージを同時に取得したほうがいいとおもう
   const fetchMoreData = () => {
-    setMessages([...messages, ...Array.from({ length: 20 }, (_, i) => (mkTestResponse((i+messages.length).toString())))]);
+    console.log("aaa")
+    messagesDispatch({
+      type: "load",
+      newData: Array.from({length: 20}, (_, i) => (mkTestResponse(i.toString())))
+    })
   }
 
   // Markdown-itのインスタンスを作成しています
@@ -100,7 +120,7 @@ const MessageList: FC = () => {
   // 絵文字の描画
   // emoji-martライブラリのカスタム絵文字を使うために面倒なことをしています
   md.use(MarkdownItEmoji)
-  md.renderer.rules.emoji = function(token, idx) {
+  md.renderer.rules.emoji = function (token, idx) {
     // EmojiコンポーネントがJSXかStringを返すクソ仕様のせいでtypescriptの恩恵を受けられません
     var ret = Emoji({
       html: true,
@@ -111,13 +131,16 @@ const MessageList: FC = () => {
     return ret as string;
   };
 
+  if (messagesState.messages == undefined)
+    return <></>
+
   return (
     <>
       {/* お行儀悪い 正々堂々と読み込んで */}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css"/>
       <div>
         <script id="MathJax-script" async
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+                src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
         </script>
         {/*
         dataLength: メッセージの個数
@@ -125,17 +148,25 @@ const MessageList: FC = () => {
         hasMore: 新規データを読み込むか(最後まで遡ったらfalseに設定しましょう
         loader: ロード中に表示される(カッコイイのに設定してください
         */}
+
         <InfiniteScroll
-          dataLength={messages.length}
+          dataLength={messagesState.messages.length}
           next={fetchMoreData}
           hasMore={true}
           loader={<h4>Loading...</h4>}
+          inverse={true}
         >
           {/*
             メッセージの一覧を表示
             全部divにしてますがなんとなくです
           */}
-          {messages.map((value, i) => (<div key={i}><ChannelMessage response={value} renderer={md.render.bind(md)}></ChannelMessage></div>))}
+          {messagesState.messages.map(value => (
+            <ChannelMessage
+              key={value.id}
+              response={value}
+              renderer={md.render.bind(md)}
+            />
+          ))}
         </InfiniteScroll>
       </div>
     </>

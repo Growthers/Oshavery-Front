@@ -2,7 +2,7 @@ import { message } from "../types/message";
 import {Context, createContext, Dispatch, Reducer, useReducer} from "react";
 
 type stateType = {
-  messages: message[] | undefined
+  messages: message[]
 }
 
 type actionType = |
@@ -29,13 +29,10 @@ const reducer: Reducer<stateType, actionType> = (state: stateType, action: actio
     case "set":
       return {messages: action.newData}
     case "load":
-      if (state.messages != undefined)
-        action.newData.concat(state.messages)
-        return {messages: action.newData}
+      return {messages: action.newData.concat(state.messages)}
     case "new":
-      if (state.messages != undefined)
-        state.messages.push(action.newData)
-        return state
+      state.messages.push(action.newData)
+      return state
     default:
       return state
   }
@@ -47,7 +44,7 @@ type useMessagesSDType = () => {
 }
 
 export const useMessageSD: useMessagesSDType = () => {
-  const [messagesState, messagesDispatch] = useReducer(reducer, {messages: undefined})
+  const [messagesState, messagesDispatch] = useReducer(reducer, {} as stateType)
   return {messagesState, messagesDispatch}
 }
 
