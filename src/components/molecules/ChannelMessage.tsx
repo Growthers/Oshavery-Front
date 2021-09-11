@@ -19,7 +19,7 @@ const ChannelMessage: FC<Props> = props => {
 
   // dangerousな文字をHTMLにして表示してるの怖くね
   return (
-    <div style={{border: "solid"}}>
+    <div>
       <img src={author_avatar} alt={author_name + "'s avatar"}></img>
       <div>{author_name}</div>
       <div>{timestamp}</div>
