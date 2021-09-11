@@ -29,9 +29,9 @@ const reducer: Reducer<stateType, actionType> = (state: stateType, action: actio
     case "set":
       return {messages: action.newData}
     case "load":
-      return {messages: action.newData.concat(state.messages)}
+      return {messages: state.messages.concat(action.newData)}
     case "new":
-      state.messages.push(action.newData)
+      state.messages.unshift(action.newData)
       return state
     default:
       return state

@@ -102,7 +102,6 @@ const MessageList: FC = () => {
   // 新規スクロールがあった時に呼ばれる
   // 複数件のメッセージを同時に取得したほうがいいとおもう
   const fetchMoreData = () => {
-    console.log("aaa")
     messagesDispatch({
       type: "load",
       newData: Array.from({length: 20}, (_, i) => (mkTestResponse(i.toString())))
