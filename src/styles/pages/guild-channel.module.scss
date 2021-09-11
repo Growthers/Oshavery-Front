@@ -16,7 +16,7 @@ $right_side_width: 15rem;
 }
 
 .server_list {
-  /*@include color.background(sidebar);*/
+  @include color.background(sidebar);
   position: absolute;
   top: 0;
   left: 0;
@@ -34,13 +34,21 @@ $right_side_width: 15rem;
 }
 
 .left_side {
-  /*@include color.background(menubar);*/
+  @include color.background(menubar);
   position: absolute;
   top: 0;
   left: 4rem;
 
   height: 100%;
   width: $left_side_width;
+}
+
+.messages {
+  position: absolute;
+
+  left: $server_list_width + $left_side_width;
+
+  width: calc(100vw - #{$server_list_width} - #{$left_side_width} - #{$right_side_width});
 }
 
 .input {
@@ -52,7 +60,7 @@ $right_side_width: 15rem;
 }
 
 .right_side {
-  /*@include color.background(menubar);*/
+  @include color.background(menubar);
   position: absolute;
   top: 0;
   right: 0;

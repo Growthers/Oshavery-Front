@@ -23,7 +23,7 @@ const Oshavery: NextPage = () => {
         <div className={style.left_side}>
           <ChannelList />
         </div>
-        <div className={style.message}>
+        <div className={style.messages}>
           <MessageList />
         </div>
         <div className={style.input}>
