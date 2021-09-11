@@ -5,7 +5,6 @@ type TextareaProps = {
   onChange: (value: string) => void;
   placeholder: string;
   disabled: boolean;
-  cols: number;
   rows: number;
   value: string;
   //今後追加
@@ -31,6 +30,7 @@ const defaultTextareaSettings: defaultTextareaSettingsType = {
 const TextareaBox: FC<TextareaProps> = (props) => {
   return (
     <textarea
+      id="input_your_message"
       {...defaultTextareaSettings}
       {...props}
       onChange={(e) => props.onChange(e.target.value)}

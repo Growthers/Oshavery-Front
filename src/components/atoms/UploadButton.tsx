@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, useRef } from "react";
-import style from "../../styles/components/atoms/UploadButton.module.css";
+import style from "../../styles/components/atoms/UploadButton.module.scss";
 import { AiOutlineUpload } from "react-icons/ai";
 type uploadProps = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
