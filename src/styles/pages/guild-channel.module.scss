@@ -6,7 +6,9 @@ $right_side_width: 15rem;
 
 .oshavery {
   display: flex;
+  overflow: hidden;
   scrollbar-width: none;
+  height: 100vh;
 
   &::-webkit-scrollbar {
     display: none;
@@ -19,7 +21,7 @@ $right_side_width: 15rem;
   top: 0;
   left: 0;
 
-  height: 100vh;
+  height: 100%;
   width: $server_list_width;
 
   .icon {
@@ -37,7 +39,7 @@ $right_side_width: 15rem;
   top: 0;
   left: 4rem;
 
-  height: 100vh;
+  height: 100%;
   width: $left_side_width;
 }
 
@@ -55,6 +57,6 @@ $right_side_width: 15rem;
   top: 0;
   right: 0;
 
-  height: 100vh;
+  height: 100%;
   width: $right_side_width;
 }
