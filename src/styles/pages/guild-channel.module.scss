@@ -9,6 +9,7 @@ $right_side_width: 15rem;
   overflow: hidden;
   scrollbar-width: none;
   height: 100vh;
+  user-select: none;
 
   &::-webkit-scrollbar {
     display: none;
@@ -70,6 +71,8 @@ $right_side_width: 15rem;
 
   height: 100vh;
   width: calc(100vw - #{$server_list_width} - #{$left_side_width} - #{$right_side_width});
+
+  user-select: text;
 }
 
 .messages {
