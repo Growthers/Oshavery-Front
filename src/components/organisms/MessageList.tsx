@@ -147,7 +147,7 @@ const MessageList: FC = () => {
           display: "flex",
           flexDirection: "column-reverse"
         }}
-        >
+      >
         <script id="MathJax-script" async
                 src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
         </script>
@@ -164,7 +164,7 @@ const MessageList: FC = () => {
         <InfiniteScroll
           dataLength={messagesState.messages.length}
           next={fetchMoreData}
-          style={{ display: "flex", flexDirection: "column-reverse" }}
+          style={{display: "flex", flexDirection: "column-reverse"}}
           inverse={true}
           hasMore={true}
           loader={<h4>Loading...</h4>}
