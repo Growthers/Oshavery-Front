@@ -50,7 +50,7 @@ const MemberList: FC = () => {
       target.className = `${member_style.memberpopup} ${member_style.show}`;
       setIsShow(true);
     }
-  }, []);
+  }, [clear_memberpopup]);
 
   // クリックイベント
   const check_click = (e: any) => {
@@ -109,7 +109,7 @@ const MemberList: FC = () => {
             id={value.id}
             // element_id={element_id_array[index]}
             name={value.name}
-            avatar_url={value.avatar}
+            avatar={value.avatar}
             bot={value.bot}
             func_show_memberpopup={show_memberpopup}
           />
