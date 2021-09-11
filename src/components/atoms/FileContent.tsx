@@ -10,7 +10,7 @@ type FileProps = {
 };
 
 const FileContent: FC<FileProps> = (props) => {
-  if ("image/png" == props.mime || "image/jpg" == props.mime) {
+  if ("image/png" == props.mime || "image/jpeg" == props.mime) {
     return (
       <Image
         src={props.media_url}
@@ -18,6 +18,12 @@ const FileContent: FC<FileProps> = (props) => {
         height={props.height}
         alt={props.name}
       />
+    );
+  } else if ("video/mp4" == props.mime) {
+    return (
+      <video controls width={props.width}>
+        <source src={props.media_url} type={"video/mp4"}></source>
+      </video>
     );
   } else {
     return <a href={props.media_url}>{props.name}</a>;
