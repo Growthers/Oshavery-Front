@@ -22,6 +22,8 @@ import {client} from "../../lib/client";
 import {useRouter} from "next/router";
 // ここまでMarkdown
 
+import style from "../../styles/components/organisms/MessageList.module.scss";
+
 // サーバからのレスポンス
 // props経由で渡されてる
 /*export interface Response {
@@ -138,7 +140,15 @@ const MessageList: FC = () => {
     <>
       {/* お行儀悪い 正々堂々と読み込んで */}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css"/>
-      <div>
+      <div
+        id="scrollableDiv"
+        className={style.messagelist}
+        style={{
+          overflow: "auto",
+          display: "flex",
+          flexDirection: "column-reverse"
+        }}
+        >
         <script id="MathJax-script" async
                 src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
         </script>
@@ -147,14 +157,19 @@ const MessageList: FC = () => {
         next: 新規データ(遡る)読み込みのための関数
         hasMore: 新規データを読み込むか(最後まで遡ったらfalseに設定しましょう
         loader: ロード中に表示される(カッコイイのに設定してください
+
+        その他は以下を参照
+        https://github.com/ankeetmaini/react-infinite-scroll-component#using-scroll-on-top
         */}
 
         <InfiniteScroll
           dataLength={messagesState.messages.length}
           next={fetchMoreData}
+          style={{ display: "flex", flexDirection: "column-reverse" }}
+          inverse={true}
           hasMore={true}
           loader={<h4>Loading...</h4>}
-          inverse={true}
+          scrollableTarget="scrollableDiv"
         >
           {/*
             メッセージの一覧を表示
