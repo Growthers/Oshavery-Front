@@ -125,7 +125,7 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
           if (isShow) setIsShow(false);
           else if (!isShow) setIsShow(true);
         }}
-        className={emoji_open_classname}
+        className={`${emoji_open_classname} ${style.emoji}`}
       >
         <Emoji
           emoji={"grinning"}

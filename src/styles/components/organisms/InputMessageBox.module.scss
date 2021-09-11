@@ -1,3 +1,12 @@
+@use "../../color.variable";
+
+.outer {
+  /*@include color.background(messages);*/
+  padding: 2rem;
+}
+
 .messageBox {
-  color: #ff00ff;
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 1rem;
 }
