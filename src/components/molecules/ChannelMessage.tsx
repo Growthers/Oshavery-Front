@@ -14,11 +14,11 @@ interface Props {
 }
 
 const ChannelMessage: FC<Props> = props => {
-  const r: message = props.response;
-  const author_avatar: string = r.author.avatar;
-  const author_name = r.author.user_name;
+  const res: message = props.response;
+  const author_avatar: string = res.author.avatar;
+  const author_name = res.author.user_name;
 
-  const datetime = new Date(Number(r.timestamp));
+  const datetime = new Date(Number(res.timestamp));
 
   // 今日ですか？
   const istoday = (date: Date) => {
@@ -109,7 +109,7 @@ const ChannelMessage: FC<Props> = props => {
           </div>
           {/* Markdown描画部 */}
           <div>
-            <MessageContent content={r.content} renderer={props.renderer}/>
+            <MessageContent content={res.content} renderer={props.renderer}/>
           </div>
         </div>
       </div>
@@ -122,7 +122,7 @@ const ChannelMessage: FC<Props> = props => {
         </div>
         {/* Markdown描画部 */}
         <div>
-          <MessageContent content={r.content} renderer={props.renderer}/>
+          <MessageContent content={res.content} renderer={props.renderer}/>
         </div>
       </div>
     )
