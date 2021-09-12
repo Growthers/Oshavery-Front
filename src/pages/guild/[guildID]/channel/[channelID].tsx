@@ -8,6 +8,8 @@ import MessageList from "../../../../components/organisms/MessageList";
 import InputMessageBox from "../../../../components/organisms/InputMessageBox";
 import MemberList from "../../../../components/organisms/MemberList";
 
+import WebSocketController from "../../../../lib/WebSocketController";
+
 import style from "../../../../styles/pages/guild-channel.module.scss";
 
 const Oshavery: NextPage = () => {
@@ -16,7 +18,7 @@ const Oshavery: NextPage = () => {
   useEffect(() => {
     if (process.browser) {
       setMessagesHeight(window.innerHeight);
-    };
+    }
     change_messages_height();
   }, []);
 
@@ -29,7 +31,7 @@ const Oshavery: NextPage = () => {
       const height = window.innerHeight - input_height;
 
       setMessagesHeight(height);
-    };
+    }
   };
 
   return (
@@ -65,6 +67,7 @@ const Oshavery: NextPage = () => {
           <MemberList />
         </div>
       </main>
+      <WebSocketController/>
     </>
   );
 };

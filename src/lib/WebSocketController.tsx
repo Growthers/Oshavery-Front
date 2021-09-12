@@ -1,10 +1,28 @@
-import {FC, useEffect} from "react";
+import {FC, useContext, useEffect} from "react";
 import {client} from "./client";
+import {message} from "../types/message";
+import {useRouter} from "next/router";
+import {messagesContext} from "../stores/message";
+
+type ws = {
+  type : string
+  body : {
+    id?: string
+    channelID?: string
+    messageID: string
+  }
+}
 
 const WebSocketController: FC = () => {
+  const router = useRouter()
+  const {channelID} = router.query
+
+  const {messagesDispatch} = useContext(messagesContext)
+
+
   const socket = new WebSocket(process.env.NEXT_PUBLIC_WSENDPOINT!)
   useEffect(() => {
-    socket.onmessage = (event:MessageEvent<{type:string,body:{id:string}}>) => {
+    socket.onmessage = (event:MessageEvent<ws>) => {
 
       switch (event.data.type){
         case "USER_JOINED":
@@ -26,10 +44,18 @@ const WebSocketController: FC = () => {
           break
 
         case "MESSAGE_CREATED":
-          client.get(`/channel/${"aaaaa"}/messages/${event.data.body.id}`)
-            .then(res => {
-
-            })
+          if (channelID != undefined && channelID === event.data.body.channelID){
+            client.get<message>(`/channels/${event.data.body.channelID}/messages/${event.data.body.id}`)
+              .then(res => {
+                messagesDispatch({
+                  type: "new",
+                  newData: res.data
+                })
+              })
+              .catch(error => {
+                console.log(error)
+              })
+          }
           break
 
         case "MESSAGE_UPDATED":
