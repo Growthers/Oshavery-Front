@@ -2,17 +2,21 @@ import React from "react";
 import type { FC } from "react";
 import Link from "next/link";
 
-import { ServerData } from "../organisms/ServerList";
 
 import style from "../../styles/components/atoms/ServerIcon.module.scss";
 
-type Props = ServerData;
+type Props = {
+  id: string
+  name: string
+  icon: string
+  link: string
+}
 
 const ServerIcon: FC<Props> = props => {
   return (
     <div>
-      <Link href={"/guild/[guildID]"} as={`/guild/${props.id}`}>
-        <img className={style.icon} src={props.icon_url}></img>
+      <Link href={"/guild/[guildID]/channel/[channelID]"} as={props.link}>
+        <img className={style.icon} src={props.icon}></img>
       </Link>
       <p className={style.name}>{props.name}</p>
     </div>
