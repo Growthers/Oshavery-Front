@@ -1,4 +1,4 @@
-import { FC, useState, ChangeEvent } from "react";
+import { FC, useState, ChangeEvent, useEffect } from "react";
 import { EmojiData, CustomEmoji } from "emoji-mart";
 import { useRouter } from "next/router";
 
@@ -6,6 +6,7 @@ import EmojiPicker from "../molecules/EmojiPicker";
 import SendButton from "../atoms/SendButton";
 import TextareaBox from "../atoms/TextareaBox";
 import UploadButton from "../atoms/UploadButton";
+import ModalWindow from "../atoms/ModalWindow";
 
 import { client } from "../../lib/client";
 import { postMessageRes } from "../../types/message";
@@ -36,9 +37,65 @@ const InputMessageBox: FC<Props> = props => {
       })
   };
 
-  const sendFile = (e: ChangeEvent<HTMLInputElement>) => {
-    console.table(e);
+  // ファイル関連
+  const [eventtarget, setEventTarget] = useState<ChangeEvent<HTMLInputElement>>();
+  const [filename, setFileName] = useState<string>("");
+  const [fileurl, setFileUrl] = useState<string>("");
+  const [isSending, setIsSending] = useState<Boolean>(false);
+  const [isShow, setIsShow] = useState<Boolean>(false);
+
+  const checkfile = (e: ChangeEvent<HTMLInputElement>) => {
+    const target = e.target;
+    const files = target.files;
+    if (files == null) return;
+    const file = files[0]
+    if (file == null) return;
+    console.log(file)
+    const filesize = file.size;
+
+    // 最大ファイルサイズ(MB)
+    const max = 200;
+    const max_size = max * 1048576;
+
+    if (filesize > max_size) {
+      target.value = "";
+      return;
+    };
+
+    setEventTarget(e);
+    setFileName(file.name);
+
+    if (process.browser) {
+      const blobUrl = window.URL.createObjectURL(file);
+      setFileUrl(blobUrl);
+    };
+
+    // ポップアップでのチェックが実装できてないので
+    // そのまま送信します
+    setIsSending(true);
+
+    setIsShow(true);
   };
+
+  useEffect(() => {
+    if (eventtarget == null) {
+      setIsShow(false);
+      return;
+    }
+
+    // 送信拒否
+    if (!isSending) {
+      eventtarget.target.value = "";
+      setIsShow(false);
+      return;
+    };
+
+    // 送信処理
+    console.log("Sending")
+
+    setIsShow(false);
+    setIsSending(false);
+  }, [isSending]);
 
   const selectEmoji = (e: EmojiData) => {
     console.table(e);
@@ -71,8 +128,6 @@ const InputMessageBox: FC<Props> = props => {
   //test Data
   const customEmojiData: CustomEmoji[] = [];
 
-  const [uploadOnchange, setUploadOnchange] = useState<File>();
-
   return (
     <>
       <div className={style.outer}>
@@ -95,13 +150,24 @@ const InputMessageBox: FC<Props> = props => {
             custom={customEmojiData}
           />
         </div>
-        <SendButton onClick={sendMessage} />
-        <EmojiPicker
-          onSelect={selectEmoji}
-          color={"#FFC266"}
-          custom={customEmojiData}
+      </div>
+      {/*
+      スタイルが上手く当たらないので見送ります.
+      <div className={style.modal} hidden={!isShow}>
+        <ModalWindow
+          title="このファイルを送信しますか？"
+          description={`${filename}`}
+          preview_image_url={fileurl}
+          continue_message="アップロード"
+          cancel_message="キャンセル"
+          continue_function={() => {setIsSending(true)}}
+          cancel_function={() => {
+            setIsSending(false)
+            setIsShow(false)
+          }}
         />
       </div>
+      */}
     </>
   );
 };
