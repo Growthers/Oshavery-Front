@@ -20,11 +20,15 @@ const WebSocketController: FC = () => {
   const {messagesDispatch} = useContext(messagesContext)
 
 
-  const socket = new WebSocket(process.env.NEXT_PUBLIC_WSENDPOINT!)
+  const socket = typeof window !== "undefined" ? new WebSocket(process.env.NEXT_PUBLIC_WSENDPOINT!) : null;
   useEffect(() => {
-    socket.onmessage = (event:MessageEvent<ws>) => {
+    if (socket == null) return
 
-      switch (event.data.type){
+    socket.onmessage = (event:MessageEvent<ws>) => {
+      console.log(event)
+
+
+      switch (event.type){
         case "USER_JOINED":
           break
 
@@ -44,7 +48,8 @@ const WebSocketController: FC = () => {
           break
 
         case "MESSAGE_CREATED":
-          if (channelID != undefined && channelID === event.data.body.channelID){
+          /*
+          if (channelID != undefined && channelID === event.){
             client.get<message>(`/channels/${event.data.body.channelID}/messages/${event.data.body.id}`)
               .then(res => {
                 messagesDispatch({
@@ -55,7 +60,7 @@ const WebSocketController: FC = () => {
               .catch(error => {
                 console.log(error)
               })
-          }
+          }*/
           break
 
         case "MESSAGE_UPDATED":
