@@ -74,17 +74,25 @@ const InputMessageBox: FC<Props> = props => {
   const [uploadOnchange, setUploadOnchange] = useState<File>();
 
   return (
-    <div className={style.outer}>
-      <div className={style.messageBox}>
-        <UploadButton onChange={sendFile} />
-        <div className={style.textarea}>
-          <TextareaBox
-            disabled={disabled}
-            rows={rows}
-            onChange={onchange_event}
-            placeholder={placeholder}
-            value={message}
-            onKeyDown={sendMessage}
+    <>
+      <div className={style.outer}>
+        <div className={style.messageBox}>
+          <UploadButton onChange={checkfile} />
+          <div className={style.textarea}>
+            <TextareaBox
+              disabled={disabled}
+              rows={rows}
+              onChange={onchange_event}
+              placeholder={placeholder}
+              value={message}
+              onKeyDown={sendMessage}
+            />
+          </div>
+          <SendButton onClick={sendMessage} />
+          <EmojiPicker
+            onSelect={selectEmoji}
+            color={"#FFC266"}
+            custom={customEmojiData}
           />
         </div>
         <SendButton onClick={sendMessage} />
@@ -94,7 +102,7 @@ const InputMessageBox: FC<Props> = props => {
           custom={customEmojiData}
         />
       </div>
-    </div>
+    </>
   );
 };
 
