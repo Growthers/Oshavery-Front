@@ -1,26 +1,26 @@
-import {FC, useState, useEffect, useContext} from 'react'
-
-import ChannelMessage from '../molecules/ChannelMessage'
-
-import InfiniteScroll from 'react-infinite-scroll-component'
+import { FC, useState, useEffect, useContext } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { useRouter } from "next/router";
 
 // Markdown描画用コンポーネント
-import MarkdownIt from "markdown-it"
-import MarkdownItEmoji from 'markdown-it-emoji'
+import MarkdownIt from "markdown-it";
+import MarkdownItEmoji from "markdown-it-emoji";
 // KaTeXレンダコンポーネント
 // XSSの脆弱性があるらしいが、markdown-itの力で消えている
 // => ライブラリを変更することで解決
 // @ts-ignore
-import MarkdownItKatex from '@iktakahiro/markdown-it-katex'
+import MarkdownItKatex from "@iktakahiro/markdown-it-katex";
 // Emojiレンダリングコンポーネント
 // お願い！握りつぶさせて！
 // @ts-ignore
-import {Emoji} from 'emoji-mart'
-import {messagesContext} from "../../stores/message";
-import {message} from "../../types/message";
-import {client} from "../../lib/client";
-import {useRouter} from "next/router";
+import { Emoji } from "emoji-mart";
 // ここまでMarkdown
+
+import ChannelMessage from "../molecules/ChannelMessage";
+
+import { messagesContext } from "../../stores/message";
+import { message } from "../../types/message";
+import { client } from "../../lib/client";
 
 import style from "../../styles/components/organisms/MessageList.module.scss";
 
@@ -50,7 +50,7 @@ const mkTestResponse = (authN: string): message => {
     author: {
       id: "test_author_id",
       user_name: "NAME: " + authN,
-      avatar: "test_author_name",
+      avatar: "url",
       bot: false,
       state: 0,
     },
@@ -61,11 +61,11 @@ const mkTestResponse = (authN: string): message => {
   }
   const t = [
     "**HELLO**",
-    "__UNKO__",
+    "__HOGE__",
     "# TEST",
     ":+1: vote",
     "$\\sqrt{3x-1}+(1+x)^2$ テスト数式",
-    "<h1>UNKOWORLD</h1> <- This is html tag",
+    "<h1>HOGEWORLD</h1> <- This is html tag",
     "';alert(String.fromCharCode(88,83,83))//';alert(String.fromCharCode(88,83,83))//\";\n alert(String.fromCharCode(88,83,83))//\";alert(String.fromCharCode(88,83,83))//--\n ></SCRIPT>\">'><SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT>",
     "'';!--\"<XSS>=&{()}",
     ":tada: fasldjflajsdlfl",
@@ -78,7 +78,6 @@ const mkTestResponse = (authN: string): message => {
 // コンポーネント本体
 // Markdownレンダリングのライブラリのインスタンスもここで持っている
 const MessageList: FC = () => {
-
   const {messagesState, messagesDispatch} = useContext(messagesContext)
 
   const router = useRouter()
@@ -87,16 +86,14 @@ const MessageList: FC = () => {
 
   // 初期化処理
   useEffect(() => {
-
     setEndPoint(`/channels/${channelID}/messages`)
 
     // テストデータを20件追加
     // 初めに出てくるデータはここで作られている
     messagesDispatch({
       type: "set",
-      newData: Array.from({length: 20}, (_, i) => (mkTestResponse(i.toString())))
+      newData: Array.from({length: 100}, (_, i) => (mkTestResponse(i.toString())))
     })
-
   }, [])
 
   // 新規スクロールがあった時に呼ばれる
@@ -135,6 +132,9 @@ const MessageList: FC = () => {
   if (messagesState.messages == undefined)
     return <></>
 
+  // 同一ユーザーによる連続投稿のカウント
+  let countup = 0;
+
   return (
     <>
       {/* お行儀悪い 正々堂々と読み込んで */}
@@ -160,7 +160,6 @@ const MessageList: FC = () => {
         その他は以下を参照
         https://github.com/ankeetmaini/react-infinite-scroll-component#using-scroll-on-top
         */}
-
         <InfiniteScroll
           dataLength={messagesState.messages.length}
           next={fetchMoreData}
@@ -174,13 +173,42 @@ const MessageList: FC = () => {
             メッセージの一覧を表示
             全部divにしてますがなんとなくです
           */}
-          {messagesState.messages.map(value => (
-            <ChannelMessage
-              key={value.id}
-              response={value}
-              renderer={md.render.bind(md)}
-            />
-          ))}
+          {messagesState.messages.map((value, index) => {
+            // index0が最新
+            const messages_array = messagesState.messages
+            let author_show = true;
+
+            // 配列の最後かどうか
+            if ((index + 1) !== messages_array.length) {
+              // 一つ前のデータ
+              const before_value = messages_array[index + 1];
+
+              // 一つ前のメッセージの送信者が異なる
+              if (value.author.id != before_value.author.id) {
+                countup = 0;
+              }
+              // 一つ前のメッセージが5分以内に送信されていない
+              else if (Number(value.timestamp) - Number(before_value.timestamp) >= (5 * 60000)) {
+                countup = 0;
+              }
+              // 既に5件連続になっている
+              else if (countup >= 5) {
+                countup = 0;
+              }
+              // 連読処理
+              else {
+                countup++;
+                author_show = false;
+              }
+            }
+
+            return  <ChannelMessage
+                      key={value.id}
+                      response={value}
+                      author_show={author_show}
+                      renderer={md.render.bind(md)}
+                    />
+          })}
         </InfiniteScroll>
       </div>
     </>
