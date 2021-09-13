@@ -133,14 +133,16 @@ const InputMessageBox: FC<Props> = props => {
       <div className={style.outer}>
         <div className={style.messageBox}>
           <UploadButton onChange={checkfile} />
-          <TextareaBox
-            disabled={disabled}
-            rows={rows}
-            onChange={onchange_event}
-            placeholder={placeholder}
-            value={message}
-            onKeyDown={sendMessage}
-          />
+          <div className={style.textarea}>
+            <TextareaBox
+              disabled={disabled}
+              rows={rows}
+              onChange={onchange_event}
+              placeholder={placeholder}
+              value={message}
+              onKeyDown={sendMessage}
+            />
+          </div>
           <SendButton onClick={sendMessage} />
           <EmojiPicker
             onSelect={selectEmoji}
