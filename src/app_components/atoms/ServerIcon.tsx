@@ -2,7 +2,7 @@ import React from "react";
 import type { FC } from "react";
 import Link from "next/link";
 
-import style from "../../styles/components/atoms/ServerIcon.module.scss";
+import style from "../../styles/app_components/atoms/ServerIcon.module.scss";
 
 type Props = {
   id: string;

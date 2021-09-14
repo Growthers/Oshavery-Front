@@ -1,7 +1,7 @@
 import React from "react";
 import type { FC } from "react";
 
-import style from "../../styles/components/atoms/MemberPopup.module.scss";
+import style from "../../styles/app_components/atoms/MemberPopup.module.scss";
 import { user } from "../../types/user";
 
 type Props = Pick<user, "name" | "avatar" | "bot">;

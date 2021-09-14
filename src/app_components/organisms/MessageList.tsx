@@ -22,7 +22,7 @@ import { messagesContext } from "../../stores/message";
 import { message } from "../../types/message";
 import { client } from "../../lib/client";
 
-import style from "../../styles/components/organisms/MessageList.module.scss";
+import style from "../../styles/app_components/organisms/MessageList.module.scss";
 
 // サーバからのレスポンス
 // props経由で渡されてる

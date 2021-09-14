@@ -3,7 +3,7 @@ import type { FC } from "react";
 
 import MemberPopup from "./MemberPopup";
 
-import style from "../../styles/components/atoms/MemberCard.module.scss";
+import style from "../../styles/app_components/atoms/MemberCard.module.scss";
 
 type Props = {
   id: string;
