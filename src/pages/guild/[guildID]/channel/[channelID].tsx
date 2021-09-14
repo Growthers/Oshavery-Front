@@ -16,7 +16,7 @@ const Oshavery: NextPage = () => {
   useEffect(() => {
     if (process.browser) {
       setMessagesHeight(window.innerHeight);
-    };
+    }
     change_messages_height();
   }, []);
 
@@ -29,7 +29,7 @@ const Oshavery: NextPage = () => {
       const height = window.innerHeight - input_height;
 
       setMessagesHeight(height);
-    };
+    }
   };
 
   return (
@@ -50,15 +50,13 @@ const Oshavery: NextPage = () => {
           <div
             className={style.messages}
             style={{
-              height: messages_height
+              height: messages_height,
             }}
           >
             <MessageList />
           </div>
           <div className={style.input} id="input_box">
-            <InputMessageBox
-              textarea_change_event={change_messages_height}
-            />
+            <InputMessageBox textarea_change_event={change_messages_height} />
           </div>
         </div>
         <div className={style.right_side}>

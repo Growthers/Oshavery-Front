@@ -1,4 +1,4 @@
-import {message} from "../../types/message";
+import { message } from "../../types/message";
 import { Context, createContext } from "react";
 
 export const TestMassagesData: Context<message[]> = createContext<message[]>([
@@ -10,12 +10,12 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
       user_name: "ゼっちゃん",
       avatar: "",
       bot: false,
-      state: 0
+      state: 0,
     },
     content: "王冠",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: ""
+    edited_timestamp: "",
   },
   {
     id: "Chokohmah",
@@ -25,12 +25,12 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
       user_name: "弟子1号",
       avatar: "",
       bot: false,
-      state: 0
+      state: 0,
     },
     content: "知恵",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: ""
+    edited_timestamp: "",
   },
   {
     id: "Binah",
@@ -40,12 +40,12 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
       user_name: "2号兄貴",
       avatar: "",
       bot: false,
-      state: 0
+      state: 0,
     },
     content: "理解",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: ""
+    edited_timestamp: "",
   },
   {
     id: "Chesed",
@@ -55,12 +55,12 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
       user_name: "ゼっちゃん",
       avatar: "",
       bot: false,
-      state: 0
+      state: 0,
     },
     content: "慈悲",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: ""
+    edited_timestamp: "",
   },
   {
     id: "Gevurah",
@@ -70,12 +70,12 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
       user_name: "弟子1号",
       avatar: "",
       bot: false,
-      state: 0
+      state: 0,
     },
     content: "峻厳",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: ""
+    edited_timestamp: "",
   },
   {
     id: "Tiphereth",
@@ -85,12 +85,12 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
       user_name: "弟子1号",
       avatar: "",
       bot: false,
-      state: 0
+      state: 0,
     },
     content: "美",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: ""
+    edited_timestamp: "",
   },
   {
     id: "Netzach",
@@ -100,12 +100,12 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
       user_name: "ゼっちゃん",
       avatar: "",
       bot: false,
-      state: 0
+      state: 0,
     },
     content: "勝利",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: ""
+    edited_timestamp: "",
   },
   {
     id: "Hod",
@@ -115,12 +115,12 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
       user_name: "2号兄貴",
       avatar: "",
       bot: false,
-      state: 0
+      state: 0,
     },
     content: "栄光",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: ""
+    edited_timestamp: "",
   },
   {
     id: "Yesod",
@@ -130,12 +130,12 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
       user_name: "弟子1号",
       avatar: "",
       bot: false,
-      state: 0
+      state: 0,
     },
     content: "基礎",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: ""
+    edited_timestamp: "",
   },
   {
     id: "Malkuth",
@@ -145,12 +145,12 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
       user_name: "ゼっちゃん",
       avatar: "",
       bot: false,
-      state: 0
+      state: 0,
     },
     content: "王国",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: ""
+    edited_timestamp: "",
   },
   {
     id: "Ba'at",
@@ -160,11 +160,11 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
       user_name: "ゼっちゃん",
       avatar: "",
       bot: false,
-      state: 0
+      state: 0,
     },
     content: "知識",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: ""
-  }
-])
+    edited_timestamp: "",
+  },
+]);

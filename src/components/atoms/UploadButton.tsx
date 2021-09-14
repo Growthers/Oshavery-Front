@@ -9,13 +9,7 @@ const UploadButton: FC<uploadProps> = (props) => {
   return (
     <label className={style.upload}>
       <AiOutlineUpload size={26} />
-      <input
-        hidden
-        id="uploadButton"
-        ref={inputRef}
-        type="file"
-        onChange={props.onChange}
-      />
+      <input hidden id="uploadButton" ref={inputRef} type="file" onChange={props.onChange} />
     </label>
   );
 };
