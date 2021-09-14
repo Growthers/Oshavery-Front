@@ -20,7 +20,7 @@ const Layout: FC<Props> = ({ pagetitle, children, isheader, isfooter, descriptio
     <>
       <Head>
         <title>{pagetitle}</title>
-        <meta http-equiv="content-language" content="ja" />
+        <meta httpEquiv="content-language" content="ja" />
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="name" content={pagetitle} />
