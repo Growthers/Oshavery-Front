@@ -13,7 +13,7 @@ interface Props {
   renderer: (content: string) => string;
 }
 
-const ChannelMessage: FC<Props> = props => {
+const ChannelMessage: FC<Props> = (props) => {
   const res: message = props.response;
   const author_avatar: string = res.author.avatar;
   const author_name = res.author.user_name;
@@ -34,7 +34,7 @@ const ChannelMessage: FC<Props> = props => {
     }
 
     return result;
-  }
+  };
 
   // 昨日ですか？
   const isyesterday = (date: Date) => {
@@ -51,7 +51,7 @@ const ChannelMessage: FC<Props> = props => {
     }
 
     return result;
-  }
+  };
 
   // 一昨日ですか？
   const is2daysago = (date: Date) => {
@@ -68,10 +68,10 @@ const ChannelMessage: FC<Props> = props => {
     }
 
     return result;
-  }
+  };
 
   // 今年ですか？
-  const isthisyear= (date: Date) => {
+  const isthisyear = (date: Date) => {
     const today = new Date();
     let result = false;
 
@@ -80,27 +80,32 @@ const ChannelMessage: FC<Props> = props => {
     }
 
     return result;
-  }
+  };
 
   // ゼロ埋め関数
   const fillzero = (num: number, digit: number) => {
-    return (`${"0".repeat(digit)}${num}`).slice(-1 * digit);
-  }
+    return `${"0".repeat(digit)}${num}`.slice(-1 * digit);
+  };
 
   const time = `${fillzero(datetime.getHours(), 2)}:${fillzero(datetime.getMinutes(), 2)}`;
   let timestamp = time;
   if (istoday(datetime)) timestamp = `今日 ${time}`;
   else if (isyesterday(datetime)) timestamp = `昨日 ${time}`;
   else if (is2daysago(datetime)) timestamp = `一昨日 ${time}`;
-  else if (isthisyear(datetime)) timestamp = `${fillzero(datetime.getMonth() + 1, 2)}/${fillzero(datetime.getDate(), 2)} ${time}`;
-  else timestamp = `${fillzero(datetime.getFullYear(), 4)}/${fillzero(datetime.getMonth() + 1, 2)}/${fillzero(datetime.getDate(), 2)} ${time}`;
+  else if (isthisyear(datetime))
+    timestamp = `${fillzero(datetime.getMonth() + 1, 2)}/${fillzero(datetime.getDate(), 2)} ${time}`;
+  else
+    timestamp = `${fillzero(datetime.getFullYear(), 4)}/${fillzero(datetime.getMonth() + 1, 2)}/${fillzero(
+      datetime.getDate(),
+      2,
+    )} ${time}`;
 
   // dangerousな文字をHTMLにして表示してるの怖くね
   if (props.author_show) {
     return (
       <div className={style.fullcontent}>
         <div className={style.left_side}>
-          <img className={style.image} src={author_avatar} alt={author_name + "'s avatar"}/>
+          <img className={style.image} src={author_avatar} alt={author_name + "'s avatar"} />
         </div>
         <div>
           <div>
@@ -109,11 +114,11 @@ const ChannelMessage: FC<Props> = props => {
           </div>
           {/* Markdown描画部 */}
           <div>
-            <MessageContent content={res.content} renderer={props.renderer}/>
+            <MessageContent content={res.content} renderer={props.renderer} />
           </div>
         </div>
       </div>
-    )
+    );
   } else {
     return (
       <div className={style.simplecontent}>
@@ -122,11 +127,11 @@ const ChannelMessage: FC<Props> = props => {
         </div>
         {/* Markdown描画部 */}
         <div>
-          <MessageContent content={res.content} renderer={props.renderer}/>
+          <MessageContent content={res.content} renderer={props.renderer} />
         </div>
       </div>
-    )
+    );
   }
-}
+};
 
 export default React.memo(ChannelMessage);

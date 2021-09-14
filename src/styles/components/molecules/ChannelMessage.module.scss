@@ -10,6 +10,7 @@ $left_space: 4rem;
   .left_side {
     width: $left_space;
     text-align: center;
+    user-select: none;
 
     .image {
       height: calc(#{$left_space} * 0.7);
@@ -29,6 +30,7 @@ $left_space: 4rem;
     font-size: 80%;
     margin-left: 0.5rem;
     color: #ff9900;
+    user-select: none;
   }
 }
 
@@ -39,6 +41,7 @@ $left_space: 4rem;
   .left_side {
     width: $left_space;
     text-align: right;
+    user-select: none;
 
     .timestamp {
       font-size: 80%;

@@ -57,8 +57,8 @@ const mkTestResponse = (authN: string): message => {
     content: "test_content",
     guild_id: "test_guild_id",
     channel_id: "test_channel_id",
-    edited_timestamp: new Date().getTime().toString()
-  }
+    edited_timestamp: new Date().getTime().toString(),
+  };
   const t = [
     "**HELLO**",
     "__HOGE__",
@@ -69,41 +69,41 @@ const mkTestResponse = (authN: string): message => {
     "';alert(String.fromCharCode(88,83,83))//';alert(String.fromCharCode(88,83,83))//\";\n alert(String.fromCharCode(88,83,83))//\";alert(String.fromCharCode(88,83,83))//--\n ></SCRIPT>\">'><SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT>",
     "'';!--\"<XSS>=&{()}",
     ":tada: fasldjflajsdlfl",
-    "<script>alert(1)</script>"
-  ]
-  ret.content = t[Math.floor(Math.random() * t.length)]
-  return ret
-}
+    "<script>alert(1)</script>",
+  ];
+  ret.content = t[Math.floor(Math.random() * t.length)];
+  return ret;
+};
 
 // コンポーネント本体
 // Markdownレンダリングのライブラリのインスタンスもここで持っている
 const MessageList: FC = () => {
-  const {messagesState, messagesDispatch} = useContext(messagesContext)
+  const { messagesState, messagesDispatch } = useContext(messagesContext);
 
-  const router = useRouter()
-  const {channelID} = router.query
-  const [endPoint, setEndPoint] = useState<string>()
+  const router = useRouter();
+  const { channelID } = router.query;
+  const [endPoint, setEndPoint] = useState<string>();
 
   // 初期化処理
   useEffect(() => {
-    setEndPoint(`/channels/${channelID}/messages`)
+    setEndPoint(`/channels/${channelID}/messages`);
 
     // テストデータを20件追加
     // 初めに出てくるデータはここで作られている
     messagesDispatch({
       type: "set",
-      newData: Array.from({length: 100}, (_, i) => (mkTestResponse(i.toString())))
-    })
-  }, [])
+      newData: Array.from({ length: 100 }, (_, i) => mkTestResponse(i.toString())),
+    });
+  }, []);
 
   // 新規スクロールがあった時に呼ばれる
   // 複数件のメッセージを同時に取得したほうがいいとおもう
   const fetchMoreData = () => {
     messagesDispatch({
       type: "load",
-      newData: Array.from({length: 20}, (_, i) => (mkTestResponse(i.toString())))
-    })
-  }
+      newData: Array.from({ length: 20 }, (_, i) => mkTestResponse(i.toString())),
+    });
+  };
 
   // Markdown-itのインスタンスを作成しています
   // このインスタンスは全てのメッセージのレンダリングに使われます
@@ -112,25 +112,24 @@ const MessageList: FC = () => {
     // デフォルトでfalseですが、念のため
     // markdown-it側である程度のサニタイズ処理は施されるようです
     html: false,
-  })
+  });
   // 数式の描画
-  md.use(MarkdownItKatex)
+  md.use(MarkdownItKatex);
   // 絵文字の描画
   // emoji-martライブラリのカスタム絵文字を使うために面倒なことをしています
-  md.use(MarkdownItEmoji)
+  md.use(MarkdownItEmoji);
   md.renderer.rules.emoji = function (token, idx) {
     // EmojiコンポーネントがJSXかStringを返すクソ仕様のせいでtypescriptの恩恵を受けられません
     var ret = Emoji({
       html: true,
       emoji: token[idx].markup,
-      size: 16
-    })
+      size: 16,
+    });
     // @ts-ignore
     return ret as string;
   };
 
-  if (messagesState.messages == undefined)
-    return <></>
+  if (messagesState.messages == undefined) return <></>;
 
   // 同一ユーザーによる連続投稿のカウント
   let countup = 0;
@@ -138,19 +137,17 @@ const MessageList: FC = () => {
   return (
     <>
       {/* お行儀悪い 正々堂々と読み込んで */}
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
       <div
         id="scrollableDiv"
         className={style.messagelist}
         style={{
           overflow: "auto",
           display: "flex",
-          flexDirection: "column-reverse"
+          flexDirection: "column-reverse",
         }}
       >
-        <script id="MathJax-script" async
-                src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" />
         {/*
         dataLength: メッセージの個数
         next: 新規データ(遡る)読み込みのための関数
@@ -163,7 +160,7 @@ const MessageList: FC = () => {
         <InfiniteScroll
           dataLength={messagesState.messages.length}
           next={fetchMoreData}
-          style={{display: "flex", flexDirection: "column-reverse"}}
+          style={{ display: "flex", flexDirection: "column-reverse" }}
           inverse={true}
           hasMore={true}
           loader={<h4>Loading...</h4>}
@@ -175,11 +172,11 @@ const MessageList: FC = () => {
           */}
           {messagesState.messages.map((value, index) => {
             // index0が最新
-            const messages_array = messagesState.messages
+            const messages_array = messagesState.messages;
             let author_show = true;
 
             // 配列の最後かどうか
-            if ((index + 1) !== messages_array.length) {
+            if (index + 1 !== messages_array.length) {
               // 一つ前のデータ
               const before_value = messages_array[index + 1];
 
@@ -188,7 +185,7 @@ const MessageList: FC = () => {
                 countup = 0;
               }
               // 一つ前のメッセージが5分以内に送信されていない
-              else if (Number(value.timestamp) - Number(before_value.timestamp) >= (5 * 60000)) {
+              else if (Number(value.timestamp) - Number(before_value.timestamp) >= 5 * 60000) {
                 countup = 0;
               }
               // 既に5件連続になっている
@@ -202,17 +199,14 @@ const MessageList: FC = () => {
               }
             }
 
-            return  <ChannelMessage
-                      key={value.id}
-                      response={value}
-                      author_show={author_show}
-                      renderer={md.render.bind(md)}
-                    />
+            return (
+              <ChannelMessage key={value.id} response={value} author_show={author_show} renderer={md.render.bind(md)} />
+            );
           })}
         </InfiniteScroll>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default MessageList
+export default MessageList;
