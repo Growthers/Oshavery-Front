@@ -1,5 +1,5 @@
-import { myInfo, user } from "../../types/user"
-import { Context, createContext } from "react"
+import { myInfo, user } from "../../types/user";
+import { Context, createContext } from "react";
 
 export const TestUserData: Context<user> = createContext<user>({
   id: "0",
@@ -7,7 +7,7 @@ export const TestUserData: Context<user> = createContext<user>({
   avatar: "",
   bot: false,
   state: 0,
-})
+});
 
 export const testMyInfo: myInfo = {
   id: "0",
@@ -106,4 +106,4 @@ export const testMyInfo: myInfo = {
       ],
     },
   ],
-}
+};

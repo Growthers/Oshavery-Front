@@ -1,15 +1,15 @@
-import React, { useContext } from "react"
-import { FC } from "react"
+import React, { useContext } from "react";
+import { FC } from "react";
 
-import ServerIcon from "../atoms/ServerIcon"
-import { userContext } from "../../stores/user"
+import ServerIcon from "../atoms/ServerIcon";
+import { userContext } from "../../stores/user";
 
 const ServerList: FC = () => {
-  const { userState } = useContext(userContext)
+  const { userState } = useContext(userContext);
 
-  const guildsData = userState.user.guilds
+  const guildsData = userState.user.guilds;
 
-  if (guildsData == undefined) return <></>
+  if (guildsData == undefined) return <></>;
 
   return (
     <div>
@@ -23,7 +23,7 @@ const ServerList: FC = () => {
         />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default React.memo(ServerList)
+export default React.memo(ServerList);

@@ -1,5 +1,5 @@
-import { message } from "../../types/message"
-import { Context, createContext } from "react"
+import { message } from "../../types/message";
+import { Context, createContext } from "react";
 
 export const TestMassagesData: Context<message[]> = createContext<message[]>([
   {
@@ -167,4 +167,4 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
     channel_id: "a",
     edited_timestamp: "",
   },
-])
+]);

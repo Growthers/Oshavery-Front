@@ -1,15 +1,15 @@
-import React from "react"
-import type { FC } from "react"
-import Link from "next/link"
+import React from "react";
+import type { FC } from "react";
+import Link from "next/link";
 
-import style from "../../styles/components/atoms/ServerIcon.module.scss"
+import style from "../../styles/components/atoms/ServerIcon.module.scss";
 
 type Props = {
-  id: string
-  name: string
-  icon: string
-  link: string
-}
+  id: string;
+  name: string;
+  icon: string;
+  link: string;
+};
 
 const ServerIcon: FC<Props> = (props) => {
   return (
@@ -19,7 +19,7 @@ const ServerIcon: FC<Props> = (props) => {
       </Link>
       <p className={style.name}>{props.name}</p>
     </div>
-  )
-}
+  );
+};
 
-export default React.memo(ServerIcon)
+export default React.memo(ServerIcon);

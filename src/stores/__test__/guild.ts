@@ -1,7 +1,7 @@
-import { guild } from "../../types/guild"
-import { Context, createContext } from "react"
+import { guild } from "../../types/guild";
+import { Context, createContext } from "react";
 
-export const TestWatchingGuild: Context<string> = createContext<string>("server_one")
+export const TestWatchingGuild: Context<string> = createContext<string>("server_one");
 
 export const TestGuildData: Context<guild[]> = createContext<guild[]>([
   {
@@ -93,4 +93,4 @@ export const TestGuildData: Context<guild[]> = createContext<guild[]>([
       },
     ],
   },
-])
+]);

@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from "axios"
+import axios, { AxiosInstance } from "axios";
 
 export const client: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_ENDPOINT,
@@ -7,4 +7,4 @@ export const client: AxiosInstance = axios.create({
     "X-Requested-With": "XMLHttpRequest",
   },
   responseType: "json",
-})
+});

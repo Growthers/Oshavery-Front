@@ -1,18 +1,18 @@
-import React from "react"
-import type { FC } from "react"
+import React from "react";
+import type { FC } from "react";
 
-import MemberPopup from "./MemberPopup"
+import MemberPopup from "./MemberPopup";
 
-import style from "../../styles/components/atoms/MemberCard.module.scss"
+import style from "../../styles/components/atoms/MemberCard.module.scss";
 
 type Props = {
-  id: string
+  id: string;
   // element_id: string,
-  name: string
-  avatar: string
-  bot: boolean
-  func_show_memberpopup: (target_id: string) => void
-}
+  name: string;
+  avatar: string;
+  bot: boolean;
+  func_show_memberpopup: (target_id: string) => void;
+};
 
 const MemberCard: FC<Props> = (props) => {
   return (
@@ -28,7 +28,7 @@ const MemberCard: FC<Props> = (props) => {
         <MemberPopup name={props.name} avatar={props.avatar} bot={props.bot} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default React.memo(MemberCard)
+export default React.memo(MemberCard);

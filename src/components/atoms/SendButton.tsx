@@ -1,9 +1,9 @@
-import type { FC } from "react"
-import style from "../../styles/components/atoms/SendButton.module.scss"
+import type { FC } from "react";
+import style from "../../styles/components/atoms/SendButton.module.scss";
 
 type Props = {
-  onClick: VoidFunction
-}
+  onClick: VoidFunction;
+};
 
 const SendButton: FC<Props> = (props) => {
   return (
@@ -20,7 +20,7 @@ const SendButton: FC<Props> = (props) => {
         <path d="M0.000183105 56.5L75 28L6.58802 29L0.000183105 56.5Z" />
       </svg>
     </div>
-  )
-}
+  );
+};
 
-export default SendButton
+export default SendButton;

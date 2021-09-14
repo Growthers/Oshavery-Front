@@ -1,4 +1,4 @@
 export type version = {
-  version: string
-  revision: string
-}
+  version: string;
+  revision: string;
+};

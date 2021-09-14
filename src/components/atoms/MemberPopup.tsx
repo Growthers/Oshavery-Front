@@ -1,10 +1,10 @@
-import React from "react"
-import type { FC } from "react"
+import React from "react";
+import type { FC } from "react";
 
-import style from "../../styles/components/atoms/MemberPopup.module.scss"
-import { user } from "../../types/user"
+import style from "../../styles/components/atoms/MemberPopup.module.scss";
+import { user } from "../../types/user";
 
-type Props = Pick<user, "name" | "avatar" | "bot">
+type Props = Pick<user, "name" | "avatar" | "bot">;
 
 const MemberPopup: FC<Props> = (props) => {
   return (
@@ -15,7 +15,7 @@ const MemberPopup: FC<Props> = (props) => {
       <span className={`${style.name} memberpopup_element`}>{props.name}</span>
       {props.bot && <span className={`${style.bot} memberpopup_element`}>BOT</span>}
     </div>
-  )
-}
+  );
+};
 
-export default React.memo(MemberPopup)
+export default React.memo(MemberPopup);

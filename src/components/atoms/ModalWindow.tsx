@@ -1,17 +1,17 @@
-import React from "react"
-import { FC } from "react"
+import React from "react";
+import { FC } from "react";
 
-import style from "../../styles/components/atoms/ModalWindow.module.scss"
+import style from "../../styles/components/atoms/ModalWindow.module.scss";
 
 type Props = {
-  title: string
-  description: string
-  preview_image_url: string
-  continue_message: string
-  cancel_message: string
-  continue_function: () => void
-  cancel_function: () => void
-}
+  title: string;
+  description: string;
+  preview_image_url: string;
+  continue_message: string;
+  cancel_message: string;
+  continue_function: () => void;
+  cancel_function: () => void;
+};
 
 const ModalWindow: FC<Props> = (props) => {
   return (
@@ -28,7 +28,7 @@ const ModalWindow: FC<Props> = (props) => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default React.memo(ModalWindow)
+export default React.memo(ModalWindow);
