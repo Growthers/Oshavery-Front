@@ -9,6 +9,7 @@ type Props = {
   channel_type: string
   channel_topics: string
   link: string
+  selected: boolean
 }
 
 
@@ -23,7 +24,7 @@ const ChannelCard: FC<Props> = props => {
   } else {
     return (
       <Link href={"/guild/[guildID]/channel/[channelID]"} as={props.link}>
-        <a className={style.channel}>
+        <a className={`${style.channel} ${props.selected&&style.selected}`}>
           <div className={style.sharp}>
             <i className={`${style.one_i} ${style.one}`}/>
             <i className={`${style.one_i} ${style.two}`}/>
