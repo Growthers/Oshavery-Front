@@ -1,14 +1,13 @@
-import {myInfo, user} from "../../types/user";
-import {Context, createContext} from "react";
+import { myInfo, user } from "../../types/user"
+import { Context, createContext } from "react"
 
 export const TestUserData: Context<user> = createContext<user>({
-    id: "0",
-    name: "ゼっちゃん",
-    avatar: "",
-    bot: false,
-    state: 0
-  }
-)
+  id: "0",
+  name: "ゼっちゃん",
+  avatar: "",
+  bot: false,
+  state: 0,
+})
 
 export const testMyInfo: myInfo = {
   id: "0",
@@ -16,7 +15,7 @@ export const testMyInfo: myInfo = {
   avatar: "",
   bot: false,
   state: 0,
-  "guilds": [
+  guilds: [
     {
       id: "server_one",
       name: "鯖1",
@@ -29,22 +28,22 @@ export const testMyInfo: myInfo = {
           name: "ゼっちゃん",
           avatar: "",
           bot: false,
-          state: 0
+          state: 0,
         },
         {
           id: "1",
           name: "弟子1号",
           avatar: "",
           bot: false,
-          state: 0
+          state: 0,
         },
         {
           id: "2",
           name: "2号兄貴",
           avatar: "",
           bot: false,
-          state: 0
-        }
+          state: 0,
+        },
       ],
       channels: [
         {
@@ -53,7 +52,7 @@ export const testMyInfo: myInfo = {
           channel_topics: "this is A",
           channel_type: "text",
           channel_position: 0,
-          creator_id: "0"
+          creator_id: "0",
         },
         {
           id: "b",
@@ -61,9 +60,9 @@ export const testMyInfo: myInfo = {
           channel_topics: "this is B",
           channel_type: "text",
           channel_position: 1,
-          creator_id: "0"
-        }
-      ]
+          creator_id: "0",
+        },
+      ],
     },
     {
       id: "server_two",
@@ -77,15 +76,15 @@ export const testMyInfo: myInfo = {
           name: "ゼっちゃん",
           avatar: "",
           bot: false,
-          state: 0
+          state: 0,
         },
         {
           id: "1",
           name: "弟子1号",
           avatar: "",
           bot: false,
-          state: 0
-        }
+          state: 0,
+        },
       ],
       channels: [
         {
@@ -94,7 +93,7 @@ export const testMyInfo: myInfo = {
           channel_topics: "this is C",
           channel_type: "text",
           channel_position: 0,
-          creator_id: "0"
+          creator_id: "0",
         },
         {
           id: "d",
@@ -102,9 +101,9 @@ export const testMyInfo: myInfo = {
           channel_topics: "this is D",
           channel_type: "text",
           channel_position: 1,
-          creator_id: "0"
-        }
-      ]
-    }
-  ]
+          creator_id: "0",
+        },
+      ],
+    },
+  ],
 }
