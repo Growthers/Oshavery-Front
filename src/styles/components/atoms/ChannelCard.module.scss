@@ -19,6 +19,11 @@
   &:hover {
     opacity: 80%;
   }
+
+  &.selected {
+    background-color: #ffd299;
+    border-radius: 5px 0 0 5px;
+  }
 }
 
 .sharp {

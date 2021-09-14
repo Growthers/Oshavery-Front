@@ -12,7 +12,7 @@ const ChannelList: FC = () => {
   const { userState } = useContext(userContext);
 
   const router = useRouter();
-  const { guildID } = router.query;
+  const { guildID, channelID } = router.query;
 
   const [nowGuild, setNowGuild] = useState<guild>();
 
@@ -32,8 +32,8 @@ const ChannelList: FC = () => {
             channel_name={value.channel_name}
             channel_topics={value.channel_topics}
             channel_type={value.channel_type}
-            // @ts-ignore
             link={`/guild/${guildID}/channel/${value.id}`}
+            selected={value.id === channelID}
           />
         );
       })}
