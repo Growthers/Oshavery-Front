@@ -2,7 +2,7 @@ import React from "react";
 import type { FC } from "react";
 import Link from "next/link";
 
-import style from "../../styles/components/atoms/ChannelCard.module.scss";
+import style from "../../styles/app_components/atoms/ChannelCard.module.scss";
 
 type Props = {
   channel_name: string;

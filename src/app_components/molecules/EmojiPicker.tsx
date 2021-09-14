@@ -2,7 +2,7 @@ import { FC, useEffect, useRef, useState } from "react";
 import "emoji-mart/css/emoji-mart.css";
 import { CustomEmoji, EmojiData, Picker, Emoji } from "emoji-mart";
 
-import style from "../../styles/components/molecules/EmojiPicker.module.scss";
+import style from "../../styles/app_components/molecules/EmojiPicker.module.scss";
 
 type EmojiProps = {
   custom: CustomEmoji[];
