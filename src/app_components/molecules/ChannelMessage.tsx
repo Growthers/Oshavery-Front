@@ -4,7 +4,7 @@ import type { FC } from "react";
 import MessageContent from "../atoms/MessageContent";
 import { message } from "../../types/message";
 
-import style from "../../styles/components/molecules/ChannelMessage.module.scss";
+import style from "../../styles/app_components/molecules/ChannelMessage.module.scss";
 
 interface Props {
   response: message;

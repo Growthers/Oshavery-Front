@@ -4,7 +4,7 @@ import { useState, useCallback } from "react";
 
 import MemberCard from "../atoms/MemberCard";
 
-import member_style from "../../styles/components/atoms/MemberCard.module.scss";
+import member_style from "../../styles/app_components/atoms/MemberCard.module.scss";
 import { useRouter } from "next/router";
 import { user } from "../../types/user";
 import { userContext } from "../../stores/user";

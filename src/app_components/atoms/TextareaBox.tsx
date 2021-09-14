@@ -1,5 +1,5 @@
 import { FC } from "react";
-import style from "../../styles/components/atoms/TextareaBox.module.scss";
+import style from "../../styles/app_components/atoms/TextareaBox.module.scss";
 
 type TextareaProps = {
   onChange: (value: string) => void;

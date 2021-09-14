@@ -11,7 +11,7 @@ import ModalWindow from "../atoms/ModalWindow";
 import { client } from "../../lib/client";
 import { postMessageRes } from "../../types/message";
 
-import style from "../../styles/components/organisms/InputMessageBox.module.scss";
+import style from "../../styles/app_components/organisms/InputMessageBox.module.scss";
 
 type Props = {
   textarea_change_event: () => void;

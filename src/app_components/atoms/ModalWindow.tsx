@@ -1,7 +1,7 @@
 import React from "react";
 import { FC } from "react";
 
-import style from "../../styles/components/atoms/ModalWindow.module.scss";
+import style from "../../styles/app_components/atoms/ModalWindow.module.scss";
 
 type Props = {
   title: string;
