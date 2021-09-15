@@ -12,8 +12,7 @@ import MemberList from "../../../../app_components/organisms/MemberList";
 import style from "../../../../styles/pages/guild-channel.module.scss";
 
 const Oshavery: NextPage = () => {
-  // できればこの変数名を変えたい
-  const { width, height } = useWindowSize();
+  const { width: window_width, height: window_height } = useWindowSize();
   const [messages_height, setMessagesHeight] = useState<number>(937);
 
   useEffect(() => {
@@ -23,9 +22,10 @@ const Oshavery: NextPage = () => {
     change_messages_height();
   }, []);
 
+  // ウィンドウサイズ変更
   useEffect(() => {
     change_messages_height();
-  }, [width, height]);
+  }, [window_width, window_height]);
 
   // メッセージリストの高さ変更
   const change_messages_height = () => {
