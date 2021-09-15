@@ -4,13 +4,13 @@
   $back: (
     messages: #ffebcc,
     menubar: #ffc266,
-    sidebar: #ffad33
+    sidebar: #ffc266
   );
 
   $hover-back: (
     messages: #ffdca8,
     menubar: #ffd299,
-    sidebar: #ffad33
+    sidebar: #ffc266
   );
 
   background-color: map.get($back, $type);
@@ -21,5 +21,19 @@
 
   &.selected {
     background-color: map.get($hover-back, $type);
+  }
+}
+
+@mixin background($type) {
+  $back: (
+    messages: #ffebcc,
+    menubar: #ffc266,
+    sidebar: #ffc266
+  );
+
+  background-color: map.get($back, $type);
+
+  &:hover {
+    background-color: map.get($back, $type);
   }
 }
