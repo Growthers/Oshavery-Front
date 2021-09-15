@@ -2,11 +2,11 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 
-import ServerList from "../../../../components/organisms/ServerList";
-import ChannelList from "../../../../components/organisms/ChannelList";
-import MessageList from "../../../../components/organisms/MessageList";
-import InputMessageBox from "../../../../components/organisms/InputMessageBox";
-import MemberList from "../../../../components/organisms/MemberList";
+import ServerList from "../../../../app_components/organisms/ServerList";
+import ChannelList from "../../../../app_components/organisms/ChannelList";
+import MessageList from "../../../../app_components/organisms/MessageList";
+import InputMessageBox from "../../../../app_components/organisms/InputMessageBox";
+import MemberList from "../../../../app_components/organisms/MemberList";
 
 import style from "../../../../styles/pages/guild-channel.module.scss";
 
@@ -16,7 +16,7 @@ const Oshavery: NextPage = () => {
   useEffect(() => {
     if (process.browser) {
       setMessagesHeight(window.innerHeight);
-    };
+    }
     change_messages_height();
   }, []);
 
@@ -29,7 +29,7 @@ const Oshavery: NextPage = () => {
       const height = window.innerHeight - input_height;
 
       setMessagesHeight(height);
-    };
+    }
   };
 
   return (
@@ -50,15 +50,13 @@ const Oshavery: NextPage = () => {
           <div
             className={style.messages}
             style={{
-              height: messages_height
+              height: messages_height,
             }}
           >
             <MessageList />
           </div>
           <div className={style.input} id="input_box">
-            <InputMessageBox
-              textarea_change_event={change_messages_height}
-            />
+            <InputMessageBox textarea_change_event={change_messages_height} />
           </div>
         </div>
         <div className={style.right_side}>

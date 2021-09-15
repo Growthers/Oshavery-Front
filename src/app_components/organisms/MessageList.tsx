@@ -1,28 +1,28 @@
-import {FC, useState, useEffect, useContext} from 'react'
-
-import ChannelMessage from '../molecules/ChannelMessage'
-
-import InfiniteScroll from 'react-infinite-scroll-component'
+import { FC, useState, useEffect, useContext } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { useRouter } from "next/router";
 
 // Markdown描画用コンポーネント
-import MarkdownIt from "markdown-it"
-import MarkdownItEmoji from 'markdown-it-emoji'
+import MarkdownIt from "markdown-it";
+import MarkdownItEmoji from "markdown-it-emoji";
 // KaTeXレンダコンポーネント
 // XSSの脆弱性があるらしいが、markdown-itの力で消えている
 // => ライブラリを変更することで解決
 // @ts-ignore
-import MarkdownItKatex from '@iktakahiro/markdown-it-katex'
+import MarkdownItKatex from "@iktakahiro/markdown-it-katex";
 // Emojiレンダリングコンポーネント
 // お願い！握りつぶさせて！
 // @ts-ignore
-import {Emoji} from 'emoji-mart'
-import {messagesContext} from "../../stores/message";
-import {message} from "../../types/message";
-import {client} from "../../lib/client";
-import {useRouter} from "next/router";
+import { Emoji } from "emoji-mart";
 // ここまでMarkdown
 
-import style from "../../styles/components/organisms/MessageList.module.scss";
+import ChannelMessage from "../molecules/ChannelMessage";
+
+import { messagesContext } from "../../stores/message";
+import { message } from "../../types/message";
+import { client } from "../../lib/client";
+
+import style from "../../styles/app_components/organisms/MessageList.module.scss";
 
 // サーバからのレスポンス
 // props経由で渡されてる
@@ -50,40 +50,39 @@ const mkTestResponse = (authN: string): message => {
     author: {
       id: "test_author_id",
       user_name: "NAME: " + authN,
-      avatar: "test_author_name",
+      avatar: "url",
       bot: false,
       state: 0,
     },
     content: "test_content",
     guild_id: "test_guild_id",
     channel_id: "test_channel_id",
-    edited_timestamp: new Date().getTime().toString()
-  }
+    edited_timestamp: new Date().getTime().toString(),
+  };
   const t = [
     "**HELLO**",
-    "__UNKO__",
+    "__HOGE__",
     "# TEST",
     ":+1: vote",
     "$\\sqrt{3x-1}+(1+x)^2$ テスト数式",
-    "<h1>UNKOWORLD</h1> <- This is html tag",
+    "<h1>HOGEWORLD</h1> <- This is html tag",
     "';alert(String.fromCharCode(88,83,83))//';alert(String.fromCharCode(88,83,83))//\";\n alert(String.fromCharCode(88,83,83))//\";alert(String.fromCharCode(88,83,83))//--\n ></SCRIPT>\">'><SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT>",
     "'';!--\"<XSS>=&{()}",
     ":tada: fasldjflajsdlfl",
-    "<script>alert(1)</script>"
-  ]
-  ret.content = t[Math.floor(Math.random() * t.length)]
-  return ret
-}
+    "<script>alert(1)</script>",
+  ];
+  ret.content = t[Math.floor(Math.random() * t.length)];
+  return ret;
+};
 
 // コンポーネント本体
 // Markdownレンダリングのライブラリのインスタンスもここで持っている
 const MessageList: FC = () => {
+  const { messagesState, messagesDispatch } = useContext(messagesContext);
 
-  const {messagesState, messagesDispatch} = useContext(messagesContext)
-
-  const router = useRouter()
-  const {channelID} = router.query
-  const [endPoint, setEndPoint] = useState<string>()
+  const router = useRouter();
+  const { channelID } = router.query;
+  const [endPoint, setEndPoint] = useState<string>();
 
   // 初期化処理
   useEffect(() => {
@@ -137,42 +136,42 @@ const MessageList: FC = () => {
     // デフォルトでfalseですが、念のため
     // markdown-it側である程度のサニタイズ処理は施されるようです
     html: false,
-  })
+  });
   // 数式の描画
-  md.use(MarkdownItKatex)
+  md.use(MarkdownItKatex);
   // 絵文字の描画
   // emoji-martライブラリのカスタム絵文字を使うために面倒なことをしています
-  md.use(MarkdownItEmoji)
+  md.use(MarkdownItEmoji);
   md.renderer.rules.emoji = function (token, idx) {
     // EmojiコンポーネントがJSXかStringを返すクソ仕様のせいでtypescriptの恩恵を受けられません
     var ret = Emoji({
       html: true,
       emoji: token[idx].markup,
-      size: 16
-    })
+      size: 16,
+    });
     // @ts-ignore
     return ret as string;
   };
 
-  if (messagesState.messages == undefined)
-    return <></>
+  if (messagesState.messages == undefined) return <></>;
+
+  // 同一ユーザーによる連続投稿のカウント
+  let countup = 0;
 
   return (
     <>
       {/* お行儀悪い 正々堂々と読み込んで */}
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
       <div
         id="scrollableDiv"
         className={style.messagelist}
         style={{
           overflow: "auto",
           display: "flex",
-          flexDirection: "column-reverse"
+          flexDirection: "column-reverse",
         }}
       >
-        <script id="MathJax-script" async
-                src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" />
         {/*
         dataLength: メッセージの個数
         next: 新規データ(遡る)読み込みのための関数
@@ -182,11 +181,10 @@ const MessageList: FC = () => {
         その他は以下を参照
         https://github.com/ankeetmaini/react-infinite-scroll-component#using-scroll-on-top
         */}
-
         <InfiniteScroll
           dataLength={messagesState.messages.length}
           next={fetchMoreData}
-          style={{display: "flex", flexDirection: "column-reverse"}}
+          style={{ display: "flex", flexDirection: "column-reverse" }}
           inverse={true}
           hasMore={true}
           loader={<h4>Loading...</h4>}
@@ -196,17 +194,43 @@ const MessageList: FC = () => {
             メッセージの一覧を表示
             全部divにしてますがなんとなくです
           */}
-          {messagesState.messages.map(value => (
-            <ChannelMessage
-              key={value.id}
-              response={value}
-              renderer={md.render.bind(md)}
-            />
-          ))}
+          {messagesState.messages.map((value, index) => {
+            // index0が最新
+            const messages_array = messagesState.messages;
+            let author_show = true;
+
+            // 配列の最後かどうか
+            if (index + 1 !== messages_array.length) {
+              // 一つ前のデータ
+              const before_value = messages_array[index + 1];
+
+              // 一つ前のメッセージの送信者が異なる
+              if (value.author.id != before_value.author.id) {
+                countup = 0;
+              }
+              // 一つ前のメッセージが5分以内に送信されていない
+              else if (Number(value.timestamp) - Number(before_value.timestamp) >= 5 * 60000) {
+                countup = 0;
+              }
+              // 既に5件連続になっている
+              else if (countup >= 5) {
+                countup = 0;
+              }
+              // 連読処理
+              else {
+                countup++;
+                author_show = false;
+              }
+            }
+
+            return (
+              <ChannelMessage key={value.id} response={value} author_show={author_show} renderer={md.render.bind(md)} />
+            );
+          })}
         </InfiniteScroll>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default MessageList
+export default MessageList;

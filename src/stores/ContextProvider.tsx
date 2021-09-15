@@ -1,20 +1,17 @@
-import {userContext, useUserSD} from "./user";
+import { userContext, useUserSD } from "./user";
 import React, { FC } from "react";
-import {messagesContext, useMessageSD} from "./message";
+import { messagesContext, useMessageSD } from "./message";
 
-const ContextProvider: FC = (props ) => {
+const ContextProvider: FC = (props) => {
+  const userSD = useUserSD();
 
-  const userSD = useUserSD()
-
-  const messagesSD = useMessageSD()
+  const messagesSD = useMessageSD();
 
   return (
     <userContext.Provider value={userSD}>
-      <messagesContext.Provider value={messagesSD}>
-        {props.children}
-      </messagesContext.Provider>
+      <messagesContext.Provider value={messagesSD}>{props.children}</messagesContext.Provider>
     </userContext.Provider>
-  )
-}
+  );
+};
 
-export default ContextProvider
+export default ContextProvider;
