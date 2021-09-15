@@ -2,6 +2,7 @@ import type { FC, ReactNode } from "react";
 import Head from "next/head";
 
 import Header from "./Header";
+import Footer from "./Footer";
 
 const BaseURL = process.env.NEXT_PUBLIC_OSHAVERY_BASEURL || "";
 const SiteName = "Oshavery";
@@ -39,6 +40,7 @@ const Layout: FC<Props> = ({ pagetitle, children, isheader, isfooter, descriptio
       <main>
         {isheader && <Header />}
         {children}
+        {isfooter && <Footer />}
       </main>
     </>
   );
