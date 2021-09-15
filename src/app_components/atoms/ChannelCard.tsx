@@ -23,7 +23,7 @@ const ChannelCard: FC<Props> = (props) => {
     return (
       <Link href={"/guild/[guildID]/channel/[channelID]"} as={props.link}>
         <a className={`${style.channel} ${props.selected && style.selected}`}>
-          <FaHashtag />
+          <FaHashtag className={style.sharp} />
           {props.channel_name}
         </a>
       </Link>
