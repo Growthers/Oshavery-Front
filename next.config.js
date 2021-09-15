@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   images: {
-    domains: [process.env.IMAGES_DOMAINS],
+    domains: ["media.oshavery-app.net"],
   },
   reactStrictMode: true,
 };
