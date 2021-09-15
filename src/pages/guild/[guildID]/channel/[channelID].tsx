@@ -65,7 +65,7 @@ const Oshavery: NextPage = () => {
           <MemberList />
         </div>
       </main>
-      <WebSocketController/>
+      <WebSocketController />
     </>
   );
 };
