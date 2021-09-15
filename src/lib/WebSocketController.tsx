@@ -1,55 +1,52 @@
-import {FC, useContext, useEffect} from "react";
-import {client} from "./client";
-import {message} from "../types/message";
-import {useRouter} from "next/router";
-import {messagesContext} from "../stores/message";
+import { FC, useContext, useEffect } from "react";
+import { client } from "./client";
+import { message } from "../types/message";
+import { useRouter } from "next/router";
+import { messagesContext } from "../stores/message";
 
 type ws = {
-  type : string
-  body : {
-    id?: string
-    channelID?: string
-    messageID?: string
-  }
-}
+  type: string;
+  body: {
+    id?: string;
+    channelID?: string;
+    messageID?: string;
+  };
+};
 
 const WebSocketController: FC = () => {
-  const router = useRouter()
-  const {channelID} = router.query
+  const router = useRouter();
+  const { channelID } = router.query;
 
-  const {messagesDispatch} = useContext(messagesContext)
+  const { messagesDispatch } = useContext(messagesContext);
 
   let socket = typeof window !== "undefined" ? new WebSocket(process.env.NEXT_PUBLIC_WSENDPOINT!) : null;
 
   useEffect(() => {
+    if (socket == null) return;
+    socket.onopen = () => console.log("ws open");
+    socket.onclose = () => console.log("ws close");
 
+    socket.onmessage = (event: MessageEvent<ws>) => {
+      console.log(event);
 
-    if (socket == null) return
-    socket.onopen = () => console.log("ws open")
-    socket.onclose = () => console.log("ws close")
-
-    socket.onmessage = (event:MessageEvent<ws>) => {
-      console.log(event)
-
-
-      switch (event.type){
+      switch (event.type) {
         case "USER_JOINED":
-          break
+          break;
 
         case "USER_UPDATED":
-          break
+          break;
 
         case "USER_STATUS_UPDATED":
-          break
+          break;
 
         case "CHANNEL_CREATED":
-          break
+          break;
 
         case "CHANNEL_UPDATED":
-          break
+          break;
 
         case "CHANNEL_DELETED":
-          break
+          break;
 
         case "MESSAGE_CREATED":
           /*
@@ -66,40 +63,38 @@ const WebSocketController: FC = () => {
               })
           }
           */
-          break
+          break;
 
         case "MESSAGE_UPDATED":
-          break
+          break;
 
         case "MESSAGE_DELETED":
-          break
+          break;
 
         case "EMOJI_CREATED":
-          break
+          break;
 
         case "EMOJI_UPDATED":
-          break
+          break;
 
         case "EMOJI_DELETED":
-          break
+          break;
 
         case "GUILD_CREATED":
-          break
+          break;
 
         case "GUILD_UPDATED":
-          break
+          break;
 
         case "GUILD_DELETED":
-          break
+          break;
 
         default:
       }
+    };
+  }, []);
 
-    }
-  },[])
+  return <></>;
+};
 
-
-  return <></>
-}
-
-export default WebSocketController
+export default WebSocketController;
