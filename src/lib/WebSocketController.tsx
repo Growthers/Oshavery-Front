@@ -9,7 +9,7 @@ type ws = {
   body : {
     id?: string
     channelID?: string
-    messageID: string
+    messageID?: string
   }
 }
 
@@ -19,10 +19,14 @@ const WebSocketController: FC = () => {
 
   const {messagesDispatch} = useContext(messagesContext)
 
+  let socket = typeof window !== "undefined" ? new WebSocket(process.env.NEXT_PUBLIC_WSENDPOINT!) : null;
 
-  const socket = typeof window !== "undefined" ? new WebSocket(process.env.NEXT_PUBLIC_WSENDPOINT!) : null;
   useEffect(() => {
+
+
     if (socket == null) return
+    socket.onopen = () => console.log("ws open")
+    socket.onclose = () => console.log("ws close")
 
     socket.onmessage = (event:MessageEvent<ws>) => {
       console.log(event)
@@ -49,7 +53,7 @@ const WebSocketController: FC = () => {
 
         case "MESSAGE_CREATED":
           /*
-          if (channelID != undefined && channelID === event.){
+          if (channelID != undefined && channelID === event.data.body.id){
             client.get<message>(`/channels/${event.data.body.channelID}/messages/${event.data.body.id}`)
               .then(res => {
                 messagesDispatch({
@@ -60,7 +64,8 @@ const WebSocketController: FC = () => {
               .catch(error => {
                 console.log(error)
               })
-          }*/
+          }
+          */
           break
 
         case "MESSAGE_UPDATED":
@@ -91,11 +96,7 @@ const WebSocketController: FC = () => {
       }
 
     }
-
-    return () => {
-      socket.close()
-    }
-  })
+  },[])
 
 
   return <></>
