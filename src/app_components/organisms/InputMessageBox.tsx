@@ -11,13 +11,13 @@ import ModalWindow from "../atoms/ModalWindow";
 import { client } from "../../lib/client";
 import { postMessageRes } from "../../types/message";
 
-import style from "../../styles/components/organisms/InputMessageBox.module.scss";
+import style from "../../styles/app_components/organisms/InputMessageBox.module.scss";
 
 type Props = {
   textarea_change_event: () => void;
 };
 
-const InputMessageBox: FC<Props> = props => {
+const InputMessageBox: FC<Props> = (props) => {
   // API待ち
   const [disabled, setDisabled] = useState<boolean>(false);
   const [rows, setRows] = useState<number>(1);
@@ -25,16 +25,15 @@ const InputMessageBox: FC<Props> = props => {
   const [message, setMessage] = useState<string>("");
 
   const router = useRouter();
-  const {channelID} = router.query
+  const { channelID } = router.query;
 
   const sendMessage = () => {
-    client.post<postMessageRes>(`/channels/${channelID}/messages`)
-      .then(res => {
-        setMessage("")
+    client
+      .post<postMessageRes>(`/channels/${channelID}/messages`)
+      .then((res) => {
+        setMessage("");
       })
-      .catch(error => {
-
-      })
+      .catch((error) => {});
   };
 
   // ファイル関連
@@ -48,9 +47,9 @@ const InputMessageBox: FC<Props> = props => {
     const target = e.target;
     const files = target.files;
     if (files == null) return;
-    const file = files[0]
+    const file = files[0];
     if (file == null) return;
-    console.log(file)
+    console.log(file);
     const filesize = file.size;
 
     // 最大ファイルサイズ(MB)
@@ -60,7 +59,7 @@ const InputMessageBox: FC<Props> = props => {
     if (filesize > max_size) {
       target.value = "";
       return;
-    };
+    }
 
     setEventTarget(e);
     setFileName(file.name);
@@ -68,7 +67,7 @@ const InputMessageBox: FC<Props> = props => {
     if (process.browser) {
       const blobUrl = window.URL.createObjectURL(file);
       setFileUrl(blobUrl);
-    };
+    }
 
     // ポップアップでのチェックが実装できてないので
     // そのまま送信します
@@ -88,10 +87,10 @@ const InputMessageBox: FC<Props> = props => {
       eventtarget.target.value = "";
       setIsShow(false);
       return;
-    };
+    }
 
     // 送信処理
-    console.log("Sending")
+    console.log("Sending");
 
     setIsShow(false);
     setIsSending(false);
@@ -119,10 +118,10 @@ const InputMessageBox: FC<Props> = props => {
         target.style.height = "0";
       } else {
         target.style.height = `${target.scrollHeight}px`;
-      };
+      }
 
       props.textarea_change_event();
-    };
+    }
   };
 
   //test Data
@@ -133,20 +132,18 @@ const InputMessageBox: FC<Props> = props => {
       <div className={style.outer}>
         <div className={style.messageBox}>
           <UploadButton onChange={checkfile} />
-          <TextareaBox
-            disabled={disabled}
-            rows={rows}
-            onChange={onchange_event}
-            placeholder={placeholder}
-            value={message}
-            onKeyDown={sendMessage}
-          />
+          <div className={style.textarea}>
+            <TextareaBox
+              disabled={disabled}
+              rows={rows}
+              onChange={onchange_event}
+              placeholder={placeholder}
+              value={message}
+              onKeyDown={sendMessage}
+            />
+          </div>
           <SendButton onClick={sendMessage} />
-          <EmojiPicker
-            onSelect={selectEmoji}
-            color={"#FFC266"}
-            custom={customEmojiData}
-          />
+          <EmojiPicker onSelect={selectEmoji} color={"#FFC266"} custom={customEmojiData} />
         </div>
       </div>
       {/*

@@ -2,7 +2,7 @@ import { FC, useEffect, useRef, useState } from "react";
 import "emoji-mart/css/emoji-mart.css";
 import { CustomEmoji, EmojiData, Picker, Emoji } from "emoji-mart";
 
-import style from "../../styles/components/molecules/EmojiPicker.module.scss";
+import style from "../../styles/app_components/molecules/EmojiPicker.module.scss";
 
 type EmojiProps = {
   custom: CustomEmoji[];
@@ -30,14 +30,14 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
         if (result != null) {
           input_element_id = String(result);
           break;
-        };
-      };
+        }
+      }
 
       const target = document.getElementById(input_element_id) as HTMLInputElement;
       if (target == null) return;
       if (isShow) target.focus();
       else if (!isShow) target.value = "";
-    };
+    }
   }, [isShow]);
 
   useEffect(() => {
@@ -47,12 +47,12 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
 
       for (let i = 0; i < elements.length; i++) {
         set_class(elements[i], emojipopup_classname);
-      };
+      }
 
       for (let j = 0; j < open_elements.length; j++) {
         set_class(open_elements[j], emojipopup_classname);
-      };
-    };
+      }
+    }
   }, []);
 
   // すべての子孫要素に指定クラスを設定
@@ -63,9 +63,9 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
       for (let i = 0; i < count; i++) {
         target.children[i].classList.add(class_name);
         set_class(target.children[i], class_name);
-      };
-    };
-  };
+      }
+    }
+  }
 
   // クリックイベント
   const check_click = (e: any) => {
@@ -79,7 +79,7 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
 
     if (!isShow) {
       return;
-    };
+    }
 
     if (class_name.indexOf(emojipopup_classname) !== -1) {
       return;
@@ -87,7 +87,7 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
       return;
     } else if (grandparent_class_name.indexOf(emojipopup_classname) !== -1) {
       return;
-    };
+    }
 
     setIsShow(false);
   };
@@ -97,10 +97,7 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
   }
 
   return (
-    <div
-      ref={popupRef}
-      tabIndex={1000}
-    >
+    <div ref={popupRef} tabIndex={1000}>
       <div
         onClick={() => {
           if (!isShow) setIsShow(true);
@@ -127,10 +124,7 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
         }}
         className={`${emoji_open_classname} ${style.emoji}`}
       >
-        <Emoji
-          emoji={"grinning"}
-          size={30}
-        />
+        <Emoji emoji={"grinning"} size={30} />
       </div>
     </div>
   );

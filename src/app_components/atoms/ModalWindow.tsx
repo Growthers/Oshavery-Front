@@ -1,7 +1,7 @@
 import React from "react";
 import { FC } from "react";
 
-import style from "../../styles/components/atoms/ModalWindow.module.scss";
+import style from "../../styles/app_components/atoms/ModalWindow.module.scss";
 
 type Props = {
   title: string;
@@ -13,18 +13,22 @@ type Props = {
   cancel_function: () => void;
 };
 
-const ModalWindow: FC<Props> = props => {
+const ModalWindow: FC<Props> = (props) => {
   return (
     <div className={style.modalwindow}>
       <h3>{props.title}</h3>
       <p>{props.description}</p>
-      <img src={props.preview_image_url} className={style.image}></img>
+      <img src={props.preview_image_url} className={style.image} />
       <div>
-        <button type="button" onClick={props.cancel_function}>{props.cancel_message}</button>
-        <button type="button" onClick={props.continue_function}>{props.continue_message}</button>
+        <button type="button" onClick={props.cancel_function}>
+          {props.cancel_message}
+        </button>
+        <button type="button" onClick={props.continue_function}>
+          {props.continue_message}
+        </button>
       </div>
     </div>
-  )
+  );
 };
 
 export default React.memo(ModalWindow);

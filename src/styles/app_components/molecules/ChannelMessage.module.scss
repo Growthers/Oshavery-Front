@@ -1,0 +1,60 @@
+@use "../../color.variable";
+
+$left_space: 4rem;
+
+.fullcontent {
+  @include color.back(messages);
+  display: flex;
+  margin-top: 1rem;
+
+  .left_side {
+    width: $left_space;
+    text-align: center;
+    user-select: none;
+
+    .image {
+      height: calc(#{$left_space} * 0.7);
+      width: calc(#{$left_space} * 0.7);
+
+      margin-top: 0.2rem;
+
+      border-radius: $left_space;
+    }
+  }
+
+  .name {
+    font-size: 120%;
+  }
+
+  .timestamp {
+    font-size: 80%;
+    margin-left: 0.5rem;
+    color: #ff9900;
+    user-select: none;
+  }
+}
+
+.simplecontent {
+  @include color.back(messages);
+  display: flex;
+
+  .left_side {
+    width: $left_space;
+    text-align: right;
+    user-select: none;
+
+    .timestamp {
+      font-size: 80%;
+      margin-right: 0.7rem;
+
+      /*color.variableの値を参考にしています*/
+      color: #ffebcc;
+    }
+  }
+
+  &:hover {
+    .timestamp{
+      color: #ffad33;
+    }
+  }
+}
