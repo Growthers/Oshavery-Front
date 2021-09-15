@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useState, useEffect } from "react";
+import { useWindowSize } from "react-use";
 
 import ServerList from "../../../../app_components/organisms/ServerList";
 import ChannelList from "../../../../app_components/organisms/ChannelList";
@@ -11,6 +12,8 @@ import MemberList from "../../../../app_components/organisms/MemberList";
 import style from "../../../../styles/pages/guild-channel.module.scss";
 
 const Oshavery: NextPage = () => {
+  // できればこの変数名を変えたい
+  const { width, height } = useWindowSize();
   const [messages_height, setMessagesHeight] = useState<number>(937);
 
   useEffect(() => {
@@ -20,15 +23,20 @@ const Oshavery: NextPage = () => {
     change_messages_height();
   }, []);
 
+  useEffect(() => {
+    change_messages_height();
+  }, [width, height]);
+
+  // メッセージリストの高さ変更
   const change_messages_height = () => {
     if (process.browser) {
       const input_target = document.getElementById("input_box");
       if (input_target == null) return;
 
       const input_height = input_target.clientHeight;
-      const height = window.innerHeight - input_height;
+      const set_height = window.innerHeight - input_height;
 
-      setMessagesHeight(height);
+      setMessagesHeight(set_height);
     }
   };
 
