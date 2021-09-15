@@ -5,7 +5,7 @@
   border-radius: 5px;
   display: flex;
   align-items: center;
-  background-color: #FFDCA8;
+  background-color: #ffdca8;
   height: 48px;
 
   color: #747474;
@@ -25,62 +25,6 @@
     border-radius: 5px 0 0 5px;
   }
 }
-
-.sharp {
-  position: relative;
-  align-items: center;
-  box-sizing: border-box;
-  width: 30px;
-  height: 30px;
-  margin: 0 10px;
-}
-
-.one {
-  position: absolute;
-  width: 19px;
-  height: 3px;
-  left: 2px;
-  top: 9px;
-
-  background: #747474;
-  border-radius: 3px;
-}
-
-.two {
-  position: absolute;
-  width: 19px;
-  height: 3px;
-  left: 0;
-  top: 20px;
-
-  background: #747474;
-  border-radius: 3px;
-}
-
-.three {
-  position: absolute;
-  width: 27.89px;
-  height: 3px;
-  left: -6.99px;
-  top: 14.38px;
-
-  background: #747474;
-  border-radius: 3px;
-  transform: rotate(-75.47deg);
-}
-
-.four {
-  position: absolute;
-  width: 27.89px;
-  height: 3px;
-  left: 0.51px;
-  top: 14.38px;
-
-  background: #747474;
-  border-radius: 3px;
-  transform: rotate(-75.47deg);
-}
-
 
 .category {
   cursor: pointer;
