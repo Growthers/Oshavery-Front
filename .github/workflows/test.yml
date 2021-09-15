@@ -2,9 +2,11 @@ on:
   push:
     branches:
       - master
+      - Geek-Edition
   pull_request:
     branches:
       - master
+      - Geek-Edition
 
 jobs:
   test:

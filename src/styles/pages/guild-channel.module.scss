@@ -6,20 +6,39 @@ $right_side_width: 15rem;
 
 .oshavery {
   display: flex;
+  overflow: hidden;
   scrollbar-width: none;
+  height: 100vh;
+  user-select: none;
 
   &::-webkit-scrollbar {
     display: none;
   }
+
+  ::-webkit-scrollbar {
+    width: 1rem;
+    scroll-margin: 1rem;
+  }
+
+  // 軌道
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0.5rem 0.5rem #ffd699;
+    border: solid 0.25rem transparent;
+    border-radius: 1rem;
+  }
+
+  // 動くとこ
+  ::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 0.5rem 0.5rem #ff9900;
+    border: solid 0.25rem transparent;
+    border-radius: 1rem;
+  }
 }
 
 .server_list {
-  /*@include color.background(sidebar);*/
-  position: absolute;
-  top: 0;
-  left: 0;
+  @include color.background(sidebar);
 
-  height: 100vh;
+  height: 100%;
   width: $server_list_width;
 
   .icon {
@@ -32,29 +51,37 @@ $right_side_width: 15rem;
 }
 
 .left_side {
-  /*@include color.background(menubar);*/
-  position: absolute;
-  top: 0;
-  left: 4rem;
+  @include color.background(menubar);
 
-  height: 100vh;
+  height: 100%;
   width: $left_side_width;
 }
 
-.input {
-  position: absolute;
-  bottom: 0;
-  left: $server_list_width + $left_side_width;
+.center {
+  @include color.background(messages);
 
+  height: 100vh;
   width: calc(100vw - #{$server_list_width} - #{$left_side_width} - #{$right_side_width});
+
+  user-select: text;
+}
+
+.messages {
+  @include color.background(messages);
+
+  height: 100vh;
+  width: 100%;
+}
+
+.input {
+  @include color.background(messages);
+
+  width: 100%;
 }
 
 .right_side {
-  /*@include color.background(menubar);*/
-  position: absolute;
-  top: 0;
-  right: 0;
+  @include color.background(menubar);
 
-  height: 100vh;
+  height: 100%;
   width: $right_side_width;
 }

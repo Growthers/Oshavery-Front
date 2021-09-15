@@ -1,0 +1,19 @@
+.TextareaBox{
+  font-size: 110%;
+  font-family:
+    YakuHanJP,
+    Roboto,
+    "Noto Sans JP",
+    sans-serif;
+
+  box-sizing: content-box;
+  width: 100%;
+  min-height: 1.3rem;
+  max-height: calc(1.3rem * 10);
+  overflow: auto;
+
+  resize: none;
+  border: none;
+  outline: none;
+  line-height: 1.3rem;
+}
