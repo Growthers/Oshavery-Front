@@ -160,7 +160,7 @@ const MessageList: FC = () => {
         <InfiniteScroll
           dataLength={messagesState.messages.length}
           next={fetchMoreData}
-          style={{ display: "flex", flexDirection: "column-reverse" }}
+          style={{ display: "flex", flexDirection: "column-reverse", overflow: "hidden" }}
           inverse={true}
           hasMore={true}
           loader={<h4>Loading...</h4>}
