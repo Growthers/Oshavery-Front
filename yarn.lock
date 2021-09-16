@@ -1222,7 +1222,7 @@ elliptic@^6.5.3:
 
 "emoji-mart@git+https://github.com/Undecided-Discord/emoji-mart":
   version "3.0.1"
-  resolved "git+https://github.com/Undecided-Discord/emoji-mart#3fcab42cce8b41cee227384766491366a5e7491b"
+  resolved "git+https://github.com/Undecided-Discord/emoji-mart#42db39d931d0e7e8ac0c1fbd1d993205a64a4c58"
   dependencies:
     "@babel/runtime" "^7.0.0"
     cross-env "^7.0.3"
@@ -1311,10 +1311,6 @@ es-to-primitive@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/es-to-primitive/-/es-to-primitive-1.2.1.tgz#e55cd4c9cdc188bcefb03b366c736323fc5c898a"
   integrity sha512-QCOllgZJtaUo9miYBcLChTUaHNjJF3PYs1VidD7AwiEj1kYxKeQTctLAezAOH5ZKRH0g2IgPn6KwB4IT8iRpvA==
-  dependencies:
-    is-callable "^1.1.4"
-    is-date-object "^1.0.1"
-    is-symbol "^1.0.2"
 
 es6-object-assign@^1.1.0:
   version "1.1.0"
