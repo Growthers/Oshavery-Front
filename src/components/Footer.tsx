@@ -19,7 +19,9 @@ const Footer: FC = () => {
                 <span className={style.logout}>Logout</span>
               </a>
             </li>
-          ) : (<></>)}
+          ) : (
+            <></>
+          )}
         </div>
         <div className={style.group}>
           <p className={style.group_title}>GitHub Repositories</p>
