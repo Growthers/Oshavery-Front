@@ -21,10 +21,13 @@
     list-style: none;
     padding: 0.5rem 0 0 1rem;
     opacity: 0.9;
-    .logout {
-      color: #f00;
-    }
   }
+}
+
+.logout {
+  padding: 1rem;
+
+  color: #ff0000;
 }
 
 .copyright {
