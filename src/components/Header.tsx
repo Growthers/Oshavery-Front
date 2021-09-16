@@ -29,14 +29,18 @@ const Header: FC = () => {
       </div>
       <div className={style.login}>
         {user ? (
-          <a href="/loading" className={style.start_button}>
-            Go to Oshavery
-          </a>
+          <>
+            <Link href="/loading">
+              <a className={style.start_button}>Go to Oshavery</a>
+            </Link>
+          </>
         ) : (
-          // eslint-disable-next-line @next/next/no-html-link-for-pages
-          <a href="/api/auth/login" className={style.start_button}>
-            Login
-          </a>
+          <>
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+            <a href="/api/auth/login" className={style.start_button}>
+              Login
+            </a>
+          </>
         )}
       </div>
     </header>
