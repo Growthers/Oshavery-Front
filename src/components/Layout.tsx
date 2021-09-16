@@ -2,6 +2,9 @@ import type { FC, ReactNode } from "react";
 import Head from "next/head";
 
 import Header from "./Header";
+import Footer from "./Footer";
+
+import style from "../styles/components/Layout.module.scss";
 
 const BaseURL = process.env.NEXT_PUBLIC_OSHAVERY_BASEURL || "";
 const SiteName = "Oshavery";
@@ -36,9 +39,16 @@ const Layout: FC<Props> = ({ pagetitle, children, isheader, isfooter, descriptio
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={SiteImage} />
       </Head>
-      <main>
-        {isheader && <Header />}
-        {children}
+      <main className={style.main}>
+        <div className={style.contents}>
+          {isheader && (
+            <div className={style.header}>
+              <Header />
+            </div>
+          )}
+          {children}
+        </div>
+        {isfooter && <Footer />}
       </main>
     </>
   );
