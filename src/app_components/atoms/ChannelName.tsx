@@ -6,9 +6,9 @@ type Props = {
 };
 const ChannelName: FC<Props> = (props) => {
   return (
-    <div className={style.channelName}>
-      <FaHashtag />
-      <p>{props.name}</p>
+    <div className={style.nameBar}>
+      <FaHashtag className={style.sharp} />
+      <h3 className={style.channelName}>{props.name}</h3>
     </div>
   );
 };
