@@ -90,6 +90,11 @@ const Home: NextPage = () => {
 
         <div className={style.start}>
           <h1 className={style.start_title}>さあ、はじめましょう。</h1>
+          <p className={style.not_pc} hidden={true}>
+            スマートフォン・タブレットでは
+            <br />
+            正常に動作しません。
+          </p>
           {user ? (
             <>
               <Link href="/loading">
