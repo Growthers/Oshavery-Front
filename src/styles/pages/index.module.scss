@@ -33,10 +33,10 @@ $back-color: #666666;
 
 .overview {
   min-height: 35vh;
-  padding: 0 20vw 5vh 20vw;
+  padding: 0 0 5vh 0;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 
   font-size: 120%;
@@ -99,5 +99,42 @@ $back-color: #666666;
       color: #ffffff;
       background-color: #000000;
     }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+
+  .overview {
+    font-size: 100%;
+  }
+
+  .overview_left, .overview_right {
+    flex-direction: column;
+  }
+
+  .not_pc {
+    display: block;
+    padding-bottom: 1rem;
+
+    text-align: center;
+    color: #ff0000;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  .overview {
+    font-size: 80%;
+    padding: 0 5vw 5vh 5vw;
+  }
+
+  .overview_left, .overview_right {
+    flex-direction: column;
+  }
+
+  .start {
+    font-size: 90%;
+    padding-left: 5vw;
+    padding-right: 5vw;
   }
 }
