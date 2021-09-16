@@ -61,3 +61,18 @@
     background: #ffffff;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .logo {
+    display: none;
+  }
+
+  .links {
+    flex-grow: 0;
+    padding: 0;
+  }
+
+  .login {
+    padding: 0;
+  }
+}
