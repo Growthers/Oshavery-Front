@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import styles from "../styles/Home.module.css";
 import { useContext, useEffect } from "react";
 import { useUser } from "@auth0/nextjs-auth0";
 import { client } from "../lib/client";
@@ -41,7 +40,7 @@ const Loading: NextPage = () => {
     })();
   }, [router, userDispatch]);
 
-  return <div className={styles.container}>Loading</div>;
+  return <h1>Loading</h1>;
 };
 
 export default Loading;
