@@ -1,23 +1,20 @@
 import type { FC } from "react";
-import Link from "next/link";
-import { useUser } from "@auth0/nextjs-auth0";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import style from "../styles/components/Footer.module.scss";
 
 const Footer: FC = () => {
-  const { user } = useUser();
-
+  const { logout, isAuthenticated } = useAuth0();
   return (
     <footer className={style.footer}>
       <div className={style.lists}>
         <div className={style.group}>
           <p className={style.group_title}>Oshavery</p>
-          {user ? (
-            /* eslint-disable-next-line @next/next/no-html-link-for-pages */
+          {isAuthenticated ? (
             <li className={style.group_list}>
-              <a href="/api/auth/logout">
+              <div onClick={() => logout()}>
                 <span className={style.logout}>Logout</span>
-              </a>
+              </div>
             </li>
           ) : (
             <></>
