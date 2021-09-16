@@ -35,3 +35,15 @@
   display: flex;
   justify-content: center;
 }
+
+@media screen and (max-width: 600px) {
+
+  .lists {
+    flex-direction: column;
+    padding-left: 15vw;
+
+    .group {
+      padding: 1rem;
+    }
+  }
+}
