@@ -6,9 +6,8 @@ import Footer from "./Footer";
 
 import style from "../styles/components/Layout.module.scss";
 
-const BaseURL = process.env.NEXT_PUBLIC_OSHAVERY_BASEURL || "";
 const SiteName = "Oshavery";
-const SiteImage = `https://${BaseURL}`;
+const SiteImage = "https://media.oshavery-app.net/logos/ogp.png";
 
 type Props = {
   pagetitle: string;
