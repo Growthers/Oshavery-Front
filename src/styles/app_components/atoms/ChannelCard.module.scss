@@ -5,7 +5,7 @@
   border-radius: 5px;
   display: flex;
   align-items: center;
-  background-color: #ffdca8;
+  background-color: #ffcb7c;
   height: 48px;
 
   color: #747474;
@@ -21,7 +21,7 @@
   }
 
   &.selected {
-    background-color: #ffd299;
+    background-color: #ffdb99;
     border-radius: 5px 0 0 5px;
   }
 }
