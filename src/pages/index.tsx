@@ -98,9 +98,10 @@ const Home: NextPage = () => {
             </>
           ) : (
             <>
-              <Link href="/login">
-                <a className={style.start_button}>Login</a>
-              </Link>
+              {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+              <a href="/api/auth/login" className={style.start_button}>
+                Login
+              </a>
             </>
           )}
         </div>
