@@ -1,5 +1,6 @@
 import React from "react";
 import type { FC } from "react";
+import styles from "../../styles/app_components/atoms/NameCard.module.scss";
 
 type Props = {
   name: string;
@@ -7,9 +8,9 @@ type Props = {
 
 const NameCard: FC<Props> = (props) => {
   return (
-    <>
-      <span>{props.name}</span>
-    </>
+    <div className={styles.nameCard}>
+      <span className={styles.guildName}>{props.name}</span>
+    </div>
   );
 };
 
