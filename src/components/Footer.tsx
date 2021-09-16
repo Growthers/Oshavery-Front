@@ -7,7 +7,17 @@ const Footer: FC = () => {
   return (
     <footer className={style.footer}>
       <div className={style.lists}>
-        <div>Oshavery</div>
+        <div className={style.group}>
+          <p className={style.group_title}>Oshavery</p>
+          <ul>
+            <li className={style.group_list}>
+              {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+              <a href="/api/auth/logout">
+                <span className={style.logout}>Logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
         <div className={style.group}>
           <p className={style.group_title}>GitHub Repositories</p>
           <ul>
