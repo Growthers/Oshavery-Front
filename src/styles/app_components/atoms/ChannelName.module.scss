@@ -1,0 +1,18 @@
+.nameBar {
+  height: 40px;
+  background-color: #ffc266;
+  display: flex;
+  .sharp {
+    padding-top: 10px;
+    padding-bottom: 10;
+    position: relative;
+    box-sizing: border-box;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+  }
+  .channelName {
+    padding-top: 5px;
+  }
+}
