@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { useUser } from "@auth0/nextjs-auth0";
+import { useAuth0 } from "@auth0/auth0-react";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 
 import Layout from "../components/Layout";
@@ -9,8 +9,8 @@ import logo from "../../public/logo_long.png";
 import style from "../styles/pages/index.module.scss";
 
 const Home: NextPage = () => {
-  const { user } = useUser();
-
+  // const { user } = useUser();
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
   return (
     <Layout pagetitle="Oshavery" isheader={true} isfooter={true}>
       <div className={style.index_page}>
@@ -90,7 +90,7 @@ const Home: NextPage = () => {
 
         <div className={style.start}>
           <h1 className={style.start_title}>さあ、はじめましょう。</h1>
-          {user ? (
+          {isAuthenticated ? (
             <>
               <Link href="/loading">
                 <a className={style.start_button}>Go to Oshavery</a>
@@ -98,10 +98,7 @@ const Home: NextPage = () => {
             </>
           ) : (
             <>
-              {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-              <a href="/api/auth/login" className={style.start_button}>
-                Login
-              </a>
+              <div onClick={() => loginWithRedirect()}>Login</div>
             </>
           )}
         </div>
