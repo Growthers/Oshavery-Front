@@ -1,0 +1,103 @@
+/*画像と合わせています*/
+$back-color: #666666;
+
+.index_page {
+  background-color: $back-color;
+}
+
+.top {
+  position: relative;
+  text-align: center;
+  font-size: 200%;
+
+  height: 100vh;
+
+  .logo {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title {
+    position: absolute;
+    text-align: left;
+    z-index: 1;
+    top: 10rem;
+    left: 20rem;
+
+    color: #ffc266;
+  }
+}
+
+.overview {
+  min-height: 35vh;
+  padding: 0 20vw 5vh 20vw;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 120%;
+  color: #ffffff;
+
+  .detail {
+    font-size: 90%;
+  }
+
+  .overview_image {
+    .icon{
+      padding: 2rem;
+      fill: #ffffff;
+    }
+  }
+}
+
+.overview_left {
+  background-color: #000000;
+  flex-direction: row;
+}
+
+.overview_right {
+  background-color: #1e1e1e;
+  flex-direction: row-reverse;
+}
+
+@for $i from 1 through 5 {
+  .title_#{$i} {
+    background: -webkit-linear-gradient(random(360) + deg, #ff0000, #ffa500, #ffff00);
+    opacity: 0.8;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.start {
+  padding: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+
+  .start_title {
+    padding-bottom: 2rem;
+
+    color: #ffffff;
+  }
+
+  .start_button {
+    padding: 0.8rem 2rem;
+
+    color: #000000;
+    border-radius: 2rem;
+    border: 3px solid #000000;
+    background-color: #ffffff;
+
+    &:hover {
+      color: #ffffff;
+      background-color: #000000;
+    }
+  }
+}
