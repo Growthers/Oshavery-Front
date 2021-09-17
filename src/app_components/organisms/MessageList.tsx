@@ -17,6 +17,7 @@ import { Emoji } from "emoji-mart";
 // ここまでMarkdown
 
 import ChannelMessage from "../molecules/ChannelMessage";
+import ChannelName from "../atoms/ChannelName";
 
 import { messagesContext } from "../../stores/message";
 import { message } from "../../types/message";
@@ -86,23 +87,45 @@ const MessageList: FC = () => {
 
   // 初期化処理
   useEffect(() => {
-    setEndPoint(`/channels/${channelID}/messages`);
+    (async () => {
+      try {
+        if (channelID == undefined) {
+          throw new Error("no query");
+        }
+        const fstData = await client.get(`/channels/${channelID}/messages`, {
+          params: {
+            limit: 100,
+          },
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    })();
 
-    // テストデータを20件追加
-    // 初めに出てくるデータはここで作られている
-    messagesDispatch({
-      type: "set",
-      newData: Array.from({ length: 100 }, (_, i) => mkTestResponse(i.toString())),
-    });
-  }, []);
+    setEndPoint(`/channels/${channelID}/messages`);
+  }, [channelID]);
 
   // 新規スクロールがあった時に呼ばれる
   // 複数件のメッセージを同時に取得したほうがいいとおもう
-  const fetchMoreData = () => {
-    messagesDispatch({
-      type: "load",
-      newData: Array.from({ length: 20 }, (_, i) => mkTestResponse(i.toString())),
-    });
+  const fetchMoreData = async () => {
+    try {
+      if (endPoint == undefined) {
+        throw new Error("no query");
+      }
+      const lastID = messagesState.messages.slice(-1)[0].id;
+      const newData = await client.get<message[]>(endPoint, {
+        params: {
+          limit: 100,
+          before: lastID,
+        },
+      });
+      messagesDispatch({
+        type: "load",
+        newData: newData.data,
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   // Markdown-itのインスタンスを作成しています
@@ -138,6 +161,9 @@ const MessageList: FC = () => {
     <>
       {/* お行儀悪い 正々堂々と読み込んで */}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
+      <div className={style.channelname}>
+        <ChannelName name="チャンネル名" />
+      </div>
       <div
         id="scrollableDiv"
         className={style.messagelist}
@@ -160,7 +186,7 @@ const MessageList: FC = () => {
         <InfiniteScroll
           dataLength={messagesState.messages.length}
           next={fetchMoreData}
-          style={{ display: "flex", flexDirection: "column-reverse" }}
+          style={{ display: "flex", flexDirection: "column-reverse", overflow: "hidden" }}
           inverse={true}
           hasMore={true}
           loader={<h4>Loading...</h4>}

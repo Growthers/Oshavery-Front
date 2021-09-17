@@ -97,7 +97,7 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
   }
 
   return (
-    <div ref={popupRef} tabIndex={1000}>
+    <div className={style.emojipicker} ref={popupRef} tabIndex={1000}>
       <div
         onClick={() => {
           if (!isShow) setIsShow(true);

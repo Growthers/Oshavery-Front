@@ -2,3 +2,10 @@
   /*親要素いっぱいになります*/
   height: 100%;
 }
+
+.channelname {
+  position: fixed;
+  z-index: 10;
+  height: 3rem;
+  width: 100%;
+}

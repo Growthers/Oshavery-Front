@@ -1,7 +1,7 @@
 import React from "react";
 import type { FC } from "react";
 import Link from "next/link";
-
+import { FaHashtag } from "react-icons/fa";
 import style from "../../styles/app_components/atoms/ChannelCard.module.scss";
 
 type Props = {
@@ -23,13 +23,8 @@ const ChannelCard: FC<Props> = (props) => {
     return (
       <Link href={"/guild/[guildID]/channel/[channelID]"} as={props.link}>
         <a className={`${style.channel} ${props.selected && style.selected}`}>
-          <div className={style.sharp}>
-            <i className={`${style.one_i} ${style.one}`} />
-            <i className={`${style.one_i} ${style.two}`} />
-            <i className={`${style.one_i} ${style.three}`} />
-            <i className={`${style.one_i} ${style.four}`} />
-          </div>
-          {props.channel_name}
+          <FaHashtag className={style.sharp} />
+          <span className={style.channel_name}>{props.channel_name}</span>
         </a>
       </Link>
     );

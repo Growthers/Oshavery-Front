@@ -1,10 +1,15 @@
+.servericon {
+  position: relative;
+}
+
 .icon {
-  height: 48px;
-  width: 48px;
-  border-radius: 24px;
+  height: 3rem;
+  width: 3rem;
+  margin: 0.25rem 0;
+  border-radius: 1.5rem;
 
   &:hover {
-    border-radius: 12px;
+    border-radius: 0.75rem;
 
     +.name {
       display: block;
@@ -15,8 +20,18 @@
 .name {
   position: absolute;
   display: none;
-  padding: 8px;
-  border-radius: 10px;
-  background-color: lightslategrey;
+  z-index: 1;
+  left: 120%;
+  top: 10%;
+
+  height: auto;
+  width: auto;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+
+  background-color: #262626;
   color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

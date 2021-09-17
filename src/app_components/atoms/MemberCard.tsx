@@ -23,7 +23,6 @@ const MemberCard: FC<Props> = (props) => {
         {props.bot && <span className={`${style.bot_name} member_element`}>{props.name}</span>}
         {props.bot && <span className={`${style.bot} member_element`}>BOT</span>}
       </div>
-
       <div className={style.memberpopup} id={props.id}>
         <MemberPopup name={props.name} avatar={props.avatar} bot={props.bot} />
       </div>

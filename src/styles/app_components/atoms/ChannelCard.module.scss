@@ -1,87 +1,52 @@
+@use "../../color.variable";
+$side_margin: 0.5rem;
+
 .channel {
+  @include color.back(menubar);
   cursor: pointer;
-  width: 240px;
-  margin: 5px 0;
-  border-radius: 5px;
+
+  box-sizing: border-box;
+  margin: 0.25rem $side_margin;
+  padding-right: 0.5rem;
+  height: 2.5rem;
+  width: calc(100% - (2 * #{$side_margin}));
+
+  border-radius: 0.5rem;
   display: flex;
   align-items: center;
-  background-color: #FFDCA8;
-  height: 48px;
+
+  background-color: #ffcb7c;
 
   color: #747474;
   font-weight: bold;
-  font-size: 16px;
 
   position: relative;
-  z-index: +1;
   transition-duration: 0.2s;
+
+  .sharp {
+    margin: 0 0.5rem;
+
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .channel_name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   &:hover {
     opacity: 80%;
   }
 
   &.selected {
-    background-color: #ffd299;
-    border-radius: 5px 0 0 5px;
+    background-color: #ffdb99;
+    border-radius: 0.5rem;
   }
 }
 
-.sharp {
-  position: relative;
-  align-items: center;
-  box-sizing: border-box;
-  width: 30px;
-  height: 30px;
-  margin: 0 10px;
-}
-
-.one {
-  position: absolute;
-  width: 19px;
-  height: 3px;
-  left: 2px;
-  top: 9px;
-
-  background: #747474;
-  border-radius: 3px;
-}
-
-.two {
-  position: absolute;
-  width: 19px;
-  height: 3px;
-  left: 0;
-  top: 20px;
-
-  background: #747474;
-  border-radius: 3px;
-}
-
-.three {
-  position: absolute;
-  width: 27.89px;
-  height: 3px;
-  left: -6.99px;
-  top: 14.38px;
-
-  background: #747474;
-  border-radius: 3px;
-  transform: rotate(-75.47deg);
-}
-
-.four {
-  position: absolute;
-  width: 27.89px;
-  height: 3px;
-  left: 0.51px;
-  top: 14.38px;
-
-  background: #747474;
-  border-radius: 3px;
-  transform: rotate(-75.47deg);
-}
-
-
+// カテゴリーはスタイルの修正を行ってません
 .category {
   cursor: pointer;
   width: 240px;

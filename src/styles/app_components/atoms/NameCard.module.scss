@@ -1,0 +1,18 @@
+.nameCard {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .guildName {
+    padding: 0 0.5rem;
+    font-weight: 900;
+    font-size: 120%;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
