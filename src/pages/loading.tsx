@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { useContext, useEffect } from "react";
-import { useUser } from "@auth0/nextjs-auth0";
+//import { useUser } from "@auth0/nextjs-auth0";
+import { useAuth0 } from "@auth0/auth0-react";
 import { client } from "../lib/client";
 import { useRouter } from "next/router";
 import { userContext } from "../stores/user";
@@ -8,7 +9,7 @@ import { myInfo, user } from "../types/user";
 
 const Loading: NextPage = () => {
   const router = useRouter();
-  const { user } = useUser();
+  const { user } = useAuth0();
   const { userDispatch } = useContext(userContext);
 
   useEffect(() => {

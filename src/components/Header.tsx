@@ -1,14 +1,12 @@
 import type { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useUser } from "@auth0/nextjs-auth0";
-
+import { useAuth0 } from "@auth0/auth0-react";
 import logo from "../../public/logo_long_dark.png";
 import style from "../styles/components/Header.module.scss";
 
 const Header: FC = () => {
-  const { user } = useUser();
-
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
   return (
     <header className={style.header}>
       {/*logo*/}
@@ -28,19 +26,16 @@ const Header: FC = () => {
         */}
       </div>
       <div className={style.login}>
-        {user ? (
+        {isAuthenticated ? (
           <>
             <Link href="/loading">
               <a className={style.start_button}>Go to Oshavery</a>
             </Link>
           </>
         ) : (
-          <>
-            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/api/auth/login" className={style.start_button}>
-              Login
-            </a>
-          </>
+          <div onClick={() => loginWithRedirect()} className={style.start_button}>
+            Login
+          </div>
         )}
       </div>
     </header>
