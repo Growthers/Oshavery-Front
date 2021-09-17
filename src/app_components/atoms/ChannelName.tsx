@@ -1,9 +1,11 @@
 import type { FC } from "react";
 import { FaHashtag } from "react-icons/fa";
 import style from "../../styles/app_components/atoms/ChannelName.module.scss";
+
 type Props = {
   name: string;
 };
+
 const ChannelName: FC<Props> = (props) => {
   return (
     <div className={style.nameBar}>
@@ -12,4 +14,5 @@ const ChannelName: FC<Props> = (props) => {
     </div>
   );
 };
+
 export default ChannelName;
