@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 import ContextProvider from "../stores/ContextProvider";
 import { Auth0Provider } from "@auth0/auth0-react";
 function MyApp({ Component, pageProps, router }: AppProps) {
-  const redirectUrl = `${process.env["NEXT_PUBLIC_BASE_URL"]}/loading`;
+  const redirectUrl = `${process.env["NEXT_PUBLIC_BASE_URL"]}`;
   return (
     <Auth0Provider
       domain={`${process.env["NEXT_PUBLIC_AUTH0_DOMAIN"]}`}
