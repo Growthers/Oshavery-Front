@@ -16,7 +16,7 @@ const Loading: NextPage = () => {
       try {
         const jwt = await getAccessTokenSilently({
           audience: process.env.NEXT_PUBLIC_APIENDPOINT + "/",
-          scope: "read:all"
+          scope: "read:all",
         });
 
         client.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
@@ -37,8 +37,8 @@ const Loading: NextPage = () => {
         });
       } catch (e) {
         try {
-          const user = await client.post<createUserRes>("/users")
-          const myInfo = await client.get("/user/me")
+          const user = await client.post<createUserRes>("/users");
+          const myInfo = await client.get("/user/me");
 
           userDispatch({
             type: "set",
@@ -53,7 +53,9 @@ const Loading: NextPage = () => {
             },
           });
         } catch (e) {
-          await router.push("/").catch(error => {console.log(error)})
+          await router.push("/").catch((error) => {
+            console.log(error);
+          });
         }
       }
     })();
