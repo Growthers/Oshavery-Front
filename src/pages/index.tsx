@@ -103,7 +103,9 @@ const Home: NextPage = () => {
             </>
           ) : (
             <>
-              <div onClick={() => loginWithRedirect()}>Login</div>
+              <div className={style.login_button} onClick={() => loginWithRedirect()}>
+                Login
+              </div>
             </>
           )}
         </div>
