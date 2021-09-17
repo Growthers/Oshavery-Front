@@ -19,16 +19,9 @@ const Loading: NextPage = () => {
           scope: "read:all"
         });
 
-        console.log(jwt)
+        client.defaults.headers.common["Authorization"] = `Bearer ${jwt}`
 
-        const myInfo = await client.get<myInfo>(
-          "/users/me",
-          {
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            }
-          }
-        );
+        const myInfo = await client.get<myInfo>("/users/me");
 
         userDispatch({
           type: "set",
