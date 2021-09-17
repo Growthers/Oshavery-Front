@@ -14,7 +14,12 @@ const Loading: NextPage = () => {
   useEffect(() => {
     (async () => {
       try {
-        const jwt = getAccessTokenSilently();
+        const jwt = await getAccessTokenSilently({
+          audience: process.env.NEXT_PUBLIC_APIENDPOINT
+        });
+
+        console.log(jwt)
+
         const myInfo = await client.get<myInfo>(
           "/users/me",
           {
@@ -37,7 +42,8 @@ const Loading: NextPage = () => {
           },
         });
       } catch (e) {
-        router.push("/");
+        console.log(e)
+        router.push("/").catch((e) => {console.log(e)})
       }
     })();
   }, [router, userDispatch]);
