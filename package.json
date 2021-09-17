@@ -27,11 +27,13 @@
     "react-dom": "17.0.2",
     "react-icons": "^4.2.0",
     "react-infinite-scroll-component": "^6.1.0",
+    "react-modal": "^3.14.3",
     "react-use": "^17.3.1",
     "sass": "^1.38.1"
   },
   "devDependencies": {
     "@types/react": "17.0.19",
+    "@types/react-modal": "^3.12.1",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.0",
     "eslint-config-prettier": "8.3.0",
