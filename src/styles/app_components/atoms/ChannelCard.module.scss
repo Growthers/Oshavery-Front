@@ -5,7 +5,9 @@ $side_margin: 0.5rem;
   @include color.back(menubar);
   cursor: pointer;
 
+  box-sizing: border-box;
   margin: 0.25rem $side_margin;
+  padding-right: 0.5rem;
   height: 2.5rem;
   width: calc(100% - (2 * #{$side_margin}));
 
@@ -21,6 +23,19 @@ $side_margin: 0.5rem;
   position: relative;
   transition-duration: 0.2s;
 
+  .sharp {
+    margin: 0 0.5rem;
+
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .channel_name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   &:hover {
     opacity: 80%;
   }
@@ -28,13 +43,6 @@ $side_margin: 0.5rem;
   &.selected {
     background-color: #ffdb99;
     border-radius: 5px 0 0 5px;
-  }
-
-  .sharp {
-    margin: 0 0.5rem;
-
-    width: 1.5rem;
-    height: 1.5rem;
   }
 }
 
