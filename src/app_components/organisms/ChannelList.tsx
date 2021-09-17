@@ -8,6 +8,8 @@ import { guild } from "../../types/guild";
 import { userContext } from "../../stores/user";
 import { useRouter } from "next/router";
 
+import style from "../../styles/app_components/organisms/ChannelList.module.scss";
+
 const ChannelList: FC = () => {
   const { userState } = useContext(userContext);
 
@@ -23,21 +25,25 @@ const ChannelList: FC = () => {
   if (nowGuild == undefined) return <></>;
 
   return (
-    <>
-      <NameCard name={nowGuild.name} />
-      {nowGuild.channels.map((value) => {
-        return (
-          <ChannelCard
-            key={value.id}
-            channel_name={value.channel_name}
-            channel_topics={value.channel_topics}
-            channel_type={value.channel_type}
-            link={`/guild/${guildID}/channel/${value.id}`}
-            selected={value.id === channelID}
-          />
-        );
-      })}
-    </>
+    <div className={style.channellist}>
+      <div className={style.guildname}>
+        <NameCard name={nowGuild.name} />
+      </div>
+      <div className={style.channels}>
+        {nowGuild.channels.map((value) => {
+          return (
+            <ChannelCard
+              key={value.id}
+              channel_name={value.channel_name}
+              channel_topics={value.channel_topics}
+              channel_type={value.channel_type}
+              link={`/guild/${guildID}/channel/${value.id}`}
+              selected={value.id === channelID}
+            />
+          );
+        })}
+      </div>
+    </div>
   );
 };
 

@@ -16,10 +16,10 @@ const Loading: NextPage = () => {
       try {
         const jwt = await getAccessTokenSilently({
           audience: process.env.NEXT_PUBLIC_APIENDPOINT + "/",
-          scope: "read:all"
+          scope: "read:all",
         });
 
-        client.defaults.headers.common["Authorization"] = `Bearer ${jwt}`
+        client.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
 
         const myInfo = await client.get<myInfo>("/users/me");
 
@@ -36,8 +36,10 @@ const Loading: NextPage = () => {
           },
         });
       } catch (e) {
-        console.log(e)
-        router.push("/").catch((e) => {console.log(e)})
+        console.log(e);
+        router.push("/").catch((e) => {
+          console.log(e);
+        });
       }
     })();
   }, [router, userDispatch]);

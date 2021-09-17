@@ -1,47 +1,65 @@
+@use "../../color.variable";
+$side_margin: 0.5rem;
+
 .member_box {
-  .member {
-    display: flex;
-    width: 240px;
-    padding: 5px;
+  position: relative;
+}
 
-    .avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 24px;
-    }
+.member {
+  @include color.back(menubar);
+  cursor: pointer;
 
-    .name {
-      margin: auto 3px auto 10px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: 20px;
-    }
+  display: flex;
+  align-items: center;
 
-    .bot_name {
-      margin: auto 0 auto 10px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: 20px;
-    }
+  margin: 0.25rem $side_margin;
+  padding: 0.25rem;
+  height: 3rem;
+  width: calc(100% - (2 * #{$side_margin}));
 
-    .bot {
-      margin: auto 0 auto 5px;
-      font-size: 14px;
-      color: #ffffff;
-      background-color: navy;
-      padding: 3px 5px;
-      border-radius: 3px;
-    }
+  border-radius: 0.5rem;
+
+  .avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 24px;
   }
 
-  .memberpopup {
-    transform: scale(0);
-    transition: transform 0.2s;
+  .name {
+    margin: auto 3px auto 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 20px;
+  }
 
-    &.show {
-      transform: translateX(-105%);
-    }
+  .bot_name {
+    margin: auto 0 auto 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 20px;
+  }
+
+  .bot {
+    margin: auto 0 auto 5px;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: navy;
+    padding: 3px 5px;
+    border-radius: 3px;
+  }
+}
+
+.memberpopup {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+
+  transform: scale(0);
+  transition: transform 0.2s;
+
+  &.show {
+    transform: translateX(-105%);
   }
 }

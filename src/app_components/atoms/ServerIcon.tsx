@@ -13,7 +13,7 @@ type Props = {
 
 const ServerIcon: FC<Props> = (props) => {
   return (
-    <div>
+    <div className={style.servericon}>
       <Link href={"/guild/[guildID]/channel/[channelID]"} as={props.link}>
         <img className={style.icon} src={props.icon} />
       </Link>
