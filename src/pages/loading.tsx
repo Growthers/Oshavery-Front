@@ -15,7 +15,8 @@ const Loading: NextPage = () => {
     (async () => {
       try {
         const jwt = await getAccessTokenSilently({
-          audience: process.env.NEXT_PUBLIC_APIENDPOINT
+          audience: process.env.NEXT_PUBLIC_APIENDPOINT + "/",
+          scope: "read:all"
         });
 
         console.log(jwt)
