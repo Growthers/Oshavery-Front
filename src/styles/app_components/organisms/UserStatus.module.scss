@@ -1,0 +1,19 @@
+.userStatus {
+  display: flex;
+  height: 56px;
+  .userIcon {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 50px;
+    height: 50px;
+  }
+  .userName {
+    font-size: 1.5rem;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  .settingButton {
+    padding-top: auto;
+    padding-bottom: auto;
+  }
+}
