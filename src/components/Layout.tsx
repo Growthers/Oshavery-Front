@@ -2,10 +2,12 @@ import type { FC, ReactNode } from "react";
 import Head from "next/head";
 
 import Header from "./Header";
+import Footer from "./Footer";
 
-const BaseURL = process.env.NEXT_PUBLIC_OSHAVERY_BASEURL || "";
+import style from "../styles/components/Layout.module.scss";
+
 const SiteName = "Oshavery";
-const SiteImage = `https://${BaseURL}`;
+const SiteImage = "https://media.oshavery-app.net/logos/ogp.png";
 
 type Props = {
   pagetitle: string;
@@ -36,9 +38,16 @@ const Layout: FC<Props> = ({ pagetitle, children, isheader, isfooter, descriptio
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={SiteImage} />
       </Head>
-      <main>
-        {isheader && <Header />}
-        {children}
+      <main className={style.main}>
+        <div className={style.contents}>
+          {isheader && (
+            <div className={style.header}>
+              <Header />
+            </div>
+          )}
+          {children}
+        </div>
+        {isfooter && <Footer />}
       </main>
     </>
   );
