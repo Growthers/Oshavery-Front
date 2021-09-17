@@ -90,45 +90,43 @@ const MessageList: FC = () => {
     (async () => {
       try {
         if (channelID == undefined) {
-          throw new Error("no query")
+          throw new Error("no query");
         }
-        const fstData = await client.get(
-          `/channels/${channelID}/messages`, {
-            params: {
-              limit: 100
-            }
-          })
+        const fstData = await client.get(`/channels/${channelID}/messages`, {
+          params: {
+            limit: 100,
+          },
+        });
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     })();
 
-    setEndPoint(`/channels/${channelID}/messages`)
-  }, [channelID])
+    setEndPoint(`/channels/${channelID}/messages`);
+  }, [channelID]);
 
   // 新規スクロールがあった時に呼ばれる
   // 複数件のメッセージを同時に取得したほうがいいとおもう
   const fetchMoreData = async () => {
-      try {
-        if (endPoint == undefined){
-          throw new Error("no query")
-        }
-        const lastID = messagesState.messages.slice(-1)[0].id
-        const newData = await client.get<message[]>(
-          endPoint,{
-            params: {
-              limit: 100,
-              before: lastID
-            }
-          });
-        messagesDispatch({
-          type: "load",
-          newData: newData.data
-        })
-      } catch (e) {
-        console.log(e)
+    try {
+      if (endPoint == undefined) {
+        throw new Error("no query");
       }
-  }
+      const lastID = messagesState.messages.slice(-1)[0].id;
+      const newData = await client.get<message[]>(endPoint, {
+        params: {
+          limit: 100,
+          before: lastID,
+        },
+      });
+      messagesDispatch({
+        type: "load",
+        newData: newData.data,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   // Markdown-itのインスタンスを作成しています
   // このインスタンスは全てのメッセージのレンダリングに使われます
@@ -164,7 +162,7 @@ const MessageList: FC = () => {
       {/* お行儀悪い 正々堂々と読み込んで */}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
       <div className={style.channelname}>
-          <ChannelName name="チャンネル名" />
+        <ChannelName name="チャンネル名" />
       </div>
       <div
         id="scrollableDiv"
