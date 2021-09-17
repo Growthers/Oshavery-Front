@@ -1,9 +1,13 @@
 .nameCard {
-  height: 35px;
-  vertical-align: middle;
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   .guildName {
-    padding-left: 20px;
     font-weight: 900;
-    font-size: 20px;
+    font-size: 120%;
   }
 }

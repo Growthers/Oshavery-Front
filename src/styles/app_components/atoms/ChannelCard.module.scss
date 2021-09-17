@@ -1,16 +1,22 @@
+@use "../../color.variable";
+$side_margin: 0.5rem;
+
 .channel {
+  @include color.back(menubar);
   cursor: pointer;
-  width: 240px;
-  margin: 5px 0;
-  border-radius: 5px;
+
+  margin: 0.25rem $side_margin;
+  height: 2.5rem;
+  width: calc(100% - (2 * #{$side_margin}));
+
+  border-radius: 0.5rem;
   display: flex;
   align-items: center;
+
   background-color: #ffcb7c;
-  height: 48px;
 
   color: #747474;
   font-weight: bold;
-  font-size: 16px;
 
   position: relative;
   z-index: +1;
@@ -24,16 +30,16 @@
     background-color: #ffdb99;
     border-radius: 5px 0 0 5px;
   }
-}
-.sharp {
-  position: relative;
-  box-sizing: border-box;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-  margin: 0 10px;
+
+  .sharp {
+    margin: 0 0.5rem;
+
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 }
 
+// カテゴリーはスタイルの修正を行ってません
 .category {
   cursor: pointer;
   width: 240px;
