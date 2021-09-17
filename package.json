@@ -11,6 +11,12 @@
     "format": "prettier --write src/**/*.{js,jsx,ts,tsx,json,css}"
   },
   "dependencies": {
+    "@types/emoji-mart": "^3.0.5",
+    "@types/markdown-it": "^12.2.1",
+    "@types/markdown-it-emoji": "^2.0.2",
+    "@types/react-infinite-scroller": "^1.2.2",
+    "@types/react": "17.0.19",
+    "@types/react-modal": "^3.12.1",
     "@auth0/auth0-react": "^1.7.0",
     "@iktakahiro/markdown-it-katex": "^4.0.1",
     "axios": "^0.21.4",
@@ -28,12 +34,6 @@
     "sass": "^1.38.1"
   },
   "devDependencies": {
-    "@types/emoji-mart": "^3.0.5",
-    "@types/markdown-it": "^12.2.1",
-    "@types/markdown-it-emoji": "^2.0.2",
-    "@types/react-infinite-scroller": "^1.2.2",
-    "@types/react": "17.0.19",
-    "@types/react-modal": "^3.12.1",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.0",
     "eslint-config-prettier": "8.3.0",
