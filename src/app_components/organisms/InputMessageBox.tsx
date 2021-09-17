@@ -6,7 +6,6 @@ import EmojiPicker from "../molecules/EmojiPicker";
 import SendButton from "../atoms/SendButton";
 import TextareaBox from "../atoms/TextareaBox";
 import UploadButton from "../atoms/UploadButton";
-import ModalWindow from "../atoms/ModalWindow";
 
 import { client } from "../../lib/client";
 import { postMessageRes } from "../../types/message";
