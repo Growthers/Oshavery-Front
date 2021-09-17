@@ -177,7 +177,6 @@ const MessageList: FC = () => {
     if (aIndex < 0 && result == null) {
       tokens[idx].attrPush(["target", "_blank"]);
       tokens[idx].attrPush(["rel", "noopener noreferrer"]);
-      console.log(tokens[idx])
     }
 
     return defaultRender(tokens, idx, options, env, self);
