@@ -1,20 +1,40 @@
+@use "../../color.variable";
+$side_margin: 0.5rem;
+
 .channel {
+  @include color.back(menubar);
   cursor: pointer;
-  width: 240px;
-  margin: 5px 0;
-  border-radius: 5px;
+
+  box-sizing: border-box;
+  margin: 0.25rem $side_margin;
+  padding-right: 0.5rem;
+  height: 2.5rem;
+  width: calc(100% - (2 * #{$side_margin}));
+
+  border-radius: 0.5rem;
   display: flex;
   align-items: center;
+
   background-color: #ffcb7c;
-  height: 48px;
 
   color: #747474;
   font-weight: bold;
-  font-size: 16px;
 
   position: relative;
-  z-index: +1;
   transition-duration: 0.2s;
+
+  .sharp {
+    margin: 0 0.5rem;
+
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .channel_name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   &:hover {
     opacity: 80%;
@@ -22,18 +42,11 @@
 
   &.selected {
     background-color: #ffdb99;
-    border-radius: 5px 0 0 5px;
+    border-radius: 0.5rem;
   }
 }
-.sharp {
-  position: relative;
-  box-sizing: border-box;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-  margin: 0 10px;
-}
 
+// カテゴリーはスタイルの修正を行ってません
 .category {
   cursor: pointer;
   width: 240px;

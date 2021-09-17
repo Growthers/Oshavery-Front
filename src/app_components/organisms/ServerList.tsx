@@ -4,6 +4,8 @@ import { FC } from "react";
 import ServerIcon from "../atoms/ServerIcon";
 import { userContext } from "../../stores/user";
 
+import style from "../../styles/app_components/organisms/ServerList.module.scss";
+
 const ServerList: FC = () => {
   const { userState } = useContext(userContext);
 
@@ -12,7 +14,7 @@ const ServerList: FC = () => {
   if (guildsData == undefined) return <></>;
 
   return (
-    <div>
+    <div className={style.serverlist}>
       {guildsData.map((value) => (
         <ServerIcon
           key={value.id}

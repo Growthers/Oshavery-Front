@@ -9,6 +9,8 @@ import { useRouter } from "next/router";
 import { user } from "../../types/user";
 import { userContext } from "../../stores/user";
 
+import style from "../../styles/app_components/organisms/MemberList.module.scss";
+
 const MemberList: FC = () => {
   const [isShow, setIsShow] = useState(false);
 
@@ -102,7 +104,7 @@ const MemberList: FC = () => {
   if (members == undefined) return <></>;
 
   return (
-    <div>
+    <div className={style.memberlist}>
       {members.map((value) => (
         <MemberCard
           key={value.id}
