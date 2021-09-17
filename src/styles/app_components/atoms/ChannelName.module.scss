@@ -1,7 +1,10 @@
-.nameBar {
-  height: 40px;
-  background-color: #ffc266;
+.namebar {
+  height: 100%;
+  width: 100%;
+
   display: flex;
+  justify-content: center;
+  align-items: center;
 
   .sharp {
     padding-top: 10px;

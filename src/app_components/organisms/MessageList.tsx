@@ -17,6 +17,7 @@ import { Emoji } from "emoji-mart";
 // ここまでMarkdown
 
 import ChannelMessage from "../molecules/ChannelMessage";
+import ChannelName from "../atoms/ChannelName";
 
 import { messagesContext } from "../../stores/message";
 import { message } from "../../types/message";
@@ -162,6 +163,9 @@ const MessageList: FC = () => {
     <>
       {/* お行儀悪い 正々堂々と読み込んで */}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
+      <div className={style.channelname}>
+          <ChannelName name="チャンネル名" />
+      </div>
       <div
         id="scrollableDiv"
         className={style.messagelist}
