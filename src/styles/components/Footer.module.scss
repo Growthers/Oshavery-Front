@@ -25,8 +25,7 @@
 }
 
 .logout {
-  padding: 1rem;
-
+  cursor: pointer;
   color: #ff0000;
 }
 
@@ -37,7 +36,6 @@
 }
 
 @media screen and (max-width: 600px) {
-
   .lists {
     flex-direction: column;
     padding-left: 15vw;

@@ -10,15 +10,17 @@ const Footer: FC = () => {
       <div className={style.lists}>
         <div className={style.group}>
           <p className={style.group_title}>Oshavery</p>
-          {isAuthenticated ? (
-            <li className={style.group_list}>
-              <div onClick={() => logout()}>
-                <span className={style.logout}>Logout</span>
-              </div>
-            </li>
-          ) : (
-            <></>
-          )}
+          <ul>
+            {isAuthenticated ? (
+              <li className={style.group_list}>
+                <div onClick={() => logout()}>
+                  <span className={style.logout}>Logout</span>
+                </div>
+              </li>
+            ) : (
+              <></>
+            )}
+          </ul>
         </div>
         <div className={style.group}>
           <p className={style.group_title}>GitHub Repositories</p>
