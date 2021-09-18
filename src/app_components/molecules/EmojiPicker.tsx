@@ -102,14 +102,16 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
   //emoji-mart ancherの Click event
   const check_EmojiClick = (e: any, check_target: string) => {
     const emojiinput_element = "emoji-mart-search";
+    
     const target = e.target;
     const parent = target.parentNode;
     const grandparent = parent.parentNode;
-
+    const greatgrandparent = grandparent.parentName;
+    
     const class_name = String(target.className);
     const parent_class_name = String(parent.className);
     const grandparent_class_name = String(grandparent.className);
-    const greatgrandparent_class_name = String(grandparent.className);
+    const greatgrandparent_class_name = String(greatgrandparent.className);
 
     if (!isShow) {
       return;
