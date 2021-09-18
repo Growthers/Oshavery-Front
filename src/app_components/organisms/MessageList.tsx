@@ -102,6 +102,13 @@ const MessageList: FC = () => {
       }
     })();
 
+    // テストデータを20件追加
+    // 初めに出てくるデータはここで作られている
+    // テストデータを使うことがあるのでコメントアウトしておきます
+    // messagesDispatch({
+    //   type: "set",
+    //   newData: Array.from({ length: 100 }, (_, i) => mkTestResponse(i.toString())),
+    // });
     setEndPoint(`/channels/${channelID}/messages`);
   }, [channelID]);
 
