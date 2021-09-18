@@ -5,14 +5,15 @@ import MessageContent from "../atoms/MessageContent";
 import { message } from "../../types/message";
 
 import style from "../../styles/app_components/molecules/ChannelMessage.module.scss";
-import Button from "../atoms/Button"
-import { AiFillDelete } from 'react-icons/ai'
-
+import Button from "../atoms/Button";
+import { AiFillDelete } from "react-icons/ai";
 
 interface Props {
   response: message;
   // author情報を表示するか
   author_show: boolean;
+  // author本人かどうか
+  isauthor: boolean;
   renderer: (content: string) => string;
 }
 
@@ -105,8 +106,8 @@ const ChannelMessage: FC<Props> = (props) => {
 
   // メッセージを削除する関数
   const deleteMessage = () => {
-    console.log("メッセージを削除")
-  }
+    console.log("メッセージを削除");
+  };
 
   // dangerousな文字をHTMLにして表示してるの怖くね
   if (props.author_show) {
@@ -126,11 +127,13 @@ const ChannelMessage: FC<Props> = (props) => {
           </div>
         </div>
         <div className={style.messagebuttons}>
-          <Button
-            onClick={()=>(deleteMessage())}
-          >
-            <AiFillDelete/>
-          </Button>
+          {props.isauthor ? (
+            <Button onClick={() => deleteMessage()}>
+              <AiFillDelete />
+            </Button>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     );
@@ -145,11 +148,13 @@ const ChannelMessage: FC<Props> = (props) => {
           <MessageContent content={res.content} renderer={props.renderer} />
         </div>
         <div className={style.messagebuttons}>
-          <Button
-            onClick={()=>(deleteMessage())}
-          >
-            <AiFillDelete/>
-          </Button>
+          {props.isauthor ? (
+            <Button onClick={() => deleteMessage()}>
+              <AiFillDelete />
+            </Button>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     );
