@@ -3,13 +3,17 @@ import { client } from "./client";
 import { message } from "../types/message";
 import { useRouter } from "next/router";
 import { messagesContext } from "../stores/message";
+import { user } from "../types/user";
+import { userContext } from "../stores/user";
 
 type ws = {
   type: string;
   body: {
     id?: string;
-    channelID?: string;
-    messageID?: string;
+    guild_id?: string;
+    channel_id?: string;
+    message_id?: string;
+    member_id?: string;
   };
 };
 
@@ -17,6 +21,7 @@ const WebSocketController: FC = () => {
   const router = useRouter();
   const { channelID } = router.query;
 
+  const { userDispatch } = useContext(userContext);
   const { messagesDispatch } = useContext(messagesContext);
 
   let socket = typeof window !== "undefined" ? new WebSocket(process.env.NEXT_PUBLIC_WSENDPOINT!) : null;
@@ -27,10 +32,24 @@ const WebSocketController: FC = () => {
     socket.onclose = () => console.log("ws close");
 
     socket.onmessage = (event: MessageEvent<ws>) => {
-      console.log(event);
-
-      switch (event.type) {
+      switch (event.data.type) {
         case "USER_JOINED":
+          if (event.data.body.guild_id != undefined && event.data.body.member_id != undefined) {
+            (async () => {
+              try {
+                const res = await client.get<user[]>(`/guilds/${event.data.body.guild_id}/members`);
+                if (event.data.body.guild_id != undefined) {
+                  userDispatch({
+                    type: "USER_JOINED",
+                    guild: event.data.body.guild_id,
+                    newData: res.data,
+                  });
+                }
+              } catch (error) {
+                console.log(error);
+              }
+            })();
+          }
           break;
 
         case "USER_UPDATED":
@@ -49,9 +68,9 @@ const WebSocketController: FC = () => {
           break;
 
         case "MESSAGE_CREATED":
-          if (channelID != undefined && channelID === event.data.body.channelID) {
+          if (channelID != undefined && channelID === event.data.body.channel_id) {
             client
-              .get<message>(`/channels/${event.data.body.channelID}/messages/${event.data.body.messageID}`)
+              .get<message>(`/channels/${event.data.body.channel_id}/messages/${event.data.body.message_id}`)
               .then((res) => {
                 messagesDispatch({
                   type: "new",
@@ -68,6 +87,11 @@ const WebSocketController: FC = () => {
           break;
 
         case "MESSAGE_DELETED":
+          if (event.data.body.guild_id != undefined && event.data.body.channel_id != undefined && event.data.body.message_id != undefined && channelID == event.data.body.channel_id && channelID != undefined) {
+            (async => {
+
+            })();
+          }
           break;
 
         case "EMOJI_CREATED":

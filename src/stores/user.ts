@@ -1,4 +1,4 @@
-import { myInfo } from "../types/user";
+import { myInfo, user } from "../types/user";
 import { Dispatch, Context, createContext, useReducer, Reducer } from "react";
 import { testMyInfo } from "./__test__/user";
 
@@ -6,10 +6,22 @@ type stateType = {
   user: myInfo;
 };
 
-type actionType = {
-  type: "set";
-  newData: myInfo;
-};
+type actionType =
+  | {
+      type: "set";
+      newData: myInfo;
+    }
+  | {
+      type: "USER_JOINED";
+      guild: string;
+      newData: user[];
+    }
+  | {
+      type: "MESSAGE_CREATED";
+      guild: string;
+      channel: string;
+      message: string;
+    };
 
 type UserContext = {
   userState: stateType;
@@ -20,6 +32,11 @@ const reducer: Reducer<stateType, actionType> = (state: stateType, action: actio
   switch (action.type) {
     case "set":
       return { user: action.newData };
+
+    case "USER_JOINED":
+      state.user.guilds[state.user.guilds.findIndex((item) => item.id === action.guild)].users = action.newData;
+      return { user: state.user };
+
     default:
       return state;
   }

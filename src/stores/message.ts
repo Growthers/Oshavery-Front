@@ -17,6 +17,12 @@ type actionType =
   | {
       type: "new";
       newData: message;
+    }
+  | {
+      type: "delete";
+      guild_id: string;
+      channel_id: string;
+      message_id: string;
     };
 
 type messageContext = {
@@ -28,11 +34,17 @@ const reducer: Reducer<stateType, actionType> = (state: stateType, action: actio
   switch (action.type) {
     case "set":
       return { messages: action.newData };
+
     case "load":
       return { messages: state.messages.concat(action.newData) };
+
     case "new":
       state.messages.unshift(action.newData);
       return state;
+
+    case "delete":
+
+
     default:
       return state;
   }
