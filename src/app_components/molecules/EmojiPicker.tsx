@@ -86,6 +86,8 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
       return;
     } else if (parent_class_name.indexOf(emojipopup_classname) !== -1) {
       return;
+    } else if (!grandparent_class_name) {
+      return;
     } else if (grandparent_class_name.indexOf(emojipopup_classname) !== -1) {
       return;
     }
@@ -97,6 +99,7 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
     document.body.onclick = check_click;
   }
 
+  //emoji-mart ancherの Click event
   const check_EmojiClick = (e: any, check_target: string) => {
     const emojiinput_element = "emoji-mart-search";
     const target = e.target;
@@ -118,11 +121,14 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
     } else if (parent_class_name.indexOf(check_target) !== -1 || parent_class_name.indexOf(emojiinput_element) !== -1) {
       setIsShow(true);
       return;
-    } else if (
+    } else if (!grandparent_class_name) return;
+    else if (
       grandparent_class_name.indexOf(check_target) !== -1 ||
       grandparent_class_name.indexOf(emojiinput_element) !== -1
     ) {
       setIsShow(true);
+      return;
+    } else if (!greatgrandparent_class_name) {
       return;
     } else if (
       greatgrandparent_class_name.indexOf(check_target) !== -1 ||
