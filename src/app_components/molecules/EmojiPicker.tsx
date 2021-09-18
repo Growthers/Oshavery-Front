@@ -148,7 +148,6 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
         return;
       } else setIsShow(false);
     } catch (e) {
-      console.error(e);
       return;
     }
   };
