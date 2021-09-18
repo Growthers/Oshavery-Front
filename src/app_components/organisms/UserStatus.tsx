@@ -12,17 +12,17 @@ type Props = {
 const UserStatus: FC<Props> = (props) => {
   const { user } = useAuth0<{ name: string; picture: string }>();
   return (
-    <div className={style.userStatus}>
+    <div className={style.userstatus}>
       {user ? (
         <>
-          <img src={user.picture} alt="icon" className={style.userIcon} />
-          <div className={style.userName}>{user.name}</div>
+          <img src={user.picture} alt="icon" className={style.usericon} />
+          <div className={style.username}>{user.name}</div>
         </>
       ) : (
         <span color="red">error</span>
       )}
-      <div className={style.settingButton}>
-        <AiOutlineSetting size={38} onClick={() => props.onClick(!props.modalIsShow)} />
+      <div className={style.settingbutton}>
+        {false ? <AiOutlineSetting size={38} onClick={() => props.onClick(!props.modalIsShow)} /> : <></>}
       </div>
     </div>
   );

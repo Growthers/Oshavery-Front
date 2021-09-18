@@ -102,6 +102,13 @@ const MessageList: FC = () => {
       }
     })();
 
+    // テストデータを20件追加
+    // 初めに出てくるデータはここで作られている
+    // テストデータを使うことがあるのでコメントアウトしておきます
+    // messagesDispatch({
+    //   type: "set",
+    //   newData: Array.from({ length: 100 }, (_, i) => mkTestResponse(i.toString())),
+    // });
     setEndPoint(`/channels/${channelID}/messages`);
   }, [channelID]);
 
@@ -158,17 +165,19 @@ const MessageList: FC = () => {
 
   // aタグを新規タブで開くように
   // ここを参考に https://github.com/markdown-it/markdown-it/blob/master/docs/architecture.md#renderer
-  const defaultRender = md.renderer.rules.link_open || function(tokens, idx, options, env, self) {
-    return self.renderToken(tokens, idx, options);
-  };
+  const defaultRender =
+    md.renderer.rules.link_open ||
+    function (tokens, idx, options, env, self) {
+      return self.renderToken(tokens, idx, options);
+    };
 
   md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
     const aIndex = tokens[idx].attrIndex("target");
 
-    let result = null
+    let result = null;
 
     if (process.browser && aIndex < 0) {
-      const pattern = `https?://${document.domain}[\w!?/+\-_~;.,*&@#$%()'[\]]+`
+      const pattern = `https?://${document.domain}[\w!?/+\-_~;.,*&@#$%()'[\]]+`;
       // url取得
       // ここで一致させることで、同一ドメインのものは新規タブで開かれません（多分）
       // result = tokens[idx].attrs[0][1].match(pattern);

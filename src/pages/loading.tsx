@@ -1,10 +1,15 @@
 import type { NextPage } from "next";
+import Image from "next/image";
 import { useContext, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+
 import { client } from "../lib/client";
 import { useRouter } from "next/router";
 import { userContext } from "../stores/user";
 import { createUserRes, myInfo } from "../types/user";
+
+import logo from "../../public/logo.png";
+import style from "../styles/pages/loading.module.scss";
 
 const Loading: NextPage = () => {
   const router = useRouter();
@@ -61,7 +66,14 @@ const Loading: NextPage = () => {
     })();
   }, [router, userDispatch]);
 
-  return <h1>Loading</h1>;
+  return (
+    <div className={style.loading}>
+      <div className={style.logo}>
+        <Image src={logo} alt="Oshavery logo" />
+      </div>
+      <h1>Loading...</h1>
+    </div>
+  );
 };
 
 export default Loading;
