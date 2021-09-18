@@ -102,18 +102,19 @@ const MessageList: FC = () => {
       }
     })();
 
-    // テストデータを20件追加
-    // 初めに出てくるデータはここで作られている
+    // テストデータ
     // テストデータを使うことがあるのでコメントアウトしておきます
-    // messagesDispatch({
-    //   type: "set",
-    //   newData: Array.from({ length: 100 }, (_, i) => mkTestResponse(i.toString())),
-    // });
+    /*
+    messagesDispatch({
+      type: "set",
+      newData: Array.from({ length: 100 }, (_, i) => mkTestResponse(i.toString())),
+    });
+    */
+
     setEndPoint(`/channels/${channelID}/messages`);
   }, [channelID]);
 
   // 新規スクロールがあった時に呼ばれる
-  // 複数件のメッセージを同時に取得したほうがいいとおもう
   const fetchMoreData = async () => {
     try {
       if (endPoint == undefined) {
@@ -197,7 +198,7 @@ const MessageList: FC = () => {
   let countup = 0;
 
   return (
-    <>
+    <div className={style.messagelist}>
       {/* お行儀悪い 正々堂々と読み込んで */}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
       <div className={style.channelname}>
@@ -205,7 +206,7 @@ const MessageList: FC = () => {
       </div>
       <div
         id="scrollableDiv"
-        className={style.messagelist}
+        className={style.messages}
         style={{
           overflow: "auto",
           display: "flex",
@@ -270,7 +271,7 @@ const MessageList: FC = () => {
           })}
         </InfiniteScroll>
       </div>
-    </>
+    </div>
   );
 };
 
