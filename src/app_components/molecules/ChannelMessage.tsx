@@ -12,6 +12,8 @@ interface Props {
   response: message;
   // author情報を表示するか
   author_show: boolean;
+  // author本人かどうか
+  isauthor: boolean;
   renderer: (content: string) => string;
 }
 
@@ -125,9 +127,13 @@ const ChannelMessage: FC<Props> = (props) => {
           </div>
         </div>
         <div className={style.messagebuttons}>
-          <Button onClick={() => deleteMessage()}>
-            <AiFillDelete />
-          </Button>
+          {props.isauthor ? (
+            <Button onClick={() => deleteMessage()}>
+              <AiFillDelete />
+            </Button>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     );
@@ -142,9 +148,13 @@ const ChannelMessage: FC<Props> = (props) => {
           <MessageContent content={res.content} renderer={props.renderer} />
         </div>
         <div className={style.messagebuttons}>
-          <Button onClick={() => deleteMessage()}>
-            <AiFillDelete />
-          </Button>
+          {props.isauthor ? (
+            <Button onClick={() => deleteMessage()}>
+              <AiFillDelete />
+            </Button>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     );
