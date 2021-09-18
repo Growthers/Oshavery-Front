@@ -19,6 +19,7 @@ import { Emoji } from "emoji-mart";
 import ChannelMessage from "../molecules/ChannelMessage";
 import ChannelName from "../atoms/ChannelName";
 
+import { userContext } from "../../stores/user";
 import { messagesContext } from "../../stores/message";
 import { message } from "../../types/message";
 import { client } from "../../lib/client";
@@ -61,8 +62,10 @@ const mkTestResponse = (authN: string): message => {
 // コンポーネント本体
 // Markdownレンダリングのライブラリのインスタンスもここで持っている
 const MessageList: FC = () => {
+  const { userState } = useContext(userContext);
   const { messagesState, messagesDispatch } = useContext(messagesContext);
 
+  const user_id = userState.user.id;
   const router = useRouter();
   const { channelID } = router.query;
   const [endPoint, setEndPoint] = useState<string>();
@@ -247,8 +250,13 @@ const MessageList: FC = () => {
               }
             }
 
+            let isauthor = false;
+
+            // 作成者が本人かどうか
+            if (value.author.id == user_id) isauthor = true;
+
             return (
-              <ChannelMessage key={value.id} response={value} author_show={author_show} renderer={md.render.bind(md)} />
+              <ChannelMessage key={value.id} response={value} author_show={author_show} isauthor={isauthor} renderer={md.render.bind(md)} />
             );
           })}
         </InfiniteScroll>
