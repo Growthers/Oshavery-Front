@@ -54,7 +54,7 @@ const Oshavery: NextPage = () => {
         </div>
         <div className={style.left_side}>
           <div className={style.userstatus}>
-            //left_sideに要素を追加する場合はここに入れる
+            {/* ユーザー部に要素を追加する場合はここに入れる */}
             <UserStatus onClick={setModalShow} modalIsShow={modalIsShow} />
           </div>
           <ChannelList />
