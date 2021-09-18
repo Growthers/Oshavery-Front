@@ -49,7 +49,7 @@ $back-color: #666666;
   }
 
   .overview_image {
-    .icon{
+    .icon {
       padding: 2rem;
       fill: #ffffff;
     }
@@ -106,12 +106,12 @@ $back-color: #666666;
 }
 
 @media screen and (max-width: 1000px) {
-
   .overview {
     font-size: 100%;
   }
 
-  .overview_left, .overview_right {
+  .overview_left,
+  .overview_right {
     flex-direction: column;
   }
 
@@ -125,13 +125,13 @@ $back-color: #666666;
 }
 
 @media screen and (max-width: 600px) {
-
   .overview {
     font-size: 80%;
     padding: 0 5vw 5vh 5vw;
   }
 
-  .overview_left, .overview_right {
+  .overview_left,
+  .overview_right {
     flex-direction: column;
   }
 
