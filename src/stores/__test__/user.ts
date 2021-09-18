@@ -164,7 +164,7 @@ export const testMyInfo: myInfo = {
           state: 0,
         },
         {
-          id: "1145141919810",
+          id: "3141592653589792384",
           name: "弟子1号",
           avatar: "",
           bot: false,
