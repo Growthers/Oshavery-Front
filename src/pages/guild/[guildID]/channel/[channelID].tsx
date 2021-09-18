@@ -13,6 +13,8 @@ import MemberList from "../../../../app_components/organisms/MemberList";
 import UserStatus from "../../../../app_components/organisms/UserStatus";
 import UserSettings from "../../../../app_components/organisms/UserSettings";
 
+import WebSocketController from "../../../../lib/WebSocketController";
+
 import style from "../../../../styles/pages/guild-channel.module.scss";
 
 const Oshavery: NextPage = () => {
@@ -78,6 +80,7 @@ const Oshavery: NextPage = () => {
         </div>
       </div>
       <UserSettings onClick={setModalShow} isShow={modalIsShow} />
+      <WebSocketController />
     </Layout>
   );
 };

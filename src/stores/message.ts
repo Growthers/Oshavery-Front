@@ -17,6 +17,10 @@ type actionType =
   | {
       type: "new";
       newData: message;
+    }
+  | {
+      type: "delete";
+      message_id: string;
     };
 
 type messageContext = {
@@ -28,11 +32,21 @@ const reducer: Reducer<stateType, actionType> = (state: stateType, action: actio
   switch (action.type) {
     case "set":
       return { messages: action.newData };
+
     case "load":
       return { messages: state.messages.concat(action.newData) };
+
     case "new":
       state.messages.unshift(action.newData);
       return state;
+
+    case "delete":
+      state.messages.splice(
+        state.messages.findIndex((item) => item.id === action.message_id),
+        1,
+      );
+      return state;
+
     default:
       return state;
   }
