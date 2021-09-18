@@ -17,7 +17,9 @@ const UserStatus: FC = () => {
       ) : (
         <span color="red">error</span>
       )}
-      <AiOutlineSetting size={45} className={style.settingButton} />
+      <div className={style.settingButton}>
+        <AiOutlineSetting size={38} />
+      </div>
     </div>
   );
 };

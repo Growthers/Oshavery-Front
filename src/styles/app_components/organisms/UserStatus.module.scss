@@ -1,6 +1,8 @@
 .userStatus {
   display: flex;
   height: 56px;
+  background-color: #ffc266;
+
   .userIcon {
     margin-top: auto;
     margin-bottom: auto;
@@ -12,8 +14,9 @@
     margin-top: auto;
     margin-bottom: auto;
   }
+
   .settingButton {
-    padding-top: auto;
-    padding-bottom: auto;
+    margin-top: auto;
+    margin-bottom: auto;
   }
 }
