@@ -25,25 +25,7 @@ import { client } from "../../lib/client";
 
 import style from "../../styles/app_components/organisms/MessageList.module.scss";
 
-// サーバからのレスポンス
-// props経由で渡されてる
-/*export interface Response {
-  id: string;
-  timestamp: string;
-  author: {
-    id: string;
-    name: string;
-    avatar: string;
-    bot: string;
-    state: string;
-  };
-  content: string;
-  guild_id: string;
-  channel_id: string;
-};*/
-
-// APIが無いからテスト用にResponseを返す
-// XSSのテスト用文字列もあるよ
+// テスト用文字列
 const mkTestResponse = (authN: string): message => {
   const ret: message = {
     id: Math.random().toString(32).substring(2),
