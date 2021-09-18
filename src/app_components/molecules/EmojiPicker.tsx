@@ -1,4 +1,5 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { FC, MouseEvent } from "react";
 import "emoji-mart/css/emoji-mart.css";
 import { CustomEmoji, EmojiData, Picker, Emoji } from "emoji-mart";
 
@@ -15,13 +16,14 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
   const popupRef = useRef(null);
   const emojipopup_classname = "emojipopup_element";
   const emoji_open_classname = "emojiopen_element";
+  const emoji_anchors_classname = "emoji-mart-anchors";
+  const emojianchors_name = "emojianchors_element";
 
   // フォーカスと内容変更
   useEffect(() => {
     if (process.browser) {
       const parent_target = document.getElementsByClassName("emoji-mart-search")[0];
       const count = parent_target.childElementCount;
-
       let input_element_id = "";
 
       for (let i = 0; i < count; i++) {
@@ -44,6 +46,8 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
     if (process.browser) {
       const elements: HTMLCollectionOf<Element> = document.getElementsByClassName(style.emojipopup);
       const open_elements: HTMLCollectionOf<Element> = document.getElementsByClassName(emoji_open_classname);
+      const emoji_anchors_elements: HTMLCollectionOf<Element> =
+        document.getElementsByClassName(emoji_anchors_classname);
 
       for (let i = 0; i < elements.length; i++) {
         set_class(elements[i], emojipopup_classname);
@@ -51,6 +55,10 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
 
       for (let j = 0; j < open_elements.length; j++) {
         set_class(open_elements[j], emojipopup_classname);
+      }
+
+      for (let k = 0; k < emoji_anchors_elements.length; k++) {
+        set_class(emoji_anchors_elements[k], emojianchors_name);
       }
     }
   }, []);
@@ -96,19 +104,25 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
     document.body.onclick = check_click;
   }
 
+  const check_EmojiClick = (e: any) => {
+    if (/^emoji\-mart\-search/.test(e.target.id)) setIsShow(true);
+    else setIsShow(false);
+  };
   return (
     <div className={style.emojipicker} ref={popupRef} tabIndex={1000}>
       <div
-        onClick={() => {
-          if (!isShow) setIsShow(true);
-        }}
         hidden={!isShow}
         className={style.emojipopup}
+        onClick={(e) => {
+          console.log(e.target);
+          check_EmojiClick(e);
+        }}
       >
         <Picker
           title="Pick your emoji…"
           emoji="point_up"
           autoFocus={true}
+          skin={1}
           emojiSize={33}
           theme="dark"
           set="twitter"
@@ -124,7 +138,7 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
         }}
         className={`${emoji_open_classname} ${style.emoji}`}
       >
-        <Emoji emoji={"grinning"} size={30} />
+        <Emoji emoji={"grinning"} size={30} set="twitter" />
       </div>
     </div>
   );
