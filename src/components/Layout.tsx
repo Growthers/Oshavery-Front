@@ -37,6 +37,7 @@ const Layout: FC<Props> = ({ pagetitle, children, isheader, isfooter, descriptio
         <meta name="twitter:title" content={pagetitle} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={SiteImage} />
+        <link rel="icon" type="image/svg+xml" href="../../public/favicon.svg" />
       </Head>
       <main className={style.main}>
         <div className={style.contents}>
