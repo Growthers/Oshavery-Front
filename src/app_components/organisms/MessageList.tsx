@@ -135,12 +135,16 @@ const MessageList: FC = () => {
     // デフォルトでfalseですが、念のため
     // markdown-it側である程度のサニタイズ処理は施されるようです
     html: false,
+    linkify: true,
   });
+
   // 数式の描画
   md.use(MarkdownItKatex);
+
   // 絵文字の描画
   // emoji-martライブラリのカスタム絵文字を使うために面倒なことをしています
   md.use(MarkdownItEmoji);
+
   md.renderer.rules.emoji = function (token, idx) {
     // EmojiコンポーネントがJSXかStringを返すクソ仕様のせいでtypescriptの恩恵を受けられません
     var ret = Emoji({
@@ -150,6 +154,32 @@ const MessageList: FC = () => {
     });
     // @ts-ignore
     return ret as string;
+  };
+
+  // aタグを新規タブで開くように
+  // ここを参考に https://github.com/markdown-it/markdown-it/blob/master/docs/architecture.md#renderer
+  const defaultRender = md.renderer.rules.link_open || function(tokens, idx, options, env, self) {
+    return self.renderToken(tokens, idx, options);
+  };
+
+  md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+    const aIndex = tokens[idx].attrIndex("target");
+
+    let result = null
+
+    if (process.browser && aIndex < 0) {
+      const pattern = `https?://${document.domain}[\w!?/+\-_~;.,*&@#$%()'[\]]+`
+      // url取得
+      // ここで一致させることで、同一ドメインのものは新規タブで開かれません（多分）
+      // result = tokens[idx].attrs[0][1].match(pattern);
+    }
+
+    if (aIndex < 0 && result == null) {
+      tokens[idx].attrPush(["target", "_blank"]);
+      tokens[idx].attrPush(["rel", "noopener noreferrer"]);
+    }
+
+    return defaultRender(tokens, idx, options, env, self);
   };
 
   if (messagesState.messages == undefined) return <></>;

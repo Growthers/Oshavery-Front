@@ -18,6 +18,8 @@ $back-color: #666666;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    user-select: none;
   }
 
   .title {
