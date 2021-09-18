@@ -111,11 +111,12 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
       const target = e.target;
       const parent = target.parentNode;
       const grandparent = parent.parentNode;
+      const greatgrandparent = parent.parentNode;
 
       const class_name = String(target.className);
       const parent_class_name = String(parent.className);
       const grandparent_class_name = String(grandparent.className);
-      const greatgrandparent_class_name = String(grandparent.className);
+      const greatgrandparent_class_name = String(greatgrandparent.className);
 
       if (!isShow) {
         return;
