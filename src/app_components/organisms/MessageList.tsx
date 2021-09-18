@@ -256,7 +256,13 @@ const MessageList: FC = () => {
             if (value.author.id == user_id) isauthor = true;
 
             return (
-              <ChannelMessage key={value.id} response={value} author_show={author_show} isauthor={isauthor} renderer={md.render.bind(md)} />
+              <ChannelMessage
+                key={value.id}
+                response={value}
+                author_show={author_show}
+                isauthor={isauthor}
+                renderer={md.render.bind(md)}
+              />
             );
           })}
         </InfiniteScroll>
