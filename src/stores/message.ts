@@ -20,8 +20,6 @@ type actionType =
     }
   | {
       type: "delete";
-      guild_id: string;
-      channel_id: string;
       message_id: string;
     };
 
@@ -43,7 +41,11 @@ const reducer: Reducer<stateType, actionType> = (state: stateType, action: actio
       return state;
 
     case "delete":
-
+      state.messages.splice(
+        state.messages.findIndex((item) => item.id === action.message_id),
+        1,
+      );
+      return state;
 
     default:
       return state;

@@ -87,10 +87,17 @@ const WebSocketController: FC = () => {
           break;
 
         case "MESSAGE_DELETED":
-          if (event.data.body.guild_id != undefined && event.data.body.channel_id != undefined && event.data.body.message_id != undefined && channelID == event.data.body.channel_id && channelID != undefined) {
-            (async => {
-
-            })();
+          if (
+            event.data.body.guild_id != undefined &&
+            event.data.body.channel_id != undefined &&
+            event.data.body.message_id != undefined &&
+            channelID == event.data.body.channel_id &&
+            channelID != undefined
+          ) {
+            messagesDispatch({
+              type: "delete",
+              message_id: event.data.body.message_id,
+            });
           }
           break;
 
