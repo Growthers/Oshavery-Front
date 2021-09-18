@@ -10,13 +10,15 @@ import ChannelList from "../../../../app_components/organisms/ChannelList";
 import MessageList from "../../../../app_components/organisms/MessageList";
 import InputMessageBox from "../../../../app_components/organisms/InputMessageBox";
 import MemberList from "../../../../app_components/organisms/MemberList";
+import UserStatus from "../../../../app_components/organisms/UserStatus";
 
 import style from "../../../../styles/pages/guild-channel.module.scss";
+import UserSettings from "../../../../app_components/organisms/UserSettings";
 
 const Oshavery: NextPage = () => {
   const { width: window_width, height: window_height } = useWindowSize();
   const [messages_height, setMessagesHeight] = useState<number>(937);
-
+  const [modalIsShow, setModalShow] = useState<boolean>(false);
   useEffect(() => {
     if (process.browser) {
       setMessagesHeight(window.innerHeight);
@@ -50,6 +52,7 @@ const Oshavery: NextPage = () => {
           <ServerList />
         </div>
         <div className={style.left_side}>
+          <UserStatus onClick={setModalShow} modalIsShow={modalIsShow} />
           <ChannelList />
         </div>
         <div className={style.center}>
@@ -70,6 +73,7 @@ const Oshavery: NextPage = () => {
           <MemberList />
         </div>
       </div>
+      <UserSettings onClick={setModalShow} isShow={modalIsShow} />
     </Layout>
   );
 };

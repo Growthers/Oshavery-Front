@@ -9,7 +9,6 @@ import { userContext } from "../../stores/user";
 import { useRouter } from "next/router";
 
 import style from "../../styles/app_components/organisms/ChannelList.module.scss";
-import UserStatus from "./UserStatus";
 
 const ChannelList: FC = () => {
   const { userState } = useContext(userContext);
@@ -43,9 +42,6 @@ const ChannelList: FC = () => {
             />
           );
         })}
-      </div>
-      <div className={style.userStatus}>
-        <UserStatus />
       </div>
     </div>
   );
