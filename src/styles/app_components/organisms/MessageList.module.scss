@@ -1,11 +1,20 @@
+@use "../../color.variable";
+
 .messagelist {
   /*親要素いっぱいになります*/
   height: 100%;
+  width: 100%;
 }
 
 .channelname {
-  position: fixed;
-  z-index: 10;
+  @include color.background(menubar);
+  z-index: 1;
+
   height: 3rem;
-  width: 100%;
+
+  border-bottom: solid 4px #ffc266;
+}
+
+.messages {
+  height: calc(100% - 3rem);
 }

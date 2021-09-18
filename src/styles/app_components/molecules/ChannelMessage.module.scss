@@ -5,6 +5,7 @@ $left_space: 4rem;
 .fullcontent {
   @include color.back(messages);
   display: flex;
+  position: relative;
   margin-top: 1rem;
 
   .left_side {
@@ -32,11 +33,30 @@ $left_space: 4rem;
     color: #ff9900;
     user-select: none;
   }
+
+  .messagebuttons {
+    @include color.background(menubar);
+    position: absolute;
+    top: -1rem;
+    right: 10%;
+
+    display: none;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+  }
+
+  &:hover {
+    .messagebuttons {
+      display: flex;
+      align-items: center;
+    }
+  }
 }
 
 .simplecontent {
   @include color.back(messages);
   display: flex;
+  position: relative;
 
   .left_side {
     width: $left_space;
@@ -52,9 +72,26 @@ $left_space: 4rem;
     }
   }
 
+  .messagebuttons {
+    @include color.background(menubar);
+    position: absolute;
+    z-index: 1;
+    right: 10%;
+    top: -1rem;
+
+    display: none;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+  }
+
   &:hover {
-    .timestamp{
+    .timestamp {
       color: #ffad33;
+    }
+
+    .messagebuttons {
+      display: flex;
+      align-items: center;
     }
   }
 }

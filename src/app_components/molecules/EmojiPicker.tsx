@@ -1,4 +1,5 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { FC } from "react";
 import "emoji-mart/css/emoji-mart.css";
 import { CustomEmoji, EmojiData, Picker, Emoji } from "emoji-mart";
 
@@ -15,13 +16,13 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
   const popupRef = useRef(null);
   const emojipopup_classname = "emojipopup_element";
   const emoji_open_classname = "emojiopen_element";
+  const emojiAncher_element = "emoji-mart-anchor";
 
   // フォーカスと内容変更
   useEffect(() => {
     if (process.browser) {
       const parent_target = document.getElementsByClassName("emoji-mart-search")[0];
       const count = parent_target.childElementCount;
-
       let input_element_id = "";
 
       for (let i = 0; i < count; i++) {
@@ -69,23 +70,30 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
 
   // クリックイベント
   const check_click = (e: any) => {
-    const target = e.target;
-    const parent = target.parentNode;
-    const grandparent = parent.parentNode;
+    try {
+      const target = e.target;
+      const parent = target.parentNode;
+      const grandparent = parent.parentNode;
 
-    const class_name = String(target.className);
-    const parent_class_name = String(parent.className);
-    const grandparent_class_name = String(grandparent.className);
+      const class_name = String(target.className);
+      const parent_class_name = String(parent.className);
+      const grandparent_class_name = String(grandparent.className);
 
-    if (!isShow) {
-      return;
-    }
+      if (!isShow) {
+        return;
+      }
 
-    if (class_name.indexOf(emojipopup_classname) !== -1) {
-      return;
-    } else if (parent_class_name.indexOf(emojipopup_classname) !== -1) {
-      return;
-    } else if (grandparent_class_name.indexOf(emojipopup_classname) !== -1) {
+      if (class_name.indexOf(emojipopup_classname) !== -1) {
+        return;
+      } else if (parent_class_name.indexOf(emojipopup_classname) !== -1) {
+        return;
+      } else if (!grandparent_class_name) {
+        return;
+      } else if (grandparent_class_name.indexOf(emojipopup_classname) !== -1) {
+        return;
+      }
+    } catch (e) {
+      console.log(e);
       return;
     }
 
@@ -96,19 +104,68 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
     document.body.onclick = check_click;
   }
 
+  //emoji-mart ancherの Click event
+  const check_EmojiClick = (e: any, check_target: string) => {
+    try {
+      const emojiinput_element = "emoji-mart-search";
+      const target = e.target;
+      const parent = target.parentNode;
+      const grandparent = parent.parentNode;
+      const greatgrandparent = parent.parentNode;
+
+      const class_name = String(target.className);
+      const parent_class_name = String(parent.className);
+      const grandparent_class_name = String(grandparent.className);
+      const greatgrandparent_class_name = String(greatgrandparent.className);
+
+      if (!isShow) {
+        return;
+      }
+
+      if (class_name.indexOf(check_target) !== -1 || class_name.indexOf(emojiinput_element) !== -1) {
+        setIsShow(true);
+        return;
+      } else if (
+        parent_class_name.indexOf(check_target) !== -1 ||
+        parent_class_name.indexOf(emojiinput_element) !== -1
+      ) {
+        setIsShow(true);
+        return;
+      } else if (!grandparent_class_name) return;
+      else if (
+        grandparent_class_name.indexOf(check_target) !== -1 ||
+        grandparent_class_name.indexOf(emojiinput_element) !== -1
+      ) {
+        setIsShow(true);
+        return;
+      } else if (!greatgrandparent_class_name) {
+        return;
+      } else if (
+        greatgrandparent_class_name.indexOf(check_target) !== -1 ||
+        greatgrandparent_class_name.indexOf(emojiinput_element) !== -1
+      ) {
+        setIsShow(true);
+        return;
+      } else setIsShow(false);
+    } catch (e) {
+      return;
+    }
+  };
+
   return (
     <div className={style.emojipicker} ref={popupRef} tabIndex={1000}>
       <div
-        onClick={() => {
-          if (!isShow) setIsShow(true);
-        }}
         hidden={!isShow}
         className={style.emojipopup}
+        onClick={(e) => {
+          check_EmojiClick(e, emojiAncher_element);
+        }}
       >
         <Picker
           title="Pick your emoji…"
           emoji="point_up"
           autoFocus={true}
+          skin={1}
           emojiSize={33}
           theme="dark"
           set="twitter"
@@ -124,7 +181,7 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
         }}
         className={`${emoji_open_classname} ${style.emoji}`}
       >
-        <Emoji emoji={"grinning"} size={30} />
+        <Emoji emoji={"grinning"} size={30} set="twitter" />
       </div>
     </div>
   );

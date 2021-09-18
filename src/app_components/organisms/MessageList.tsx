@@ -19,31 +19,14 @@ import { Emoji } from "emoji-mart";
 import ChannelMessage from "../molecules/ChannelMessage";
 import ChannelName from "../atoms/ChannelName";
 
+import { userContext } from "../../stores/user";
 import { messagesContext } from "../../stores/message";
 import { message } from "../../types/message";
 import { client } from "../../lib/client";
 
 import style from "../../styles/app_components/organisms/MessageList.module.scss";
 
-// サーバからのレスポンス
-// props経由で渡されてる
-/*export interface Response {
-  id: string;
-  timestamp: string;
-  author: {
-    id: string;
-    name: string;
-    avatar: string;
-    bot: string;
-    state: string;
-  };
-  content: string;
-  guild_id: string;
-  channel_id: string;
-};*/
-
-// APIが無いからテスト用にResponseを返す
-// XSSのテスト用文字列もあるよ
+// テスト用文字列
 const mkTestResponse = (authN: string): message => {
   const ret: message = {
     id: Math.random().toString(32).substring(2),
@@ -79,8 +62,10 @@ const mkTestResponse = (authN: string): message => {
 // コンポーネント本体
 // Markdownレンダリングのライブラリのインスタンスもここで持っている
 const MessageList: FC = () => {
+  const { userState } = useContext(userContext);
   const { messagesState, messagesDispatch } = useContext(messagesContext);
 
+  const user_id = userState.user.id;
   const router = useRouter();
   const { channelID } = router.query;
   const [endPoint, setEndPoint] = useState<string>();
@@ -102,11 +87,19 @@ const MessageList: FC = () => {
       }
     })();
 
+    // テストデータ
+    // テストデータを使うことがあるのでコメントアウトしておきます
+    /*
+    messagesDispatch({
+      type: "set",
+      newData: Array.from({ length: 100 }, (_, i) => mkTestResponse(i.toString())),
+    });
+    */
+
     setEndPoint(`/channels/${channelID}/messages`);
   }, [channelID]);
 
   // 新規スクロールがあった時に呼ばれる
-  // 複数件のメッセージを同時に取得したほうがいいとおもう
   const fetchMoreData = async () => {
     try {
       if (endPoint == undefined) {
@@ -190,7 +183,7 @@ const MessageList: FC = () => {
   let countup = 0;
 
   return (
-    <>
+    <div className={style.messagelist}>
       {/* お行儀悪い 正々堂々と読み込んで */}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
       <div className={style.channelname}>
@@ -198,7 +191,7 @@ const MessageList: FC = () => {
       </div>
       <div
         id="scrollableDiv"
-        className={style.messagelist}
+        className={style.messages}
         style={{
           overflow: "auto",
           display: "flex",
@@ -257,13 +250,24 @@ const MessageList: FC = () => {
               }
             }
 
+            let isauthor = false;
+
+            // 作成者が本人かどうか
+            if (value.author.id == user_id) isauthor = true;
+
             return (
-              <ChannelMessage key={value.id} response={value} author_show={author_show} renderer={md.render.bind(md)} />
+              <ChannelMessage
+                key={value.id}
+                response={value}
+                author_show={author_show}
+                isauthor={isauthor}
+                renderer={md.render.bind(md)}
+              />
             );
           })}
         </InfiniteScroll>
       </div>
-    </>
+    </div>
   );
 };
 
