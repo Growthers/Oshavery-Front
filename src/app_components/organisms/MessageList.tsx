@@ -87,21 +87,27 @@ const MessageList: FC = () => {
 
   // 初期化処理
   useEffect(() => {
-    (async () => {
-      try {
-        if (channelID == undefined) {
-          throw new Error("no query");
-        }
-        const fstData = await client.get(`/channels/${channelID}/messages`, {
-          params: {
-            limit: 100,
-          },
-        });
-      } catch (e) {
-        console.log(e);
-      }
-    })();
+    // (async () => {
+    //   try {
+    //     if (channelID == undefined) {
+    //       throw new Error("no query");
+    //     }
+    //     const fstData = await client.get(`/channels/${channelID}/messages`, {
+    //       params: {
+    //         limit: 100,
+    //       },
+    //     });
+    //   } catch (e) {
+    //     console.log(e);
+    //   }
+    // })();
 
+    // テストデータを20件追加
+    // 初めに出てくるデータはここで作られている
+    messagesDispatch({
+      type: "set",
+      newData: Array.from({ length: 100 }, (_, i) => mkTestResponse(i.toString())),
+    });
     setEndPoint(`/channels/${channelID}/messages`);
   }, [channelID]);
 
