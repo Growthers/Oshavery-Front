@@ -95,8 +95,23 @@ const InputMessageBox: FC<Props> = (props) => {
     setIsSending(false);
   }, [isSending]);
 
+  //絵文字の入力
   const selectEmoji = (e: EmojiData) => {
-    console.table(e);
+    console.log(e.id);
+    setMessage(`${message}:${e.id}:`);
+
+    // 折り返しに対応 バグがあるので見送り
+    //if (process.browser) {
+    //  const target = document.getElementById("input_your_message") as HTMLInputElement;
+    //  if (target == null) return;
+
+    //  target.style.height = "auto";
+    //  if (message == "") {
+    //    target.style.height = "0";
+    //  } else {
+    //    target.style.height = `${target.scrollHeight}px`;
+    //  }
+    //}
   };
 
   const onchange_event = (value: string) => {

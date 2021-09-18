@@ -16,8 +16,7 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
   const popupRef = useRef(null);
   const emojipopup_classname = "emojipopup_element";
   const emoji_open_classname = "emojiopen_element";
-  const emoji_anchors_classname = "emoji-mart-anchors";
-  const emojianchors_name = "emojianchors_element";
+  const emojiAncher_element = "emoji-mart-anchor";
 
   // フォーカスと内容変更
   useEffect(() => {
@@ -46,8 +45,6 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
     if (process.browser) {
       const elements: HTMLCollectionOf<Element> = document.getElementsByClassName(style.emojipopup);
       const open_elements: HTMLCollectionOf<Element> = document.getElementsByClassName(emoji_open_classname);
-      const emoji_anchors_elements: HTMLCollectionOf<Element> =
-        document.getElementsByClassName(emoji_anchors_classname);
 
       for (let i = 0; i < elements.length; i++) {
         set_class(elements[i], emojipopup_classname);
@@ -55,10 +52,6 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
 
       for (let j = 0; j < open_elements.length; j++) {
         set_class(open_elements[j], emojipopup_classname);
-      }
-
-      for (let k = 0; k < emoji_anchors_elements.length; k++) {
-        set_class(emoji_anchors_elements[k], emojianchors_name);
       }
     }
   }, []);
@@ -104,18 +97,49 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
     document.body.onclick = check_click;
   }
 
-  const check_EmojiClick = (e: any) => {
-    if (/^emoji\-mart\-search/.test(e.target.id)) setIsShow(true);
-    else setIsShow(false);
+  const check_EmojiClick = (e: any, check_target: string) => {
+    const emojiinput_element = "emoji-mart-search";
+    const target = e.target;
+    const parent = target.parentNode;
+    const grandparent = parent.parentNode;
+
+    const class_name = String(target.className);
+    const parent_class_name = String(parent.className);
+    const grandparent_class_name = String(grandparent.className);
+    const greatgrandparent_class_name = String(grandparent.className);
+
+    if (!isShow) {
+      return;
+    }
+
+    if (class_name.indexOf(check_target) !== -1 || class_name.indexOf(emojiinput_element) !== -1) {
+      setIsShow(true);
+      return;
+    } else if (parent_class_name.indexOf(check_target) !== -1 || parent_class_name.indexOf(emojiinput_element) !== -1) {
+      setIsShow(true);
+      return;
+    } else if (
+      grandparent_class_name.indexOf(check_target) !== -1 ||
+      grandparent_class_name.indexOf(emojiinput_element) !== -1
+    ) {
+      setIsShow(true);
+      return;
+    } else if (
+      greatgrandparent_class_name.indexOf(check_target) !== -1 ||
+      greatgrandparent_class_name.indexOf(emojiinput_element) !== -1
+    ) {
+      setIsShow(true);
+      return;
+    } else setIsShow(false);
   };
+
   return (
     <div className={style.emojipicker} ref={popupRef} tabIndex={1000}>
       <div
         hidden={!isShow}
         className={style.emojipopup}
         onClick={(e) => {
-          console.log(e.target);
-          check_EmojiClick(e);
+          check_EmojiClick(e, emojiAncher_element);
         }}
       >
         <Picker
