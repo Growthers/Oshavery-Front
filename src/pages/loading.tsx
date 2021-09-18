@@ -40,10 +40,10 @@ const Loading: NextPage = () => {
           },
         });
       } catch (e) {
-        console.log(e)
+        console.log(e);
         try {
           const user = await client.post<createUserRes>("/users");
-          const myInfo = await client.get("/user/me");
+          const myInfo = await client.get("/users/me");
 
           userDispatch({
             type: "set",
@@ -58,7 +58,7 @@ const Loading: NextPage = () => {
             },
           });
         } catch (e) {
-          console.log(e)
+          console.log(e);
           await router.push("/").catch((error) => {
             console.log(error);
           });
