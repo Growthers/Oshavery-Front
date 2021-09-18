@@ -113,7 +113,7 @@ const ChannelMessage: FC<Props> = (props) => {
             <span className={style.timestamp}>{timestamp}</span>
           </div>
           {/* Markdown描画部 */}
-          <div>
+          <div className={style.messagecontent}>
             <MessageContent content={res.content} renderer={props.renderer} />
           </div>
         </div>
@@ -126,7 +126,7 @@ const ChannelMessage: FC<Props> = (props) => {
           <span className={style.timestamp}>{time}</span>
         </div>
         {/* Markdown描画部 */}
-        <div>
+        <div className={style.messagecontent}>
           <MessageContent content={res.content} renderer={props.renderer} />
         </div>
       </div>
