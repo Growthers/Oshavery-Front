@@ -35,6 +35,8 @@ $right_side_width: 15rem;
   }
 }
 
+// サーバーリストなど
+
 .server_list {
   @include color.background(sidebar);
 
@@ -51,12 +53,24 @@ $right_side_width: 15rem;
   }
 }
 
+// チャンネルリストなど
+
 .left_side {
   @include color.background(menubar);
 
   height: 100%;
   width: $left_side_width;
+
+  display: flex;
+  flex-direction: column-reverse;
 }
+
+.userstatus {
+  @include color.background(sidebar);
+  height: 3rem;
+}
+
+// メッセージなど
 
 .center {
   @include color.background(messages);
@@ -79,6 +93,8 @@ $right_side_width: 15rem;
 
   width: 100%;
 }
+
+// メンバーリストなど
 
 .right_side {
   @include color.background(menubar);

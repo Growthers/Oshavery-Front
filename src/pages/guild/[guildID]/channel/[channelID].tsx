@@ -19,6 +19,7 @@ const Oshavery: NextPage = () => {
   const { width: window_width, height: window_height } = useWindowSize();
   const [messages_height, setMessagesHeight] = useState<number>(937);
   const [modalIsShow, setModalShow] = useState<boolean>(false);
+
   useEffect(() => {
     if (process.browser) {
       setMessagesHeight(window.innerHeight);
@@ -52,7 +53,10 @@ const Oshavery: NextPage = () => {
           <ServerList />
         </div>
         <div className={style.left_side}>
-          <UserStatus onClick={setModalShow} modalIsShow={modalIsShow} />
+          <div className={style.userstatus}>
+            //left_sideに要素を追加する場合はここに入れる
+            <UserStatus onClick={setModalShow} modalIsShow={modalIsShow} />
+          </div>
           <ChannelList />
         </div>
         <div className={style.center}>
