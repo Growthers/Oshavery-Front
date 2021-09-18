@@ -11,9 +11,9 @@ import MessageList from "../../../../app_components/organisms/MessageList";
 import InputMessageBox from "../../../../app_components/organisms/InputMessageBox";
 import MemberList from "../../../../app_components/organisms/MemberList";
 import UserStatus from "../../../../app_components/organisms/UserStatus";
+import UserSettings from "../../../../app_components/organisms/UserSettings";
 
 import style from "../../../../styles/pages/guild-channel.module.scss";
-import UserSettings from "../../../../app_components/organisms/UserSettings";
 
 const Oshavery: NextPage = () => {
   const { width: window_width, height: window_height } = useWindowSize();

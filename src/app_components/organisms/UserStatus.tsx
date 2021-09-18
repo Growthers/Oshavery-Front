@@ -22,7 +22,7 @@ const UserStatus: FC<Props> = (props) => {
         <span color="red">error</span>
       )}
       <div className={style.settingbutton}>
-        {false ? <AiOutlineSetting size={38} onClick={() => props.onClick(!props.modalIsShow)} /> : <></>}
+        {true ? <AiOutlineSetting size={38} onClick={() => props.onClick(!props.modalIsShow)} /> : <></>}
       </div>
     </div>
   );
