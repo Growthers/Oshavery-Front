@@ -129,7 +129,7 @@ const ChannelMessage: FC<Props> = (props) => {
           <Button
             onClick={()=>(deleteMessage())}
           >
-            <AiFillDelete></AiFillDelete>
+            <AiFillDelete/>
           </Button>
         </div>
       </div>
@@ -148,7 +148,7 @@ const ChannelMessage: FC<Props> = (props) => {
           <Button
             onClick={()=>(deleteMessage())}
           >
-            <AiFillDelete></AiFillDelete>
+            <AiFillDelete/>
           </Button>
         </div>
       </div>
