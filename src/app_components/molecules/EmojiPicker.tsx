@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { FC, MouseEvent } from "react";
+import type { FC } from "react";
 import "emoji-mart/css/emoji-mart.css";
 import { CustomEmoji, EmojiData, Picker, Emoji } from "emoji-mart";
 
@@ -70,25 +70,30 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
 
   // クリックイベント
   const check_click = (e: any) => {
-    const target = e.target;
-    const parent = target.parentNode;
-    const grandparent = parent.parentNode;
+    try {
+      const target = e.target;
+      const parent = target.parentNode;
+      const grandparent = parent.parentNode;
 
-    const class_name = String(target.className);
-    const parent_class_name = String(parent.className);
-    const grandparent_class_name = String(grandparent.className);
+      const class_name = String(target.className);
+      const parent_class_name = String(parent.className);
+      const grandparent_class_name = String(grandparent.className);
 
-    if (!isShow) {
-      return;
-    }
+      if (!isShow) {
+        return;
+      }
 
-    if (class_name.indexOf(emojipopup_classname) !== -1) {
-      return;
-    } else if (parent_class_name.indexOf(emojipopup_classname) !== -1) {
-      return;
-    } else if (!grandparent_class_name) {
-      return;
-    } else if (grandparent_class_name.indexOf(emojipopup_classname) !== -1) {
+      if (class_name.indexOf(emojipopup_classname) !== -1) {
+        return;
+      } else if (parent_class_name.indexOf(emojipopup_classname) !== -1) {
+        return;
+      } else if (!grandparent_class_name) {
+        return;
+      } else if (grandparent_class_name.indexOf(emojipopup_classname) !== -1) {
+        return;
+      }
+    } catch (e) {
+      console.log(e);
       return;
     }
 
@@ -101,42 +106,50 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
 
   //emoji-mart ancherの Click event
   const check_EmojiClick = (e: any, check_target: string) => {
-    const emojiinput_element = "emoji-mart-search";
-    const target = e.target;
-    const parent = target.parentNode;
-    const grandparent = parent.parentNode;
+    try {
+      const emojiinput_element = "emoji-mart-search";
+      const target = e.target;
+      const parent = target.parentNode;
+      const grandparent = parent.parentNode;
 
-    const class_name = String(target.className);
-    const parent_class_name = String(parent.className);
-    const grandparent_class_name = String(grandparent.className);
-    const greatgrandparent_class_name = String(grandparent.className);
+      const class_name = String(target.className);
+      const parent_class_name = String(parent.className);
+      const grandparent_class_name = String(grandparent.className);
+      const greatgrandparent_class_name = String(grandparent.className);
 
-    if (!isShow) {
+      if (!isShow) {
+        return;
+      }
+
+      if (class_name.indexOf(check_target) !== -1 || class_name.indexOf(emojiinput_element) !== -1) {
+        setIsShow(true);
+        return;
+      } else if (
+        parent_class_name.indexOf(check_target) !== -1 ||
+        parent_class_name.indexOf(emojiinput_element) !== -1
+      ) {
+        setIsShow(true);
+        return;
+      } else if (!grandparent_class_name) return;
+      else if (
+        grandparent_class_name.indexOf(check_target) !== -1 ||
+        grandparent_class_name.indexOf(emojiinput_element) !== -1
+      ) {
+        setIsShow(true);
+        return;
+      } else if (!greatgrandparent_class_name) {
+        return;
+      } else if (
+        greatgrandparent_class_name.indexOf(check_target) !== -1 ||
+        greatgrandparent_class_name.indexOf(emojiinput_element) !== -1
+      ) {
+        setIsShow(true);
+        return;
+      } else setIsShow(false);
+    } catch (e) {
+      console.error(e);
       return;
     }
-
-    if (class_name.indexOf(check_target) !== -1 || class_name.indexOf(emojiinput_element) !== -1) {
-      setIsShow(true);
-      return;
-    } else if (parent_class_name.indexOf(check_target) !== -1 || parent_class_name.indexOf(emojiinput_element) !== -1) {
-      setIsShow(true);
-      return;
-    } else if (!grandparent_class_name) return;
-    else if (
-      grandparent_class_name.indexOf(check_target) !== -1 ||
-      grandparent_class_name.indexOf(emojiinput_element) !== -1
-    ) {
-      setIsShow(true);
-      return;
-    } else if (!greatgrandparent_class_name) {
-      return;
-    } else if (
-      greatgrandparent_class_name.indexOf(check_target) !== -1 ||
-      greatgrandparent_class_name.indexOf(emojiinput_element) !== -1
-    ) {
-      setIsShow(true);
-      return;
-    } else setIsShow(false);
   };
 
   return (
