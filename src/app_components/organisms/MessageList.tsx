@@ -67,7 +67,7 @@ const MessageList: FC = () => {
 
   const user_id = userState.user.id;
   const router = useRouter();
-  const { channelID } = router.query;
+  const { guildID, channelID } = router.query;
   const [endPoint, setEndPoint] = useState<string>();
 
   // 初期化処理
@@ -177,7 +177,7 @@ const MessageList: FC = () => {
     return defaultRender(tokens, idx, options, env, self);
   };
 
-  if (messagesState.messages == undefined) return <></>;
+  if (messagesState.messages == undefined || channelID == undefined || guildID == undefined) return <></>;
 
   // 同一ユーザーによる連続投稿のカウント
   let countup = 0;
@@ -187,7 +187,15 @@ const MessageList: FC = () => {
       {/* お行儀悪い 正々堂々と読み込んで */}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
       <div className={style.channelname}>
-        <ChannelName name="チャンネル名" />
+        <ChannelName
+          name={
+            userState.user.guilds[userState.user.guilds.findIndex((item) => item.id === guildID)].channels[
+              userState.user.guilds[userState.user.guilds.findIndex((item) => item.id === guildID)].channels.findIndex(
+                (item) => item.id === channelID,
+              )
+            ].channel_name
+          }
+        />
       </div>
       <div
         id="scrollableDiv"
