@@ -115,7 +115,7 @@ const ChannelMessage: FC<Props> = (props) => {
     return (
       <div className={style.fullcontent}>
         <div className={style.left_side}>
-          <img className={style.image} src={author_avatar} alt={author_name + "'s avatar"} />
+          <img className={style.image} src={author_avatar} />
         </div>
         <div>
           <div>
