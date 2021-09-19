@@ -31,6 +31,15 @@ const ChannelList: FC = () => {
       </div>
       <div className={style.channels}>
         {nowGuild.channels.map((value) => {
+
+
+
+          console.log(value)
+
+
+
+
+
           return (
             <ChannelCard
               key={value.id}
