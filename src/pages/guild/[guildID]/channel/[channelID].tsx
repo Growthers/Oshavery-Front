@@ -24,7 +24,7 @@ const Oshavery: NextPage = () => {
   const { width: window_width, height: window_height } = useWindowSize();
   const [messages_height, setMessagesHeight] = useState<number>(937);
   const [modalIsShow, setModalShow] = useState<boolean>(false);
-  const { userState, userDispatch } = useContext(userContext)
+  const { userState, userDispatch } = useContext(userContext);
 
   useEffect(() => {
     if (process.browser) {
@@ -32,17 +32,16 @@ const Oshavery: NextPage = () => {
     }
     change_messages_height();
 
-    if ( !userState ) {
-      client.get<myInfo>("/users/me")
-        .then(res => {
+    if (!userState) {
+      client
+        .get<myInfo>("/users/me")
+        .then((res) => {
           userDispatch({
             type: "set",
-            newData: res.data
-          })
+            newData: res.data,
+          });
         })
-        .catch(error => {
-
-        })
+        .catch((error) => {});
     }
   }, []);
 
