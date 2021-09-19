@@ -95,18 +95,22 @@ const Home: NextPage = () => {
             <br />
             正常に動作しません。
           </p>
-          {isAuthenticated ? (
-            <>
-              <Link href="/loading">
-                <a className={style.start_button}>Go to Oshavery</a>
-              </Link>
-            </>
+          {false ? (
+            isAuthenticated ? (
+              <>
+                <Link href="/loading">
+                  <a className={style.start_button}>Go to Oshavery</a>
+                </Link>
+              </>
+            ) : (
+              <>
+                <div className={style.start_button} onClick={() => loginWithRedirect()}>
+                  Login
+                </div>
+              </>
+            )
           ) : (
-            <>
-              <div className={style.start_button} onClick={() => loginWithRedirect()}>
-                Login
-              </div>
-            </>
+            <></>
           )}
         </div>
       </div>

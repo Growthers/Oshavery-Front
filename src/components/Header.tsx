@@ -26,16 +26,20 @@ const Header: FC = () => {
         */}
       </div>
       <div className={style.login}>
-        {isAuthenticated ? (
-          <>
-            <Link href="/loading">
-              <a className={style.start_button}>Go to Oshavery</a>
-            </Link>
-          </>
+        {false ? (
+          isAuthenticated ? (
+            <>
+              <Link href="/loading">
+                <a className={style.start_button}>Go to Oshavery</a>
+              </Link>
+            </>
+          ) : (
+            <div onClick={() => loginWithRedirect()} className={style.start_button}>
+              Login
+            </div>
+          )
         ) : (
-          <div onClick={() => loginWithRedirect()} className={style.start_button}>
-            Login
-          </div>
+          <></>
         )}
       </div>
     </header>
