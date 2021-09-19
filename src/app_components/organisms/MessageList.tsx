@@ -14,6 +14,7 @@ import MarkdownItKatex from "@iktakahiro/markdown-it-katex";
 // お願い！握りつぶさせて！
 // @ts-ignore
 import { Emoji } from "emoji-mart";
+import HighlightJs from "highlight.js"
 // ここまでMarkdown
 
 import ChannelMessage from "../molecules/ChannelMessage";
@@ -129,6 +130,15 @@ const MessageList: FC = () => {
     // markdown-it側である程度のサニタイズ処理は施されるようです
     html: false,
     linkify: true,
+    highlight: function (str, lang) {
+      if (lang && HighlightJs.getLanguage(lang)) {
+        try {
+          return HighlightJs.highlight(str, { language: lang }).value;
+        } catch (__) {}
+      }
+
+      return ''; // use external default escaping
+    },
   });
 
   // 数式の描画
@@ -186,6 +196,7 @@ const MessageList: FC = () => {
     <div className={style.messagelist}>
       {/* お行儀悪い 正々堂々と読み込んで */}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/xcode.min.css"/>
       <div className={style.channelname}>
         <ChannelName
           name={
@@ -206,7 +217,6 @@ const MessageList: FC = () => {
           flexDirection: "column-reverse",
         }}
       >
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" />
         {/*
         dataLength: メッセージの個数
         next: 新規データ(遡る)読み込みのための関数
