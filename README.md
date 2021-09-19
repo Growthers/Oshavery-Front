@@ -7,9 +7,7 @@
 
 ## Demo  
 
-[WIP] URL of Demo server  
-ここにデモサーバーのリンクとかを貼る  
-
+<a href="https://oshavery-app.net">Oshavery</a>
 ## Features  
 
 - Change profiles each guilds (e.g icon, name and status message) 
@@ -23,18 +21,25 @@
 (Optional)  
 - Web Browser  
 
-## Usage  
+<!-- ## Usage  -->
 
-あとで書く  
-要件等  
 
-## Anythig else...  
+
+<!-- ## Anythig else... -->  
 
 ## Authors  
 |  <a href="https://github.com/YukiYuigishi"><img src="https://github.com/YukiYuigishi.png" width="130px"></a> | <a href="https://github.com/kato-k"><img src="https://github.com/kat0h.png" width="130px"></a> | <a href="https://github.com/cv-neko"><img src="https://github.com/cv-neko.png" width="130px"></a> | <a href="https://github.com/sayoi341"><img src="https://github.com/sayoi341.png" width="130px"></a> |
 | :--------: | :--------: | :--------: | :---: |
-| **Yuki Yuigishi**<br>Project Manager | **Kota Kato**<br>Project Manager | **nekoP**<br>Developer | **sayoi341**<br>Developer |
+| **Yuki Yuigishi**<br>Project Manager | **Kota Kato**<br>Developer | **nekoP**<br>Designer | **sayoi341**<br>Developer |
 
+## Special Thanks
+| <a href="https://github.com/nanai10a"><img src="https://github.com/Nanai10a.png" width="130px"/></a> |
+| :--------:|
+| **Nanai10a**|
+
+このプロジェクトに使用されているアイコンを作成していただきました。  
+publicディレクトリ内の画像の著作権は [Nanai10a](https://github.com/Nanai10a)に帰属します。
+詳しくは[この文書](https://github.com/Undecided-Discord/Oshavery-Front/issues/203)を参照してください。  
 ## Licence  
 
 [WIP]  

@@ -1,12 +1,43 @@
+$margin-size: 10rem;
+
 .Overlay {
   position: fixed;
-  top: 5rem;
-  left: 5rem;
+  display: flex;
+  top: $margin-size;
+  left: $margin-size;
   background-color: #ffc266;
+  outline: none;
 
   padding: 5rem;
   border-radius: 3rem;
 
-  height: calc(100vh - 10rem);
-  width: calc(100vw - 10rem);
+  height: calc(100vh - (2 * #{$margin-size}));
+  width: calc(100vw - (2 * #{$margin-size}));
+}
+
+.Overlay {
+  justify-content: center;
+  align-items: center;
+}
+
+.logout {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 200%;
+  color: #ff0000;
+
+  .logout_buttons {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+
+    padding: 1rem;
+
+    .logout_button {
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      outline: none;
+    }
+  }
 }

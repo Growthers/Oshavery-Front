@@ -145,7 +145,7 @@ const InputMessageBox: FC<Props> = (props) => {
     <>
       <div className={style.outer}>
         <div className={style.messageBox}>
-          <UploadButton onChange={checkfile} />
+          {true ? <UploadButton onChange={checkfile} /> : <></>}
           <div className={style.textarea}>
             <TextareaBox
               disabled={disabled}
