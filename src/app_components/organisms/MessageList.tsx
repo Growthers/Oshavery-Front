@@ -244,7 +244,7 @@ const MessageList: FC = () => {
             メッセージの一覧を表示
             全部divにしてますがなんとなくです
           */}
-          {messagesState.messages.map((value, index) => {
+          {messagesState.messages.reverse().map((value, index) => {
             // index0が最新
             const messages_array = messagesState.messages;
             let author_show = true;
