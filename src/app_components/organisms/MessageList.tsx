@@ -34,8 +34,8 @@ const mkTestResponse = (authN: string): message => {
     timestamp: new Date().getTime().toString(),
     author: {
       id: "test_author_id",
-      user_name: "NAME: " + authN,
-      avatar: "url",
+      name: "NAME: " + authN,
+      avatarurl: "url",
       bot: false,
       state: 0,
     },
@@ -244,7 +244,7 @@ const MessageList: FC = () => {
             メッセージの一覧を表示
             全部divにしてますがなんとなくです
           */}
-          {messagesState.messages.reverse().map((value, index) => {
+          {messagesState.messages.slice().reverse().map((value, index) => {
             // index0が最新
             const messages_array = messagesState.messages;
             let author_show = true;
