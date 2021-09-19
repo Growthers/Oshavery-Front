@@ -1,6 +1,5 @@
 import { myInfo, user } from "../types/user";
 import { Dispatch, Context, createContext, useReducer, Reducer } from "react";
-import { preMember, testMyInfo } from "./__test__/user";
 
 type stateType = {
   user: myInfo;
@@ -66,8 +65,8 @@ type useUserStateType = () => {
 
 export const useUserSD: useUserStateType = () => {
   const [userState, userDispatch] = useReducer(reducer, {
-    user: testMyInfo,
-    nowMember: preMember,
+    user: {} as myInfo,
+    nowMember: [] as user[],
   });
   return { userState, userDispatch };
 };
