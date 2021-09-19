@@ -1,15 +1,20 @@
 import { myInfo, user } from "../types/user";
 import { Dispatch, Context, createContext, useReducer, Reducer } from "react";
-import { testMyInfo } from "./__test__/user";
+import { preMember, testMyInfo } from "./__test__/user";
 
 type stateType = {
   user: myInfo;
+  nowMember: user[];
 };
 
 type actionType =
   | {
       type: "set";
       newData: myInfo;
+    }
+  | {
+      type: "setMember",
+      newData: user[]
     }
   | {
       type: "USER_JOINED";
@@ -31,11 +36,22 @@ type UserContext = {
 const reducer: Reducer<stateType, actionType> = (state: stateType, action: actionType) => {
   switch (action.type) {
     case "set":
-      return { user: action.newData };
+      return {
+        user: action.newData,
+        nowMember: state.nowMember,
+      };
+
+    case "setMember":
+      return {
+        user: state.user,
+        nowMember: action.newData
+      }
 
     case "USER_JOINED":
-      state.user.guilds[state.user.guilds.findIndex((item) => item.id === action.guild)].users = action.newData;
-      return { user: state.user };
+      return {
+        user: state.user,
+        nowMember: action.newData,
+      };
 
     default:
       return state;
@@ -48,13 +64,19 @@ type useUserStateType = () => {
 };
 
 export const useUserSD: useUserStateType = () => {
-  const [userState, userDispatch] = useReducer(reducer, { user: testMyInfo });
+  const [userState, userDispatch] = useReducer(
+    reducer,
+    {
+      user: testMyInfo,
+      nowMember: preMember
+    });
   return { userState, userDispatch };
 };
 
 export const userContext: Context<UserContext> = createContext<UserContext>({
   userState: {
     user: {} as myInfo,
+    nowMember: [] as user[]
   },
   userDispatch: () => {},
 });

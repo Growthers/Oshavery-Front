@@ -9,30 +9,7 @@ export const TestGuildData: Context<guild[]> = createContext<guild[]>([
     name: "鯖1",
     topic: "星1とは違います",
     icon: "",
-    owner_id: "0",
-    users: [
-      {
-        id: "0",
-        name: "ゼっちゃん",
-        avatar: "",
-        bot: false,
-        state: 0,
-      },
-      {
-        id: "1",
-        name: "弟子1号",
-        avatar: "",
-        bot: false,
-        state: 0,
-      },
-      {
-        id: "2",
-        name: "2号兄貴",
-        avatar: "",
-        bot: false,
-        state: 0,
-      },
-    ],
+
     channels: [
       {
         id: "a",
@@ -57,23 +34,7 @@ export const TestGuildData: Context<guild[]> = createContext<guild[]>([
     name: "鯖2",
     topic: "星2とは違います",
     icon: "",
-    owner_id: "0",
-    users: [
-      {
-        id: "0",
-        name: "ゼっちゃん",
-        avatar: "",
-        bot: false,
-        state: 0,
-      },
-      {
-        id: "1",
-        name: "弟子1号",
-        avatar: "",
-        bot: false,
-        state: 0,
-      },
-    ],
+
     channels: [
       {
         id: "c",
