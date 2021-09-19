@@ -1,17 +1,12 @@
-.Modal {
-  position: absolute;
-  top: 5rem;
-  left: 5rem;
-  right: 5rem;
-  border-top: 5rem;
-  background-color: #ff00ff;
-  border-radius: 1rem;
-  padding: 1.5rem;
-}
-
 .Overlay {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 5rem;
+  left: 5rem;
   background-color: #ffc266;
+
+  padding: 5rem;
+  border-radius: 3rem;
+
+  height: calc(100vh - 10rem);
+  width: calc(100vw - 10rem);
 }
