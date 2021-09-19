@@ -1,8 +1,11 @@
 import { FC, useState, memo } from "react";
-import InputBox from "../atoms/InputBox";
-import style from "../../styles/app_components/organisms/UserSettings.module.scss";
 import Modal from "react-modal";
+import { useAuth0 } from "@auth0/auth0-react";
+
+import InputBox from "../atoms/InputBox";
 import IconUploader from "../molecules/IconUploader";
+
+import style from "../../styles/app_components/organisms/UserSettings.module.scss";
 
 Modal.setAppElement("#__next");
 
@@ -12,8 +15,10 @@ type settingsProps = {
 };
 
 const Settings: FC<settingsProps> = (props) => {
-  const [userName, setUserName] = useState("");
+  const { logout, user } = useAuth0();
+  const [userName, setUserName] = useState(user?.name);
   //  const [icon, setIcon] = useState<File>();
+
   return (
     <>
       <Modal
@@ -21,7 +26,7 @@ const Settings: FC<settingsProps> = (props) => {
         onRequestClose={() => props.onClick(false)}
         className={`${style.Overlay}`}
       >
-        <div className={style.nameAndIcon}>
+        {/*<div className={style.nameAndIcon}>
           <div className={style.uploadIcon}>
             <IconUploader />
           </div>
@@ -29,12 +34,20 @@ const Settings: FC<settingsProps> = (props) => {
             <p>ユーザネーム</p>
             <InputBox value={userName} onChange={setUserName} />
           </div>
-        </div>
+        </div>*/}
 
         {/* <div className={style.setSNS}>
           <p>Twitter</p>
           </div>*/}
-        <button onClick={() => props.onClick(false)}>保存</button>
+        {/*<button onClick={() => props.onClick(false)}>保存</button>*/}
+
+        <div className={style.logout}>
+          <span>ログアウトする</span>
+          <div className={style.logout_buttons}>
+            <button onClick={() => logout()} className={style.logout_button}>Logout</button>
+            <button onClick={() => props.onClick(props.isShow)} className={style.logout_button}>Cancel</button>
+          </div>
+        </div>
       </Modal>
     </>
   );
