@@ -19,7 +19,7 @@ type actionType =
   | {
       type: "USER_JOINED";
       guild: string;
-      newData: user[];
+      newData: user;
     }
   | {
       type: "MESSAGE_CREATED";
@@ -48,9 +48,10 @@ const reducer: Reducer<stateType, actionType> = (state: stateType, action: actio
       }
 
     case "USER_JOINED":
+      state.nowMember.push(action.newData);
       return {
         user: state.user,
-        nowMember: action.newData,
+        nowMember: state.nowMember,
       };
 
     default:
