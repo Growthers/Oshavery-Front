@@ -27,7 +27,7 @@ const Loading: NextPage = () => {
 
         const myInfo = await client.get<myInfo>("/users/me");
 
-        console.log(myInfo.data)
+        console.log(myInfo.data);
 
         userDispatch({
           type: "set",

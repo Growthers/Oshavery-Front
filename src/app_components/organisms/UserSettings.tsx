@@ -16,11 +16,7 @@ const Settings: FC<settingsProps> = (props) => {
   //  const [icon, setIcon] = useState<File>();
   return (
     <>
-      <Modal
-        isOpen={props.isShow}
-        onRequestClose={() => props.onClick(false)}
-        className={`${style.Overlay}`}
-      >
+      <Modal isOpen={props.isShow} onRequestClose={() => props.onClick(false)} className={`${style.Overlay}`}>
         <div className={style.nameAndIcon}>
           <div className={style.uploadIcon}>
             <IconUploader />

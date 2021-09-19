@@ -5,13 +5,20 @@ export type guild = {
   name: string;
   topic: string;
   icon: string;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string;
   channels: {
     id: string;
-    channel_name: string;
-    channel_topics: string;
-    channel_type: string;
-    channel_position: number;
-    creator_id: string;
+    name: string;
+    type: string;
+    topics: string;
+    position: number;
+    latest_message_id: string;
+    created_at: string;
+    updated_at: string;
+    deleted_at: string;
+    guildId: string;
   }[];
 };
 
