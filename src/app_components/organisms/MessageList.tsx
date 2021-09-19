@@ -85,7 +85,7 @@ const MessageList: FC = () => {
         });
 
         messagesDispatch({
-          type: "load",
+          type: "new",
           newData: fstData.data,
         });
       } catch (e) {
