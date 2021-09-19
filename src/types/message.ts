@@ -1,6 +1,6 @@
 export type message = {
   id: string;
-  timestamp: string;
+  timestamp: Date;
   author: {
     id: string;
     user_name: string;
@@ -11,13 +11,13 @@ export type message = {
   content: string;
   guild_id: string;
   channel_id: string;
-  edited_timestamp: string;
+  edited_timestamp: Date;
 };
 
 export type postMessageRes = {
   id: string;
-  timestamp: string;
+  timestamp: Date;
   content: string;
   guild_id: string;
-  edited_timestamp: string;
+  edited_timestamp: Date;
 };

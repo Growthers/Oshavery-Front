@@ -22,7 +22,7 @@ const ChannelMessage: FC<Props> = (props) => {
   const author_avatar: string = res.author.avatar;
   const author_name = res.author.user_name;
 
-  const datetime = new Date(Number(res.timestamp));
+  const datetime = new Date(res.timestamp.getTime());
 
   // 今日ですか？
   const istoday = (date: Date) => {
