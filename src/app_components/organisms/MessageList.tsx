@@ -83,6 +83,11 @@ const MessageList: FC = () => {
             limit: 100,
           },
         });
+
+        messagesDispatch({
+          type: "load",
+          newData: fstData.data,
+        });
       } catch (e) {
         console.log(e);
       }
