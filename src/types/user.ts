@@ -25,14 +25,6 @@ export type myInfo = {
     name: string;
     topic: string;
     icon: string;
-    owner_id: string;
-    users: {
-      id: string;
-      name: string;
-      avatar: string;
-      bot: boolean; //<-miss
-      state: number;
-    }[];
     channels: {
       id: string;
       channel_name: string;

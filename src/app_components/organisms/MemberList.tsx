@@ -10,6 +10,7 @@ import { user } from "../../types/user";
 import { userContext } from "../../stores/user";
 
 import style from "../../styles/app_components/organisms/MemberList.module.scss";
+import { client } from "../../lib/client";
 
 const MemberList: FC = () => {
   const [isShow, setIsShow] = useState(false);
@@ -17,7 +18,7 @@ const MemberList: FC = () => {
   const router = useRouter();
   const { guildID } = router.query;
   const [members, setMembers] = useState<user[]>();
-  const { userState } = useContext(userContext);
+  const { userState, userDispatch } = useContext(userContext);
 
   // メンバーポップアップのクリア
   const clear_memberpopup = useCallback(() => {
@@ -81,7 +82,18 @@ const MemberList: FC = () => {
 
   useEffect(() => {
     if (guildID != undefined) {
-      setMembers(userState.user.guilds[userState.user.guilds.findIndex((item) => item.id === guildID)].users);
+      (async () => {
+        try {
+          const res = await client.get<user[]>(`/guilds/${guildID}/members`)
+          userDispatch({
+            type: "setMember",
+            newData: res.data
+          })
+          setMembers(res.data);
+        } catch (e) {
+          console.log(e)
+        }
+      })();
     }
   }, [userState, guildID]);
 
