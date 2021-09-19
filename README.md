@@ -7,7 +7,8 @@
 
 ## Demo  
 
-<a href="https://oshavery-app.net">Oshavery</a>
+[WIP]
+
 ## Features  
 
 - Change profiles each guilds (e.g icon, name and status message) 
