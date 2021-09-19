@@ -128,10 +128,14 @@ const ChannelMessage: FC<Props> = (props) => {
           </div>
         </div>
         <div className={style.messagebuttons}>
-          {props.isauthor ? (
-            <Button onClick={() => deleteMessage()}>
-              <AiFillDelete />
-            </Button>
+          {false ? (
+            props.isauthor ? (
+              <Button onClick={() => deleteMessage()}>
+                <AiFillDelete />
+              </Button>
+            ) : (
+              <></>
+            )
           ) : (
             <></>
           )}
@@ -149,10 +153,14 @@ const ChannelMessage: FC<Props> = (props) => {
           <MessageContent content={res.content} renderer={props.renderer} />
         </div>
         <div className={style.messagebuttons}>
-          {props.isauthor ? (
-            <Button onClick={() => deleteMessage()}>
-              <AiFillDelete />
-            </Button>
+          {false ? (
+            props.isauthor ? (
+              <Button onClick={() => deleteMessage()}>
+                <AiFillDelete />
+              </Button>
+            ) : (
+              <></>
+            )
           ) : (
             <></>
           )}
