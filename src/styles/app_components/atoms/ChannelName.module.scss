@@ -24,3 +24,15 @@
     padding-left: 0.5rem;
   }
 }
+
+.warning {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  margin-left: 2rem;
+  padding: 0.5rem;
+
+  color: red;
+  background-color: yellow;
+}
