@@ -4,7 +4,7 @@ import { Context, createContext } from "react";
 export const TestMassagesData: Context<message[]> = createContext<message[]>([
   {
     id: "Keter",
-    timestamp: "",
+    timestamp: new Date(),
     author: {
       id: "0",
       user_name: "ゼっちゃん",
@@ -15,11 +15,11 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
     content: "王冠",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: "",
+    edited_timestamp: new Date(),
   },
   {
     id: "Chokohmah",
-    timestamp: "",
+    timestamp: new Date(),
     author: {
       id: "1",
       user_name: "弟子1号",
@@ -30,11 +30,11 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
     content: "知恵",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: "",
+    edited_timestamp: new Date(),
   },
   {
     id: "Binah",
-    timestamp: "",
+    timestamp: new Date(),
     author: {
       id: "2",
       user_name: "2号兄貴",
@@ -45,11 +45,11 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
     content: "理解",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: "",
+    edited_timestamp: new Date(),
   },
   {
     id: "Chesed",
-    timestamp: "",
+    timestamp: new Date(),
     author: {
       id: "0",
       user_name: "ゼっちゃん",
@@ -60,11 +60,11 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
     content: "慈悲",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: "",
+    edited_timestamp: new Date(),
   },
   {
     id: "Gevurah",
-    timestamp: "",
+    timestamp: new Date(),
     author: {
       id: "1",
       user_name: "弟子1号",
@@ -75,11 +75,11 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
     content: "峻厳",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: "",
+    edited_timestamp: new Date(),
   },
   {
     id: "Tiphereth",
-    timestamp: "",
+    timestamp: new Date(),
     author: {
       id: "1",
       user_name: "弟子1号",
@@ -90,11 +90,11 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
     content: "美",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: "",
+    edited_timestamp: new Date(),
   },
   {
     id: "Netzach",
-    timestamp: "",
+    timestamp: new Date(),
     author: {
       id: "0",
       user_name: "ゼっちゃん",
@@ -105,11 +105,11 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
     content: "勝利",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: "",
+    edited_timestamp: new Date(),
   },
   {
     id: "Hod",
-    timestamp: "",
+    timestamp: new Date(),
     author: {
       id: "2",
       user_name: "2号兄貴",
@@ -120,11 +120,11 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
     content: "栄光",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: "",
+    edited_timestamp: new Date(),
   },
   {
     id: "Yesod",
-    timestamp: "",
+    timestamp: new Date(),
     author: {
       id: "1",
       user_name: "弟子1号",
@@ -135,11 +135,11 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
     content: "基礎",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: "",
+    edited_timestamp: new Date(),
   },
   {
     id: "Malkuth",
-    timestamp: "",
+    timestamp: new Date(),
     author: {
       id: "0",
       user_name: "ゼっちゃん",
@@ -150,11 +150,11 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
     content: "王国",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: "",
+    edited_timestamp: new Date(),
   },
   {
     id: "Ba'at",
-    timestamp: "",
+    timestamp: new Date(),
     author: {
       id: "0",
       user_name: "ゼっちゃん",
@@ -165,6 +165,6 @@ export const TestMassagesData: Context<message[]> = createContext<message[]>([
     content: "知識",
     guild_id: "server_one",
     channel_id: "a",
-    edited_timestamp: "",
+    edited_timestamp: new Date(),
   },
 ]);
