@@ -86,7 +86,7 @@ const MessageList: FC = () => {
 
         messagesDispatch({
           type: "set",
-          newData: fstData.data
+          newData: fstData.data,
         });
       } catch (e) {
         console.log(e);
