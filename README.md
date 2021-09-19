@@ -38,7 +38,7 @@
 | **Nanai10a**|
 
 このプロジェクトに使用されているアイコンを作成していただきました。  
-publicディレクトリ内の画像の著作権は [Nanai10a](@https://github.com/Nanai10a)に帰属します。  
+publicディレクトリ内の画像の著作権は [Nanai10a](@https://github.com/Nanai10a)に帰属します。
 詳しくは[この文書](https://github.com/Undecided-Discord/Oshavery-Front/issues/203)を参照してください。  
 ## Licence  
 
