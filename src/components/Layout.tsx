@@ -1,6 +1,5 @@
 import type { FC, ReactNode } from "react";
 import Head from "next/head";
-import { Html } from "next/document";
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -20,7 +19,7 @@ type Props = {
 
 const Layout: FC<Props> = ({ pagetitle, children, isheader, isfooter, description = "Oshavery - A chat tool" }) => {
   return (
-    <Html lang="ja-JP">
+    <>
       <Head>
         <title>{pagetitle}</title>
         <meta httpEquiv="content-language" content="ja" />
@@ -59,7 +58,7 @@ const Layout: FC<Props> = ({ pagetitle, children, isheader, isfooter, descriptio
         </div>
         {isfooter && <Footer />}
       </main>
-    </Html>
+    </>
   );
 };
 
