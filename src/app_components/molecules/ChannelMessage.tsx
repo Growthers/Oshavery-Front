@@ -19,7 +19,7 @@ interface Props {
 
 const ChannelMessage: FC<Props> = (props) => {
   const res: message = props.response;
-  const author_avatar: string = res.author.avataurl;
+  const author_avatar: string = res.author.avatarurl;
   const author_name = res.author.name;
 
   const res_datetime = new Date(Date.parse(res.timestamp));

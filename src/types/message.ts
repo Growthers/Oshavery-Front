@@ -4,7 +4,7 @@ export type message = {
   author: {
     id: string;
     name: string;
-    avataurl: string;
+    avatarurl: string;
     bot: boolean;
     state: number;
   };
