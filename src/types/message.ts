@@ -3,8 +3,8 @@ export type message = {
   timestamp: string;
   author: {
     id: string;
-    user_name: string;
-    avatar: string;
+    name: string;
+    avataurl: string;
     bot: boolean;
     state: number;
   };
