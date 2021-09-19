@@ -28,7 +28,9 @@ const InputMessageBox: FC<Props> = (props) => {
 
   const sendMessage = () => {
     client
-      .post<postMessageRes>(`/channels/${channelID}/messages`)
+      .post<postMessageRes>(`/channels/${channelID}/messages`, {
+        content: message
+      })
       .then((res) => {
         setMessage("");
       })
@@ -145,7 +147,7 @@ const InputMessageBox: FC<Props> = (props) => {
     <>
       <div className={style.outer}>
         <div className={style.messageBox}>
-          {true ? <UploadButton onChange={checkfile} /> : <></>}
+          {false ? <UploadButton onChange={checkfile} /> : <></>}
           <div className={style.textarea}>
             <TextareaBox
               disabled={disabled}
