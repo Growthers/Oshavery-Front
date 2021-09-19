@@ -31,7 +31,7 @@ import style from "../../styles/app_components/organisms/MessageList.module.scss
 const mkTestResponse = (authN: string): message => {
   const ret: message = {
     id: Math.random().toString(32).substring(2),
-    timestamp: new Date(),
+    timestamp: new Date().getTime().toString(),
     author: {
       id: "test_author_id",
       user_name: "NAME: " + authN,
@@ -42,7 +42,7 @@ const mkTestResponse = (authN: string): message => {
     content: "test_content",
     guild_id: "test_guild_id",
     channel_id: "test_channel_id",
-    edited_timestamp: new Date(),
+    edited_timestamp: new Date().getTime().toString(),
   };
   const t = [
     "**HELLO**",
