@@ -34,9 +34,9 @@ const ChannelList: FC = () => {
           return (
             <ChannelCard
               key={value.id}
-              channel_name={value.channel_name}
-              channel_topics={value.channel_topics}
-              channel_type={value.channel_type}
+              channel_name={value.name}
+              channel_topics={value.topics}
+              channel_type={value.type}
               link={`/guild/${guildID}/channel/${value.id}`}
               selected={value.id === channelID}
             />

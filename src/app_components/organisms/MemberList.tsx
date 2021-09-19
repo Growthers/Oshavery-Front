@@ -84,14 +84,14 @@ const MemberList: FC = () => {
     if (guildID != undefined) {
       (async () => {
         try {
-          const res = await client.get<user[]>(`/guilds/${guildID}/members`)
+          const res = await client.get<user[]>(`/guilds/${guildID}/members`);
           userDispatch({
             type: "setMember",
-            newData: res.data
-          })
+            newData: res.data,
+          });
           setMembers(res.data);
         } catch (e) {
-          console.log(e)
+          console.log(e);
         }
       })();
     }

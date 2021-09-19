@@ -13,8 +13,8 @@ type actionType =
       newData: myInfo;
     }
   | {
-      type: "setMember",
-      newData: user[]
+      type: "setMember";
+      newData: user[];
     }
   | {
       type: "USER_JOINED";
@@ -44,8 +44,8 @@ const reducer: Reducer<stateType, actionType> = (state: stateType, action: actio
     case "setMember":
       return {
         user: state.user,
-        nowMember: action.newData
-      }
+        nowMember: action.newData,
+      };
 
     case "USER_JOINED":
       state.nowMember.push(action.newData);
@@ -65,19 +65,17 @@ type useUserStateType = () => {
 };
 
 export const useUserSD: useUserStateType = () => {
-  const [userState, userDispatch] = useReducer(
-    reducer,
-    {
-      user: testMyInfo,
-      nowMember: preMember
-    });
+  const [userState, userDispatch] = useReducer(reducer, {
+    user: testMyInfo,
+    nowMember: preMember,
+  });
   return { userState, userDispatch };
 };
 
 export const userContext: Context<UserContext> = createContext<UserContext>({
   userState: {
     user: {} as myInfo,
-    nowMember: [] as user[]
+    nowMember: [] as user[],
   },
   userDispatch: () => {},
 });

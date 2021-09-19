@@ -204,7 +204,7 @@ const MessageList: FC = () => {
               userState.user.guilds[userState.user.guilds.findIndex((item) => item.id === guildID)].channels.findIndex(
                 (item) => item.id === channelID,
               )
-            ].channel_name
+            ].name
           }
         />
       </div>
