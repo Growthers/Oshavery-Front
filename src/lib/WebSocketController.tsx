@@ -40,8 +40,7 @@ const WebSocketController: FC = () => {
                 const res = await client.get<user[]>(`/guilds/${event.data.body.guild_id}/members`);
                 if (event.data.body.guild_id != undefined) {
                   userDispatch({
-                    type: "USER_JOINED",
-                    guild: event.data.body.guild_id,
+                    type: "setMember",
                     newData: res.data,
                   });
                 }

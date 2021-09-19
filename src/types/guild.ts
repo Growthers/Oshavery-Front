@@ -5,8 +5,6 @@ export type guild = {
   name: string;
   topic: string;
   icon: string;
-  owner_id: string;
-  users: user[];
   channels: {
     id: string;
     channel_name: string;

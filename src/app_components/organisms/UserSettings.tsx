@@ -15,11 +15,11 @@ const Settings: FC<settingsProps> = (props) => {
   const [userName, setUserName] = useState("");
   //  const [icon, setIcon] = useState<File>();
   return (
-    <div>
+    <>
       <Modal
         isOpen={props.isShow}
         onRequestClose={() => props.onClick(false)}
-        className={`${style.Modal} ${style.Overlay}`}
+        className={`${style.Overlay}`}
       >
         <div className={style.nameAndIcon}>
           <div className={style.uploadIcon}>
@@ -36,7 +36,7 @@ const Settings: FC<settingsProps> = (props) => {
           </div>*/}
         <button onClick={() => props.onClick(false)}>保存</button>
       </Modal>
-    </div>
+    </>
   );
 };
 export default memo(Settings);
