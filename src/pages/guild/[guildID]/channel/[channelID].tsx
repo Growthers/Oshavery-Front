@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useWindowSize } from "react-use";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 
@@ -16,17 +16,34 @@ import UserSettings from "../../../../app_components/organisms/UserSettings";
 import WebSocketController from "../../../../lib/WebSocketController";
 
 import style from "../../../../styles/pages/guild-channel.module.scss";
+import { userContext } from "../../../../stores/user";
+import { client } from "../../../../lib/client";
+import { myInfo } from "../../../../types/user";
 
 const Oshavery: NextPage = () => {
   const { width: window_width, height: window_height } = useWindowSize();
   const [messages_height, setMessagesHeight] = useState<number>(937);
   const [modalIsShow, setModalShow] = useState<boolean>(false);
+  const { userState, userDispatch } = useContext(userContext)
 
   useEffect(() => {
     if (process.browser) {
       setMessagesHeight(window.innerHeight);
     }
     change_messages_height();
+
+    if ( !userState ) {
+      client.get<myInfo>("/users/me")
+        .then(res => {
+          userDispatch({
+            type: "set",
+            newData: res.data
+          })
+        })
+        .catch(error => {
+
+        })
+    }
   }, []);
 
   // ウィンドウサイズ変更

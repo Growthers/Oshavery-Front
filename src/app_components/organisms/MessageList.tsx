@@ -78,10 +78,15 @@ const MessageList: FC = () => {
         if (channelID == undefined) {
           throw new Error("no query");
         }
-        const fstData = await client.get(`/channels/${channelID}/messages`, {
+        const fstData = await client.get<message[]>(`/channels/${channelID}/messages`, {
           params: {
             limit: 100,
           },
+        });
+
+        messagesDispatch({
+          type: "set",
+          newData: fstData.data,
         });
       } catch (e) {
         console.log(e);

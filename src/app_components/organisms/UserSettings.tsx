@@ -45,7 +45,7 @@ const Settings: FC<settingsProps> = (props) => {
           <span>ログアウトする</span>
           <div className={style.logout_buttons}>
             <button onClick={() => logout()} className={style.logout_button}>Logout</button>
-            <button onClick={() => props.onClick(props.isShow)} className={style.logout_button}>Cancel</button>
+            <button onClick={() => props.onClick(!props.isShow)} className={style.logout_button}>Cancel</button>
           </div>
         </div>
       </Modal>
