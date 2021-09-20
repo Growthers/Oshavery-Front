@@ -3,8 +3,8 @@ import Image from "next/image";
 import { useContext, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { client } from "../lib/client";
 import { useRouter } from "next/router";
+import { client } from "../lib/client";
 import { userContext } from "../stores/user";
 import { createUserRes, myInfo } from "../types/user";
 
@@ -23,7 +23,7 @@ const Loading: NextPage = () => {
           audience: process.env.NEXT_PUBLIC_APIENDPOINT,
           scope: "read:all",
         });
-        client.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
+        client.defaults.headers.common.Authorization = `Bearer ${jwt}`;
 
         const myInfo = await client.get<myInfo>("/users/me");
 

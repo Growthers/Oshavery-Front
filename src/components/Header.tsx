@@ -9,7 +9,7 @@ const Header: FC = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
   return (
     <header className={style.header}>
-      {/*logo*/}
+      {/* logo */}
       <Link href="/">
         <a className={style.logo}>
           <Image src={logo} alt="Oshavery logo" />

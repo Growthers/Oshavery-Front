@@ -12,7 +12,7 @@ const Home: NextPage = () => {
   // const { user } = useUser();
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
   return (
-    <Layout pagetitle="Oshavery" isheader={true} isfooter={true}>
+    <Layout pagetitle="Oshavery" isheader isfooter>
       <div className={style.index_page}>
         <div className={style.top}>
           {/*
@@ -34,7 +34,7 @@ const Home: NextPage = () => {
               <p>様々なやり取りを気軽に、ストレスなく行うことができます。</p>
             </div>
           </div>
-          <div className={style.overview_image}></div>
+          <div className={style.overview_image} />
         </div>
 
         <div className={`${style.overview} ${style.overview_right}`}>
@@ -45,7 +45,7 @@ const Home: NextPage = () => {
               <p>メッセージをより多くの記法で送信できます。</p>
             </div>
           </div>
-          <div className={style.overview_image}></div>
+          <div className={style.overview_image} />
         </div>
 
         <div className={`${style.overview} ${style.overview_left}`}>
@@ -90,7 +90,7 @@ const Home: NextPage = () => {
 
         <div className={style.start}>
           <h1 className={style.start_title}>さあ、はじめましょう。</h1>
-          <p className={style.not_pc} hidden={true}>
+          <p className={style.not_pc} hidden>
             スマートフォン・タブレットでは
             <br />
             正常に動作しません。
