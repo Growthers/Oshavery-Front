@@ -1,7 +1,7 @@
 import { FC, useContext, useEffect } from "react";
+import { useRouter } from "next/router";
 import { client } from "./client";
 import { message } from "../types/message";
-import { useRouter } from "next/router";
 import { messagesContext } from "../stores/message";
 import { user } from "../types/user";
 import { userContext } from "../stores/user";
@@ -24,7 +24,7 @@ const WebSocketController: FC = () => {
   const { userDispatch } = useContext(userContext);
   const { messagesDispatch } = useContext(messagesContext);
 
-  let socket = typeof window !== "undefined" ? new WebSocket(process.env.NEXT_PUBLIC_WSENDPOINT!) : null;
+  const socket = typeof window !== "undefined" ? new WebSocket(process.env.NEXT_PUBLIC_WSENDPOINT!) : null;
 
   useEffect(() => {
     if (socket == null) return;

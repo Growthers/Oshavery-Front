@@ -17,8 +17,7 @@ type Props = {
   children: ReactNode;
 };
 
-const Layout: FC<Props> = ({ pagetitle, children, isheader, isfooter, description = "Oshavery - A chat tool" }) => {
-  return (
+const Layout: FC<Props> = ({ pagetitle, children, isheader, isfooter, description = "Oshavery - A chat tool" }) => (
     <>
       <Head>
         <title>{pagetitle}</title>
@@ -44,7 +43,7 @@ const Layout: FC<Props> = ({ pagetitle, children, isheader, isfooter, descriptio
         <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#000000" />
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-config" content="/favicons/browserconfig.xml" />{" "}
-        {/*Windows8/10のスタート画面のピン留め画像に対応したい場合*/}
+        {/* Windows8/10のスタート画面のピン留め画像に対応したい場合 */}
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <main className={style.main}>
@@ -60,6 +59,5 @@ const Layout: FC<Props> = ({ pagetitle, children, isheader, isfooter, descriptio
       </main>
     </>
   );
-};
 
 export default Layout;

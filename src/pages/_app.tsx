@@ -1,7 +1,8 @@
 import "../styles/global.scss";
 import type { AppProps } from "next/app";
-import ContextProvider from "../stores/ContextProvider";
 import { Auth0Provider } from "@auth0/auth0-react";
+import ContextProvider from "../stores/ContextProvider";
+
 function MyApp({ Component, pageProps, router }: AppProps) {
   const redirectUrl = `${process.env["NEXT_PUBLIC_BASE_URL"]}`;
   return (

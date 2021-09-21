@@ -8,6 +8,9 @@ on:
       - master
       - Geek-Edition
 
+env:
+  HUSKY: 0
+
 jobs:
   test:
     name: Test
@@ -31,7 +34,10 @@ jobs:
 
       - name: Install Dependencies
         # if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: yarn install --prefer-offline
+        run: yarn install --frozen-lockfile --prefer-offline
+
+      - name: Lint
+        run: yarn lint --max-warnings=0
 
       # 以下は説明のために付け足し
       - name: Build

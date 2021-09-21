@@ -65,7 +65,7 @@ const Oshavery: NextPage = () => {
   };
 
   return (
-    <Layout pagetitle={`Oshavery`} isheader={false} isfooter={false}>
+    <Layout pagetitle="Oshavery" isheader={false} isfooter={false}>
       <div className={style.oshavery}>
         <div className={style.server_list}>
           <img className={style.icon} src="https://media.oshavery-app.net/logos/logo.png" />
@@ -79,7 +79,7 @@ const Oshavery: NextPage = () => {
           <ChannelList />
         </div>
         <div className={style.center}>
-          {/*ここで高さを変更*/}
+          {/* ここで高さを変更 */}
           <div
             className={style.messages}
             style={{

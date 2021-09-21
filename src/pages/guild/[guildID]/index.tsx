@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { FC, useContext, useEffect } from "react";
-import { userContext } from "../../../stores/user";
 import { useRouter } from "next/router";
+import { userContext } from "../../../stores/user";
 
 const Child: FC = () => {
   const router = useRouter();
@@ -20,8 +20,6 @@ const Child: FC = () => {
   return <>自動的にリダイレクトします</>;
 };
 
-const Test: NextPage = () => {
-  return <Child />;
-};
+const Test: NextPage = () => <Child />;
 
 export default Test;
