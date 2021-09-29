@@ -11,12 +11,14 @@ const Header: FC = () => {
     <header className={style.header}>
       {/* logo */}
       <Link href="/">
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a className={style.logo}>
           <Image src={logo} alt="Oshavery logo" />
         </a>
       </Link>
       <div className={style.links}>
         <Link href="/">
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <a className={style.link}>Home</a>
         </Link>
         {/*
@@ -29,13 +31,17 @@ const Header: FC = () => {
         {isAuthenticated ? (
           <>
             <Link href="/loading">
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <a className={style.start_button}>Go to Oshavery</a>
             </Link>
           </>
         ) : (
-          <div onClick={() => loginWithRedirect()} className={style.start_button}>
-            Login
-          </div>
+          <>
+            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+            <div onClick={() => loginWithRedirect()} className={style.start_button}>
+              Login
+            </div>
+          </>
         )}
       </div>
     </header>
