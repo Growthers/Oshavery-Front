@@ -9,8 +9,7 @@ import logo from "../../public/logo_long.png";
 import style from "../styles/pages/index.module.scss";
 
 const Home: NextPage = () => {
-  // const { user } = useUser();
-  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
   return (
     <Layout pagetitle="Oshavery" isheader isfooter>
       <div className={style.index_page}>
@@ -98,12 +97,14 @@ const Home: NextPage = () => {
           {isAuthenticated ? (
             <>
               <Link href="/loading">
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a className={style.start_button}>Go to Oshavery</a>
               </Link>
             </>
           ) : (
             <>
-              <div className={style.start_button} onClick={() => loginWithRedirect()}>
+              {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus , jsx-a11y/click-events-have-key-events */}
+              <div role="button" className={style.start_button} onClick={() => loginWithRedirect()}>
                 Login
               </div>
             </>
