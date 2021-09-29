@@ -13,6 +13,7 @@ const Footer: FC = () => {
           <ul>
             {isAuthenticated ? (
               <li className={style.group_list}>
+                {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
                 <div onClick={() => logout()}>
                   <span className={style.logout}>Logout</span>
                 </div>
