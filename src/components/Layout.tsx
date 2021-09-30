@@ -42,8 +42,7 @@ const Layout: FC<Props> = ({ pagetitle, children, isheader, isfooter, descriptio
       <link rel="manifest" href="/favicons/site.webmanifest" />
       <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#000000" />
       <meta name="msapplication-TileColor" content="#ffffff" />
-      <meta name="msapplication-config" content="/favicons/browserconfig.xml" />{" "}
-      {/* Windows8/10のスタート画面のピン留め画像に対応したい場合 */}
+      <meta name="msapplication-config" content="/favicons/browserconfig.xml" />
       <meta name="theme-color" content="#ffffff" />
     </Head>
     <main className={style.main}>
@@ -59,5 +58,9 @@ const Layout: FC<Props> = ({ pagetitle, children, isheader, isfooter, descriptio
     </main>
   </>
 );
+
+Layout.defaultProps = {
+  description: "Oshavery - A chat tool",
+};
 
 export default Layout;
