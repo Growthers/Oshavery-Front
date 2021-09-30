@@ -21,11 +21,7 @@ const Settings: FC<settingsProps> = (props) => {
 
   return (
     <>
-      <Modal
-        isOpen={props.isShow}
-        onRequestClose={() => props.onClick(false)}
-        className={`${style.Overlay}`}
-      >
+      <Modal isOpen={props.isShow} onRequestClose={() => props.onClick(false)} className={`${style.Overlay}`}>
         {/*<div className={style.nameAndIcon}>
           <div className={style.uploadIcon}>
             <IconUploader />
@@ -44,8 +40,12 @@ const Settings: FC<settingsProps> = (props) => {
         <div className={style.logout}>
           <span>ログアウトする</span>
           <div className={style.logout_buttons}>
-            <button onClick={() => logout()} className={style.logout_button}>Logout</button>
-            <button onClick={() => props.onClick(!props.isShow)} className={style.logout_button}>Cancel</button>
+            <button onClick={() => logout()} className={style.logout_button}>
+              Logout
+            </button>
+            <button onClick={() => props.onClick(!props.isShow)} className={style.logout_button}>
+              Cancel
+            </button>
           </div>
         </div>
       </Modal>
