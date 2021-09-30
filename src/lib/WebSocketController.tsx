@@ -34,11 +34,11 @@ const WebSocketController: FC = () => {
     socket.onmessage = (event: MessageEvent<ws>) => {
       switch (event.data.type) {
         case "USER_JOINED":
-          if (event.data.body.guild_id != undefined && event.data.body.member_id != undefined) {
+          if (event.data.body.guild_id !== undefined && event.data.body.member_id !== undefined) {
             (async () => {
               try {
                 const res = await client.get<user[]>(`/guilds/${event.data.body.guild_id}/members`);
-                if (event.data.body.guild_id != undefined) {
+                if (event.data.body.guild_id !== undefined) {
                   userDispatch({
                     type: "setMember",
                     newData: res.data,
@@ -67,8 +67,9 @@ const WebSocketController: FC = () => {
           break;
 
         case "MESSAGE_CREATED":
-          if (channelID != undefined && channelID === event.data.body.channel_id) {
+          if (channelID !== undefined && channelID === event.data.body.channel_id) {
             client
+              // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
               .get<message>(`/channels/${event.data.body.channel_id}/messages/${event.data.body.message_id}`)
               .then((res) => {
                 messagesDispatch({
@@ -87,11 +88,11 @@ const WebSocketController: FC = () => {
 
         case "MESSAGE_DELETED":
           if (
-            event.data.body.guild_id != undefined &&
-            event.data.body.channel_id != undefined &&
-            event.data.body.message_id != undefined &&
-            channelID == event.data.body.channel_id &&
-            channelID != undefined
+            event.data.body.guild_id !== undefined &&
+            event.data.body.channel_id !== undefined &&
+            event.data.body.message_id !== undefined &&
+            channelID === event.data.body.channel_id &&
+            channelID !== undefined
           ) {
             messagesDispatch({
               type: "delete",
@@ -121,7 +122,7 @@ const WebSocketController: FC = () => {
         default:
       }
     };
-  }, []);
+  });
 
   return <></>;
 };

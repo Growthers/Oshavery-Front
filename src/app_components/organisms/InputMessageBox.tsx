@@ -29,7 +29,7 @@ const InputMessageBox: FC<Props> = (props) => {
   const sendMessage = () => {
     client
       .post<postMessageRes>(`/channels/${channelID}/messages`, {
-        content: message
+        content: message,
       })
       .then((res) => {
         setMessage("");
