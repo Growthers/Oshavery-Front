@@ -14,7 +14,7 @@ import MarkdownItKatex from "@iktakahiro/markdown-it-katex";
 // お願い！握りつぶさせて！
 // @ts-ignore
 import { Emoji } from "emoji-mart";
-import HighlightJs from "highlight.js"
+import HighlightJs from "highlight.js";
 // ここまでMarkdown
 
 import ChannelMessage from "../molecules/ChannelMessage";
@@ -142,7 +142,7 @@ const MessageList: FC = () => {
         } catch (__) {}
       }
 
-      return ''; // use external default escaping
+      return ""; // use external default escaping
     },
   });
 
@@ -201,7 +201,7 @@ const MessageList: FC = () => {
     <div className={style.messagelist}>
       {/* お行儀悪い 正々堂々と読み込んで */}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/xcode.min.css"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/xcode.min.css" />
       <div className={style.channelname}>
         <ChannelName
           name={
@@ -244,50 +244,53 @@ const MessageList: FC = () => {
             メッセージの一覧を表示
             全部divにしてますがなんとなくです
           */}
-          {messagesState.messages.slice().reverse().map((value, index) => {
-            // index0が最新
-            const messages_array = messagesState.messages;
-            let author_show = true;
+          {messagesState.messages
+            .slice()
+            .reverse()
+            .map((value, index) => {
+              // index0が最新
+              const messages_array = messagesState.messages;
+              let author_show = true;
 
-            // 配列の最後かどうか
-            if (index + 1 !== messages_array.length) {
-              // 一つ前のデータ
-              const before_value = messages_array[index + 1];
+              // 配列の最後かどうか
+              if (index + 1 !== messages_array.length) {
+                // 一つ前のデータ
+                const before_value = messages_array[index + 1];
 
-              // 一つ前のメッセージの送信者が異なる
-              if (value.author.id != before_value.author.id) {
-                countup = 0;
+                // 一つ前のメッセージの送信者が異なる
+                if (value.author.id != before_value.author.id) {
+                  countup = 0;
+                }
+                // 一つ前のメッセージが5分以内に送信されていない
+                else if (Number(value.timestamp) - Number(before_value.timestamp) >= 5 * 60000) {
+                  countup = 0;
+                }
+                // 既に5件連続になっている
+                else if (countup >= 5) {
+                  countup = 0;
+                }
+                // 連読処理
+                else {
+                  countup++;
+                  author_show = false;
+                }
               }
-              // 一つ前のメッセージが5分以内に送信されていない
-              else if (Number(value.timestamp) - Number(before_value.timestamp) >= 5 * 60000) {
-                countup = 0;
-              }
-              // 既に5件連続になっている
-              else if (countup >= 5) {
-                countup = 0;
-              }
-              // 連読処理
-              else {
-                countup++;
-                author_show = false;
-              }
-            }
 
-            let isauthor = false;
+              let isauthor = false;
 
-            // 作成者が本人かどうか
-            if (value.author.id == user_id) isauthor = true;
+              // 作成者が本人かどうか
+              if (value.author.id == user_id) isauthor = true;
 
-            return (
-              <ChannelMessage
-                key={value.id}
-                response={value}
-                author_show={author_show}
-                isauthor={isauthor}
-                renderer={md.render.bind(md)}
-              />
-            );
-          })}
+              return (
+                <ChannelMessage
+                  key={value.id}
+                  response={value}
+                  author_show={author_show}
+                  isauthor={isauthor}
+                  renderer={md.render.bind(md)}
+                />
+              );
+            })}
         </InfiniteScroll>
       </div>
     </div>
