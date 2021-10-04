@@ -31,8 +31,6 @@ const WebSocketController: FC = () => {
 
   useEffect(() => {
     if (socket == null) return;
-    socket.onopen = () => console.log("ws open");
-    socket.onclose = () => console.log("ws close");
 
     socket.onmessage = (event: MessageEvent<WebSocket>) => {
       switch (event.data.type) {
