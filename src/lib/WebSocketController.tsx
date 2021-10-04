@@ -66,9 +66,12 @@ const WebSocketController: FC = () => {
           break;
 
         case "MESSAGE_CREATED":
-          if (channelID !== undefined && channelID === event.data.body.channel_id) {
+          if (
+            channelID !== undefined &&
+            channelID === event.data.body.channel_id &&
+            event.data.body.message_id !== undefined
+          ) {
             client
-              // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
               .get<message>(`/channels/${event.data.body.channel_id}/messages/${event.data.body.message_id}`)
               .then((res) => {
                 messagesDispatch({
