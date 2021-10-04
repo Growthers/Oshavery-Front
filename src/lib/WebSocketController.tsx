@@ -48,7 +48,7 @@ const WebSocketController: FC = () => {
                   });
                 }
               })
-              .catch((err) => console.log(err));
+              .catch(() => {});
           }
           break;
 
@@ -78,9 +78,7 @@ const WebSocketController: FC = () => {
                   newData: res.data,
                 });
               })
-              .catch((error) => {
-                console.log(error);
-              });
+              .catch(() => {});
           }
           break;
 
