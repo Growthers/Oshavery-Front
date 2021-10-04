@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { useState, useEffect, useContext } from "react";
 import { useWindowSize } from "react-use";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
+import Image from "next/image";
 
 import Layout from "../../../../components/Layout";
 
@@ -17,8 +18,10 @@ import WebSocketController from "../../../../lib/WebSocketController";
 
 import style from "../../../../styles/pages/guild-channel.module.scss";
 import { userContext } from "../../../../stores/user";
-import { client } from "../../../../lib/client";
+import client from "../../../../lib/client";
 import { myInfo } from "../../../../types/user";
+
+const logo = "https://media.oshavery-app.net/logos/logo.png";
 
 const Oshavery: NextPage = () => {
   const { width: windowWidth, height: windowHeight } = useWindowSize();
@@ -53,9 +56,7 @@ const Oshavery: NextPage = () => {
           newData: res.data,
         });
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(() => {});
   }, [userDispatch]);
 
   // ウィンドウサイズ変更
@@ -67,7 +68,7 @@ const Oshavery: NextPage = () => {
     <Layout pagetitle="Oshavery" isheader={false} isfooter={false}>
       <div className={style.oshavery}>
         <div className={style.server_list}>
-          <img className={style.icon} src="https://media.oshavery-app.net/logos/logo.png" alt="logo" />
+          <Image className={style.icon} src={logo} alt="logo" />
           <ServerList />
         </div>
         <div className={style.left_side}>

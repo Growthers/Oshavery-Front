@@ -9,12 +9,15 @@ const Child: FC = () => {
   const { userState } = useContext(userContext);
 
   useEffect(() => {
-    router.push(
-      "/guild/[guildID]/channel/[channelID]",
-      `/guild/${guildID}/channel/${
-        userState.user.guilds[userState.user.guilds.findIndex((item) => item.id === guildID)].channels[0].id
-      }`,
-    );
+    if (typeof guildID === "string")
+      router
+        .push(
+          "/guild/[guildID]/channel/[channelID]",
+          `/guild/${guildID}/channel/${
+            userState.user.guilds[userState.user.guilds.findIndex((item) => item.id === guildID)].channels[0].id
+          }`,
+        )
+        .catch(() => {});
   });
 
   return <>自動的にリダイレクトします</>;

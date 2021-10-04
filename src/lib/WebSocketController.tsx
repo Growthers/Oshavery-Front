@@ -1,12 +1,12 @@
 import { FC, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
-import { client } from "./client";
+import client from "./client";
 import { message } from "../types/message";
 import { messagesContext } from "../stores/message";
 import { user } from "../types/user";
 import { userContext } from "../stores/user";
 
-type ws = {
+type WebSocket = {
   type: string;
   body: {
     id?: string;
@@ -24,30 +24,29 @@ const WebSocketController: FC = () => {
   const { userDispatch } = useContext(userContext);
   const { messagesDispatch } = useContext(messagesContext);
 
-  const socket = typeof window !== "undefined" ? new WebSocket(process.env.NEXT_PUBLIC_WSENDPOINT!) : null;
+  const socket =
+    typeof window !== "undefined" && process.env.NEXT_PUBLIC_WSENDPOINT !== undefined
+      ? new WebSocket(process.env.NEXT_PUBLIC_WSENDPOINT)
+      : undefined;
 
   useEffect(() => {
     if (socket == null) return;
-    socket.onopen = () => console.log("ws open");
-    socket.onclose = () => console.log("ws close");
 
-    socket.onmessage = (event: MessageEvent<ws>) => {
+    socket.onmessage = (event: MessageEvent<WebSocket>) => {
       switch (event.data.type) {
         case "USER_JOINED":
           if (event.data.body.guild_id !== undefined && event.data.body.member_id !== undefined) {
-            (async () => {
-              try {
-                const res = await client.get<user[]>(`/guilds/${event.data.body.guild_id}/members`);
+            client
+              .get<user[]>(`/guilds/${event.data.body.guild_id}/members`)
+              .then((res) => {
                 if (event.data.body.guild_id !== undefined) {
                   userDispatch({
                     type: "setMember",
                     newData: res.data,
                   });
                 }
-              } catch (error) {
-                console.log(error);
-              }
-            })();
+              })
+              .catch(() => {});
           }
           break;
 
@@ -67,9 +66,12 @@ const WebSocketController: FC = () => {
           break;
 
         case "MESSAGE_CREATED":
-          if (channelID !== undefined && channelID === event.data.body.channel_id) {
+          if (
+            channelID !== undefined &&
+            channelID === event.data.body.channel_id &&
+            event.data.body.message_id !== undefined
+          ) {
             client
-              // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
               .get<message>(`/channels/${event.data.body.channel_id}/messages/${event.data.body.message_id}`)
               .then((res) => {
                 messagesDispatch({
@@ -77,9 +79,7 @@ const WebSocketController: FC = () => {
                   newData: res.data,
                 });
               })
-              .catch((error) => {
-                console.log(error);
-              });
+              .catch(() => {});
           }
           break;
 
