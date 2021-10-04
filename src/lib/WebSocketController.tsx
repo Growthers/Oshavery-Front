@@ -1,12 +1,12 @@
 import { FC, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
-import { client } from "./client";
+import client from "./client";
 import { message } from "../types/message";
 import { messagesContext } from "../stores/message";
 import { user } from "../types/user";
 import { userContext } from "../stores/user";
 
-type ws = {
+type WebSocket = {
   type: string;
   body: {
     id?: string;
@@ -31,23 +31,21 @@ const WebSocketController: FC = () => {
     socket.onopen = () => console.log("ws open");
     socket.onclose = () => console.log("ws close");
 
-    socket.onmessage = (event: MessageEvent<ws>) => {
+    socket.onmessage = (event: MessageEvent<WebSocket>) => {
       switch (event.data.type) {
         case "USER_JOINED":
           if (event.data.body.guild_id !== undefined && event.data.body.member_id !== undefined) {
-            (async () => {
-              try {
-                const res = await client.get<user[]>(`/guilds/${event.data.body.guild_id}/members`);
+            client
+              .get<user[]>(`/guilds/${event.data.body.guild_id}/members`)
+              .then((res) => {
                 if (event.data.body.guild_id !== undefined) {
                   userDispatch({
                     type: "setMember",
                     newData: res.data,
                   });
                 }
-              } catch (error) {
-                console.log(error);
-              }
-            })();
+              })
+              .catch((err) => console.log(err));
           }
           break;
 

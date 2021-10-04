@@ -4,7 +4,7 @@ import { useContext, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { useRouter } from "next/router";
-import { client } from "../lib/client";
+import client from "../lib/client";
 import { userContext } from "../stores/user";
 import { createUserRes, myInfo } from "../types/user";
 

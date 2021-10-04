@@ -17,7 +17,7 @@ import WebSocketController from "../../../../lib/WebSocketController";
 
 import style from "../../../../styles/pages/guild-channel.module.scss";
 import { userContext } from "../../../../stores/user";
-import { client } from "../../../../lib/client";
+import client from "../../../../lib/client";
 import { myInfo } from "../../../../types/user";
 
 const Oshavery: NextPage = () => {
