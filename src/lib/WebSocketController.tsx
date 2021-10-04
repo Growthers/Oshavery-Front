@@ -24,7 +24,10 @@ const WebSocketController: FC = () => {
   const { userDispatch } = useContext(userContext);
   const { messagesDispatch } = useContext(messagesContext);
 
-  const socket = typeof window !== "undefined" ? new WebSocket(process.env.NEXT_PUBLIC_WSENDPOINT!) : null;
+  const socket =
+    typeof window !== "undefined" && process.env.NEXT_PUBLIC_WSENDPOINT !== undefined
+      ? new WebSocket(process.env.NEXT_PUBLIC_WSENDPOINT)
+      : undefined;
 
   useEffect(() => {
     if (socket == null) return;

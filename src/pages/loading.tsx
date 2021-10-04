@@ -77,11 +77,10 @@ const Loading: NextPage = () => {
               channelID: value.guilds[0].channels[0].id,
             },
           })
-          .catch((error) => console.log(error));
+          .catch(() => {});
       })
-      .catch((err) => {
-        console.log(err);
-        router.push("/").catch((error) => console.log(error));
+      .catch(() => {
+        router.push("/").catch(() => {});
       });
   }, [getAccessTokenSilently, router, userDispatch]);
 

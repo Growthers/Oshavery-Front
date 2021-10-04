@@ -17,7 +17,7 @@ const Child: FC = () => {
             userState.user.guilds[userState.user.guilds.findIndex((item) => item.id === guildID)].channels[0].id
           }`,
         )
-        .catch((e) => console.log(e));
+        .catch(() => {});
   });
 
   return <>自動的にリダイレクトします</>;
