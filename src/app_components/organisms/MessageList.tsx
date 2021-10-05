@@ -23,7 +23,7 @@ import ChannelName from "../atoms/ChannelName";
 import { userContext } from "../../stores/user";
 import { messagesContext } from "../../stores/message";
 import { message } from "../../types/message";
-import { client } from "../../lib/client";
+import client from "../../lib/client";
 
 import style from "../../styles/app_components/organisms/MessageList.module.scss";
 
@@ -34,7 +34,7 @@ const mkTestResponse = (authN: string): message => {
     timestamp: new Date().getTime().toString(),
     author: {
       id: "test_author_id",
-      name: "NAME: " + authN,
+      name: `NAME: ${authN}`,
       avatarurl: "url",
       bot: false,
       state: 0,
@@ -135,7 +135,7 @@ const MessageList: FC = () => {
     // markdown-it側である程度のサニタイズ処理は施されるようです
     html: false,
     linkify: true,
-    highlight: function (str, lang) {
+    highlight(str, lang) {
       if (lang && HighlightJs.getLanguage(lang)) {
         try {
           return HighlightJs.highlight(str, { language: lang }).value;
@@ -155,7 +155,7 @@ const MessageList: FC = () => {
 
   md.renderer.rules.emoji = function (token, idx) {
     // EmojiコンポーネントがJSXかStringを返すクソ仕様のせいでtypescriptの恩恵を受けられません
-    var ret = Emoji({
+    const ret = Emoji({
       html: true,
       emoji: token[idx].markup,
       size: 16,
@@ -175,7 +175,7 @@ const MessageList: FC = () => {
   md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
     const aIndex = tokens[idx].attrIndex("target");
 
-    let result = null;
+    const result = null;
 
     if (process.browser && aIndex < 0) {
       const pattern = `https?://${document.domain}[\w!?/+\-_~;.,*&@#$%()'[\]]+`;
@@ -235,8 +235,8 @@ const MessageList: FC = () => {
           dataLength={messagesState.messages.length}
           next={fetchMoreData}
           style={{ display: "flex", flexDirection: "column-reverse", overflow: "hidden" }}
-          inverse={true}
-          hasMore={true}
+          inverse
+          hasMore
           loader={<h4>Loading...</h4>}
           scrollableTarget="scrollableDiv"
         >
