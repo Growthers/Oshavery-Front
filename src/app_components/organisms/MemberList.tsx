@@ -1,16 +1,15 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import type { FC } from "react";
-import { useState, useCallback } from "react";
 
+import { useRouter } from "next/router";
 import MemberCard from "../atoms/MemberCard";
 
 import member_style from "../../styles/app_components/atoms/MemberCard.module.scss";
-import { useRouter } from "next/router";
 import { user } from "../../types/user";
 import { userContext } from "../../stores/user";
 
 import style from "../../styles/app_components/organisms/MemberList.module.scss";
-import { client } from "../../lib/client";
+import client from "../../lib/client";
 
 const MemberList: FC = () => {
   const [isShow, setIsShow] = useState(false);
@@ -46,9 +45,8 @@ const MemberList: FC = () => {
         if (target.className.indexOf(member_style.show) !== -1) {
           clear_memberpopup();
           return;
-        } else {
-          clear_memberpopup();
         }
+        clear_memberpopup();
 
         target.className = `${member_style.memberpopup} ${member_style.show}`;
         setIsShow(true);
@@ -81,7 +79,7 @@ const MemberList: FC = () => {
   }
 
   useEffect(() => {
-    if (guildID != undefined) {
+    if (guildID !== undefined) {
       (async () => {
         try {
           const res = await client.get<user[]>(`/guilds/${guildID}/members`);
@@ -113,7 +111,7 @@ const MemberList: FC = () => {
   };
   */
 
-  if (members == undefined) return <></>;
+  if (members === undefined) return <></>;
 
   return (
     <div className={style.memberlist}>
