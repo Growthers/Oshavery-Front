@@ -7,7 +7,7 @@ import SendButton from "../atoms/SendButton";
 import TextareaBox from "../atoms/TextareaBox";
 import UploadButton from "../atoms/UploadButton";
 
-import { client } from "../../lib/client";
+import client from "../../lib/client";
 import { postMessageRes } from "../../types/message";
 
 import style from "../../styles/app_components/organisms/InputMessageBox.module.scss";
@@ -41,12 +41,12 @@ const InputMessageBox: FC<Props> = (props) => {
   const [eventtarget, setEventTarget] = useState<ChangeEvent<HTMLInputElement>>();
   const [filename, setFileName] = useState<string>("");
   const [fileurl, setFileUrl] = useState<string>("");
-  const [isSending, setIsSending] = useState<Boolean>(false);
-  const [isShow, setIsShow] = useState<Boolean>(false);
+  const [isSending, setIsSending] = useState<boolean>(false);
+  const [isShow, setIsShow] = useState<boolean>(false);
 
   const checkfile = (e: ChangeEvent<HTMLInputElement>) => {
-    const target = e.target;
-    const files = target.files;
+    const { target } = e;
+    const { files } = target;
     if (files == null) return;
     const file = files[0];
     if (file == null) return;
@@ -97,13 +97,13 @@ const InputMessageBox: FC<Props> = (props) => {
     setIsSending(false);
   }, [isSending]);
 
-  //絵文字の入力
+  // 絵文字の入力
   const selectEmoji = (e: EmojiData) => {
     console.log(e.id);
     setMessage(`${message}:${e.id}:`);
 
     // 折り返しに対応 バグがあるので見送り
-    //if (process.browser) {
+    // if (process.browser) {
     //  const target = document.getElementById("input_your_message") as HTMLInputElement;
     //  if (target == null) return;
 
@@ -113,10 +113,10 @@ const InputMessageBox: FC<Props> = (props) => {
     //  } else {
     //    target.style.height = `${target.scrollHeight}px`;
     //  }
-    //}
+    // }
   };
 
-  const onchange_event = (value: string) => {
+  const onChangeEvent = (value: string) => {
     setMessage(value);
 
     // 改行のみ
@@ -130,7 +130,7 @@ const InputMessageBox: FC<Props> = (props) => {
       if (target == null) return;
 
       target.style.height = "auto";
-      if (value == "") {
+      if (value === "") {
         target.style.height = "0";
       } else {
         target.style.height = `${target.scrollHeight}px`;
@@ -140,7 +140,7 @@ const InputMessageBox: FC<Props> = (props) => {
     }
   };
 
-  //test Data
+  // test Data
   const customEmojiData: CustomEmoji[] = [];
 
   return (
@@ -152,14 +152,14 @@ const InputMessageBox: FC<Props> = (props) => {
             <TextareaBox
               disabled={disabled}
               rows={rows}
-              onChange={onchange_event}
+              onChange={onChangeEvent}
               placeholder={placeholder}
               value={message}
               onKeyDown={sendMessage}
             />
           </div>
           <SendButton onClick={sendMessage} />
-          <EmojiPicker onSelect={selectEmoji} color={"#FFC266"} custom={customEmojiData} />
+          <EmojiPicker onSelect={selectEmoji} color="#FFC266" custom={customEmojiData} />
         </div>
       </div>
       {/*
