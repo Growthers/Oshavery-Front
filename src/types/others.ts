@@ -1,4 +1,4 @@
-export type version = {
+export type Version = {
   version: string;
   revision: string;
 };
