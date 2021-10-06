@@ -1,5 +1,8 @@
-/** @type {import('next').NextConfig} */
+/** @type {import('next').NextConfig} **/
 module.exports = {
+  eslint: {
+    dirs: ["src"],
+  },
   images: {
     domains: ["media.oshavery-app.net"],
   },
