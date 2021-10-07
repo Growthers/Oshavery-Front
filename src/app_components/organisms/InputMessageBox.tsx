@@ -8,7 +8,7 @@ import TextareaBox from "../atoms/TextareaBox";
 import UploadButton from "../atoms/UploadButton";
 
 import client from "../../lib/client";
-import { postMessageRes } from "../../types/message";
+import { PostMessageRes } from "../../types/message";
 
 import style from "../../styles/app_components/organisms/InputMessageBox.module.scss";
 
@@ -28,7 +28,7 @@ const InputMessageBox: FC<Props> = (props) => {
 
   const sendMessage = () => {
     client
-      .post<postMessageRes>(`/channels/${channelID}/messages`, {
+      .post<PostMessageRes>(`/channels/${channelID}/messages`, {
         content: message,
       })
       .then((res) => {

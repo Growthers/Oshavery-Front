@@ -2,14 +2,14 @@ import React from "react";
 import type { FC } from "react";
 
 import MessageContent from "../atoms/MessageContent";
-import { message } from "../../types/message";
+import { Message } from "../../types/message";
 
 import style from "../../styles/app_components/molecules/ChannelMessage.module.scss";
 import Button from "../atoms/Button";
 import { AiFillDelete } from "react-icons/ai";
 
 interface Props {
-  response: message;
+  response: Message;
   // author情報を表示するか
   author_show: boolean;
   // author本人かどうか
@@ -18,7 +18,7 @@ interface Props {
 }
 
 const ChannelMessage: FC<Props> = (props) => {
-  const res: message = props.response;
+  const res: Message = props.response;
   const author_avatar: string = res.author.avatarurl;
   const author_name = res.author.name;
 

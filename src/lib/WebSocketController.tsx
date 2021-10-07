@@ -1,7 +1,7 @@
 import { FC, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import client from "./client";
-import { message } from "../types/message";
+import { Message } from "../types/message";
 import { messagesContext } from "../stores/message";
 import { User } from "../types/user";
 import { userContext } from "../stores/user";
@@ -72,7 +72,7 @@ const WebSocketController: FC = () => {
             event.data.body.message_id !== undefined
           ) {
             client
-              .get<message>(`/channels/${event.data.body.channel_id}/messages/${event.data.body.message_id}`)
+              .get<Message>(`/channels/${event.data.body.channel_id}/messages/${event.data.body.message_id}`)
               .then((res) => {
                 messagesDispatch({
                   type: "new",

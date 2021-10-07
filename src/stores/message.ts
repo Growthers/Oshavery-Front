@@ -1,22 +1,22 @@
-import { message } from "../types/message";
+import { Message } from "../types/message";
 import { Context, createContext, Dispatch, Reducer, useReducer } from "react";
 
 type stateType = {
-  messages: message[];
+  messages: Message[];
 };
 
 type actionType =
   | {
       type: "set";
-      newData: message[];
+      newData: Message[];
     }
   | {
       type: "load";
-      newData: message[];
+      newData: Message[];
     }
   | {
       type: "new";
-      newData: message;
+      newData: Message;
     }
   | {
       type: "delete";

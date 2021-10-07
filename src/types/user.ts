@@ -12,7 +12,7 @@ export type CreateUserRes = {
   name: string;
 };
 
-//export type myInfo = user & {"guilds": guild[]};
+// export type myInfo = user & {"guilds": guild[]};
 
 export type MyInfo = {
   id: string;

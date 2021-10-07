@@ -22,14 +22,14 @@ import ChannelName from "../atoms/ChannelName";
 
 import { userContext } from "../../stores/user";
 import { messagesContext } from "../../stores/message";
-import { message } from "../../types/message";
+import { Message } from "../../types/message";
 import client from "../../lib/client";
 
 import style from "../../styles/app_components/organisms/MessageList.module.scss";
 
 // テスト用文字列
-const mkTestResponse = (authN: string): message => {
-  const ret: message = {
+const mkTestResponse = (authN: string): Message => {
+  const ret: Message = {
     id: Math.random().toString(32).substring(2),
     timestamp: new Date().getTime().toString(),
     author: {
@@ -78,7 +78,7 @@ const MessageList: FC = () => {
         if (channelID == undefined) {
           throw new Error("no query");
         }
-        const fstData = await client.get<message[]>(`/channels/${channelID}/messages`, {
+        const fstData = await client.get<Message[]>(`/channels/${channelID}/messages`, {
           params: {
             limit: 100,
           },
@@ -112,7 +112,7 @@ const MessageList: FC = () => {
         throw new Error("no query");
       }
       const lastID = messagesState.messages.slice(-1)[0].id;
-      const newData = await client.get<message[]>(endPoint, {
+      const newData = await client.get<Message[]>(endPoint, {
         params: {
           limit: 100,
           before: lastID,
