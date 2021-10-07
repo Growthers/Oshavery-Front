@@ -108,7 +108,7 @@ const MessageList: FC = () => {
   // 新規スクロールがあった時に呼ばれる
   const fetchMoreData = async () => {
     try {
-      if (endPoint == undefined) {
+      if (endPoint === undefined) {
         throw new Error("no query");
       }
       const lastID = messagesState.messages.slice(-1)[0].id;
@@ -192,7 +192,7 @@ const MessageList: FC = () => {
     return defaultRender(tokens, idx, options, env, self);
   };
 
-  if (messagesState.messages == undefined || channelID == undefined || guildID == undefined) return <></>;
+  if (messagesState.messages === undefined || channelID === undefined || guildID === undefined) return <></>;
 
   // 同一ユーザーによる連続投稿のカウント
   let countup = 0;
@@ -250,7 +250,7 @@ const MessageList: FC = () => {
             .map((value, index) => {
               // index0が最新
               const messages_array = messagesState.messages;
-              let author_show = true;
+              let authorShow = true;
 
               // 配列の最後かどうか
               if (index + 1 !== messages_array.length) {
@@ -258,7 +258,7 @@ const MessageList: FC = () => {
                 const before_value = messages_array[index + 1];
 
                 // 一つ前のメッセージの送信者が異なる
-                if (value.author.id != before_value.author.id) {
+                if (value.author.id !== before_value.author.id) {
                   countup = 0;
                 }
                 // 一つ前のメッセージが5分以内に送信されていない
@@ -272,20 +272,20 @@ const MessageList: FC = () => {
                 // 連読処理
                 else {
                   countup++;
-                  author_show = false;
+                  authorShow = false;
                 }
               }
 
               let isauthor = false;
 
               // 作成者が本人かどうか
-              if (value.author.id == user_id) isauthor = true;
+              if (value.author.id === user_id) isauthor = true;
 
               return (
                 <ChannelMessage
                   key={value.id}
                   response={value}
-                  author_show={author_show}
+                  author_show={authorShow}
                   isauthor={isauthor}
                   renderer={md.render.bind(md)}
                 />
