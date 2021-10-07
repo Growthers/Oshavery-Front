@@ -19,7 +19,7 @@ import WebSocketController from "../../../../lib/WebSocketController";
 import style from "../../../../styles/pages/guild-channel.module.scss";
 import { userContext } from "../../../../stores/user";
 import client from "../../../../lib/client";
-import { myInfo } from "../../../../types/user";
+import { MyInfo } from "../../../../types/user";
 
 const logo = "https://media.oshavery-app.net/logos/logo.png";
 
@@ -49,7 +49,7 @@ const Oshavery: NextPage = () => {
     changeMessagesHeight();
 
     client
-      .get<myInfo>("users/me")
+      .get<MyInfo>("users/me")
       .then((res) => {
         userDispatch({
           type: "set",

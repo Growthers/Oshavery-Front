@@ -1,14 +1,14 @@
-export type channel = {
+export type Channel = {
   id: string;
   channel_name: string;
   channel_topics: string;
   channel_type: string;
   channel_position: number;
   creator_id: string;
-  permissions?: permission[];
+  permissions?: Permission[];
 };
 
-export type permission = {
+export type Permission = {
   id: string;
   name: string;
   permissions: string;

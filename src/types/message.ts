@@ -1,4 +1,4 @@
-export type message = {
+export type Message = {
   id: string;
   timestamp: string;
   author: {
@@ -14,7 +14,7 @@ export type message = {
   edited_timestamp: string;
 };
 
-export type postMessageRes = {
+export type PostMessageRes = {
   id: string;
   timestamp: string;
   content: string;

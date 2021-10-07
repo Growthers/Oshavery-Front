@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { FC } from "react";
+import type { FC } from "react";
 
 import ServerIcon from "../atoms/ServerIcon";
 import { userContext } from "../../stores/user";
@@ -11,7 +11,7 @@ const ServerList: FC = () => {
 
   const guildsData = userState.user.guilds;
 
-  if (guildsData == undefined) return <></>;
+  if (guildsData === undefined) return <></>;
 
   return (
     <div className={style.serverlist}>

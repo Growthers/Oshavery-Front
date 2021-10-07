@@ -6,7 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useRouter } from "next/router";
 import client from "../lib/client";
 import { userContext } from "../stores/user";
-import { createUserRes, myInfo } from "../types/user";
+import { CreateUserRes, MyInfo } from "../types/user";
 
 import logo from "../../public/logo.png";
 import style from "../styles/pages/loading.module.scss";
@@ -16,15 +16,15 @@ const Loading: NextPage = () => {
   const { getAccessTokenSilently } = useAuth0();
   const { userDispatch } = useContext(userContext);
 
-  const createUser = async (): Promise<myInfo> => {
+  const createUser = async (): Promise<MyInfo> => {
     try {
-      await client.post<createUserRes>("/users");
+      await client.post<CreateUserRes>("/users");
     } catch (e) {
       throw new Error("failed to create User");
     }
 
     try {
-      const res = await client.get<myInfo>("/users/me");
+      const res = await client.get<MyInfo>("/users/me");
       return res.data;
     } catch (e2) {
       throw new Error("failed to get myInfo");
@@ -32,7 +32,7 @@ const Loading: NextPage = () => {
   };
 
   useEffect(() => {
-    const routing = async (): Promise<myInfo> => {
+    const routing = async (): Promise<MyInfo> => {
       try {
         const jwt = await getAccessTokenSilently({
           audience: process.env.NEXT_PUBLIC_APIENDPOINT,
@@ -44,7 +44,7 @@ const Loading: NextPage = () => {
       }
 
       try {
-        const res = await client.get<myInfo>("/users/me");
+        const res = await client.get<MyInfo>("/users/me");
         userDispatch({
           type: "set",
           newData: res.data,

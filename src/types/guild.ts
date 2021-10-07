@@ -1,6 +1,6 @@
-import { user } from "./user";
+import { User } from "./user";
 
-export type guild = {
+export type Guild = {
   id: string;
   name: string;
   topic: string;
@@ -22,14 +22,14 @@ export type guild = {
   }[];
 };
 
-export type role = {
+export type Role = {
   id: string;
   name: string;
   permissions: string;
   mentionable: boolean;
 };
 
-export type inviteLink = {
+export type InviteLink = {
   id: string;
   guild_id: string;
   channel_id: string;

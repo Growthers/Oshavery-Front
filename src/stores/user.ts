@@ -1,24 +1,25 @@
-import { myInfo, user } from "../types/user";
+import { MyInfo, User } from "../types/user";
 import { Dispatch, Context, createContext, useReducer, Reducer } from "react";
 
-type stateType = {
-  user: myInfo;
-  nowMember: user[];
+type StateType = {
+  user: MyInfo;
+  nowMember: User[];
 };
 
-type actionType =
+type ActionType =
+
   | {
       type: "set";
-      newData: myInfo;
+      newData: MyInfo;
     }
   | {
       type: "setMember";
-      newData: user[];
+      newData: User[];
     }
   | {
       type: "USER_JOINED";
       guild: string;
-      newData: user;
+      newData: User;
     }
   | {
       type: "MESSAGE_CREATED";
@@ -28,11 +29,11 @@ type actionType =
     };
 
 type UserContext = {
-  userState: stateType;
-  userDispatch: Dispatch<actionType>;
+  userState: StateType;
+  userDispatch: Dispatch<ActionType>;
 };
 
-const reducer: Reducer<stateType, actionType> = (state: stateType, action: actionType) => {
+const reducer: Reducer<StateType, ActionType> = (state: StateType, action: ActionType) => {
   switch (action.type) {
     case "set":
       return {
@@ -58,23 +59,23 @@ const reducer: Reducer<stateType, actionType> = (state: stateType, action: actio
   }
 };
 
-type useUserStateType = () => {
-  userState: stateType;
-  userDispatch: Dispatch<actionType>;
+type UseUserStateType = () => {
+  userState: StateType;
+  userDispatch: Dispatch<ActionType>;
 };
 
-export const useUserSD: useUserStateType = () => {
+export const useUserSD: UseUserStateType = () => {
   const [userState, userDispatch] = useReducer(reducer, {
-    user: {} as myInfo,
-    nowMember: [] as user[],
+    user: {} as MyInfo,
+    nowMember: [] as User[],
   });
   return { userState, userDispatch };
 };
 
 export const userContext: Context<UserContext> = createContext<UserContext>({
   userState: {
-    user: {} as myInfo,
-    nowMember: [] as user[],
+    user: {} as MyInfo,
+    nowMember: [] as User[],
   },
   userDispatch: () => {},
 });
