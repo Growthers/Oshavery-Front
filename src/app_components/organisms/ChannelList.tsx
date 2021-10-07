@@ -4,7 +4,7 @@ import type { FC } from "react";
 import ChannelCard from "../atoms/ChannelCard";
 import NameCard from "../atoms/NameCard";
 
-import { guild } from "../../types/guild";
+import { Guild } from "../../types/guild";
 import { userContext } from "../../stores/user";
 import { useRouter } from "next/router";
 
@@ -16,7 +16,7 @@ const ChannelList: FC = () => {
   const router = useRouter();
   const { guildID, channelID } = router.query;
 
-  const [nowGuild, setNowGuild] = useState<guild>();
+  const [nowGuild, setNowGuild] = useState<Guild>();
 
   useEffect(() => {
     setNowGuild(userState.user.guilds[userState.user.guilds.findIndex((item) => item.id === guildID)]);

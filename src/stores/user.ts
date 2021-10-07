@@ -59,12 +59,12 @@ const reducer: Reducer<StateType, ActionType> = (state: StateType, action: Actio
   }
 };
 
-type useUserStateType = () => {
+type UseUserStateType = () => {
   userState: StateType;
   userDispatch: Dispatch<ActionType>;
 };
 
-export const useUserSD: useUserStateType = () => {
+export const useUserSD: UseUserStateType = () => {
   const [userState, userDispatch] = useReducer(reducer, {
     user: {} as MyInfo,
     nowMember: [] as User[],
