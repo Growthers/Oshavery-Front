@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import client from "./client";
 import { message } from "../types/message";
 import { messagesContext } from "../stores/message";
-import { user } from "../types/user";
+import { User } from "../types/user";
 import { userContext } from "../stores/user";
 
 type WebSocket = {
@@ -37,7 +37,7 @@ const WebSocketController: FC = () => {
         case "USER_JOINED":
           if (event.data.body.guild_id !== undefined && event.data.body.member_id !== undefined) {
             client
-              .get<user[]>(`/guilds/${event.data.body.guild_id}/members`)
+              .get<User[]>(`/guilds/${event.data.body.guild_id}/members`)
               .then((res) => {
                 if (event.data.body.guild_id !== undefined) {
                   userDispatch({

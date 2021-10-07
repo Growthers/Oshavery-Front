@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import MemberCard from "../atoms/MemberCard";
 
 import member_style from "../../styles/app_components/atoms/MemberCard.module.scss";
-import { user } from "../../types/user";
+import { User } from "../../types/user";
 import { userContext } from "../../stores/user";
 
 import style from "../../styles/app_components/organisms/MemberList.module.scss";
@@ -16,7 +16,7 @@ const MemberList: FC = () => {
 
   const router = useRouter();
   const { guildID } = router.query;
-  const [members, setMembers] = useState<user[]>();
+  const [members, setMembers] = useState<User[]>();
   const { userState, userDispatch } = useContext(userContext);
 
   // メンバーポップアップのクリア
@@ -82,7 +82,7 @@ const MemberList: FC = () => {
     if (guildID !== undefined) {
       (async () => {
         try {
-          const res = await client.get<user[]>(`/guilds/${guildID}/members`);
+          const res = await client.get<User[]>(`/guilds/${guildID}/members`);
           userDispatch({
             type: "setMember",
             newData: res.data,

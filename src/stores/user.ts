@@ -1,9 +1,9 @@
-import { myInfo, user } from "../types/user";
+import { myInfo, User } from "../types/user";
 import { Dispatch, Context, createContext, useReducer, Reducer } from "react";
 
 type stateType = {
   user: myInfo;
-  nowMember: user[];
+  nowMember: User[];
 };
 
 type actionType =
@@ -13,12 +13,12 @@ type actionType =
     }
   | {
       type: "setMember";
-      newData: user[];
+      newData: User[];
     }
   | {
       type: "USER_JOINED";
       guild: string;
-      newData: user;
+      newData: User;
     }
   | {
       type: "MESSAGE_CREATED";
@@ -66,7 +66,7 @@ type useUserStateType = () => {
 export const useUserSD: useUserStateType = () => {
   const [userState, userDispatch] = useReducer(reducer, {
     user: {} as myInfo,
-    nowMember: [] as user[],
+    nowMember: [] as User[],
   });
   return { userState, userDispatch };
 };
@@ -74,7 +74,7 @@ export const useUserSD: useUserStateType = () => {
 export const userContext: Context<UserContext> = createContext<UserContext>({
   userState: {
     user: {} as myInfo,
-    nowMember: [] as user[],
+    nowMember: [] as User[],
   },
   userDispatch: () => {},
 });

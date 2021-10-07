@@ -1,4 +1,4 @@
-import { user } from "./user";
+import { User } from "./user";
 
 export type guild = {
   id: string;

@@ -2,9 +2,9 @@ import React from "react";
 import type { FC } from "react";
 
 import style from "../../styles/app_components/atoms/MemberPopup.module.scss";
-import { user } from "../../types/user";
+import { User } from "../../types/user";
 
-type Props = Pick<user, "name" | "avatar" | "bot">;
+type Props = Pick<User, "name" | "avatar" | "bot">;
 
 const MemberPopup: FC<Props> = (props) => {
   return (
