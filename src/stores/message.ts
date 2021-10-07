@@ -1,11 +1,11 @@
-import { Message } from "../types/message";
 import { Context, createContext, Dispatch, Reducer, useReducer } from "react";
+import { Message } from "../types/message";
 
-type stateType = {
+type StateType = {
   messages: Message[];
 };
 
-type actionType =
+type ActionType =
   | {
       type: "set";
       newData: Message[];
@@ -23,12 +23,12 @@ type actionType =
       message_id: string;
     };
 
-type messageContext = {
-  messagesState: stateType;
-  messagesDispatch: Dispatch<actionType>;
+type MessageContext = {
+  messagesState: StateType;
+  messagesDispatch: Dispatch<ActionType>;
 };
 
-const reducer: Reducer<stateType, actionType> = (state: stateType, action: actionType) => {
+const reducer: Reducer<StateType, ActionType> = (state: StateType, action: ActionType) => {
   switch (action.type) {
     case "set":
       return { messages: action.newData };
@@ -52,14 +52,14 @@ const reducer: Reducer<stateType, actionType> = (state: stateType, action: actio
   }
 };
 
-type useMessagesSDType = () => {
-  messagesState: stateType;
-  messagesDispatch: Dispatch<actionType>;
+type UseMessagesSDType = () => {
+  messagesState: StateType;
+  messagesDispatch: Dispatch<ActionType>;
 };
 
-export const useMessageSD: useMessagesSDType = () => {
-  const [messagesState, messagesDispatch] = useReducer(reducer, {} as stateType);
+export const useMessageSD: UseMessagesSDType = () => {
+  const [messagesState, messagesDispatch] = useReducer(reducer, {} as StateType);
   return { messagesState, messagesDispatch };
 };
 
-export const messagesContext: Context<messageContext> = createContext<messageContext>({} as messageContext);
+export const messagesContext: Context<MessageContext> = createContext<MessageContext>({} as MessageContext);
