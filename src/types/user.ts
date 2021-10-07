@@ -6,7 +6,7 @@ export type User = {
   state: number;
 };
 
-export type createUserRes = {
+export type CreateUserRes = {
   id: string;
   bot: boolean;
   name: string;
@@ -14,7 +14,7 @@ export type createUserRes = {
 
 //export type myInfo = user & {"guilds": guild[]};
 
-export type myInfo = {
+export type MyInfo = {
   id: string;
   name: string;
   avatar: string;
