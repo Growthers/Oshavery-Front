@@ -66,7 +66,7 @@ const MessageList: FC = () => {
   const { userState } = useContext(userContext);
   const { messagesState, messagesDispatch } = useContext(messagesContext);
 
-  const user_id = userState.user.id;
+  const userId = userState.user.id;
   const router = useRouter();
   const { guildID, channelID } = router.query;
   const [endPoint, setEndPoint] = useState<string>();
@@ -196,6 +196,7 @@ const MessageList: FC = () => {
 
   // 同一ユーザーによる連続投稿のカウント
   let countup = 0;
+  const mdBind = md.render.bind(md);
 
   return (
     <div className={style.messagelist}>
@@ -271,7 +272,7 @@ const MessageList: FC = () => {
                 }
                 // 連読処理
                 else {
-                  countup++;
+                  countup += 1;
                   authorShow = false;
                 }
               }
@@ -279,7 +280,7 @@ const MessageList: FC = () => {
               let isauthor = false;
 
               // 作成者が本人かどうか
-              if (value.author.id === user_id) isauthor = true;
+              if (value.author.id === userId) isauthor = true;
 
               return (
                 <ChannelMessage
@@ -287,7 +288,7 @@ const MessageList: FC = () => {
                   response={value}
                   author_show={authorShow}
                   isauthor={isauthor}
-                  renderer={md.render.bind(md)}
+                  renderer={mdBind}
                 />
               );
             })}

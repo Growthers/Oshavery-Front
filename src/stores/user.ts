@@ -1,5 +1,5 @@
-import { MyInfo, User } from "../types/user";
 import { Dispatch, Context, createContext, useReducer, Reducer } from "react";
+import { MyInfo, User } from "../types/user";
 
 type StateType = {
   user: MyInfo;
@@ -7,7 +7,6 @@ type StateType = {
 };
 
 type ActionType =
-
   | {
       type: "set";
       newData: MyInfo;
