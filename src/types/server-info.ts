@@ -1,4 +1,4 @@
-export type serverInfo = {
+export type ServerInfo = {
   instance_name: string;
   user_count: string;
   message_count: string;
