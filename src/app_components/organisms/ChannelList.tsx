@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import type { FC } from "react";
 
+import { useRouter } from "next/router";
 import ChannelCard from "../atoms/ChannelCard";
 import NameCard from "../atoms/NameCard";
 
 import { Guild } from "../../types/guild";
 import { userContext } from "../../stores/user";
-import { useRouter } from "next/router";
 
 import style from "../../styles/app_components/organisms/ChannelList.module.scss";
 
@@ -30,18 +30,16 @@ const ChannelList: FC = () => {
         <NameCard name={nowGuild.name} />
       </div>
       <div className={style.channels}>
-        {nowGuild.channels.map((value) => {
-          return (
+        {nowGuild.channels.map((value) => (
             <ChannelCard
               key={value.id}
               channel_name={value.name}
-              channel_topics={value.topics}
+              ChannelTopics={value.topics}
               channel_type={value.type}
               link={`/guild/${guildID}/channel/${value.id}`}
               selected={value.id === channelID}
             />
-          );
-        })}
+          ))}
       </div>
     </div>
   );
