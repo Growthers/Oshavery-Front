@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import type { NextPage } from "next";
 import Link from "next/link";
 
-const HOME: NextPage = () => {
+const Home: NextPage = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
   return (
     <>
@@ -24,4 +24,4 @@ const HOME: NextPage = () => {
   );
 };
 
-export default HOME;
+export default Home;
