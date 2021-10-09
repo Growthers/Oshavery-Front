@@ -1,5 +1,6 @@
 import type { FC, MouseEvent, ReactNode } from "react";
 import styles from "../../styles/app_components/atoms/Button.module.scss";
+
 type Props = {
   children: ReactNode;
   onClick: (event: MouseEvent<HTMLDivElement>) => void;
