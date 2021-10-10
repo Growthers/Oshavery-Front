@@ -14,8 +14,7 @@ type Props = {
   func_show_memberpopup: (target_id: string) => void;
 };
 
-const MemberCard: FC<Props> = (props) => {
-  return (
+const MemberCard: FC<Props> = (props) => (
     <div className={style.member_box}>
       <div className={`${style.member} member_element`} onClick={() => props.func_show_memberpopup(props.id)}>
         <img className={`${style.avatar} member_element`} src={props.avatar} />
@@ -28,6 +27,5 @@ const MemberCard: FC<Props> = (props) => {
       </div>
     </div>
   );
-};
 
 export default React.memo(MemberCard);

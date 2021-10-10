@@ -22,7 +22,7 @@ const Settings: FC<settingsProps> = (props) => {
   return (
     <>
       <Modal isOpen={props.isShow} onRequestClose={() => props.onClick(false)} className={`${style.Overlay}`}>
-        {/*<div className={style.nameAndIcon}>
+        {/* <div className={style.nameAndIcon}>
           <div className={style.uploadIcon}>
             <IconUploader />
           </div>
@@ -30,12 +30,12 @@ const Settings: FC<settingsProps> = (props) => {
             <p>ユーザネーム</p>
             <InputBox value={userName} onChange={setUserName} />
           </div>
-        </div>*/}
+        </div> */}
 
         {/* <div className={style.setSNS}>
           <p>Twitter</p>
-          </div>*/}
-        {/*<button onClick={() => props.onClick(false)}>保存</button>*/}
+          </div> */}
+        {/* <button onClick={() => props.onClick(false)}>保存</button> */}
 
         <div className={style.logout}>
           <span>ログアウトする</span>
