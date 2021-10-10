@@ -1,0 +1,11 @@
+.page {
+  background-color: #ffc266;
+  .loginPage {
+    background-color: #ffc266;
+    display: flex;
+    flex-direction: column;
+    .item {
+      background-color: #fff;
+    }
+  }
+}
