@@ -29,7 +29,7 @@
 <!-- ## Anythig else... -->  
 
 ## Authors  
-|  <a href="https://github.com/YukiYuigishi"><img src="https://github.com/YukiYuigishi.png" width="130px"></a> | <a href="https://github.com/kato-k"><img src="https://github.com/kat0h.png" width="130px"></a> | <a href="https://github.com/cv-neko"><img src="https://github.com/cv-neko.png" width="130px"></a> | <a href="https://github.com/sayoi341"><img src="https://github.com/sayoi341.png" width="130px"></a> |
+|  <a href="https://github.com/YukiYuigishi"><img src="https://github.com/YukiYuigishi.png" width="130px"></a> | <a href="https://github.com/kato-k"><img src="https://github.com/kat0h.png" width="130px"></a> | <a href="https://github.com/cv-neko"><img src="https://github.com/nekosan00.png" width="130px"></a> | <a href="https://github.com/sayoi341"><img src="https://github.com/sayoi341.png" width="130px"></a> |
 | :--------: | :--------: | :--------: | :---: |
 | **Yuki Yuigishi**<br>Project Manager | **Kota Kato**<br>Developer | **nekoP**<br>Designer | **sayoi341**<br>Developer |
 
