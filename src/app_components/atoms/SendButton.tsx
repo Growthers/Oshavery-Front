@@ -5,8 +5,7 @@ type Props = {
   onClick: VoidFunction;
 };
 
-const SendButton: FC<Props> = (props) => {
-  return (
+const SendButton: FC<Props> = (props) => (
     <div className={style.messageSendButton}>
       <svg
         version="1.1"
@@ -21,6 +20,5 @@ const SendButton: FC<Props> = (props) => {
       </svg>
     </div>
   );
-};
 
 export default SendButton;

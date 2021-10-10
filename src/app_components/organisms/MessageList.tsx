@@ -28,6 +28,7 @@ import client from "../../lib/client";
 import style from "../../styles/app_components/organisms/MessageList.module.scss";
 
 // テスト用文字列
+/*
 const mkTestResponse = (authN: string): Message => {
   const ret: Message = {
     id: Math.random().toString(32).substring(2),
@@ -59,7 +60,7 @@ const mkTestResponse = (authN: string): Message => {
   ret.content = t[Math.floor(Math.random() * t.length)];
   return ret;
 };
-
+*/
 // コンポーネント本体
 // Markdownレンダリングのライブラリのインスタンスもここで持っている
 const MessageList: FC = () => {
@@ -75,7 +76,7 @@ const MessageList: FC = () => {
   useEffect(() => {
     (async () => {
       try {
-        if (channelID == undefined) {
+        if (channelID === undefined) {
           throw new Error("no query");
         }
         const fstData = await client.get<Message[]>(`/channels/${channelID}/messages`, {
@@ -286,7 +287,7 @@ const MessageList: FC = () => {
                 <ChannelMessage
                   key={value.id}
                   response={value}
-                  author_show={authorShow}
+                  authorShow={authorShow}
                   isauthor={isauthor}
                   renderer={mdBind}
                 />

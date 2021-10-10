@@ -6,12 +6,10 @@ type Props = {
   name: string;
 };
 
-const NameCard: FC<Props> = (props) => {
-  return (
-    <div className={styles.nameCard}>
-      <span className={styles.guildName}>{props.name}</span>
-    </div>
-  );
-};
+const NameCard: FC<Props> = (props) => (
+  <div className={styles.nameCard}>
+    <span className={styles.guildName}>{props.name}</span>
+  </div>
+);
 
 export default React.memo(NameCard);

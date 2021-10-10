@@ -1,17 +1,17 @@
 import React from "react";
 import type { FC } from "react";
 
+import { AiFillDelete } from "react-icons/ai";
 import MessageContent from "../atoms/MessageContent";
 import { Message } from "../../types/message";
 
 import style from "../../styles/app_components/molecules/ChannelMessage.module.scss";
 import Button from "../atoms/Button";
-import { AiFillDelete } from "react-icons/ai";
 
 interface Props {
   response: Message;
   // author情報を表示するか
-  author_show: boolean;
+  authorShow: boolean;
   // author本人かどうか
   isauthor: boolean;
   renderer: (content: string) => string;
@@ -19,11 +19,11 @@ interface Props {
 
 const ChannelMessage: FC<Props> = (props) => {
   const res: Message = props.response;
-  const author_avatar: string = res.author.avatarurl;
-  const author_name = res.author.name;
+  const authorAvatar: string = res.author.avatarurl;
+  const authorName = res.author.name;
 
-  const res_datetime = new Date(Date.parse(res.timestamp));
-  const datetime = new Date(res_datetime.getTime());
+  const resDatetime = new Date(Date.parse(res.timestamp));
+  const datetime = new Date(resDatetime.getTime());
 
   // 今日ですか？
   const istoday = (date: Date) => {
@@ -88,9 +88,7 @@ const ChannelMessage: FC<Props> = (props) => {
   };
 
   // ゼロ埋め関数
-  const fillzero = (num: number, digit: number) => {
-    return `${"0".repeat(digit)}${num}`.slice(-1 * digit);
-  };
+  const fillzero = (num: number, digit: number) => `${"0".repeat(digit)}${num}`.slice(-1 * digit);
 
   const time = `${fillzero(datetime.getHours(), 2)}:${fillzero(datetime.getMinutes(), 2)}`;
   let timestamp = time;
@@ -111,15 +109,17 @@ const ChannelMessage: FC<Props> = (props) => {
   };
 
   // dangerousな文字をHTMLにして表示してるの怖くね
-  if (props.author_show) {
+  if (props.authorShow) {
     return (
       <div className={style.fullcontent}>
         <div className={style.left_side}>
-          <img className={style.image} src={author_avatar} />
+          <img className={style.image} src={authorAvatar} />
         </div>
         <div>
+          {" "}
           <div>
-            <span className={style.name}>{author_name}</span>
+            {" "}
+            <span className={style.name}>{authorName}</span>
             <span className={style.timestamp}>{timestamp}</span>
           </div>
           {/* Markdown描画部 */}
@@ -128,39 +128,10 @@ const ChannelMessage: FC<Props> = (props) => {
           </div>
         </div>
         <div className={style.messagebuttons}>
-          {false ? (
-            props.isauthor ? (
-              <Button onClick={() => deleteMessage()}>
-                <AiFillDelete />
-              </Button>
-            ) : (
-              <></>
-            )
-          ) : (
-            <></>
-          )}
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <div className={style.simplecontent}>
-        <div className={style.left_side}>
-          <span className={style.timestamp}>{time}</span>
-        </div>
-        {/* Markdown描画部 */}
-        <div className={style.messagecontent}>
-          <MessageContent content={res.content} renderer={props.renderer} />
-        </div>
-        <div className={style.messagebuttons}>
-          {false ? (
-            props.isauthor ? (
-              <Button onClick={() => deleteMessage()}>
-                <AiFillDelete />
-              </Button>
-            ) : (
-              <></>
-            )
+          {props.isauthor ? (
+            <Button onClick={() => deleteMessage()}>
+              <AiFillDelete />
+            </Button>
           ) : (
             <></>
           )}
@@ -168,6 +139,23 @@ const ChannelMessage: FC<Props> = (props) => {
       </div>
     );
   }
+  return (
+    <div className={style.simplecontent}>
+      <div className={style.left_side}>
+        <span className={style.timestamp}>{time}</span>
+      </div>
+      {/* Markdown描画部 */}
+      <div className={style.messagecontent}>
+        <MessageContent content={res.content} renderer={props.renderer} />
+      </div>
+      <div className={style.messagebuttons}>
+        props.isauthor ? (
+        <Button onClick={() => deleteMessage()}>
+          <AiFillDelete />
+        </Button>
+      </div>
+    </div>
+  );
 };
 
 export default React.memo(ChannelMessage);
