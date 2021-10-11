@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useAuth0 } from "@auth0/auth0-react";
 import Link from "next/link";
-import style from "../styles/app_components/organisms/loginPage.module.scss";
+import style from "../styles/pages/index.module.scss";
 
 const Home: NextPage = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
@@ -12,7 +12,7 @@ const Home: NextPage = () => {
         {isAuthenticated ? (
           <Link href="/loading">
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a className={style.item}>Go to Oshavery</a>
+            <a className={style.toLoading}>Go to Oshavery</a>
           </Link>
         ) : (
           <>
