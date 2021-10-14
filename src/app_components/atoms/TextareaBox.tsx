@@ -29,8 +29,13 @@ const defaultTextareaSettings: DefaultTextareaSettingsType = {
 
 const TextareaBox: FC<TextareaProps> = (props) => (
   <textarea
+    minLength={defaultTextareaSettings.minLength}
+    maxLength={defaultTextareaSettings.maxLength}
+    autoComplete={defaultTextareaSettings.autoComplete}
+    spellCheck={defaultTextareaSettings.spellCheck}
+    wrap={defaultTextareaSettings.wrap}
     id="input_your_message"
-    {...defaultTextareaSettings}
+    placeholder={props.placeholder}
     disabled={props.disabled}
     rows={props.rows}
     value={props.value}
