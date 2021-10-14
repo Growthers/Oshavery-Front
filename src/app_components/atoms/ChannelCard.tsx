@@ -20,15 +20,14 @@ const ChannelCard: FC<Props> = (props) => {
       </div>
     );
   }
-    return (
-      <Link href="/guild/[guildID]/channel/[channelID]" as={props.link}>
-        <a className={`${style.channel} ${props.selected && style.selected}`}>
-          <FaHashtag className={style.sharp} />
-          <span className={style.channel_name}>{props.channel_name}</span>
-        </a>
-      </Link>
-    );
-
+  return (
+    <Link href="/guild/[guildID]/channel/[channelID]" as={props.link}>
+      <a tabIndex={0} role="button" className={`${style.channel} ${props.selected && style.selected}`}>
+        <FaHashtag className={style.sharp} />
+        <span className={style.channel_name}>{props.channel_name}</span>
+      </a>
+    </Link>
+  );
 };
 
 export default React.memo(ChannelCard);
