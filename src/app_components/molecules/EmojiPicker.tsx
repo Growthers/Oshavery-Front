@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { ErrorInfo, useEffect, useRef, useState } from "react";
 import type { FC } from "react";
 import "emoji-mart/css/emoji-mart.css";
 import { CustomEmoji, EmojiData, Picker, Emoji } from "emoji-mart";
@@ -18,6 +18,17 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
   const emojiOpenClassname = "emojiopen_element";
   const emojiAncherElement = "emoji-mart-anchor";
 
+  // すべての子孫要素に指定クラスを設定
+  function setClass(target: Element, class_name: string) {
+    if (process.browser) {
+      const count = target.childElementCount;
+
+      for (let i = 0; i < count; i += 1) {
+        target.children[i].classList.add(class_name);
+        setClass(target.children[i], class_name);
+      }
+    }
+  }
   // フォーカスと内容変更
   useEffect(() => {
     if (process.browser) {
@@ -47,27 +58,15 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
       const elements: HTMLCollectionOf<Element> = document.getElementsByClassName(style.emojipopup);
       const openElements: HTMLCollectionOf<Element> = document.getElementsByClassName(emojiOpenClassname);
 
-      for (let i = 0; i < elements.length; i++) {
+      for (let i = 0; i < elements.length; i += 1) {
         setClass(elements[i], emojipopupClassname);
       }
 
-      for (let j = 0; j < openElements.length; j++) {
+      for (let j = 0; j < openElements.length; j += 1) {
         setClass(openElements[j], emojipopupClassname);
       }
     }
-  }, []);
-
-  // すべての子孫要素に指定クラスを設定
-  function setClass(target: Element, class_name: string) {
-    if (process.browser) {
-      const count = target.childElementCount;
-
-      for (let i = 0; i < count; i++) {
-        target.children[i].classList.add(class_name);
-        setClass(target.children[i], class_name);
-      }
-    }
-  }
+  });
 
   // クリックイベント
   const checkClick = (e: any) => {
@@ -109,7 +108,7 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
   }
 
   // emoji-mart ancherの Click event
-  const checkEmojiClick = (e: any, check_target: string) => {
+  const checkEmojiClick = (e:any, check_target: string) => {
     try {
       const emojiInputElement = "emoji-mart-search";
       const { target } = e;
@@ -122,7 +121,7 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
       const grandparentClassName = String(grandparent.className);
       const greatgrandparentClassName = String(greatgrandparent.className);
 
-      if (!isShow) {
+      if (!isShow || !grandparentClassName) {
         return;
       }
 
@@ -130,13 +129,13 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
         setIsShow(true);
       } else if (parentClassName.indexOf(check_target) !== -1 || parentClassName.indexOf(emojiInputElement) !== -1) {
         setIsShow(true);
-      } else if (!grandparentClassName) return;
-      else if (
+      } else if (
         grandparentClassName.indexOf(check_target) !== -1 ||
         grandparentClassName.indexOf(emojiInputElement) !== -1
       ) {
         setIsShow(true);
       } else if (!greatgrandparentClassName) {
+        setIsShow(true);
       } else if (
         greatgrandparentClassName.indexOf(check_target) !== -1 ||
         greatgrandparentClassName.indexOf(emojiInputElement) !== -1
@@ -165,7 +164,7 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
           set="twitter"
           custom={props.custom}
           color={props.color}
-          onSelect={(emoji) => props.onSelect(emoji)}
+          onSelect={(emoji: EmojiData) => props.onSelect(emoji)}
         />
       </div>
       <div
