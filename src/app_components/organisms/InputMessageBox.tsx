@@ -1,11 +1,11 @@
 import { FC, useState, ChangeEvent, useEffect } from "react";
-import { EmojiData, CustomEmoji } from "emoji-mart";
+import { CustomEmoji, BaseEmoji } from "emoji-mart";
 import { useRouter } from "next/router";
 
 import EmojiPicker from "../molecules/EmojiPicker";
 import SendButton from "../atoms/SendButton";
 import TextareaBox from "../atoms/TextareaBox";
-import UploadButton from "../atoms/UploadButton";
+// import UploadButton from "../atoms/UploadButton";
 
 import client from "../../lib/client";
 import { PostMessageRes } from "../../types/message";
@@ -27,14 +27,18 @@ const InputMessageBox: FC<Props> = (props) => {
   const { channelID } = router.query;
 
   const sendMessage = () => {
-    client
-      .post<PostMessageRes>(`/channels/${channelID}/messages`, {
-        content: message,
-      })
-      .then((res) => {
-        setMessage("");
-      })
-      .catch((error) => {});
+    if (channelID !== undefined && !Array.isArray(channelID)) {
+      client
+        .post<PostMessageRes>(`/channels/${channelID}/messages`, {
+          content: message,
+        })
+        .then(() => {
+          setMessage("");
+        })
+        .catch((error) => {
+          throw error;
+        });
+    }
   };
 
   // ファイル関連
@@ -55,9 +59,9 @@ const InputMessageBox: FC<Props> = (props) => {
 
     // 最大ファイルサイズ(MB)
     const max = 200;
-    const max_size = max * 1048576;
+    const maxSize = max * 1048576;
 
-    if (filesize > max_size) {
+    if (filesize > maxSize) {
       target.value = "";
       return;
     }
@@ -95,10 +99,10 @@ const InputMessageBox: FC<Props> = (props) => {
 
     setIsShow(false);
     setIsSending(false);
-  }, [isSending]);
+  }, [eventtarget, isSending]);
 
   // 絵文字の入力
-  const selectEmoji = (e: EmojiData) => {
+  const selectEmoji = (e: BaseEmoji) => {
     console.log(e.id);
     setMessage(`${message}:${e.id}:`);
 
@@ -147,7 +151,9 @@ const InputMessageBox: FC<Props> = (props) => {
     <>
       <div className={style.outer}>
         <div className={style.messageBox}>
-          {false ? <UploadButton onChange={checkfile} /> : <></>}
+          {/*
+            {false ? <UploadButton onChange={checkfile} /> : <></>}
+          */}
           <div className={style.textarea}>
             <TextareaBox
               disabled={disabled}
