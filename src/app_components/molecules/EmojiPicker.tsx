@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import type { FC, MouseEvent } from "react";
 import "emoji-mart/css/emoji-mart.css";
-import { CustomEmoji, EmojiData, Picker, Emoji } from "emoji-mart";
+import { CustomEmoji, EmojiData, Picker, Emoji, BaseEmoji } from "emoji-mart";
 
 import style from "../../styles/app_components/molecules/EmojiPicker.module.scss";
 
 type EmojiProps = {
   custom: CustomEmoji[];
   color: string;
-  onSelect: (emoji: EmojiData) => void;
+  onSelect: (emoji: BaseEmoji) => void;
 };
 
 const EmojiPicker: FC<EmojiProps> = (props) => {
