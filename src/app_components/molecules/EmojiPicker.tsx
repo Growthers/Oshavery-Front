@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import type { FC } from "react";
+import type { FC, MouseEvent } from "react";
 import "emoji-mart/css/emoji-mart.css";
-import { CustomEmoji, EmojiData, Picker, Emoji } from "emoji-mart";
+import { CustomEmoji, EmojiData, Picker, Emoji, BaseEmoji } from "emoji-mart";
 
 import style from "../../styles/app_components/molecules/EmojiPicker.module.scss";
 
 type EmojiProps = {
   custom: CustomEmoji[];
   color: string;
-  onSelect: (emoji: EmojiData) => void;
+  onSelect: (emoji: BaseEmoji) => void;
 };
 
 const EmojiPicker: FC<EmojiProps> = (props) => {
@@ -18,6 +18,17 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
   const emojiOpenClassname = "emojiopen_element";
   const emojiAncherElement = "emoji-mart-anchor";
 
+  // すべての子孫要素に指定クラスを設定
+  function setClass(target: Element, class_name: string) {
+    if (process.browser) {
+      const count = target.childElementCount;
+
+      for (let i = 0; i < count; i += 1) {
+        target.children[i].classList.add(class_name);
+        setClass(target.children[i], class_name);
+      }
+    }
+  }
   // フォーカスと内容変更
   useEffect(() => {
     if (process.browser) {
@@ -47,61 +58,57 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
       const elements: HTMLCollectionOf<Element> = document.getElementsByClassName(style.emojipopup);
       const openElements: HTMLCollectionOf<Element> = document.getElementsByClassName(emojiOpenClassname);
 
-      for (let i = 0; i < elements.length; i++) {
+      for (let i = 0; i < elements.length; i += 1) {
         setClass(elements[i], emojipopupClassname);
       }
 
-      for (let j = 0; j < openElements.length; j++) {
+      for (let j = 0; j < openElements.length; j += 1) {
         setClass(openElements[j], emojipopupClassname);
       }
     }
-  }, []);
-
-  // すべての子孫要素に指定クラスを設定
-  function setClass(target: Element, class_name: string) {
-    if (process.browser) {
-      const count = target.childElementCount;
-
-      for (let i = 0; i < count; i++) {
-        target.children[i].classList.add(class_name);
-        setClass(target.children[i], class_name);
-      }
-    }
-  }
+  });
 
   // クリックイベント
-  const checkClick = (e: any) => {
+  const checkClick = (e: MouseEvent<HTMLInputElement>) => {
     try {
       const { target } = e;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
       const parent = target.parentNode;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
       const grandparent = parent.parentNode;
 
-      const class_name = String(target.className);
-      const parent_class_name = String(parent.className);
-      const grandparent_class_name = String(grandparent.className);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      const nowClassName = String(target.className);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      const parentClassName = String(parent.className);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      const grandparentClassName = String(grandparent.className);
 
       if (!isShow) {
         return;
       }
 
-      if (class_name.indexOf(emojipopupClassname) !== -1) {
+      if (nowClassName.indexOf(emojipopupClassname) !== -1) {
         return;
       }
-      if (parent_class_name.indexOf(emojipopupClassname) !== -1) {
+      if (parentClassName.indexOf(emojipopupClassname) !== -1) {
         return;
       }
-      if (!grandparent_class_name) {
+      if (!grandparentClassName) {
         return;
       }
-      if (grandparent_class_name.indexOf(emojipopupClassname) !== -1) {
+      if (grandparentClassName.indexOf(emojipopupClassname) !== -1) {
         return;
       }
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
       return;
     }
 
     setIsShow(false);
+  };
+  const checkIsShow = () => {
+    if (isShow) setIsShow(false);
+    else if (!isShow) setIsShow(true);
   };
 
   if (process.browser) {
@@ -109,20 +116,26 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
   }
 
   // emoji-mart ancherの Click event
-  const checkEmojiClick = (e: any, check_target: string) => {
+  const checkEmojiClick = (e: MouseEvent<HTMLInputElement>, check_target: string) => {
     try {
       const emojiInputElement = "emoji-mart-search";
       const { target } = e;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const parent = target.parentNode;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
       const grandparent = parent.parentNode;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
       const greatgrandparent = parent.parentNode;
 
       const className = String(target.className);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const parentClassName = String(parent.className);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const grandparentClassName = String(grandparent.className);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const greatgrandparentClassName = String(greatgrandparent.className);
 
-      if (!isShow) {
+      if (!isShow || !grandparentClassName) {
         return;
       }
 
@@ -130,30 +143,30 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
         setIsShow(true);
       } else if (parentClassName.indexOf(check_target) !== -1 || parentClassName.indexOf(emojiInputElement) !== -1) {
         setIsShow(true);
-      } else if (!grandparentClassName) return;
-      else if (
+      } else if (
         grandparentClassName.indexOf(check_target) !== -1 ||
         grandparentClassName.indexOf(emojiInputElement) !== -1
       ) {
         setIsShow(true);
       } else if (!greatgrandparentClassName) {
+        setIsShow(true);
       } else if (
         greatgrandparentClassName.indexOf(check_target) !== -1 ||
         greatgrandparentClassName.indexOf(emojiInputElement) !== -1
       ) {
         setIsShow(true);
       } else setIsShow(false);
-    } catch (e) {}
+      // eslint-disable-next-line no-empty
+    } catch (err) {}
   };
 
   return (
-    <div className={style.emojipicker} ref={popupRef} tabIndex={1000}>
+    <div className={style.emojipicker} ref={popupRef}>
       <div
         hidden={!isShow}
         className={style.emojipopup}
-        onClick={(e) => {
-          checkEmojiClick(e, emojiAncherElement);
-        }}
+        aria-hidden
+        onClick={(e: MouseEvent<HTMLInputElement>) => checkEmojiClick(e, emojiAncherElement)}
       >
         <Picker
           title="Pick your emoji…"
@@ -165,16 +178,10 @@ const EmojiPicker: FC<EmojiProps> = (props) => {
           set="twitter"
           custom={props.custom}
           color={props.color}
-          onSelect={(emoji) => props.onSelect(emoji)}
+          onSelect={(emoji: EmojiData) => props.onSelect(emoji)}
         />
       </div>
-      <div
-        onClick={() => {
-          if (isShow) setIsShow(false);
-          else if (!isShow) setIsShow(true);
-        }}
-        className={`${emojiOpenClassname} ${style.emoji}`}
-      >
+      <div onClick={checkIsShow} aria-hidden className={`${emojiOpenClassname} ${style.emoji}`}>
         <Emoji emoji="grinning" size={30} set="twitter" />
       </div>
     </div>

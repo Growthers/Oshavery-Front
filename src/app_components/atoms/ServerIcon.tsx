@@ -12,12 +12,12 @@ type Props = {
 };
 
 const ServerIcon: FC<Props> = (props) => (
-    <div className={style.servericon}>
-      <Link href="/guild/[guildID]/channel/[channelID]" as={props.link}>
-        <img className={style.icon} src={props.icon} />
-      </Link>
-      <p className={style.name}>{props.name}</p>
-    </div>
-  );
+  <div className={style.servericon}>
+    <Link href="/guild/[guildID]/channel/[channelID]" as={props.link}>
+      <img className={style.icon} src={props.icon} />
+    </Link>
+    <p className={style.name}>{props.name}</p>
+  </div>
+);
 
 export default React.memo(ServerIcon);

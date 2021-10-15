@@ -31,15 +31,15 @@ const ChannelList: FC = () => {
       </div>
       <div className={style.channels}>
         {nowGuild.channels.map((value) => (
-            <ChannelCard
-              key={value.id}
-              channel_name={value.name}
-              ChannelTopics={value.topics}
-              channel_type={value.type}
-              link={`/guild/${guildID}/channel/${value.id}`}
-              selected={value.id === channelID}
-            />
-          ))}
+          <ChannelCard
+            key={value.id}
+            channel_name={value.name}
+            ChannelTopics={value.topics}
+            channel_type={value.type}
+            link={`/guild/${guildID}/channel/${value.id}`}
+            selected={value.id === channelID}
+          />
+        ))}
       </div>
     </div>
   );

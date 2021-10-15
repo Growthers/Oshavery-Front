@@ -6,6 +6,8 @@ type iconProps = {
   size: number;
 };
 
-const UserIcon: FC<iconProps> = (props) => <img src={props.imgUrl} width={props.size} height={props.size} className={style.icon} />;
+const UserIcon: FC<iconProps> = (props) => (
+  <img src={props.imgUrl} width={props.size} height={props.size} className={style.icon} />
+);
 
 export default UserIcon;
