@@ -20,11 +20,11 @@ const MemberList: FC = () => {
   const { userState, userDispatch } = useContext(userContext);
 
   // メンバーポップアップのクリア
-  const clear_memberpopup = useCallback(() => {
+  const clearMemmberPopp = useCallback(() => {
     if (process.browser) {
       const elements: HTMLCollectionOf<Element> = document.getElementsByClassName(member_style.memberpopup);
 
-      for (let i = 0; i < elements.length; i++) {
+      for (let i = 0; i < elements.length; i += 1) {
         elements[i].className = member_style.memberpopup;
       }
 
@@ -33,7 +33,7 @@ const MemberList: FC = () => {
   }, []);
 
   // 引数のIDのクラスを変更（メンバーポップアップ表示）
-  const show_memberpopup = useCallback(
+  const showMemberPopup = useCallback(
     (target_id: string) => {
       if (process.browser) {
         const target: HTMLElement | null = document.getElementById(target_id);
@@ -43,16 +43,16 @@ const MemberList: FC = () => {
         }
 
         if (target.className.indexOf(member_style.show) !== -1) {
-          clear_memberpopup();
+          clearMemmberPopp();
           return;
         }
-        clear_memberpopup();
+        clearMemmberPopp();
 
         target.className = `${member_style.memberpopup} ${member_style.show}`;
         setIsShow(true);
       }
     },
-    [clear_memberpopup],
+    [clearMemmberPopp],
   );
 
   // クリックイベント
@@ -71,7 +71,7 @@ const MemberList: FC = () => {
       return;
     }
 
-    clear_memberpopup();
+    clearMemmberPopp();
   };
 
   if (process.browser) {
@@ -123,7 +123,7 @@ const MemberList: FC = () => {
           name={value.name}
           avatar={value.avatar}
           bot={value.bot}
-          func_show_memberpopup={show_memberpopup}
+          func_show_memberpopup={showMemberPopup}
         />
       ))}
     </div>
