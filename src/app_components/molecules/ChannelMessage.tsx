@@ -32,8 +32,8 @@ const ChannelMessage: FC<Props> = (props) => {
 
     if (
       date.getFullYear() === today.getFullYear() &&
-      date.getMonth() == today.getMonth() &&
-      date.getDay() == today.getDay()
+      date.getMonth() === today.getMonth() &&
+      date.getDay() === today.getDay()
     ) {
       result = true;
     }
@@ -49,8 +49,8 @@ const ChannelMessage: FC<Props> = (props) => {
 
     if (
       date.getFullYear() === yesterday.getFullYear() &&
-      date.getMonth() == yesterday.getMonth() &&
-      date.getDay() == yesterday.getDay()
+      date.getMonth() === yesterday.getMonth() &&
+      date.getDay() === yesterday.getDay()
     ) {
       result = true;
     }
@@ -66,8 +66,8 @@ const ChannelMessage: FC<Props> = (props) => {
 
     if (
       date.getFullYear() === todaysago.getFullYear() &&
-      date.getMonth() == todaysago.getMonth() &&
-      date.getDay() == todaysago.getDay()
+      date.getMonth() === todaysago.getMonth() &&
+      date.getDay() === todaysago.getDay()
     ) {
       result = true;
     }

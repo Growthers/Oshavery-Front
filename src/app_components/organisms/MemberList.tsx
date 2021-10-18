@@ -56,14 +56,14 @@ const MemberList: FC = () => {
   );
 
   // クリックイベント
-  const check_click = (e: any) => {
-    const class_name = String(e.target.className);
+  const CheckClick = (e: any) => {
+    const clickedClassName = String(e.target.className);
 
-    if (class_name.indexOf("member_element") !== -1) {
+    if (clickedClassName.indexOf("member_element") !== -1) {
       return;
     }
 
-    if (class_name.indexOf("memberpopup_element") !== -1) {
+    if (clickedClassName.indexOf("memberpopup_element") !== -1) {
       return;
     }
 
@@ -75,11 +75,11 @@ const MemberList: FC = () => {
   };
 
   if (process.browser) {
-    document.body.onclick = check_click;
+    document.body.onclick = CheckClick;
   }
 
   useEffect(() => {
-    if (guildID !== undefined) {
+    if (guildID !== undefined && !Array.isArray(guildID)) {
       (async () => {
         try {
           const res = await client.get<User[]>(`/guilds/${guildID}/members`);
@@ -93,7 +93,7 @@ const MemberList: FC = () => {
         }
       })();
     }
-  }, [userState, guildID]);
+  }, [userDispatch, userState, guildID]);
 
   /*
   UserId代用のHTML要素ID

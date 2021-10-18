@@ -251,20 +251,20 @@ const MessageList: FC = () => {
             .reverse()
             .map((value, index) => {
               // index0が最新
-              const messages_array = messagesState.messages;
+              const messagesArray = messagesState.messages;
               let authorShow = true;
 
               // 配列の最後かどうか
-              if (index + 1 !== messages_array.length) {
+              if (index + 1 !== messagesArray.length) {
                 // 一つ前のデータ
-                const before_value = messages_array[index + 1];
+                const beforeValue = messagesArray[index + 1];
 
                 // 一つ前のメッセージの送信者が異なる
-                if (value.author.id !== before_value.author.id) {
+                if (value.author.id !== beforeValue.author.id) {
                   countup = 0;
                 }
                 // 一つ前のメッセージが5分以内に送信されていない
-                else if (Number(value.timestamp) - Number(before_value.timestamp) >= 5 * 60000) {
+                else if (Number(value.timestamp) - Number(beforeValue.timestamp) >= 5 * 60000) {
                   countup = 0;
                 }
                 // 既に5件連続になっている

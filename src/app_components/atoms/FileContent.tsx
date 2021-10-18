@@ -5,8 +5,8 @@ type FileProps = {
   name: string;
   mime: string;
   media_url: string;
-  width?: number;
-  height?: number;
+  width: number;
+  height: number;
 };
 
 const FileContent: FC<FileProps> = (props) => {
@@ -23,7 +23,7 @@ const FileContent: FC<FileProps> = (props) => {
   }
   if (props.mime === "video/mp4") {
     return (
-      <video controls width={props.width}>
+      <video controls width={props.width} height={props.height}>
         <source src={props.media_url} type="video/mp4" />
       </video>
     );
