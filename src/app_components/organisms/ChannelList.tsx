@@ -22,7 +22,7 @@ const ChannelList: FC = () => {
     setNowGuild(userState.user.guilds[userState.user.guilds.findIndex((item) => item.id === guildID)]);
   }, [userState, guildID]);
 
-  if (nowGuild == undefined) return <></>;
+  if (nowGuild === undefined) return <></>;
 
   return (
     <div className={style.channellist}>
@@ -36,7 +36,7 @@ const ChannelList: FC = () => {
             channel_name={value.name}
             ChannelTopics={value.topics}
             channel_type={value.type}
-            link={`/guild/${guildID}/channel/${value.id}`}
+            link={`/guild/${guildID !== undefined && !Array.isArray(guildID) ? guildID : ""}/channel/${value.id}`}
             selected={value.id === channelID}
           />
         ))}

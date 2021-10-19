@@ -20,11 +20,11 @@ const MemberList: FC = () => {
   const { userState, userDispatch } = useContext(userContext);
 
   // メンバーポップアップのクリア
-  const clear_memberpopup = useCallback(() => {
+  const clearMemmberPopp = useCallback(() => {
     if (process.browser) {
       const elements: HTMLCollectionOf<Element> = document.getElementsByClassName(member_style.memberpopup);
 
-      for (let i = 0; i < elements.length; i++) {
+      for (let i = 0; i < elements.length; i += 1) {
         elements[i].className = member_style.memberpopup;
       }
 
@@ -33,7 +33,7 @@ const MemberList: FC = () => {
   }, []);
 
   // 引数のIDのクラスを変更（メンバーポップアップ表示）
-  const show_memberpopup = useCallback(
+  const showMemberPopup = useCallback(
     (target_id: string) => {
       if (process.browser) {
         const target: HTMLElement | null = document.getElementById(target_id);
@@ -43,27 +43,27 @@ const MemberList: FC = () => {
         }
 
         if (target.className.indexOf(member_style.show) !== -1) {
-          clear_memberpopup();
+          clearMemmberPopp();
           return;
         }
-        clear_memberpopup();
+        clearMemmberPopp();
 
         target.className = `${member_style.memberpopup} ${member_style.show}`;
         setIsShow(true);
       }
     },
-    [clear_memberpopup],
+    [clearMemmberPopp],
   );
 
   // クリックイベント
-  const check_click = (e: any) => {
-    const class_name = String(e.target.className);
+  const CheckClick = (e: any) => {
+    const clickedClassName = String(e.target.className);
 
-    if (class_name.indexOf("member_element") !== -1) {
+    if (clickedClassName.indexOf("member_element") !== -1) {
       return;
     }
 
-    if (class_name.indexOf("memberpopup_element") !== -1) {
+    if (clickedClassName.indexOf("memberpopup_element") !== -1) {
       return;
     }
 
@@ -71,15 +71,15 @@ const MemberList: FC = () => {
       return;
     }
 
-    clear_memberpopup();
+    clearMemmberPopp();
   };
 
   if (process.browser) {
-    document.body.onclick = check_click;
+    document.body.onclick = CheckClick;
   }
 
   useEffect(() => {
-    if (guildID !== undefined) {
+    if (guildID !== undefined && !Array.isArray(guildID)) {
       (async () => {
         try {
           const res = await client.get<User[]>(`/guilds/${guildID}/members`);
@@ -93,7 +93,7 @@ const MemberList: FC = () => {
         }
       })();
     }
-  }, [userState, guildID]);
+  }, [userDispatch, userState, guildID]);
 
   /*
   UserId代用のHTML要素ID
@@ -123,7 +123,7 @@ const MemberList: FC = () => {
           name={value.name}
           avatar={value.avatar}
           bot={value.bot}
-          func_show_memberpopup={show_memberpopup}
+          func_show_memberpopup={showMemberPopup}
         />
       ))}
     </div>
