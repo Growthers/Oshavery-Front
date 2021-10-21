@@ -1,5 +1,6 @@
 import React from "react";
 import type { FC } from "react";
+import Image from "next/image";
 
 import { AiFillDelete } from "react-icons/ai";
 import MessageContent from "../atoms/MessageContent";
@@ -18,11 +19,7 @@ interface Props {
 }
 
 const ChannelMessage: FC<Props> = (props) => {
-  const res: Message = props.response;
-  const authorAvatar: string = res.author.avatarurl;
-  const authorName = res.author.name;
-
-  const resDatetime = new Date(Date.parse(res.timestamp));
+  const resDatetime = new Date(Date.parse(props.response.timestamp));
   const datetime = new Date(resDatetime.getTime());
 
   // 今日ですか？
@@ -104,27 +101,25 @@ const ChannelMessage: FC<Props> = (props) => {
     )} ${time}`;
 
   // メッセージを削除する関数
-  const deleteMessage = () => {
-    console.log("メッセージを削除");
-  };
+  const deleteMessage = () => {};
 
   // dangerousな文字をHTMLにして表示してるの怖くね
   if (props.authorShow) {
     return (
       <div className={style.fullcontent}>
         <div className={style.left_side}>
-          <img className={style.image} src={authorAvatar} />
+          <Image className={style.image} src={props.response.author.avatarurl} alt={props.response.author.name} />
         </div>
         <div>
           {" "}
           <div>
             {" "}
-            <span className={style.name}>{authorName}</span>
+            <span className={style.name}>{props.response.author.avatarurl}</span>
             <span className={style.timestamp}>{timestamp}</span>
           </div>
           {/* Markdown描画部 */}
           <div className={style.messagecontent}>
-            <MessageContent content={res.content} renderer={props.renderer} />
+            <MessageContent content={props.response.content} renderer={props.renderer} />
           </div>
         </div>
         <div className={style.messagebuttons}>
@@ -146,7 +141,7 @@ const ChannelMessage: FC<Props> = (props) => {
       </div>
       {/* Markdown描画部 */}
       <div className={style.messagecontent}>
-        <MessageContent content={res.content} renderer={props.renderer} />
+        <MessageContent content={props.response.content} renderer={props.renderer} />
       </div>
       <div className={style.messagebuttons}>
         props.isauthor ? (
