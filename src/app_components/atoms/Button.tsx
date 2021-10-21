@@ -1,14 +1,14 @@
-import type { FC, MouseEvent, ReactNode } from "react";
+import type { FC, ReactNode } from "react";
 import styles from "../../styles/app_components/atoms/Button.module.scss";
 
 type Props = {
   children: ReactNode;
-  onClick: (event: MouseEvent<HTMLDivElement>) => void;
+  onClick: VoidFunction;
 };
 
-const Button: FC<Props> = ({ children, onClick }) => (
-  <div onClick={onClick} className={styles.Button}>
-    {children}
+const Button: FC<Props> = (props) => (
+  <div className={styles.Button} onClick={props.onClick} onKeyDown={props.onClick} role="button" tabIndex={0}>
+    {props.children}
   </div>
 );
 
