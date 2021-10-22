@@ -56,22 +56,25 @@ const MemberList: FC = () => {
   );
 
   // クリックイベント
-  const CheckClick = (e: any) => {
-    const clickedClassName = String(e.target.className);
+  const CheckClick = (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+    const clickedClassName = target.className;
 
     if (clickedClassName.indexOf("member_element") !== -1) {
-      return;
+      return null;
     }
 
     if (clickedClassName.indexOf("memberpopup_element") !== -1) {
-      return;
+      return null;
     }
 
     if (!isShow) {
-      return;
+      return null;
     }
 
     clearMemmberPopp();
+
+    return null;
   };
 
   if (process.browser) {
@@ -80,18 +83,16 @@ const MemberList: FC = () => {
 
   useEffect(() => {
     if (guildID !== undefined && !Array.isArray(guildID)) {
-      (async () => {
-        try {
-          const res = await client.get<User[]>(`/guilds/${guildID}/members`);
+      client
+        .get<User[]>(`/guilds/${guildID}/members`)
+        .then((res) => {
           userDispatch({
             type: "setMember",
             newData: res.data,
           });
           setMembers(res.data);
-        } catch (e) {
-          console.log(e);
-        }
-      })();
+        })
+        .catch(() => {});
     }
   }, [userDispatch, userState, guildID]);
 
