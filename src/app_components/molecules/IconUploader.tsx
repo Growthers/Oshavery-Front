@@ -4,13 +4,14 @@ import UserIcon from "../atoms/UserIcon";
 
 type Props = {
   // setIcon: (file: File) => void;
-  // 初回ログイン時飲み設定
+  // 初回ログイン時のみ設定
   defaultIcon?: string;
 };
-const IconUploader: FC<Props> = (props) => {
+
+const IconUploader: FC<Props> = ({ defaultIcon }) => {
   const [imgUrl, setImgUrl] = useState<string>("");
   // set default icon
-  props.defaultIcon && setImgUrl(props.defaultIcon);
+  if (defaultIcon) setImgUrl(defaultIcon);
 
   /* backend待ち
   //handle input File
@@ -36,6 +37,10 @@ const IconUploader: FC<Props> = (props) => {
       * */}
     </div>
   );
+};
+
+IconUploader.defaultProps = {
+  defaultIcon: "",
 };
 
 export default IconUploader;
