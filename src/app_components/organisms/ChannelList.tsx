@@ -34,7 +34,8 @@ const ChannelList: FC = () => {
           <ChannelCard
             key={value.id}
             channel_name={value.name}
-            ChannelTopics={value.topics}
+            //  未実装のためコメントアウト
+            //  ChannelTopics={value.topics}
             channel_type={value.type}
             link={`/guild/${guildID !== undefined && !Array.isArray(guildID) ? guildID : ""}/channel/${value.id}`}
             selected={value.id === channelID}
