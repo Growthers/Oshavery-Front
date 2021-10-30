@@ -1,9 +1,6 @@
 import type { FC, ReactNode } from "react";
 import Head from "next/head";
 
-import Header from "./Header";
-import Footer from "./Footer";
-
 import style from "../styles/components/Layout.module.scss";
 
 const SiteName = "Oshavery";
@@ -46,15 +43,7 @@ const Layout: FC<Props> = ({ pagetitle, children, isheader, isfooter, descriptio
       <meta name="theme-color" content="#ffffff" />
     </Head>
     <main className={style.main}>
-      <div className={style.contents}>
-        {isheader && (
-          <div className={style.header}>
-            <Header />
-          </div>
-        )}
-        {children}
-      </div>
-      {isfooter && <Footer />}
+      <div className={style.contents}>{children}</div>
     </main>
   </>
 );
