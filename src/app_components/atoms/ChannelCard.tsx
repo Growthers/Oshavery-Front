@@ -24,7 +24,7 @@ const ChannelCard: FC<Props> = (props) => {
   return (
     <Link href="/guild/[guildID]/channel/[channelID]" as={props.link}>
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-      <a tabIndex={0} role="button" className={`${style.channel} ${props.selected && style.selected}`}>
+      <a tabIndex={0} role="button" className={`${style.channel} ${props.selected ? style.selected : ""}`}>
         <FaHashtag className={style.sharp} />
         <span className={style.channel_name}>{props.channel_name}</span>
       </a>
