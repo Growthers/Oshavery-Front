@@ -65,7 +65,7 @@ const Oshavery: NextPage = () => {
   }, [windowWidth, windowHeight]);
 
   return (
-    <Layout pagetitle="Oshavery" isheader={false} isfooter={false}>
+    <Layout pagetitle="Oshavery">
       <div className={style.oshavery}>
         <div className={style.server_list}>
           <Image className={style.icon} src={logo} alt="logo" />

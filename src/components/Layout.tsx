@@ -9,12 +9,10 @@ const SiteImage = "https://media.oshavery-app.net/logos/ogp.png";
 type Props = {
   pagetitle: string;
   description?: string;
-  isheader: boolean;
-  isfooter: boolean;
   children: ReactNode;
 };
 
-const Layout: FC<Props> = ({ pagetitle, children, isheader, isfooter, description = "Oshavery - A chat tool" }) => (
+const Layout: FC<Props> = ({ pagetitle, children, description = "Oshavery - A chat tool" }) => (
   <>
     <Head>
       <title>{pagetitle}</title>
