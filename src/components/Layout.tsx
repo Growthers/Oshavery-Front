@@ -1,9 +1,6 @@
 import type { FC, ReactNode } from "react";
 import Head from "next/head";
 
-import Header from "./Header";
-import Footer from "./Footer";
-
 import style from "../styles/components/Layout.module.scss";
 
 const SiteName = "Oshavery";
@@ -12,12 +9,10 @@ const SiteImage = "https://media.oshavery-app.net/logos/ogp.png";
 type Props = {
   pagetitle: string;
   description?: string;
-  isheader: boolean;
-  isfooter: boolean;
   children: ReactNode;
 };
 
-const Layout: FC<Props> = ({ pagetitle, children, isheader, isfooter, description = "Oshavery - A chat tool" }) => (
+const Layout: FC<Props> = ({ pagetitle, children, description = "Oshavery - A chat tool" }) => (
   <>
     <Head>
       <title>{pagetitle}</title>
@@ -46,15 +41,7 @@ const Layout: FC<Props> = ({ pagetitle, children, isheader, isfooter, descriptio
       <meta name="theme-color" content="#ffffff" />
     </Head>
     <main className={style.main}>
-      <div className={style.contents}>
-        {isheader && (
-          <div className={style.header}>
-            <Header />
-          </div>
-        )}
-        {children}
-      </div>
-      {isfooter && <Footer />}
+      <div className={style.contents}>{children}</div>
     </main>
   </>
 );

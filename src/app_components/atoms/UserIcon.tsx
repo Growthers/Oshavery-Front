@@ -1,13 +1,14 @@
 import { FC } from "react";
+import Image from "next/image";
 import style from "../../styles/app_components/atoms/UserIcon.module.scss";
 
-type iconProps = {
+type IconProps = {
   imgUrl: string;
   size: number;
 };
 
-const UserIcon: FC<iconProps> = (props) => (
-  <img src={props.imgUrl} width={props.size} height={props.size} className={style.icon} />
+const UserIcon: FC<IconProps> = (props) => (
+  <Image src={props.imgUrl} width={props.size} height={props.size} className={style.icon} />
 );
 
 export default UserIcon;

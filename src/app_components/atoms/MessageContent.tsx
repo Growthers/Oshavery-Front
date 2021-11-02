@@ -11,7 +11,7 @@ interface Props {
 
 const MessageContent: FC<Props> = (props) => {
   const renderdContent = props.renderer(props.content);
+  // eslint-disable-next-line react/no-danger
   return <span dangerouslySetInnerHTML={{ __html: renderdContent }} />;
 };
-
 export default React.memo(MessageContent);

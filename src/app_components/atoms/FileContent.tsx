@@ -23,6 +23,7 @@ const FileContent: FC<FileProps> = (props) => {
   }
   if (props.mime === "video/mp4") {
     return (
+      // eslint-disable-next-line jsx-a11y/media-has-caption
       <video controls width={props.width} height={props.height}>
         <source src={props.media_url} type="video/mp4" />
       </video>

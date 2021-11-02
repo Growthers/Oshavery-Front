@@ -8,10 +8,12 @@ import MarkdownItEmoji from "markdown-it-emoji";
 // KaTeXレンダコンポーネント
 // XSSの脆弱性があるらしいが、markdown-itの力で消えている
 // => ライブラリを変更することで解決
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import MarkdownItKatex from "@iktakahiro/markdown-it-katex";
 // Emojiレンダリングコンポーネント
 // お願い！握りつぶさせて！
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { Emoji } from "emoji-mart";
 import HighlightJs from "highlight.js";
@@ -74,11 +76,11 @@ const MessageList: FC = () => {
 
   // 初期化処理
   useEffect(() => {
+    if (channelID === undefined || Array.isArray(channelID)) {
+      throw new Error("no query");
+    }
     (async () => {
       try {
-        if (channelID === undefined) {
-          throw new Error("no query");
-        }
         const fstData = await client.get<Message[]>(`/channels/${channelID}/messages`, {
           params: {
             limit: 100,
@@ -92,7 +94,9 @@ const MessageList: FC = () => {
       } catch (e) {
         console.log(e);
       }
-    })();
+    }
+
+    )();
 
     // テストデータ
     // テストデータを使うことがあるのでコメントアウトしておきます
@@ -154,13 +158,14 @@ const MessageList: FC = () => {
   // emoji-martライブラリのカスタム絵文字を使うために面倒なことをしています
   md.use(MarkdownItEmoji);
 
-  md.renderer.rules.emoji = function (token, idx) {
+  md.renderer.rules.emoji = (token, idx) => {
     // EmojiコンポーネントがJSXかStringを返すクソ仕様のせいでtypescriptの恩恵を受けられません
     const ret = Emoji({
       html: true,
       emoji: token[idx].markup,
       size: 16,
     });
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     return ret as string;
   };
