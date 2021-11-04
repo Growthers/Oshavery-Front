@@ -97,16 +97,12 @@ const InputMessageBox: FC<Props> = (props) => {
       return;
     }
 
-    // 送信処理
-    console.log("Sending");
-
     setIsShow(false);
     setIsSending(false);
   }, [eventtarget, isSending]);
 
   // 絵文字の入力
   const selectEmoji = (e: BaseEmoji) => {
-    console.log(e.id);
     setMessage(`${message}:${e.id}:`);
 
     // 折り返しに対応 バグがあるので見送り
@@ -122,6 +118,7 @@ const InputMessageBox: FC<Props> = (props) => {
     //  }
     // }
   };
+  // チャンネル名の取得
   const getChannelName = (): string => {
     if (channelID === undefined) return "";
     return userState.user.guilds[userState.user.guilds.findIndex((item) => item.id === guildID)].channels[
