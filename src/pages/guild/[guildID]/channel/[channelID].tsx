@@ -89,7 +89,7 @@ const Oshavery: NextPage = () => {
             <MessageList />
           </div>
           <div className={style.input} id="input_box">
-            <InputMessageBox textarea_change_event={changeMessagesHeight} />
+            <InputMessageBox textareaChangeEvent={changeMessagesHeight} inputDisable={false} />
           </div>
         </div>
         <div className={style.right_side}>
