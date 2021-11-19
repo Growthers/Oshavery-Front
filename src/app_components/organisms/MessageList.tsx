@@ -92,7 +92,7 @@ const MessageList: FC = () => {
           newData: fstData.data,
         });
       } catch (e) {
-        console.log(e);
+        throw new Error(e);
       }
     })();
 
@@ -126,7 +126,7 @@ const MessageList: FC = () => {
         newData: newData.data,
       });
     } catch (e) {
-      console.log(e);
+      throw new Error(e);
     }
   };
 
