@@ -1,4 +1,4 @@
-import { FC, useState, ChangeEvent, useEffect } from "react";
+import { FC, useState, ChangeEvent, useEffect, useContext } from "react";
 import { CustomEmoji, BaseEmoji } from "emoji-mart";
 import { useRouter } from "next/router";
 
@@ -9,22 +9,23 @@ import TextareaBox from "../atoms/TextareaBox";
 
 import client from "../../lib/client";
 import { PostMessageRes } from "../../types/message";
+import { userContext } from "../../stores/user";
 
 import style from "../../styles/app_components/organisms/InputMessageBox.module.scss";
 
 type Props = {
-  textarea_change_event: () => void;
+  textareaChangeEvent: () => void;
+  inputDisable: boolean;
 };
 
 const InputMessageBox: FC<Props> = (props) => {
   // API待ち
-  const [disabled, setDisabled] = useState<boolean>(false);
   const [rows, setRows] = useState<number>(1);
-  const [placeholder, setPlaceholder] = useState<string>("");
   const [message, setMessage] = useState<string>("");
 
+  const { userState } = useContext(userContext);
   const router = useRouter();
-  const { channelID } = router.query;
+  const { guildID, channelID } = router.query;
 
   const sendMessage = () => {
     if (channelID !== undefined && !Array.isArray(channelID)) {
@@ -42,15 +43,16 @@ const InputMessageBox: FC<Props> = (props) => {
   };
 
   // ファイル関連
-  const [eventtarget, setEventTarget] = useState<ChangeEvent<HTMLInputElement>>();
+  const [isSending, setIsSending] = useState<boolean>(false);
+  const [eventtarget] = useState<ChangeEvent<HTMLInputElement>>();
+  const [, setIsShow] = useState<boolean>(false);
+  /*
   const [filename, setFileName] = useState<string>("");
   const [fileurl, setFileUrl] = useState<string>("");
-  const [isSending, setIsSending] = useState<boolean>(false);
-  const [isShow, setIsShow] = useState<boolean>(false);
 
   const checkfile = (e: ChangeEvent<HTMLInputElement>) => {
-    const { target } = e;
-    const { files } = target;
+    const {target} = e;
+    const {files} = target;
     if (files == null) return;
     const file = files[0];
     if (file == null) return;
@@ -80,6 +82,7 @@ const InputMessageBox: FC<Props> = (props) => {
 
     setIsShow(true);
   };
+ */
 
   useEffect(() => {
     if (eventtarget == null) {
@@ -94,16 +97,12 @@ const InputMessageBox: FC<Props> = (props) => {
       return;
     }
 
-    // 送信処理
-    console.log("Sending");
-
     setIsShow(false);
     setIsSending(false);
   }, [eventtarget, isSending]);
 
   // 絵文字の入力
   const selectEmoji = (e: BaseEmoji) => {
-    console.log(e.id);
     setMessage(`${message}:${e.id}:`);
 
     // 折り返しに対応 バグがあるので見送り
@@ -119,6 +118,15 @@ const InputMessageBox: FC<Props> = (props) => {
     //  }
     // }
   };
+  // チャンネル名の取得
+  const getChannelName = (): string => {
+    if (channelID === undefined) return "";
+    return userState.user.guilds[userState.user.guilds.findIndex((item) => item.id === guildID)].channels[
+      userState.user.guilds[userState.user.guilds.findIndex((item) => item.id === guildID)].channels.findIndex(
+        (item) => item.id === channelID,
+      )
+    ].name;
+  };
 
   const onChangeEvent = (value: string) => {
     setMessage(value);
@@ -131,7 +139,7 @@ const InputMessageBox: FC<Props> = (props) => {
     // 折り返しに対応
     if (process.browser) {
       const target = document.getElementById("input_your_message") as HTMLInputElement;
-      if (target == null) return;
+      if (target === null) return;
 
       target.style.height = "auto";
       if (value === "") {
@@ -140,12 +148,14 @@ const InputMessageBox: FC<Props> = (props) => {
         target.style.height = `${target.scrollHeight}px`;
       }
 
-      props.textarea_change_event();
+      props.textareaChangeEvent();
     }
   };
 
   // test Data
   const customEmojiData: CustomEmoji[] = [];
+
+  if (channelID === undefined || guildID === undefined) return <></>;
 
   return (
     <>
@@ -156,10 +166,10 @@ const InputMessageBox: FC<Props> = (props) => {
           */}
           <div className={style.textarea}>
             <TextareaBox
-              disabled={disabled}
+              disabled={props.inputDisable}
               rows={rows}
               onChange={onChangeEvent}
-              placeholder={placeholder}
+              placeholder={getChannelName()}
               value={message}
               onKeyDown={sendMessage}
             />

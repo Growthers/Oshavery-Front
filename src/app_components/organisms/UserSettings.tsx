@@ -1,4 +1,4 @@
-import { FC, useState, memo } from "react";
+import { FC, memo } from "react";
 import Modal from "react-modal";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -15,7 +15,7 @@ type SettingsProps = {
 };
 
 const Settings: FC<SettingsProps> = (props) => {
-  const { logout, user } = useAuth0();
+  const { logout } = useAuth0();
   //  const [userName, setUserName] = useState(user?.name);
   //  const [icon, setIcon] = useState<File>();
 

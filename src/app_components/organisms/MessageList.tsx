@@ -92,11 +92,9 @@ const MessageList: FC = () => {
           newData: fstData.data,
         });
       } catch (e) {
-        console.log(e);
+        throw new Error(e);
       }
-    }
-
-    )();
+    })();
 
     // テストデータ
     // テストデータを使うことがあるのでコメントアウトしておきます
@@ -128,7 +126,7 @@ const MessageList: FC = () => {
         newData: newData.data,
       });
     } catch (e) {
-      console.log(e);
+      throw new Error(e);
     }
   };
 
@@ -144,7 +142,9 @@ const MessageList: FC = () => {
       if (lang && HighlightJs.getLanguage(lang)) {
         try {
           return HighlightJs.highlight(str, { language: lang }).value;
-        } catch (__) {}
+        } catch (e) {
+          throw new Error(e);
+        }
       }
 
       return ""; // use external default escaping
@@ -183,12 +183,14 @@ const MessageList: FC = () => {
 
     const result = null;
 
+    /*
     if (process.browser && aIndex < 0) {
       const pattern = `https?://${document.domain}[\w!?/+\-_~;.,*&@#$%()'[\]]+`;
       // url取得
       // ここで一致させることで、同一ドメインのものは新規タブで開かれません（多分）
       // result = tokens[idx].attrs[0][1].match(pattern);
     }
+     */
 
     if (aIndex < 0 && result == null) {
       tokens[idx].attrPush(["target", "_blank"]);
