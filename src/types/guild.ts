@@ -1,30 +1,35 @@
-import { user } from "./user";
+// import { User } from "./user";
 
-export type guild = {
+export type Guild = {
   id: string;
   name: string;
   topic: string;
   icon: string;
-  owner_id: string;
-  users: user[];
+  created_at: string;
+  updated_at: string;
+  deleted_at: string;
   channels: {
     id: string;
-    channel_name: string;
-    channel_topics: string;
-    channel_type: string;
-    channel_position: number;
-    creator_id: string;
+    name: string;
+    type: string;
+    topics: string;
+    position: number;
+    latest_message_id: string;
+    created_at: string;
+    updated_at: string;
+    deleted_at: string;
+    guildId: string;
   }[];
 };
 
-export type role = {
+export type Role = {
   id: string;
   name: string;
   permissions: string;
   mentionable: boolean;
 };
 
-export type inviteLink = {
+export type InviteLink = {
   id: string;
   guild_id: string;
   channel_id: string;

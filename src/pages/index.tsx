@@ -1,16 +1,28 @@
 import type { NextPage } from "next";
+import { useAuth0 } from "@auth0/auth0-react";
 import Link from "next/link";
-import styles from "../styles/Home.module.css";
+import style from "../styles/pages/index.module.scss";
 
 const Home: NextPage = () => {
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
   return (
-    <div className={styles.container}>
-      <Link href={"/guild/[guildID]"} as={"/guild/server_one"}>
-        <a>サーバー1へ</a>
-      </Link>
-      <Link href={"/guild/[guildID]/channel/[channelID]"} as={"/guild/server_one/channel/a"}>
-        <a>サーバー1へのチャンネルaへ</a>
-      </Link>
+    <div className={style.page}>
+      <div className={style.loginPage}>
+        <div>Login Page</div>
+        {isAuthenticated ? (
+          <Link href="/loading">
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <a className={style.toLoading}>Go to Oshavery</a>
+          </Link>
+        ) : (
+          <>
+            {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
+            <button type="button" role="button" onClick={() => loginWithRedirect()} className={style.item}>
+              Login
+            </button>
+          </>
+        )}
+      </div>
     </div>
   );
 };

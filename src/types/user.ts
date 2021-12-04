@@ -1,4 +1,4 @@
-export type user = {
+export type User = {
   id: string;
   name: string;
   avatar: string;
@@ -6,9 +6,15 @@ export type user = {
   state: number;
 };
 
-//export type myInfo = user & {"guilds": guild[]};
+export type CreateUserRes = {
+  id: string;
+  bot: boolean;
+  name: string;
+};
 
-export type myInfo = {
+// export type myInfo = user & {"guilds": guild[]};
+
+export type MyInfo = {
   id: string;
   name: string;
   avatar: string;
@@ -19,21 +25,20 @@ export type myInfo = {
     name: string;
     topic: string;
     icon: string;
-    owner_id: string;
-    users: {
-      id: string;
-      name: string;
-      avatar: string;
-      bot: boolean; //<-miss
-      state: number;
-    }[];
+    created_at: string;
+    updated_at: string;
+    deleted_at: string;
     channels: {
       id: string;
-      channel_name: string;
-      channel_topics: string;
-      channel_type: string;
-      channel_position: number;
-      creator_id: string;
+      name: string;
+      type: string;
+      topics: string;
+      position: number;
+      latest_message_id: string;
+      created_at: string;
+      updated_at: string;
+      deleted_at: string;
+      guildId: string;
     }[];
   }[];
 };

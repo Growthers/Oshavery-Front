@@ -1,0 +1,10 @@
+@use "../color.variable";
+.page {
+  @include color.background(menubar);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  .toLoading {
+    background-color: #fff;
+  }
+}

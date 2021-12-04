@@ -1,10 +1,10 @@
-export type message = {
+export type Message = {
   id: string;
   timestamp: string;
   author: {
     id: string;
-    user_name: string;
-    avatar: string;
+    name: string;
+    avatarurl: string;
     bot: boolean;
     state: number;
   };
@@ -14,10 +14,10 @@ export type message = {
   edited_timestamp: string;
 };
 
-export type postMessageRes = {
+export type PostMessageRes = {
   id: string;
   timestamp: string;
   content: string;
   guild_id: string;
-  edited_timestamp: string;
+  edited_timestamp: Date;
 };

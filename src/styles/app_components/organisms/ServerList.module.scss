@@ -1,0 +1,9 @@
+.serverlist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  // これをするとポップアップが表示されない
+  // overflow: hidden;
+}
