@@ -1,5 +1,5 @@
 # Oshavery-Front: A Discord-like Chat tool  
-
+***新バージョンを0から再開発することになったため,現在動作しません***
 ## What is Oshavery?  
 
 `Oshavery-Front` is Discord/Slack-like chat tool written in Next.js.  
