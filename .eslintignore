@@ -19,3 +19,4 @@ yarn-error.log*
 prepare-commit-msg
 jest.config.js
 jest.setup.js
+*.mock.js
