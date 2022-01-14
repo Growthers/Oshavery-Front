@@ -6,12 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --ignore-path .gitignore src/**/*.{js,jsx,ts,tsx}",
-    "lint:fix": "eslint --ignore-path .gitignore src/**/*.{js,jsx,ts,tsx} --fix",
+    "lint": "eslint --ignore-path .eslintignore src/**/*.{js,jsx,ts,tsx}",
+    "lint:fix": "eslint --ignore-path .eslintignore src/**/*.{js,jsx,ts,tsx} --fix",
     "format": "prettier --write src/**/*.{js,jsx,ts,tsx,css,sass,scss}",
     "prepare": "husky install",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "jest"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
