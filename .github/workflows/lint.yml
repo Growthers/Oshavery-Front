@@ -1,0 +1,31 @@
+name: Lint codes
+
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  run-eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+      - uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+      - name: eslint
+        run: yarn run lint
+#      - name: style lint
+#        run: yarn run lint:style
