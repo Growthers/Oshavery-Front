@@ -17,7 +17,7 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "start": "vite preview",
-    "lint": "eslint ./**/**/**/**/*.{ts,tsx,scss}",
+    "lint": "eslint ./**/*.{ts,tsx,scss}",
     "lint:style": "stylelint ./src/styles/*.scss",
     "lint:fix": "npm run lint --fix",
     "lint:style-fix": "npm run lint:style --fix",
