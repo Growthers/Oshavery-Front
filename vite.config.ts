@@ -1,6 +1,5 @@
 import react from "@vitejs/plugin-react";
 import * as path from "node:path";
-import type { Plugin } from "rollup";
 import { defineConfig } from "vitest/config";
 
 const PRODUCTION = "production";
@@ -12,35 +11,6 @@ const is_production = environment === PRODUCTION;
 
 const root = `${process.cwd()}/src`;
 const dist = `${process.cwd()}/dist`;
-
-const noparse = () =>
-  ({
-    enforce: "pre",
-    name: "noparse",
-    transform(code: string, id: string) {
-      if (id.endsWith("?noparse")) {
-        const encoded = Buffer.from(
-          unescape(encodeURIComponent(code)),
-        ).toString("base64");
-        return {
-          code: `const url = "data:text/javascript;base64," + "${encoded}";
-                  const f = new Function("u", "return import(u)");
-                  export default () => f(/* @vite-ignore */ url);
-                `,
-        };
-      }
-      if (id.endsWith("?noparse-umd")) {
-        return {
-          code: `const m = { exports: {}};
-                  new Function('module', 'exports', ${JSON.stringify(
-                    code,
-                  )})(m, m.exports);
-                  export default m.exports
-                `,
-        };
-      }
-    },
-  } as Plugin);
 
 export default defineConfig({
   build: {
@@ -74,7 +44,7 @@ export default defineConfig({
         }
       : undefined,
   },
-  plugins: [react(), noparse()],
+  plugins: [react()],
   resolve: {
     alias: {
       "~/": `${root}/`,
