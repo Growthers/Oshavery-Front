@@ -2,8 +2,8 @@
 
 ## What is Oshavery?
 
-`Oshavery-Front` is Discord/Slack-like chat tool written in Next.js.  
-`Oshavery-Front` は, Next.js で書かれた Discord/Slack ライクなチャットツールのクライアントです.
+`Oshavery-Front` is Discord/Slack-like chat tool written in React.js.  
+`Oshavery-Front` は, React.js で書かれた Discord/Slack ライクなチャットツールのクライアントです.
 
 ## Demo
 
