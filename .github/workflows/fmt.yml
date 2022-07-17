@@ -33,4 +33,4 @@ jobs:
       - name: auto commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: 🤖 auto-fixable format by github-actions
+          commit_message: 🤖 Auto-fixable format by github-actions
