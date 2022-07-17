@@ -1,0 +1,30 @@
+root: true
+env:
+  browser: true
+  es2020: true
+plugins:
+  - "@typescript-eslint"
+extends:
+  - airbnb
+  - airbnb/hooks
+  - airbnb-typescript
+  - eslint:recommended
+  - plugin:@typescript-eslint/recommended
+  - plugin:react/recommended
+  - prettier
+overrides:
+  - files:
+      - "*.stories.@(ts|tsx)"
+    extends:
+      - plugin:storybook/recommended
+    rules:
+      import/no-default-export: off
+parser: "@typescript-eslint/parser"
+parserOptions:
+  project: ./tsconfig.json
+rules:
+  import/prefer-default-export: off
+  react/react-in-jsx-scope: off
+  react/function-component-definition:
+    - 2
+    - namedComponents: arrow-function

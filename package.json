@@ -1,68 +1,80 @@
 {
   "name": "oshavery-front",
-  "private": true,
-  "license": "MIT",
+  "version": "0.2.0",
+  "license": "AGPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Growthers/Oshavery-Front"
+  },
+  "bugs": {
+    "url": "https://github.com/Growthers/Oshavery-Front/issues"
+  },
+  "author": {
+    "name": "Growthers",
+    "email": "contact@growthers.dev"
+  },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint --ignore-path .eslintignore src/**/*.{js,jsx,ts,tsx}",
-    "lint:fix": "eslint --ignore-path .eslintignore src/**/*.{js,jsx,ts,tsx} --fix",
-    "format": "prettier --write src/**/*.{js,jsx,ts,tsx,css,sass,scss}",
-    "prepare": "husky install",
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "start": "vite preview",
+    "lint": "eslint ./**/*.{ts,tsx,scss}",
+    "lint:style": "stylelint ./src/styles/*.scss",
+    "lint:fix": "npm run lint --fix",
+    "lint:style-fix": "npm run lint:style --fix",
+    "fmt": "prettier -w -u .",
+    "type": "tsc --noEmit",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "test": "jest"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "yarn lint:fix",
-      "yarn format"
-    ],
-    "*.{css,sass,scss}": [
-      "yarn format"
-    ]
-  },
-  "engines": {
-    "npm": "Please use yarn instead"
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "next": "12.0.7",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "wouter": "2.8.0-alpha.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.7",
-    "@next/eslint-plugin-next": "^12.0.7",
-    "@storybook/addon-actions": "^6.4.12",
-    "@storybook/addon-essentials": "^6.4.12",
-    "@storybook/addon-links": "^6.4.12",
-    "@storybook/addon-postcss": "^2.0.0",
-    "@storybook/addon-storyshots": "^6.5.0-alpha.17",
-    "@storybook/react": "^6.4.12",
-    "@storybook/testing-react": "^1.0.0-next.1",
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/react-hooks": "^7.0.2",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/node": "17.0.2",
-    "@types/react": "17.0.37",
-    "@typescript-eslint/eslint-plugin": "^5.8.0",
-    "@typescript-eslint/parser": "^5.8.0",
-    "babel-jest": "^27.4.6",
-    "babel-loader": "^8.2.3",
-    "eslint": "8.5.0",
-    "eslint-config-airbnb": "^19.0.2",
-    "eslint-config-airbnb-typescript": "^16.1.0",
-    "eslint-config-next": "12.0.7",
-    "eslint-config-prettier": "^8.3.0",
-    "husky": "^7.0.4",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.4.7",
-    "lint-staged": "^12.1.4",
-    "prettier": "^2.5.1",
-    "react-test-renderer": "^17.0.2",
-    "sass": "^1.45.1",
-    "typescript": "4.5.4"
+    "@babel/core": "7.18.5",
+    "@storybook/addon-actions": "6.5.8",
+    "@storybook/addon-essentials": "6.5.8",
+    "@storybook/addon-interactions": "6.5.8",
+    "@storybook/addon-links": "6.5.8",
+    "@storybook/builder-vite": "0.1.36",
+    "@storybook/react": "6.5.8",
+    "@storybook/testing-library": "0.0.13",
+    "@types/node": "17.0.42",
+    "@types/react": "18.0.12",
+    "@types/react-dom": "18.0.5",
+    "@types/react-test-renderer": "18.0.0",
+    "@typescript-eslint/eslint-plugin": "5.27.1",
+    "@typescript-eslint/parser": "5.27.1",
+    "@vitejs/plugin-react": "1.3.2",
+    "@vitest/ui": "0.14.2",
+    "autoprefixer": "10.4.7",
+    "babel-loader": "8.2.5",
+    "eslint": "8.17.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-airbnb-typescript": "17.0.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-react": "7.30.0",
+    "eslint-plugin-react-hooks": "4.5.0",
+    "eslint-plugin-storybook": "0.5.12",
+    "happy-dom": "5.3.0",
+    "jsdom": "19.0.0",
+    "postcss": "8.4.14",
+    "prettier": "2.6.2",
+    "react-test-renderer": "18.1.0",
+    "rollup": "2.75.6",
+    "sass": "1.52.3",
+    "stylelint": "14.9.1",
+    "stylelint-config-prettier": "9.0.3",
+    "stylelint-config-recess-order": "3.0.0",
+    "stylelint-config-standard-scss": "4.0.0",
+    "stylelint-prettier": "2.0.0",
+    "typescript": "4.7.3",
+    "vite": "2.9.12",
+    "vitest": "0.14.2"
   }
 }
